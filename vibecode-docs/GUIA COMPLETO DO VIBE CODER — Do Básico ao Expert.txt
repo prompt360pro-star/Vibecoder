@@ -1,0 +1,1103 @@
+
+
+# 🎯 GUIA COMPLETO DO VIBE CODER — Do Básico ao Expert
+
+> **Vibe Coding**: Termo cunhado por **Andrej Karpathy** (fev/2025) — programar guiado por IA, onde você descreve a intenção em linguagem natural e a IA gera o código. Você "surfa na vibe" e pilota o resultado.
+
+---
+
+## 📌 NÍVEL 1 — BÁSICO (Fundação)
+
+### 1.1 — Entendimento Conceitual
+
+```
+O que você precisa SABER:
+```
+
+1. O que é vibe coding e como se diferencia da programação tradicional
+2. O que é código-fonte e para que serve
+3. O que é um programa / aplicação / software
+4. Diferença entre frontend, backend e fullstack
+5. O que é uma linguagem de programação (e que existem várias)
+6. O que é compilação vs. interpretação (conceito geral)
+7. O que é um algoritmo (conceito intuitivo)
+8. O que são dados, variáveis e tipos de dados (string, número, booleano)
+9. O que é lógica condicional (se/então/senão)
+10. O que são loops/laços de repetição
+11. O que é uma função
+12. O que é um arquivo e uma pasta/diretório
+13. O que é um formato de arquivo (.js, .py, .html, .css, .json, etc.)
+14. O que é um projeto de software (estrutura de pastas)
+15. O que é open source
+
+### 1.2 — Ferramentas de IA para Vibe Coding
+
+```
+O que você precisa CONHECER e USAR:
+```
+
+16. **ChatGPT** (OpenAI) — chat para gerar código
+17. **Claude** (Anthropic) — chat para gerar código e raciocínio longo
+18. **Cursor** — IDE com IA integrada (fork do VS Code)
+19. **Windsurf** (Codeium) — IDE com IA integrada
+20. **GitHub Copilot** — assistente de código no VS Code
+21. **Replit** — IDE online com agente IA (Replit Agent)
+22. **v0.dev** (Vercel) — gerador de interfaces com IA
+23. **Bolt.new** (StackBlitz) — gerador de apps completos com IA
+24. **Lovable** (ex-GPT Engineer) — gerador de apps com IA
+25. **Claude Artifacts** — prototipagem rápida dentro do Claude
+26. **Google Gemini** — chat IA com capacidade de código
+27. **Amazon Q Developer** — assistente de código da AWS
+
+### 1.3 — Ambiente de Trabalho
+
+```
+O que você precisa CONFIGURAR:
+```
+
+28. Instalar um editor de código (VS Code ou Cursor)
+29. Instalar extensões básicas (Prettier, ESLint, etc.)
+30. Instalar **Node.js** e **npm** (para projetos web)
+31. Instalar **Python** (para scripts e IA)
+32. Instalar **Git**
+33. Criar conta no **GitHub**
+34. Instalar um terminal decente (Windows Terminal, iTerm2, Warp)
+35. Entender o sistema de arquivos do seu sistema operacional
+36. Configurar chaves de API dos serviços de IA
+37. Entender o que é um `.env` (variáveis de ambiente)
+
+### 1.4 — Terminal / Linha de Comando (Básico)
+
+```
+Comandos que você PRECISA saber:
+```
+
+38. `cd` — navegar entre pastas
+39. `ls` / `dir` — listar arquivos
+40. `mkdir` — criar pasta
+41. `touch` / `new-item` — criar arquivo
+42. `rm` / `del` — remover arquivo
+43. `cp` / `copy` — copiar arquivo
+44. `mv` / `move` — mover/renomear arquivo
+45. `cat` / `type` — exibir conteúdo de arquivo
+46. `clear` / `cls` — limpar terminal
+47. `pwd` — mostrar diretório atual
+48. `code .` — abrir VS Code na pasta atual
+49. `ctrl+C` — interromper processo em execução
+
+### 1.5 — Git Básico
+
+```
+Controle de versão mínimo:
+```
+
+50. O que é Git e para que serve
+51. O que é um repositório (repo)
+52. `git init` — iniciar repositório
+53. `git clone` — clonar repositório
+54. `git add .` — adicionar mudanças
+55. `git commit -m "mensagem"` — salvar mudanças
+56. `git push` — enviar para o GitHub
+57. `git pull` — baixar atualizações
+58. `git status` — verificar estado
+59. `git log` — ver histórico
+60. Criar repositório no GitHub
+61. Conectar repo local ao GitHub (remote)
+62. O que é `.gitignore` e como usar
+
+### 1.6 — Prompt Engineering Básico
+
+```
+Como CONVERSAR com a IA para gerar código:
+```
+
+63. Descrever o que você quer de forma clara e específica
+64. Especificar a linguagem/framework desejado
+65. Pedir código com comentários explicativos
+66. Pedir explicação do código gerado
+67. Enviar mensagens de erro para a IA corrigir
+68. Pedir código passo a passo (não tudo de uma vez)
+69. Usar exemplos concretos de input/output desejado
+70. Pedir alternativas ("me mostre outra forma de fazer")
+71. Iterar sobre o resultado ("agora mude X", "adicione Y")
+72. Saber copiar e colar código no lugar certo
+
+### 1.7 — Web Básico (Conceitos)
+
+```
+Fundamentos que todo vibe coder precisa entender:
+```
+
+73. O que é **HTML** (estrutura)
+74. O que é **CSS** (estilo/visual)
+75. O que é **JavaScript** (comportamento/interatividade)
+76. O que é um **navegador** e como renderiza páginas
+77. O que é uma **URL**
+78. O que é **HTTP** / **HTTPS** (conceito básico)
+79. O que é um **servidor**
+80. O que é um **domínio**
+81. O que é **hospedagem**
+82. O que é **responsividade** (mobile vs desktop)
+83. O que é **JSON** (formato de dados)
+
+### 1.8 — Executar Projetos
+
+```
+O que você precisa saber FAZER:
+```
+
+84. Instalar dependências: `npm install` / `pip install`
+85. Rodar um projeto: `npm run dev` / `python app.py`
+86. Abrir no navegador (localhost:3000, localhost:5173, etc.)
+87. Entender o que é uma porta (port)
+88. Ler uma mensagem de erro básica
+89. Matar um processo que travou
+90. Reiniciar o servidor de desenvolvimento
+91. Entender o que é `package.json` (Node) / `requirements.txt` (Python)
+
+---
+
+## 📌 NÍVEL 2 — INTERMEDIÁRIO (Autonomia)
+
+### 2.1 — Prompt Engineering Avançado
+
+```
+Técnicas refinadas de comunicação com IA:
+```
+
+92. **Prompts com contexto**: fornecer arquitetura, stack, e constraints
+93. **Few-shot prompting**: dar exemplos do padrão esperado
+94. **Chain-of-thought**: pedir que a IA raciocine passo a passo
+95. **Role prompting**: "Atue como um engenheiro sênior de React..."
+96. **Prompt de sistema/system prompt**: configurar comportamento da IA
+97. **Decomposição de tarefas**: quebrar problemas complexos em partes
+98. **Prompts negativos**: "NÃO use biblioteca X", "NÃO use classes"
+99. **Pedir revisão de código**: "Revise este código para bugs e melhorias"
+100. **Pedir testes**: "Escreva testes unitários para esta função"
+101. **Pedir refatoração**: "Refatore para seguir SOLID"
+102. **Contextual anchoring**: referenciar documentação oficial no prompt
+103. **Prompt chaining**: usar saída de um prompt como entrada do próximo
+104. **Meta-prompting**: pedir à IA que crie o prompt ideal para uma tarefa
+105. Definir **formato de saída** (JSON, Markdown, tabela, código, etc.)
+106. Usar **markdown no prompt** para organizar instruções
+107. Criar **templates de prompt** reutilizáveis para tarefas recorrentes
+108. Documentar e versionar seus melhores prompts
+
+### 2.2 — Leitura e Compreensão de Código
+
+```
+Você NÃO precisa escrever tudo, mas precisa LER e ENTENDER:
+```
+
+109. Ler código JavaScript/TypeScript e entender o fluxo
+110. Ler código Python e entender o fluxo
+111. Entender **imports/exports** entre arquivos
+112. Entender **funções assíncronas** (async/await, Promises)
+113. Entender **callbacks**
+114. Entender **objetos** e **arrays** e suas manipulações
+115. Entender **destructuring** (desestruturação)
+116. Entender **spread operator** (...)
+117. Entender **arrow functions** (=>)
+118. Entender **template literals** (`` ` `` backticks)
+119. Entender **map, filter, reduce**
+120. Entender **try/catch** (tratamento de erros)
+121. Entender **classes** e **interfaces** (TypeScript)
+122. Entender **tipos** (TypeScript): string, number, boolean, any, etc.
+123. Entender **enums**
+124. Entender **generics** (conceito básico)
+125. Entender **operador ternário** (condição ? sim : não)
+126. Entender **null, undefined, NaN**
+127. Entender **truthy e falsy values**
+128. Entender **scope** (escopo de variáveis)
+129. Entender **closures** (conceito básico)
+130. Entender **event listeners** (addEventListener)
+131. Entender o que é o **DOM**
+
+### 2.3 — Frameworks e Bibliotecas Web
+
+```
+Conhecimento funcional (não precisa dominar, precisa NAVEGAR):
+```
+
+132. **React** — biblioteca de UI (componentes, JSX, hooks)
+133. **Next.js** — framework React com SSR/SSG
+134. **Vue.js** — framework de UI alternativo
+135. **Nuxt** — framework Vue com SSR/SSG
+136. **Svelte / SvelteKit** — framework compilado
+137. **Tailwind CSS** — utility-first CSS framework
+138. **shadcn/ui** — componentes de UI para React
+139. **Bootstrap** — framework CSS clássico
+140. **React Native** — apps mobile com React
+141. **Flutter** — apps mobile com Dart (conceito)
+142. **Expo** — plataforma para React Native
+
+### 2.4 — Backend Básico
+
+```
+O que acontece no SERVIDOR:
+```
+
+143. O que é uma **API** (Application Programming Interface)
+144. O que é **REST** (conceito e verbos: GET, POST, PUT, DELETE, PATCH)
+145. O que são **endpoints**
+146. O que são **status codes** HTTP (200, 201, 400, 401, 403, 404, 500)
+147. O que são **headers** HTTP
+148. O que é o **body** de uma requisição
+149. O que são **query parameters** e **path parameters**
+150. **Express.js** — framework backend Node.js
+151. **FastAPI** — framework backend Python
+152. **Flask** — framework backend Python
+153. **Django** — framework fullstack Python
+154. O que é **middleware**
+155. O que é **CORS** e como resolver problemas com CORS
+156. O que é **rate limiting**
+157. O que é **autenticação** vs **autorização**
+158. O que é **JWT** (JSON Web Token)
+159. O que é **OAuth** (login com Google, GitHub, etc.)
+160. O que é **session** vs **token**
+161. O que é **cookie**
+162. O que é **hashing** (ex: bcrypt para senhas)
+
+### 2.5 — Banco de Dados
+
+```
+Onde os dados VIVEM:
+```
+
+163. O que é um banco de dados relacional (SQL)
+164. O que é um banco de dados não-relacional (NoSQL)
+165. **PostgreSQL** — banco relacional mais usado
+166. **MySQL** — banco relacional popular
+167. **SQLite** — banco relacional embutido/leve
+168. **MongoDB** — banco NoSQL documental
+169. **Redis** — banco em memória (cache)
+170. O que é uma **tabela** / **coleção**
+171. O que é uma **linha (row)** / **documento**
+172. O que é uma **coluna (column)** / **campo (field)**
+173. O que é **chave primária (primary key)**
+174. O que é **chave estrangeira (foreign key)**
+175. O que são **relações**: 1:1, 1:N, N:N
+176. Comandos SQL básicos: `SELECT, INSERT, UPDATE, DELETE`
+177. `WHERE, ORDER BY, LIMIT, JOIN` (conceitos)
+178. O que é um **ORM** (Object Relational Mapping)
+179. **Prisma** — ORM para Node.js/TypeScript
+180. **Drizzle** — ORM leve para TypeScript
+181. **SQLAlchemy** — ORM para Python
+182. **Supabase** — BaaS (Backend as a Service) com PostgreSQL
+183. **Firebase** — BaaS do Google (Firestore, Realtime DB)
+184. **PlanetScale** — MySQL serverless
+185. **Neon** — PostgreSQL serverless
+186. **Turso** — SQLite distribuído
+187. O que são **migrations** (migrações de schema)
+188. O que é **seeding** (popular banco com dados iniciais)
+189. O que é **indexação** (conceito básico para performance)
+
+### 2.6 — Ferramentas de Desenvolvimento
+
+```
+Workflow do dia a dia:
+```
+
+190. **Postman** / **Insomnia** / **Bruno** — testar APIs
+191. **Thunder Client** — testar APIs dentro do VS Code
+192. **DevTools do navegador** — Console, Network, Elements
+193. **ESLint** — linter JavaScript/TypeScript
+194. **Prettier** — formatador de código
+195. **npm** / **yarn** / **pnpm** / **bun** — gerenciadores de pacotes
+196. **pip** / **poetry** / **uv** — gerenciadores de pacotes Python
+197. **nodemon** / **tsx** — auto-reload do servidor
+198. **Vite** — bundler/dev server moderno
+199. **Webpack** — bundler clássico (conceito)
+200. **TypeScript Compiler** (tsc) — compilar TS para JS
+
+### 2.7 — Git Intermediário
+
+```
+Fluxo de trabalho em equipe:
+```
+
+201. O que é uma **branch** (ramificação)
+202. `git branch` — listar/criar branches
+203. `git checkout -b` / `git switch -c` — criar e mudar de branch
+204. `git merge` — mesclar branches
+205. `git rebase` (conceito)
+206. O que é um **merge conflict** e como resolver
+207. O que é um **Pull Request (PR)** / **Merge Request (MR)**
+208. **Code Review** — processo de revisão de código
+209. `git stash` — guardar mudanças temporariamente
+210. `git reset` — desfazer commits
+211. `git revert` — reverter commit específico
+212. `git diff` — ver diferenças
+213. **Conventional Commits** — padrão de mensagens de commit
+214. **GitFlow** vs **Trunk-based development** (conceitos)
+215. **GitHub Actions** (conceito básico)
+216. **GitHub Issues** e **Projects** para gestão
+
+### 2.8 — Deploy Básico
+
+```
+Colocar no ar:
+```
+
+217. O que é **deploy** (publicação)
+218. O que é um **ambiente**: dev, staging, production
+219. **Vercel** — deploy de apps Next.js/React/frontend
+220. **Netlify** — deploy de sites estáticos/JAMstack
+221. **Railway** — deploy de backends e bancos
+222. **Render** — deploy de apps fullstack
+223. **Fly.io** — deploy de containers
+224. **Heroku** — PaaS clássico
+225. O que é **CI/CD** (Continuous Integration / Continuous Deployment) — conceito
+226. O que é um **domínio customizado** e como configurar
+227. O que é **SSL/TLS** (HTTPS)
+228. O que é **DNS** (conceito básico)
+229. Variáveis de ambiente em produção
+
+### 2.9 — Versionamento e Gestão de Projeto
+
+```
+Organização:
+```
+
+230. **Monorepo** vs **Multirepo** (conceito)
+231. **README.md** — documentar o projeto
+232. **CHANGELOG.md** — registro de mudanças
+233. **Licenças** open source (MIT, Apache, GPL — conceitos)
+234. **Semantic Versioning** (SemVer): MAJOR.MINOR.PATCH
+235. **Kanban** para gestão de tarefas
+236. **Linear** / **Jira** / **Trello** / **Notion** — ferramentas de gestão
+237. Estimar esforço e complexidade de tarefas
+
+### 2.10 — Conceitos de Segurança Básica
+
+```
+O mínimo para não ser hackeado:
+```
+
+238. **NUNCA** commitar chaves de API / senhas / secrets
+239. Usar `.env` + `.gitignore` para secrets
+240. O que é **SQL Injection** e como prevenir (usar ORM/prepared statements)
+241. O que é **XSS** (Cross-Site Scripting) e como prevenir
+242. O que é **CSRF** (Cross-Site Request Forgery) e como prevenir
+243. Validar inputs no frontend E no backend
+244. Sanitizar dados de entrada
+245. Usar HTTPS sempre
+246. Princípio do **menor privilégio**
+247. Manter dependências atualizadas (`npm audit`, `pip audit`)
+
+---
+
+## 📌 NÍVEL 3 — AVANÇADO (Maestria)
+
+### 3.1 — Arquitetura de Software
+
+```
+Projetar sistemas que ESCALAM:
+```
+
+248. **Monolito** vs **Microserviços** — trade-offs
+249. **MVC** (Model-View-Controller)
+250. **MVVM** (Model-View-ViewModel)
+251. **Clean Architecture** (conceito)
+252. **Hexagonal Architecture** / Ports & Adapters
+253. **Domain-Driven Design (DDD)** — conceitos fundamentais
+254. **Event-Driven Architecture**
+255. **CQRS** (Command Query Responsibility Segregation)
+256. **Event Sourcing**
+257. **Serverless Architecture**
+258. **JAMstack**
+259. **BFF** (Backend for Frontend)
+260. **API Gateway**
+261. **Service Mesh** (conceito)
+262. **Strangler Fig Pattern** (migração gradual)
+
+### 3.2 — Princípios de Design de Software
+
+```
+Regras que a IA deve seguir (e você deve cobrar):
+```
+
+263. **SOLID**:
+   - S — Single Responsibility Principle
+   - O — Open/Closed Principle
+   - L — Liskov Substitution Principle
+   - I — Interface Segregation Principle
+   - D — Dependency Inversion Principle
+264. **DRY** — Don't Repeat Yourself
+265. **KISS** — Keep It Simple, Stupid
+266. **YAGNI** — You Aren't Gonna Need It
+267. **Separation of Concerns**
+268. **Composition over Inheritance**
+269. **Law of Demeter** (princípio do menor conhecimento)
+270. **Fail Fast** — falhar cedo e explicitamente
+271. **Convention over Configuration**
+272. **Inversion of Control (IoC)**
+273. **Dependency Injection**
+
+### 3.3 — Design Patterns (Padrões de Projeto)
+
+```
+Padrões que a IA usa e você precisa reconhecer:
+```
+
+274. **Singleton**
+275. **Factory** / **Abstract Factory**
+276. **Builder**
+277. **Observer**
+278. **Strategy**
+279. **Adapter**
+280. **Decorator**
+281. **Facade**
+282. **Proxy**
+283. **Repository Pattern**
+284. **Service Pattern**
+285. **Middleware Pattern**
+286. **Module Pattern**
+287. **State Machine**
+288. **Pub/Sub** (Publish/Subscribe)
+289. **Command Pattern**
+290. **Iterator Pattern**
+
+### 3.4 — TypeScript Avançado
+
+```
+O vibe coder moderno PRECISA ler TypeScript fluentemente:
+```
+
+291. **Type aliases** e **Interfaces** — diferenças e usos
+292. **Union Types** (A | B)
+293. **Intersection Types** (A & B)
+294. **Generic Types** (<T>)
+295. **Utility Types**: Partial, Required, Pick, Omit, Record, Readonly
+296. **Conditional Types** (T extends U ? X : Y)
+297. **Mapped Types**
+298. **Template Literal Types**
+299. **Type Guards** (is, in, typeof, instanceof)
+300. **Discriminated Unions**
+301. **Enums** vs **const enums** vs **as const**
+302. **Declaration files** (.d.ts)
+303. **tsconfig.json** — configurações essenciais
+304. **strict mode** — e por que sempre usar
+305. **Zod** — validação de schemas com inferência de tipos
+
+### 3.5 — React Avançado
+
+```
+Se React é seu framework, domine isso:
+```
+
+306. **Hooks** em profundidade: useState, useEffect, useRef, useMemo, useCallback
+307. **Custom Hooks** — criar hooks reutilizáveis
+308. **Context API** — gerenciamento de estado global simples
+309. **useReducer** — estado complexo
+310. **React.memo** — otimização de re-renders
+311. **Suspense** e **lazy loading**
+312. **Error Boundaries**
+313. **Server Components** (React 18+/Next.js 13+)
+314. **Server Actions** (Next.js 14+)
+315. **React Query / TanStack Query** — gerenciamento de estado do servidor
+316. **Zustand** — gerenciamento de estado leve
+317. **Redux Toolkit** (conceito, quando usar)
+318. **React Hook Form** — formulários performáticos
+319. **Framer Motion** — animações
+320. **Radix UI** — componentes acessíveis primitivos
+321. Padrões: **Compound Components, Render Props, HOC**
+322. **React DevTools** — debug de componentes e performance
+
+### 3.6 — Next.js Avançado
+
+```
+Framework fullstack dominante:
+```
+
+323. **App Router** vs **Pages Router** — diferenças
+324. **File-based routing** — sistema de rotas por arquivos
+325. **Layouts** e **Templates**
+326. **Loading** e **Error** files
+327. **SSR** (Server-Side Rendering)
+328. **SSG** (Static Site Generation)
+329. **ISR** (Incremental Static Regeneration)
+330. **API Routes** / **Route Handlers**
+331. **Middleware** no Next.js
+332. **Image Optimization** (next/image)
+333. **Font Optimization** (next/font)
+334. **Metadata API** (SEO)
+335. **Parallel Routes** e **Intercepting Routes**
+336. **Caching** no Next.js (e como invalidar)
+337. **Streaming** e **Partial Prerendering**
+338. Deploy otimizado na **Vercel**
+
+### 3.7 — APIs Avançadas
+
+```
+Comunicação entre sistemas:
+```
+
+339. **REST** avançado — HATEOAS, versionamento, paginação
+340. **GraphQL** — queries, mutations, subscriptions (conceito e uso)
+341. **Apollo Client/Server** — stack GraphQL
+342. **tRPC** — APIs type-safe end-to-end
+343. **WebSockets** — comunicação em tempo real
+344. **Socket.io** — biblioteca WebSocket
+345. **Server-Sent Events (SSE)** — streaming unidirecional
+346. **Webhooks** — callbacks HTTP
+347. **gRPC** (conceito)
+348. **API Rate Limiting** — implementação
+349. **API Versioning** — estratégias (URL, header, query)
+350. **OpenAPI / Swagger** — documentação de APIs
+351. **Idempotência** em APIs
+
+### 3.8 — Banco de Dados Avançado
+
+```
+Modelagem e otimização:
+```
+
+352. **Normalização** (1NF, 2NF, 3NF) e quando **desnormalizar**
+353. **Indexação** avançada — tipos de índices e quando criar
+354. **Queries complexas** — subqueries, CTEs, window functions
+355. **Transactions** — ACID (Atomicity, Consistency, Isolation, Durability)
+356. **Connection pooling**
+357. **Replicação** — read replicas
+358. **Sharding** (conceito)
+359. **Migrations** — estratégias de alteração de schema
+360. **Backups** e recuperação
+361. **Database branching** (Neon, PlanetScale)
+362. **Vector databases** — Pinecone, Weaviate, pgvector (para IA)
+363. **Time-series databases** (conceito)
+364. **Graph databases** — Neo4j (conceito)
+365. **Full-text search** — PostgreSQL, Elasticsearch, Meilisearch
+
+### 3.9 — DevOps e Infraestrutura
+
+```
+Além do deploy simples:
+```
+
+366. **Docker** — containers, Dockerfile, docker-compose
+367. **Docker Compose** — orquestração local de serviços
+368. **Kubernetes** (conceito — quando usar)
+369. **AWS** — EC2, S3, RDS, Lambda, CloudFront, SQS, SNS (conceitos)
+370. **Google Cloud** — Cloud Run, Cloud Functions, Cloud Storage
+371. **Azure** — App Service, Functions, Blob Storage (conceitos)
+372. **Terraform** — Infrastructure as Code (conceito)
+373. **CI/CD** na prática:
+   - **GitHub Actions** — workflows de automação
+   - **GitLab CI**
+   - **Bitbucket Pipelines**
+374. **Nginx** / **Caddy** — reverse proxy e load balancing
+375. **SSL/TLS** — Let's Encrypt, certificados
+376. **CDN** — Content Delivery Network (CloudFlare, CloudFront)
+377. **Load Balancing** — conceitos e ferramentas
+378. **Auto-scaling** — escalar automaticamente
+379. **Blue-Green Deployment** / **Canary Deployment**
+380. **Feature Flags** — LaunchDarkly, Unleash, flags próprias
+
+### 3.10 — Monitoramento e Observabilidade
+
+```
+Saber o que acontece em produção:
+```
+
+381. **Logging** estruturado (Winston, Pino, structlog)
+382. **Error tracking** — Sentry, Bugsnag
+383. **APM** (Application Performance Monitoring) — New Relic, Datadog
+384. **Uptime monitoring** — Better Uptime, UptimeRobot
+385. **Health checks** — endpoints de saúde
+386. **Alertas** — configurar notificações de erros
+387. **Métricas** — latência, throughput, error rate
+388. **Distributed tracing** — rastreamento em microserviços (conceito)
+389. **Dashboards** — Grafana, Datadog dashboards
+390. **Log aggregation** — ELK Stack, Loki (conceito)
+391. Os **4 Golden Signals**: Latência, Tráfego, Erros, Saturação
+
+### 3.11 — Testes
+
+```
+Garantia de qualidade com ajuda da IA:
+```
+
+392. **Tipos de testes**: unitário, integração, end-to-end, smoke, regression
+393. **Pirâmide de testes**
+394. **Jest** — framework de testes JavaScript
+395. **Vitest** — framework de testes moderno (mais rápido)
+396. **React Testing Library** — testes de componentes React
+397. **Playwright** — testes end-to-end
+398. **Cypress** — testes end-to-end
+399. **pytest** — framework de testes Python
+400. **Mocking** — simular dependências (jest.mock, vi.mock)
+401. **Fixtures** — dados de teste reutilizáveis
+402. **Code coverage** — medir cobertura de testes
+403. **TDD** (Test-Driven Development) — conceito
+404. **Snapshot testing**
+405. **Contract testing** — testar contratos de API
+406. Pedir à IA para gerar **test cases** e **edge cases**
+407. Pedir à IA para gerar **test data / fixtures**
+
+### 3.12 — Performance
+
+```
+Velocidade e eficiência:
+```
+
+408. **Lighthouse** — auditoria de performance web
+409. **Core Web Vitals** — LCP, FID/INP, CLS
+410. **Code splitting** — carregar código sob demanda
+411. **Lazy loading** — imagens, componentes
+412. **Caching strategies** — browser, CDN, server
+413. **Memoization** — cache em memória de computações
+414. **Debounce** e **Throttle** — limitar execuções
+415. **Virtual scrolling** / **windowing** (react-window, tanstack-virtual)
+416. **Image optimization** — formatos (WebP, AVIF), compressão
+417. **Bundle analysis** — analisar tamanho do JavaScript
+418. **Tree shaking** — remover código morto
+419. **Prefetching** e **Preloading**
+420. **Database query optimization** — EXPLAIN, índices
+421. **N+1 problem** — e como resolver
+422. **Connection pooling** em produção
+423. **Edge computing** — Vercel Edge, CloudFlare Workers
+
+### 3.13 — Autenticação e Autorização Avançada
+
+```
+Segurança de acesso:
+```
+
+424. **NextAuth.js / Auth.js** — autenticação para Next.js
+425. **Clerk** — autenticação como serviço
+426. **Supabase Auth** — autenticação integrada
+427. **Firebase Auth** — autenticação do Google
+428. **Keycloak** — identity provider open source
+429. **Auth0** — identity platform
+430. **OAuth 2.0** — fluxos (Authorization Code, PKCE, Client Credentials)
+431. **OpenID Connect** — identidade sobre OAuth
+432. **RBAC** (Role-Based Access Control)
+433. **ABAC** (Attribute-Based Access Control)
+434. **Multi-tenancy** — separação de dados por tenant
+435. **MFA / 2FA** — autenticação multifator
+436. **Passkeys** / **WebAuthn** — autenticação sem senha
+437. **Session management** — rotação, expiração, revogação
+
+### 3.14 — Integração com IA / LLMs
+
+```
+O vibe coder É um integrador de IA:
+```
+
+438. **OpenAI API** — GPT-4, GPT-4o, embeddings, function calling
+439. **Anthropic API** — Claude, system prompts avançados
+440. **Google Gemini API**
+441. **Groq API** — inferência ultra-rápida
+442. **Ollama** — rodar LLMs localmente
+443. **LangChain** — framework para aplicações com LLMs
+444. **LlamaIndex** — framework para RAG
+445. **Vercel AI SDK** — streaming de respostas de IA no frontend
+446. **Embeddings** — representação vetorial de texto
+447. **RAG** (Retrieval Augmented Generation) — busca + geração
+448. **Function Calling / Tool Use** — IA executando funções
+449. **Structured Output** — IA retornando JSON estruturado
+450. **Streaming responses** — respostas em tempo real da IA
+451. **Prompt caching** — otimizar custos com cache
+452. **Token management** — contar e otimizar tokens
+453. **Fine-tuning** (conceito) — quando e por que personalizar modelos
+454. **Guardrails** — limitar comportamento da IA
+455. **AI safety** — prevenir jailbreaks e outputs perigosos
+456. **Multimodal** — combinar texto, imagem, áudio, vídeo
+457. **Agents** — IA que executa ações autonomamente
+458. **MCP (Model Context Protocol)** — protocolo para conectar IA a ferramentas
+459. **CrewAI** / **AutoGen** / **LangGraph** — frameworks multi-agentes
+
+### 3.15 — Pagamentos e SaaS
+
+```
+Monetizar o que você constrói:
+```
+
+460. **Stripe** — processamento de pagamentos
+461. **Stripe Checkout** — página de pagamento pronta
+462. **Stripe Subscriptions** — assinaturas recorrentes
+463. **Stripe Webhooks** — receber notificações de pagamento
+464. **Lemon Squeezy** — merchant of record (mais simples)
+465. **Paddle** — merchant of record
+466. **Modelo SaaS** — métricas (MRR, ARR, Churn, LTV, CAC)
+467. **Pricing strategy** — freemium, tiered, usage-based
+468. **Feature gating** — liberar funcionalidades por plano
+469. **Billing portal** — gerenciamento de assinatura pelo usuário
+470. **Tax compliance** — impostos em vendas internacionais
+471. **PCI Compliance** — segurança de dados de pagamento (conceito)
+
+### 3.16 — Ferramentas Avançadas do Cursor/IDE com IA
+
+```
+Produtividade máxima:
+```
+
+472. **Cursor Rules** (.cursorrules) — regras customizadas por projeto
+473. **Cursor Composer** — edições multi-arquivo
+474. **Cursor Chat** — conversas contextualizadas com codebase
+475. **Cursor @symbols** — referenciar arquivos, docs, web
+476. **Cursor Notepads** — contextos reutilizáveis
+477. **.cursor/rules** — regras por diretório
+478. **Codebase indexing** — permitir que a IA entenda todo o projeto
+479. **Multi-file edits** — editar vários arquivos simultaneamente
+480. **Model selection** — escolher o modelo certo para cada tarefa
+481. **Context window management** — gerenciar o que a IA "vê"
+482. **Windsurf Cascade** — fluxo de desenvolvimento contínuo
+483. **Aider** — ferramenta CLI para coding com IA
+484. **Continue.dev** — extensão open source de IA para VS Code
+485. **Cline** — agente de código autônomo no VS Code
+
+### 3.17 — Mobile Development
+
+```
+Apps para celular:
+```
+
+486. **React Native** avançado — navegação, estado, native modules
+487. **Expo** avançado — EAS Build, EAS Submit, OTA updates
+488. **App Store** deployment — processo iOS
+489. **Google Play** deployment — processo Android
+490. **Push Notifications** — Firebase Cloud Messaging, Expo Notifications
+491. **Deep linking** / **Universal links**
+492. **Offline-first** — funcionar sem internet
+493. **App Store Optimization (ASO)** — conceito
+494. **Progressive Web Apps (PWA)** — apps web instaláveis
+495. **Capacitor** — wrapper web para apps nativos (Ionic)
+
+---
+
+## 📌 NÍVEL 4 — EXPERT (Liderança Técnica)
+
+### 4.1 — System Design
+
+```
+Projetar sistemas completos em escala:
+```
+
+496. **System Design Fundamentals** — trade-offs em cada decisão
+497. **Scalability** — horizontal vs vertical scaling
+498. **High Availability (HA)** — redundância e failover
+499. **Fault Tolerance** — tolerância a falhas
+500. **CAP Theorem** — Consistency, Availability, Partition Tolerance
+501. **Eventual Consistency** vs **Strong Consistency**
+502. **Message Queues** — RabbitMQ, SQS, Redis Queues
+503. **Event Streaming** — Apache Kafka, Redpanda
+504. **Pub/Sub Systems** — Google Pub/Sub, AWS SNS/SQS
+505. **CQRS + Event Sourcing** — implementação prática
+506. **Distributed Systems** — consenso, particionamento, replicação
+507. **Circuit Breaker Pattern** — resiliência entre serviços
+508. **Retry Patterns** — exponential backoff, jitter
+509. **Saga Pattern** — transações distribuídas
+510. **Outbox Pattern** — consistência em eventos
+511. **Idempotency Keys** — operações seguras para retry
+512. **Rate Limiting** avançado — token bucket, sliding window
+513. **Caching Strategies** — write-through, write-behind, cache-aside
+514. **Cache Invalidation** — um dos problemas mais difíceis da computação
+515. **Content Delivery** — edge caching, geo-distribution
+516. **Data Partitioning** — range, hash, list, composite
+517. **Consensus Algorithms** — Raft, Paxos (conceitos)
+518. **Leader Election** — em sistemas distribuídos
+519. **Service Discovery** — como serviços se encontram
+520. **Back Pressure** — lidar com sobrecarga
+
+### 4.2 — Segurança Avançada
+
+```
+Proteger sistemas em produção real:
+```
+
+521. **OWASP Top 10** — as 10 vulnerabilidades mais críticas
+522. **Penetration Testing** — conceitos e ferramentas
+523. **Security Headers** — CSP, HSTS, X-Frame-Options, etc.
+524. **Input Validation** — whitelist vs blacklist
+525. **Output Encoding** — prevenir XSS
+526. **Parameterized Queries** — prevenir SQL Injection
+527. **Secret Management** — Vault, AWS Secrets Manager
+528. **Encryption at rest** e **in transit**
+529. **Key Management** — rotação de chaves
+530. **Zero Trust Architecture** — conceito
+531. **WAF** (Web Application Firewall) — CloudFlare, AWS WAF
+532. **DDoS Protection** — mitigação
+533. **Dependency Scanning** — Snyk, Dependabot, npm audit
+534. **SAST** (Static Application Security Testing)
+535. **DAST** (Dynamic Application Security Testing)
+536. **Supply Chain Security** — verificar integridade de dependências
+537. **Container Security** — scan de imagens Docker
+538. **Compliance** — GDPR, LGPD, SOC2, HIPAA (conceitos)
+539. **Data Privacy** — anonimização, pseudonimização
+540. **Incident Response** — plano de resposta a incidentes
+541. **Security Audit** — auditoria de segurança
+542. **Bug Bounty Programs** — conceito
+
+### 4.3 — Arquitetura de IA e ML
+
+```
+Integrar IA como componente central:
+```
+
+543. **AI/ML Pipeline** — coleta, processamento, treinamento, deploy
+544. **Feature Engineering** — conceito
+545. **Model Serving** — como servir modelos em produção
+546. **Model Versioning** — MLflow, Weights & Biases
+547. **A/B Testing de modelos** — comparar performance
+548. **Prompt Engineering avançado para produção**:
+   - Prompt versioning
+   - Prompt testing
+   - Prompt optimization
+   - Prompt templates com variáveis
+549. **LLM Evaluation** — métricas de qualidade (BLEU, ROUGE, custom)
+550. **LLM Observability** — Langfuse, LangSmith, Helicone
+551. **Semantic Search** — busca por significado com embeddings
+552. **Vector Stores em produção** — indexação, sharding, performance
+553. **Multi-modal AI** em produção — processamento de imagem, áudio, vídeo
+554. **AI Agents em produção**:
+   - Planejamento e execução de tarefas
+   - Tool use orchestration
+   - Memory management (short-term e long-term)
+   - Human-in-the-loop
+   - Error recovery
+555. **Agentic Workflows** — quando usar agentes vs pipelines determinísticos
+556. **Cost Optimization** — cache de embeddings, modelo adequado por tarefa
+557. **Latency Optimization** — streaming, edge inference, model distillation
+558. **Responsible AI** — bias, fairness, transparency
+559. **AI Governance** — políticas de uso de IA na organização
+
+### 4.4 — Performance Engineering
+
+```
+Otimização em escala:
+```
+
+560. **Profiling** — identificar gargalos (CPU, memória, I/O)
+561. **Memory Management** — leaks, garbage collection
+562. **Concurrency** — threads, workers, event loop
+563. **Parallelism** — processamento paralelo real
+564. **Connection Pooling** avançado — PgBouncer, pool sizing
+565. **Database Optimization** — query plans, EXPLAIN ANALYZE
+566. **Materialized Views** — pré-computar queries pesadas
+567. **Read Replicas** — distribuir leitura
+568. **Caching layers** — L1 (in-memory), L2 (Redis), L3 (CDN)
+569. **Compression** — gzip, brotli, zstd
+570. **HTTP/2** e **HTTP/3** — conceitos e benefícios
+571. **Web Workers** — processamento em background no browser
+572. **Service Workers** — cache offline, PWA
+573. **SSR Streaming** — renderização progressiva
+574. **Edge Functions** — computação na borda
+575. **Resource Hints** — dns-prefetch, preconnect, prefetch, preload
+576. **Critical Rendering Path** — otimizar first paint
+577. **TTFB** (Time to First Byte) — otimização
+578. **Benchmarking** — k6, Artillery, wrk
+579. **Load Testing** — testar sob carga
+580. **Stress Testing** — encontrar pontos de ruptura
+581. **Capacity Planning** — planejar infraestrutura
+
+### 4.5 — Multi-Agente e Automação Avançada
+
+```
+Orquestrar múltiplas IAs:
+```
+
+582. **Multi-agent systems** — agentes que colaboram
+583. **Agent orchestration** — LangGraph, CrewAI, AutoGen
+584. **Tool creation** — criar ferramentas para agentes usarem
+585. **MCP Servers** — criar servidores de contexto para IA
+586. **Custom AI workflows** — pipelines de processamento com múltiplos modelos
+587. **Autonomous coding agents** — Devin, OpenHands, SWE-Agent (conceitos)
+588. **Code generation pipelines** — gerar, testar, iterar automaticamente
+589. **AI-powered code review** — automação de review com IA
+590. **Self-healing systems** — sistemas que corrigem seus próprios erros
+591. **Automated testing with AI** — gerar e executar testes automaticamente
+592. **AI-driven refactoring** — refatoração em larga escala com IA
+
+### 4.6 — Liderança Técnica e Gestão
+
+```
+Liderar equipes e projetos de vibe coding:
+```
+
+593. **Technical Decision Making** — avaliar trade-offs documentadamente
+594. **Architecture Decision Records (ADR)** — documentar decisões
+595. **Tech Debt Management** — gerenciar dívida técnica
+596. **Code Review Culture** — estabelecer padrões de review
+597. **Developer Experience (DX)** — otimizar produtividade da equipe
+598. **Documentation Strategy** — o que, quando, onde documentar
+599. **Onboarding** — como integrar novos membros
+600. **Mentoring** — desenvolver outros vibe coders
+601. **Standards e Guidelines** — criar padrões para IA-assisted coding
+602. **Risk Assessment** — avaliar riscos técnicos
+603. **Post-mortems** — análise pós-incidente sem culpa
+604. **Comunicação técnica** — explicar decisões para stakeholders não-técnicos
+605. **Estimation** — estimar prazos com IA-assisted development
+606. **Build vs Buy** — decidir entre construir e usar serviço existente
+
+### 4.7 — Estratégia de Produto e Negócio
+
+```
+O vibe coder expert constrói PRODUTOS, não apenas código:
+```
+
+607. **Product-Market Fit** — validar antes de construir
+608. **MVP** (Minimum Viable Product) — o que realmente é mínimo
+609. **Lean Startup** — build-measure-learn
+610. **User Research** — entender o usuário
+611. **Analytics** — Google Analytics 4, Mixpanel, PostHog, Amplitude
+612. **A/B Testing** — testar hipóteses com dados
+613. **Conversion Optimization** — funis de conversão
+614. **SEO Technical** — sitemap, robots.txt, structured data, performance
+615. **Growth Engineering** — viralidade, referrals, loops de crescimento
+616. **Cost Management** — otimizar custos de infraestrutura e IA
+617. **Unit Economics** — custo por usuário, margem por feature
+
+### 4.8 — Edge Cases e Resiliência
+
+```
+O que separa amadores de profissionais:
+```
+
+618. **Error handling** robusto em toda a stack
+619. **Graceful degradation** — funcionar parcialmente quando algo falha
+620. **Circuit breakers** em chamadas a serviços externos
+621. **Retry logic** com exponential backoff
+622. **Timeout handling** — nunca esperar infinitamente
+623. **Dead letter queues** — tratar mensagens que falharam
+624. **Idempotent operations** — operações seguras para repetição
+625. **Data validation** em todas as fronteiras do sistema
+626. **Race conditions** — identificar e prevenir
+627. **Deadlocks** — identificar e prevenir
+628. **Memory leaks** — detectar e corrigir
+629. **Pagination** — cursor-based vs offset-based
+630. **Rate limiting** do lado do cliente
+631. **Offline handling** — o que fazer quando não há conexão
+632. **Timezone handling** — UTC everywhere, display local
+633. **Unicode/i18n** — internacionalização e caracteres especiais
+634. **Large file handling** — streaming, chunked uploads
+635. **Concurrent access** — optimistic vs pessimistic locking
+636. **Data migration** — migrar dados sem downtime
+637. **Backward compatibility** — não quebrar clientes existentes
+638. **Feature flags** — lançar features gradualmente
+639. **Chaos Engineering** — conceito (Netflix Chaos Monkey)
+
+### 4.9 — Workflows Expert com Cursor/IA
+
+```
+Máxima eficiência no desenvolvimento assistido por IA:
+```
+
+640. Criar **project rules** completas (.cursorrules / .cursor/rules)
+641. Manter **documentation-as-context** — docs que servem como prompt
+642. **Architecture-first prompting** — descrever arquitetura antes de código
+643. **Incremental complexity** — começar simples, adicionar complexidade
+644. **AI pair programming** — usar IA como par constante
+645. **Code scaffolding** — gerar estrutura do projeto com IA
+646. **AI-assisted debugging** — compartilhar logs + código para diagnóstico
+647. **Multi-model strategy** — usar diferentes modelos para diferentes tarefas:
+   - Claude para raciocínio complexo e arquitetura
+   - GPT-4o para code generation rápido
+   - Gemini para contextos longos
+   - Modelos locais para tarefas simples
+648. **Prompt libraries** — manter biblioteca de prompts por domínio
+649. **Context management** — saber o que incluir e excluir do contexto
+650. **Iterative refinement** — ciclos rápidos de geração → review → ajuste
+651. **AI output validation** — sempre validar o que a IA gera
+652. **Specification-driven development** — escrever specs, IA implementa
+653. **AI-assisted code archaeology** — entender codebases legadas com IA
+
+### 4.10 — Ecossistema e Comunidade
+
+```
+Manter-se atualizado e relevante:
+```
+
+654. Acompanhar **changelogs** de ferramentas e frameworks
+655. Acompanhar **blogs técnicos** — Vercel, Supabase, PlanetScale, etc.
+656. Participar de **comunidades** — Discord, Twitter/X, Reddit, HN
+657. Acompanhar **newsletters** técnicas — TLDR, Bytes, This Week in React
+658. **Contribuir** para projetos open source
+659. **Criar conteúdo** — blog, vídeos, tweets (aprender ensinando)
+660. Acompanhar **AI research** relevante — papers, launches, updates
+661. **Networking** — conectar com outros vibe coders e engenheiros
+662. Experimentar **novas ferramentas** constantemente
+663. **Build in public** — construir e compartilhar publicamente
+
+### 4.11 — Ética e Responsabilidade
+
+```
+O vibe coder expert pensa ALÉM do código:
+```
+
+664. **Propriedade intelectual** — quem é dono do código gerado por IA?
+665. **Licenciamento** — o código gerado respeita licenças open source?
+666. **Viés algorítmico** — a IA pode gerar código discriminatório
+667. **Privacidade de dados** — não enviar dados sensíveis para APIs de IA
+668. **Transparência** — ser transparente sobre o uso de IA
+669. **Verificação de fatos** — a IA pode "alucinar" código incorreto
+670. **Dependência de IA** — manter capacidade de raciocínio independente
+671. **Impacto ambiental** — custo computacional de LLMs
+672. **Acessibilidade** — garantir que aplicações sejam acessíveis (a11y)
+673. **Inclusão** — construir para todos os usuários
+674. **Sustentabilidade** — código e infraestrutura eficientes
+
+### 4.12 — Meta-Habilidades do Expert
+
+```
+O que não se aprende em tutorial:
+```
+
+675. **Pensamento sistêmico** — ver o todo, não apenas as partes
+676. **Pensamento crítico** — questionar a saída da IA
+677. **Resolução de problemas** — decompor problemas complexos
+678. **Pattern recognition** — reconhecer padrões em código e arquitetura
+679. **Comunicação** — articular problemas e soluções claramente
+680. **Gestão de tempo** — saber quando parar de otimizar
+681. **Gestão de escopo** — saber dizer "não" e focar no essencial
+682. **Aprendizado contínuo** — a tecnologia muda rapidamente
+683. **Adaptabilidade** — trocar de ferramenta/framework quando necessário
+684. **Humildade técnica** — reconhecer limites e pedir ajuda
+685. **Pragmatismo** — "done is better than perfect"
+686. **Curiosidade** — experimentar e explorar constantemente
+687. **Resiliência** — lidar com bugs, falhas e frustração
+
+---
+
+## 📊 RESUMO VISUAL POR NÍVEL
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    🏆 EXPERT (4)                            │
+│  System Design · Segurança Avançada · AI/ML Architecture    │
+│  Multi-Agent · Liderança · Produto · Resiliência            │
+│  Performance Engineering · Ética · Meta-habilidades         │
+├─────────────────────────────────────────────────────────────┤
+│                   🔥 AVANÇADO (3)                           │
+│  Arquitetura · SOLID · Design Patterns · TypeScript         │
+│  React/Next.js Avançado · APIs · DB Avançado · DevOps       │
+│  Docker · Testes · Performance · Auth · AI/LLMs · SaaS      │
+│  Mobile · Monitoramento · Cursor Avançado                   │
+├─────────────────────────────────────────────────────────────┤
+│                 🔧 INTERMEDIÁRIO (2)                        │
+│  Prompt Engineering · Leitura de Código · Frameworks        │
+│  Backend · Banco de Dados · Ferramentas · Git · Deploy      │
+│  Segurança Básica · Gestão de Projeto                       │
+├─────────────────────────────────────────────────────────────┤
+│                   📚 BÁSICO (1)                             │
+│  Conceitos · Ferramentas IA · Ambiente · Terminal           │
+│  Git Básico · Prompts Básicos · Web Básico · Executar       │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎯 REGRA DE OURO DO VIBE CODER
+
+```
+"Você não precisa ESCREVER todo o código,
+ mas PRECISA ENTENDER todo o código."
+
+ A IA é o motor.
+ Você é o piloto.
+ Piloto que não entende o painel, cai.
+```
+
+> **Total: 687 competências** mapeadas do básico ao expert.
+
+Quer que eu aprofunde algum nível, crie um **roadmap de estudo** com cronograma, ou gere **prompts prontos** para praticar cada nível?

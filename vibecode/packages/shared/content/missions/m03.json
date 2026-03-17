@@ -1,0 +1,89 @@
+{
+  "id": "m03",
+  "zoneId": "basic-z1",
+  "title": "Seu Primeiro Prompt",
+  "description": "Aprende a arte de comunicar com a IA para obter resultados extraordinários.",
+  "order": 3,
+  "estimatedMinutes": 7,
+  "xpReward": 40,
+  "phases": [
+    {
+      "id": "m03-p1",
+      "type": "story",
+      "title": "A Analogia da Pizza",
+      "estimatedSeconds": 40,
+      "content": {
+        "emoji": "🍕",
+        "narration": "Imagina que chegas a uma pizzaria e dizes: 'Quero uma pizza.' O pizzaiolo não sabe o tamanho, os ingredientes, ou se é para comer ali. Um prompt é exatamente isso — quanto mais específico, melhor o resultado."
+      }
+    },
+    {
+      "id": "m03-p2",
+      "type": "concept",
+      "title": "A Arte do Prompt Perfeito",
+      "estimatedSeconds": 120,
+      "content": {
+        "sections": [
+          {
+            "type": "text",
+            "text": "Um prompt é o teu pedido à IA. É como dar instruções a um assistente muito capaz — a qualidade do resultado depende diretamente da qualidade do teu pedido."
+          },
+          {
+            "type": "comparison",
+            "leftTitle": "Prompts Fracos",
+            "rightTitle": "Prompts Fortes",
+            "leftItems": [
+              "\"Faz um site\"",
+              "\"Ajuda com código\"",
+              "\"Cria uma app\""
+            ],
+            "rightItems": [
+              "\"Cria uma landing page HTML/CSS para um café artesanal, com secção hero, menu e contactos\"",
+              "\"Tenho este erro em React: [erro]. O componente faz X. Como corrigir?\"",
+              "\"Cria uma app mobile em React Native com lista de tarefas, usando AsyncStorage para guardar dados\""
+            ]
+          },
+          {
+            "type": "cards",
+            "items": [
+              { "emoji": "🎯", "title": "[AÇÃO]", "description": "O que queres que a IA faça. Ex: Cria, Explica, Corrige, Lista, Converte" },
+              { "emoji": "📦", "title": "[O QUÊ]", "description": "O objeto da ação. Ex: uma landing page, um componente React, uma função JavaScript" },
+              { "emoji": "🔍", "title": "[DETALHES]", "description": "Especificações extras. Ex: com dark mode, responsivo, com animações suaves" },
+              { "emoji": "⚙️", "title": "[TECNOLOGIA]", "description": "A stack que queres usar. Ex: em React Native, com TypeScript, usando Tailwind" },
+              { "emoji": "🎨", "title": "[ESTILO]", "description": "O tom ou formato da resposta. Ex: código comentado, explicação simples, com exemplos" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "m03-p3",
+      "type": "interaction",
+      "title": "Monta o Prompt Perfeito",
+      "estimatedSeconds": 90,
+      "content": {
+        "exerciseType": "drag_drop",
+        "instruction": "Ordena os 5 blocos para construir um prompt perfeito. Toca em dois blocos para os trocar de posição.",
+        "items": [
+          "🎯 AÇÃO — O que queres fazer",
+          "📦 O QUÊ — O objeto da ação",
+          "🔍 DETALHES — Especificações extras",
+          "⚙️ TECNOLOGIA — A stack usada",
+          "🎨 ESTILO — Como queres a resposta"
+        ],
+        "correctOrder": [0, 1, 2, 3, 4]
+      }
+    },
+    {
+      "id": "m03-p4",
+      "type": "sandbox",
+      "title": "O Teu Primeiro Prompt Real",
+      "estimatedSeconds": 90,
+      "content": {
+        "instruction": "Usa a fórmula [AÇÃO] + [O QUÊ] + [DETALHES] + [TECNOLOGIA] + [ESTILO] para pedir ao Vi que crie um título HTML estilizado com o teu nome.",
+        "placeholder": "Ex: Cria um título H1 em HTML com o nome 'Ana Silva', com cor roxa, fonte grande e sombra de texto, em HTML/CSS puro, com o código comentado.",
+        "hint": "💡 Tenta usar todos os 5 elementos da fórmula. O Vi irá avaliar a qualidade do teu prompt!"
+      }
+    }
+  ]
+}

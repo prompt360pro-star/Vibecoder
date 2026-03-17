@@ -1,0 +1,4208 @@
+
+
+# 💻 CÓDIGO INICIAL — BOILERPLATE VIBECODE
+
+## Monorepo Completo: Expo + Next.js + Prisma
+
+---
+
+## 📁 ESTRUTURA DO PROJETO
+
+```
+vibecode/
+│
+├── 📄 package.json              ← Root monorepo
+├── 📄 turbo.json                ← Turborepo config
+├── 📄 .gitignore
+├── 📄 .env.example
+├── 📄 README.md
+│
+├── 📁 apps/
+│   ├── 📁 mobile/               ← Expo (React Native)
+│   │   ├── 📄 app.json
+│   │   ├── 📄 package.json
+│   │   ├── 📄 tsconfig.json
+│   │   ├── 📄 babel.config.js
+│   │   ├── 📄 metro.config.js
+│   │   ├── 📁 app/              ← Expo Router (file-based)
+│   │   │   ├── 📄 _layout.tsx
+│   │   │   ├── 📄 index.tsx
+│   │   │   ├── 📁 (auth)/
+│   │   │   │   ├── 📄 _layout.tsx
+│   │   │   │   ├── 📄 sign-in.tsx
+│   │   │   │   └── 📄 sign-up.tsx
+│   │   │   ├── 📁 (onboarding)/
+│   │   │   │   ├── 📄 _layout.tsx
+│   │   │   │   ├── 📄 welcome.tsx
+│   │   │   │   ├── 📄 dna-test.tsx
+│   │   │   │   └── 📄 dna-result.tsx
+│   │   │   └── 📁 (tabs)/
+│   │   │       ├── 📄 _layout.tsx
+│   │   │       ├── 📄 home.tsx
+│   │   │       ├── 📄 trail.tsx
+│   │   │       ├── 📄 vi.tsx
+│   │   │       ├── 📄 social.tsx
+│   │   │       └── 📄 profile.tsx
+│   │   ├── 📁 components/
+│   │   │   ├── 📁 ui/
+│   │   │   ├── 📁 mission/
+│   │   │   ├── 📁 vi/
+│   │   │   ├── 📁 social/
+│   │   │   └── 📁 gamification/
+│   │   ├── 📁 hooks/
+│   │   ├── 📁 lib/
+│   │   ├── 📁 stores/
+│   │   ├── 📁 services/
+│   │   ├── 📁 constants/
+│   │   ├── 📁 assets/
+│   │   └── 📁 styles/
+│   │
+│   └── 📁 web/                  ← Next.js (API + Web App)
+│       ├── 📄 package.json
+│       ├── 📄 tsconfig.json
+│       ├── 📄 next.config.ts
+│       ├── 📄 tailwind.config.ts
+│       ├── 📁 app/
+│       │   ├── 📄 layout.tsx
+│       │   ├── 📄 page.tsx
+│       │   └── 📁 api/
+│       │       ├── 📁 auth/
+│       │       ├── 📁 users/
+│       │       ├── 📁 missions/
+│       │       ├── 📁 projects/
+│       │       ├── 📁 vi/
+│       │       ├── 📁 gamification/
+│       │       ├── 📁 social/
+│       │       └── 📁 webhooks/
+│       ├── 📁 lib/
+│       └── 📁 services/
+│
+├── 📁 packages/
+│   ├── 📁 db/                   ← Prisma + Database
+│   │   ├── 📄 package.json
+│   │   ├── 📁 prisma/
+│   │   │   ├── 📄 schema.prisma
+│   │   │   ├── 📁 migrations/
+│   │   │   └── 📄 seed.ts
+│   │   └── 📄 index.ts
+│   │
+│   ├── 📁 shared/               ← Types, Schemas, Constants
+│   │   ├── 📄 package.json
+│   │   ├── 📁 types/
+│   │   ├── 📁 schemas/
+│   │   ├── 📁 constants/
+│   │   └── 📄 index.ts
+│   │
+│   └── 📁 ai/                   ← AI/Vi Service
+│       ├── 📄 package.json
+│       ├── 📁 prompts/
+│       ├── 📁 providers/
+│       ├── 📁 memory/
+│       └── 📄 index.ts
+│
+└── 📁 tooling/
+    ├── 📁 eslint/
+    ├── 📁 typescript/
+    └── 📁 prettier/
+```
+
+---
+
+## 📄 ARQUIVOS ROOT
+
+### `package.json` (Root)
+
+```json
+{
+  "name": "vibecode",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
+  "scripts": {
+    "dev:mobile": "turbo run dev --filter=@vibecode/mobile",
+    "dev:web": "turbo run dev --filter=@vibecode/web",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "db:generate": "turbo run db:generate --filter=@vibecode/db",
+    "db:push": "turbo run db:push --filter=@vibecode/db",
+    "db:migrate": "turbo run db:migrate --filter=@vibecode/db",
+    "db:seed": "turbo run db:seed --filter=@vibecode/db",
+    "db:studio": "turbo run db:studio --filter=@vibecode/db",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.1.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.1.0"
+}
+```
+
+### `turbo.json`
+
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "NODE_ENV",
+    "DATABASE_URL",
+    "CLERK_SECRET_KEY",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {},
+    "type-check": {},
+    "clean": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
+    },
+    "db:seed": {
+      "cache": false
+    },
+    "db:studio": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+### `.env.example`
+
+```bash
+# ═══════════════════════════════════════
+# DATABASE
+# ═══════════════════════════════════════
+DATABASE_URL="postgresql://postgres:password@localhost:5432/vibecode?schema=public"
+DIRECT_URL="postgresql://postgres:password@localhost:5432/vibecode?schema=public"
+
+# ═══════════════════════════════════════
+# AUTHENTICATION (Clerk)
+# ═══════════════════════════════════════
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_..."
+CLERK_SECRET_KEY="sk_test_..."
+CLERK_WEBHOOK_SECRET="whsec_..."
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_..."
+
+# ═══════════════════════════════════════
+# AI PROVIDERS
+# ═══════════════════════════════════════
+OPENAI_API_KEY="sk-..."
+ANTHROPIC_API_KEY="sk-ant-..."
+GROQ_API_KEY="gsk_..."
+GOOGLE_GENERATIVE_AI_API_KEY="..."
+
+# ═══════════════════════════════════════
+# STORAGE
+# ═══════════════════════════════════════
+CLOUDFLARE_R2_ACCESS_KEY_ID="..."
+CLOUDFLARE_R2_SECRET_ACCESS_KEY="..."
+CLOUDFLARE_R2_BUCKET_NAME="vibecode-assets"
+CLOUDFLARE_R2_ENDPOINT="..."
+
+# ═══════════════════════════════════════
+# SERVICES
+# ═══════════════════════════════════════
+REDIS_URL="redis://localhost:6379"
+SENTRY_DSN="https://..."
+POSTHOG_API_KEY="phc_..."
+RESEND_API_KEY="re_..."
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
+
+# ═══════════════════════════════════════
+# APP
+# ═══════════════════════════════════════
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+NEXT_PUBLIC_API_URL="http://localhost:3000/api"
+```
+
+### `.gitignore`
+
+```gitignore
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Expo
+.expo/
+ios/
+android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Turbo
+.turbo/
+
+# Prisma
+packages/db/prisma/migrations/**/migration_lock.toml
+
+# Generated
+packages/db/generated/
+```
+
+---
+
+## 📦 PACKAGES
+
+### `packages/db/package.json`
+
+```json
+{
+  "name": "@vibecode/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "clean": "rm -rf node_modules .turbo"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.19.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.4.0"
+  }
+}
+```
+
+### `packages/db/prisma/schema.prisma`
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ═══════════════════════════════════════
+// ENUMS
+// ═══════════════════════════════════════
+
+enum SubscriptionTier {
+  FREE
+  PRO
+  TEAM
+  LIFETIME
+}
+
+enum MissionStatus {
+  LOCKED
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum IslandLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum ViMode {
+  TEACHER
+  BUILDER
+  DETECTIVE
+  REVIEWER
+  CREATIVE
+  QUIZ
+  CONVERSATION
+  SCANNER
+}
+
+enum PostType {
+  ACHIEVEMENT
+  PROJECT
+  PROMPT
+  HELP
+  GENERAL
+}
+
+enum CoopStatus {
+  MATCHING
+  ACTIVE
+  COMPLETED
+  ABANDONED
+}
+
+enum LearningStyle {
+  READING
+  WATCHING
+  DOING
+  TALKING
+}
+
+enum MemoryType {
+  FACT
+  PREFERENCE
+  STRUGGLE
+  PROJECT
+  GOAL
+}
+
+// ═══════════════════════════════════════
+// USERS & AUTH
+// ═══════════════════════════════════════
+
+model User {
+  id                   String            @id @default(cuid())
+  clerkId              String            @unique @map("clerk_id")
+  email                String            @unique
+  name                 String
+  username             String            @unique
+  avatarUrl            String?           @map("avatar_url")
+  bio                  String?
+
+  // DNA Profile
+  dnaProfile           Json?             @map("dna_profile")
+  learningStyle        LearningStyle?    @map("learning_style")
+  dailyTimeGoalMinutes Int               @default(30) @map("daily_time_goal_minutes")
+  buildGoals           String[]          @default([]) @map("build_goals")
+
+  // Gamification
+  currentLevel         Int               @default(1) @map("current_level")
+  totalXp              Int               @default(0) @map("total_xp")
+  streakDays           Int               @default(0) @map("streak_days")
+  streakFreezes        Int               @default(2) @map("streak_freezes")
+  longestStreak        Int               @default(0) @map("longest_streak")
+
+  // Subscription
+  subscriptionTier     SubscriptionTier  @default(FREE) @map("subscription_tier")
+  stripeCustomerId     String?           @unique @map("stripe_customer_id")
+  stripeSubscriptionId String?           @unique @map("stripe_subscription_id")
+
+  // Settings
+  locale               String            @default("pt-BR")
+  timezone             String            @default("America/Sao_Paulo")
+  soundEnabled         Boolean           @default(true) @map("sound_enabled")
+  hapticsEnabled       Boolean           @default(true) @map("haptics_enabled")
+  notifyStreak         Boolean           @default(true) @map("notify_streak")
+  notifyNewMission     Boolean           @default(true) @map("notify_new_mission")
+  notifySocial         Boolean           @default(true) @map("notify_social")
+  notifyNews           Boolean           @default(true) @map("notify_news")
+
+  // Availability
+  openToWork           Boolean           @default(false) @map("open_to_work")
+  preferredStack       String[]          @default([]) @map("preferred_stack")
+
+  // Timestamps
+  createdAt            DateTime          @default(now()) @map("created_at")
+  updatedAt            DateTime          @updatedAt @map("updated_at")
+  lastActiveAt         DateTime          @default(now()) @map("last_active_at")
+
+  // Relations
+  missionProgress      MissionProgress[]
+  projects             Project[]
+  viConversations      ViConversation[]
+  viMemories           ViMemory[]
+  achievements         UserAchievement[]
+  streakHistory        StreakDay[]
+  socialPosts          SocialPost[]
+  postLikes            PostLike[]
+  postComments         PostComment[]
+  sharedPrompts        SharedPrompt[]
+  savedPrompts         SavedPrompt[]
+  certificates         Certificate[]
+  coopSessionsAsA      CoopSession[]     @relation("PlayerA")
+  coopSessionsAsB      CoopSession[]     @relation("PlayerB")
+  notifications        Notification[]
+  pushTokens           PushToken[]
+
+  @@map("users")
+}
+
+// ═══════════════════════════════════════
+// GAMIFICATION
+// ═══════════════════════════════════════
+
+model MissionProgress {
+  id                String        @id @default(cuid())
+  userId            String        @map("user_id")
+  missionId         String        @map("mission_id")
+  status            MissionStatus @default(LOCKED)
+  score             Int           @default(0)
+  xpEarned          Int           @default(0) @map("xp_earned")
+  timeSpentSeconds  Int           @default(0) @map("time_spent_seconds")
+  attempts          Int           @default(0)
+  data              Json?
+  completedAt       DateTime?     @map("completed_at")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, missionId])
+  @@index([userId])
+  @@index([missionId])
+  @@map("mission_progress")
+}
+
+model UserAchievement {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  achievementId   String   @map("achievement_id")
+  earnedAt        DateTime @default(now()) @map("earned_at")
+  data            Json?
+
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@map("user_achievements")
+}
+
+model StreakDay {
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  date              DateTime @db.Date
+  xpEarned          Int      @default(0) @map("xp_earned")
+  missionsCompleted Int      @default(0) @map("missions_completed")
+  timeSpentMinutes  Int      @default(0) @map("time_spent_minutes")
+  freezeUsed        Boolean  @default(false) @map("freeze_used")
+
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@map("streak_days")
+}
+
+// ═══════════════════════════════════════
+// PROJECTS
+// ═══════════════════════════════════════
+
+model Project {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  title         String
+  description   String?
+  type          String
+  techStack     String[] @map("tech_stack")
+  sourceCodeUrl String?  @map("source_code_url")
+  liveUrl       String?  @map("live_url")
+  thumbnailUrl  String?  @map("thumbnail_url")
+  isPublic      Boolean  @default(true) @map("is_public")
+  isPortfolio   Boolean  @default(true) @map("is_portfolio")
+  likesCount    Int      @default(0) @map("likes_count")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("projects")
+}
+
+// ═══════════════════════════════════════
+// VI (AI MENTOR)
+// ═══════════════════════════════════════
+
+model ViConversation {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  mode        ViMode   @default(TEACHER)
+  context     String?
+  contextId   String?  @map("context_id")
+  messages    Json[]   @default([])
+  modelUsed   String?  @map("model_used")
+  tokensUsed  Int      @default(0) @map("tokens_used")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, context])
+  @@map("vi_conversations")
+}
+
+model ViMemory {
+  id                   String     @id @default(cuid())
+  userId               String     @map("user_id")
+  type                 MemoryType
+  content              String
+  sourceConversationId String?    @map("source_conversation_id")
+  confidence           Float      @default(0.8)
+  createdAt            DateTime   @default(now()) @map("created_at")
+  updatedAt            DateTime   @updatedAt @map("updated_at")
+
+  user                 User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, type])
+  @@map("vi_memories")
+}
+
+// ═══════════════════════════════════════
+// SOCIAL
+// ═══════════════════════════════════════
+
+model SocialPost {
+  id            String        @id @default(cuid())
+  userId        String        @map("user_id")
+  type          PostType      @default(GENERAL)
+  content       String
+  codeBlock     String?       @map("code_block")
+  attachment    Json?
+  tags          String[]      @default([])
+  likesCount    Int           @default(0) @map("likes_count")
+  commentsCount Int           @default(0) @map("comments_count")
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes         PostLike[]
+  comments      PostComment[]
+
+  @@index([userId])
+  @@index([createdAt(sort: Desc)])
+  @@index([type])
+  @@map("social_posts")
+}
+
+model PostLike {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  postId    String   @map("post_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("post_likes")
+}
+
+model PostComment {
+  id        String     @id @default(cuid())
+  userId    String     @map("user_id")
+  postId    String     @map("post_id")
+  content   String
+  createdAt DateTime   @default(now()) @map("created_at")
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([postId])
+  @@map("post_comments")
+}
+
+model SharedPrompt {
+  id         String        @id @default(cuid())
+  userId     String        @map("user_id")
+  title      String
+  prompt     String
+  category   String
+  tags       String[]      @default([])
+  savesCount Int           @default(0) @map("saves_count")
+  usesCount  Int           @default(0) @map("uses_count")
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  savedBy    SavedPrompt[]
+
+  @@index([userId])
+  @@index([category])
+  @@index([savesCount(sort: Desc)])
+  @@map("shared_prompts")
+}
+
+model SavedPrompt {
+  id        String       @id @default(cuid())
+  userId    String       @map("user_id")
+  promptId  String       @map("prompt_id")
+  savedAt   DateTime     @default(now()) @map("saved_at")
+
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt    SharedPrompt @relation(fields: [promptId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, promptId])
+  @@map("saved_prompts")
+}
+
+// ═══════════════════════════════════════
+// CO-OP
+// ═══════════════════════════════════════
+
+model CoopSession {
+  id            String     @id @default(cuid())
+  missionId     String     @map("mission_id")
+  playerAId     String     @map("player_a_id")
+  playerBId     String?    @map("player_b_id")
+  playerARole   String?    @map("player_a_role")
+  playerBRole   String?    @map("player_b_role")
+  status        CoopStatus @default(MATCHING)
+  chatHistory   Json[]     @default([]) @map("chat_history")
+  ratings       Json?
+  startedAt     DateTime?  @map("started_at")
+  completedAt   DateTime?  @map("completed_at")
+  createdAt     DateTime   @default(now()) @map("created_at")
+
+  playerA       User       @relation("PlayerA", fields: [playerAId], references: [id])
+  playerB       User?      @relation("PlayerB", fields: [playerBId], references: [id])
+
+  @@index([status])
+  @@index([playerAId])
+  @@index([playerBId])
+  @@map("coop_sessions")
+}
+
+// ═══════════════════════════════════════
+// CERTIFICATES
+// ═══════════════════════════════════════
+
+model Certificate {
+  id                String      @id @default(cuid())
+  userId            String      @map("user_id")
+  certificateNumber String      @unique @map("certificate_number")
+  level             IslandLevel
+  issuedAt          DateTime    @default(now()) @map("issued_at")
+  skills            String[]    @default([])
+  projects          Json?
+  bossFightScore    Int?        @map("boss_fight_score")
+  totalStudyHours   Float?      @map("total_study_hours")
+  signatureHash     String      @map("signature_hash")
+  pdfUrl            String?     @map("pdf_url")
+  pngUrl            String?     @map("png_url")
+  isRevoked         Boolean     @default(false) @map("is_revoked")
+  metadata          Json?
+
+  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("certificates")
+}
+
+// ═══════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  type      String
+  title     String
+  body      String
+  data      Json?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("notifications")
+}
+
+model PushToken {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  token     String   @unique
+  platform  String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("push_tokens")
+}
+```
+
+### `packages/db/index.ts`
+
+```typescript
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const db =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
+
+export * from "@prisma/client";
+export type { PrismaClient } from "@prisma/client";
+```
+
+### `packages/db/prisma/seed.ts`
+
+```typescript
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log("🌱 Seeding database...");
+
+  // Seed is minimal — content comes from JSON files
+  // This seeds a test user for development
+
+  const testUser = await prisma.user.upsert({
+    where: { email: "test@vibecode.app" },
+    update: {},
+    create: {
+      clerkId: "test_clerk_id",
+      email: "test@vibecode.app",
+      name: "Test User",
+      username: "testuser",
+      dnaProfile: {
+        techRelation: "curious",
+        experience: "beginner",
+        codeFeeling: "curious_lost",
+        aiUsage: true,
+        buildGoals: ["saas", "chatbot"],
+        learningStyle: "doing",
+        dailyTime: 30,
+        mainGoal: "own_product",
+        hasComputer: "mac",
+        currentArea: "design",
+      },
+      learningStyle: "DOING",
+      buildGoals: ["saas", "chatbot"],
+    },
+  });
+
+  console.log(`✅ Test user created: ${testUser.email}`);
+
+  // Create initial mission progress (unlock Zone 1)
+  const zone1Missions = [
+    "m01", "m02", "m03", "m04", "m05", "m06", "m07",
+  ];
+
+  for (let i = 0; i < zone1Missions.length; i++) {
+    await prisma.missionProgress.upsert({
+      where: {
+        userId_missionId: {
+          userId: testUser.id,
+          missionId: zone1Missions[i],
+        },
+      },
+      update: {},
+      create: {
+        userId: testUser.id,
+        missionId: zone1Missions[i],
+        status: i === 0 ? "AVAILABLE" : "LOCKED",
+      },
+    });
+  }
+
+  console.log(`✅ Mission progress initialized`);
+  console.log("🌱 Seed complete!");
+}
+
+main()
+  .catch((e) => {
+    console.error("❌ Seed failed:", e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
+```
+
+---
+
+### `packages/shared/package.json`
+
+```json
+{
+  "name": "@vibecode/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
+```
+
+### `packages/shared/types/index.ts`
+
+```typescript
+// ═══════════════════════════════════════
+// USER TYPES
+// ═══════════════════════════════════════
+
+export interface UserProfile {
+  id: string;
+  clerkId: string;
+  email: string;
+  name: string;
+  username: string;
+  avatarUrl: string | null;
+  bio: string | null;
+  currentLevel: number;
+  totalXp: number;
+  streakDays: number;
+  longestStreak: number;
+  subscriptionTier: SubscriptionTier;
+  locale: string;
+  createdAt: Date;
+}
+
+export type SubscriptionTier = "FREE" | "PRO" | "TEAM" | "LIFETIME";
+
+// ═══════════════════════════════════════
+// DNA TEST TYPES
+// ═══════════════════════════════════════
+
+export interface DNAProfile {
+  techRelation: "none" | "casual" | "professional";
+  experience: "never" | "html_only" | "beginner" | "intermediate";
+  codeFeeling: "panic" | "curious_lost" | "understand_basics" | "at_home";
+  aiUsage: boolean;
+  buildGoals: BuildGoal[];
+  learningStyle: "reading" | "watching" | "doing" | "talking";
+  dailyTime: 10 | 30 | 60 | 120;
+  mainGoal: "career_change" | "freelance" | "own_product" | "hobby";
+  hasComputer: "mac" | "windows" | "linux" | "chromebook";
+  currentArea: string;
+}
+
+export type BuildGoal =
+  | "mobile_app"
+  | "website"
+  | "ecommerce"
+  | "chatbot"
+  | "dashboard"
+  | "saas"
+  | "game"
+  | "automation";
+
+export interface DNAResult {
+  profile: string;
+  startLevel: "basic" | "intermediate";
+  estimatedWeeks: {
+    basic: number;
+    intermediate: number;
+    advanced: number;
+    expert: number;
+  };
+}
+
+// ═══════════════════════════════════════
+// MISSION TYPES
+// ═══════════════════════════════════════
+
+export interface Island {
+  id: string;
+  level: IslandLevel;
+  name: string;
+  subtitle: string;
+  emoji: string;
+  zones: Zone[];
+  bossFight: BossFight;
+  totalMissions: number;
+}
+
+export type IslandLevel = "BASIC" | "INTERMEDIATE" | "ADVANCED" | "EXPERT";
+
+export interface Zone {
+  id: string;
+  islandId: string;
+  name: string;
+  emoji: string;
+  description: string;
+  missions: Mission[];
+  miniProject: MiniProject;
+  order: number;
+}
+
+export interface Mission {
+  id: string;
+  zoneId: string;
+  title: string;
+  description: string;
+  order: number;
+  estimatedMinutes: number;
+  xpReward: number;
+  phases: MissionPhase[];
+}
+
+export interface MissionPhase {
+  id: string;
+  type: "story" | "concept" | "interaction" | "sandbox" | "quiz";
+  title: string;
+  content: MissionContent;
+  estimatedSeconds: number;
+}
+
+export interface MissionContent {
+  narration?: string;
+  illustration?: string;
+  animationId?: string;
+  codeBlocks?: CodeBlock[];
+  interactiveElements?: InteractiveElement[];
+  quizQuestions?: QuizQuestion[];
+  sandboxConfig?: SandboxConfig;
+}
+
+export interface CodeBlock {
+  language: string;
+  code: string;
+  highlights?: number[];
+  annotations?: Record<number, string>;
+}
+
+export interface InteractiveElement {
+  type: "drag_drop" | "fill_blank" | "tap_to_reveal" | "toggle";
+  data: Record<string, unknown>;
+}
+
+export interface QuizQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}
+
+export interface SandboxConfig {
+  language: string;
+  template: string;
+  initialCode: string;
+  expectedOutput?: string;
+  tests?: SandboxTest[];
+}
+
+export interface SandboxTest {
+  description: string;
+  test: string;
+}
+
+export interface MiniProject {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  estimatedMinutes: number;
+  xpReward: number;
+  steps: ProjectStep[];
+}
+
+export interface ProjectStep {
+  id: string;
+  title: string;
+  description: string;
+  instructions: string;
+  hints: string[];
+  estimatedMinutes: number;
+}
+
+export interface BossFight {
+  id: string;
+  title: string;
+  description: string;
+  steps: number;
+  xpReward: number;
+  badgeId: string;
+  certificateLevel: IslandLevel;
+}
+
+// ═══════════════════════════════════════
+// GAMIFICATION TYPES
+// ═══════════════════════════════════════
+
+export interface Achievement {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  category: AchievementCategory;
+  xpReward: number;
+  condition: AchievementCondition;
+  isSecret: boolean;
+}
+
+export type AchievementCategory =
+  | "learning"
+  | "consistency"
+  | "building"
+  | "ai"
+  | "social"
+  | "debug"
+  | "easter_egg";
+
+export interface AchievementCondition {
+  type: string;
+  target: number;
+  metric: string;
+}
+
+export interface LevelInfo {
+  level: number;
+  title: string;
+  xpRequired: number;
+  viForm: string;
+}
+
+export interface StreakInfo {
+  current: number;
+  longest: number;
+  freezesAvailable: number;
+  todayCompleted: boolean;
+  nextBonus: {
+    daysNeeded: number;
+    xpReward: number;
+    description: string;
+  };
+}
+
+// ═══════════════════════════════════════
+// VI (AI) TYPES
+// ═══════════════════════════════════════
+
+export type ViMode =
+  | "teacher"
+  | "builder"
+  | "detective"
+  | "reviewer"
+  | "creative"
+  | "quiz"
+  | "conversation"
+  | "scanner";
+
+export interface ViMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  timestamp: Date;
+  metadata?: {
+    model?: string;
+    tokensUsed?: number;
+    codeBlocks?: CodeBlock[];
+    illustration?: string;
+  };
+}
+
+export interface ViContext {
+  userId: string;
+  userLevel: number;
+  currentMission?: string;
+  currentProject?: string;
+  mode: ViMode;
+  memories: string[];
+  conversationHistory: ViMessage[];
+}
+
+// ═══════════════════════════════════════
+// SOCIAL TYPES
+// ═══════════════════════════════════════
+
+export interface SocialPost {
+  id: string;
+  user: {
+    id: string;
+    name: string;
+    username: string;
+    avatarUrl: string | null;
+    currentLevel: number;
+  };
+  type: PostType;
+  content: string;
+  codeBlock?: string;
+  attachment?: Record<string, unknown>;
+  tags: string[];
+  likesCount: number;
+  commentsCount: number;
+  isLikedByMe: boolean;
+  createdAt: Date;
+}
+
+export type PostType = "ACHIEVEMENT" | "PROJECT" | "PROMPT" | "HELP" | "GENERAL";
+
+// ═══════════════════════════════════════
+// API RESPONSE TYPES
+// ═══════════════════════════════════════
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: {
+    code: string;
+    message: string;
+  };
+  meta?: {
+    page?: number;
+    perPage?: number;
+    total?: number;
+  };
+}
+```
+
+### `packages/shared/schemas/index.ts`
+
+```typescript
+import { z } from "zod";
+
+// ═══════════════════════════════════════
+// DNA TEST SCHEMAS
+// ═══════════════════════════════════════
+
+export const dnaProfileSchema = z.object({
+  techRelation: z.enum(["none", "casual", "professional"]),
+  experience: z.enum(["never", "html_only", "beginner", "intermediate"]),
+  codeFeeling: z.enum(["panic", "curious_lost", "understand_basics", "at_home"]),
+  aiUsage: z.boolean(),
+  buildGoals: z.array(
+    z.enum([
+      "mobile_app",
+      "website",
+      "ecommerce",
+      "chatbot",
+      "dashboard",
+      "saas",
+      "game",
+      "automation",
+    ])
+  ),
+  learningStyle: z.enum(["reading", "watching", "doing", "talking"]),
+  dailyTime: z.union([
+    z.literal(10),
+    z.literal(30),
+    z.literal(60),
+    z.literal(120),
+  ]),
+  mainGoal: z.enum(["career_change", "freelance", "own_product", "hobby"]),
+  hasComputer: z.enum(["mac", "windows", "linux", "chromebook"]),
+  currentArea: z.string().min(1).max(100),
+});
+
+// ═══════════════════════════════════════
+// USER SCHEMAS
+// ═══════════════════════════════════════
+
+export const updateProfileSchema = z.object({
+  name: z.string().min(2).max(100).optional(),
+  username: z.string().min(3).max(30).regex(/^[a-zA-Z0-9_]+$/).optional(),
+  bio: z.string().max(500).optional(),
+  avatarUrl: z.string().url().optional(),
+  dailyTimeGoalMinutes: z.number().min(5).max(480).optional(),
+  locale: z.string().optional(),
+  timezone: z.string().optional(),
+  soundEnabled: z.boolean().optional(),
+  hapticsEnabled: z.boolean().optional(),
+  notifyStreak: z.boolean().optional(),
+  notifyNewMission: z.boolean().optional(),
+  notifySocial: z.boolean().optional(),
+  notifyNews: z.boolean().optional(),
+  openToWork: z.boolean().optional(),
+  preferredStack: z.array(z.string()).optional(),
+});
+
+// ═══════════════════════════════════════
+// VI SCHEMAS
+// ═══════════════════════════════════════
+
+export const viMessageSchema = z.object({
+  content: z.string().min(1).max(10000),
+  mode: z
+    .enum([
+      "teacher",
+      "builder",
+      "detective",
+      "reviewer",
+      "creative",
+      "quiz",
+      "conversation",
+      "scanner",
+    ])
+    .optional()
+    .default("teacher"),
+  context: z.string().optional(),
+  contextId: z.string().optional(),
+  imageBase64: z.string().optional(), // for scan mode
+});
+
+export const viConversationCreateSchema = z.object({
+  mode: z.enum([
+    "teacher",
+    "builder",
+    "detective",
+    "reviewer",
+    "creative",
+    "quiz",
+    "conversation",
+    "scanner",
+  ]),
+  context: z.string().optional(),
+  contextId: z.string().optional(),
+});
+
+// ═══════════════════════════════════════
+// SOCIAL SCHEMAS
+// ═══════════════════════════════════════
+
+export const createPostSchema = z.object({
+  type: z.enum(["ACHIEVEMENT", "PROJECT", "PROMPT", "HELP", "GENERAL"]),
+  content: z.string().min(1).max(5000),
+  codeBlock: z.string().max(10000).optional(),
+  tags: z.array(z.string().max(30)).max(5).optional(),
+  attachment: z.record(z.unknown()).optional(),
+});
+
+export const createCommentSchema = z.object({
+  content: z.string().min(1).max(2000),
+});
+
+export const createPromptSchema = z.object({
+  title: z.string().min(3).max(200),
+  prompt: z.string().min(10).max(10000),
+  category: z.string().min(1).max(50),
+  tags: z.array(z.string().max(30)).max(10).optional(),
+});
+
+// ═══════════════════════════════════════
+// MISSION SCHEMAS
+// ═══════════════════════════════════════
+
+export const completeMissionSchema = z.object({
+  missionId: z.string(),
+  score: z.number().min(0).max(100),
+  timeSpentSeconds: z.number().min(0),
+  data: z.record(z.unknown()).optional(),
+});
+
+export const updateProjectStepSchema = z.object({
+  projectId: z.string(),
+  stepId: z.string(),
+  completed: z.boolean(),
+  code: z.string().optional(),
+});
+
+// ═══════════════════════════════════════
+// PAGINATION
+// ═══════════════════════════════════════
+
+export const paginationSchema = z.object({
+  page: z.coerce.number().min(1).default(1),
+  perPage: z.coerce.number().min(1).max(50).default(20),
+});
+```
+
+### `packages/shared/constants/index.ts`
+
+```typescript
+// ═══════════════════════════════════════
+// LEVEL SYSTEM
+// ═══════════════════════════════════════
+
+export const LEVELS = [
+  { level: 1, xpRequired: 0, title: "Curioso", viForm: "cube" },
+  { level: 2, xpRequired: 50, title: "Curioso", viForm: "cube" },
+  { level: 3, xpRequired: 120, title: "Curioso", viForm: "cube" },
+  { level: 4, xpRequired: 220, title: "Curioso", viForm: "cube" },
+  { level: 5, xpRequired: 350, title: "Curioso", viForm: "cube" },
+  { level: 6, xpRequired: 500, title: "Explorador", viForm: "cube_plus" },
+  { level: 7, xpRequired: 700, title: "Explorador", viForm: "cube_plus" },
+  { level: 8, xpRequired: 950, title: "Explorador", viForm: "cube_plus" },
+  { level: 9, xpRequired: 1250, title: "Explorador", viForm: "cube_plus" },
+  { level: 10, xpRequired: 1600, title: "Explorador", viForm: "cube_plus" },
+  { level: 11, xpRequired: 2000, title: "Construtor", viForm: "robot" },
+  { level: 12, xpRequired: 2500, title: "Construtor", viForm: "robot" },
+  { level: 13, xpRequired: 3100, title: "Construtor", viForm: "robot" },
+  { level: 14, xpRequired: 3800, title: "Construtor", viForm: "robot" },
+  { level: 15, xpRequired: 4600, title: "Construtor", viForm: "robot" },
+  { level: 16, xpRequired: 5500, title: "Engenheiro", viForm: "robot_plus" },
+  { level: 17, xpRequired: 6500, title: "Engenheiro", viForm: "robot_plus" },
+  { level: 18, xpRequired: 7600, title: "Engenheiro", viForm: "robot_plus" },
+  { level: 19, xpRequired: 8800, title: "Engenheiro", viForm: "robot_plus" },
+  { level: 20, xpRequired: 10000, title: "Engenheiro", viForm: "robot_plus" },
+  { level: 21, xpRequired: 12000, title: "Arquiteto", viForm: "robot_pro" },
+  { level: 25, xpRequired: 18000, title: "Arquiteto", viForm: "robot_pro" },
+  { level: 26, xpRequired: 20000, title: "Mestre", viForm: "robot_pro_plus" },
+  { level: 30, xpRequired: 32000, title: "Mestre", viForm: "robot_pro_plus" },
+  { level: 31, xpRequired: 35000, title: "Expert", viForm: "hologram" },
+  { level: 40, xpRequired: 55000, title: "Expert", viForm: "hologram" },
+  { level: 41, xpRequired: 60000, title: "Lenda", viForm: "hologram_plus" },
+  { level: 50, xpRequired: 95000, title: "Lenda", viForm: "hologram_plus" },
+  { level: 51, xpRequired: 100000, title: "Vibe Lord", viForm: "ascended" },
+] as const;
+
+export function getLevelForXp(xp: number) {
+  let current = LEVELS[0];
+  for (const level of LEVELS) {
+    if (xp >= level.xpRequired) {
+      current = level;
+    } else {
+      break;
+    }
+  }
+  return current;
+}
+
+export function getXpForNextLevel(xp: number) {
+  for (const level of LEVELS) {
+    if (xp < level.xpRequired) {
+      return level.xpRequired - xp;
+    }
+  }
+  return 0;
+}
+
+// ═══════════════════════════════════════
+// STREAK BONUSES
+// ═══════════════════════════════════════
+
+export const STREAK_BONUSES = [
+  { days: 3, xp: 50, description: "3 dias! 🔥" },
+  { days: 7, xp: 200, description: "1 semana! + Freeze grátis" },
+  { days: 14, xp: 300, description: "2 semanas! + Skin Fire Vi" },
+  { days: 30, xp: 1000, description: "1 mês! 🌟 Lendário!" },
+  { days: 60, xp: 2000, description: "2 meses! Vulcão 🌋" },
+  { days: 100, xp: 5000, description: "100 dias! Sol ☀️" },
+  { days: 365, xp: 20000, description: "1 ANO! Supernova 💥" },
+] as const;
+
+// ═══════════════════════════════════════
+// ACHIEVEMENTS
+// ═══════════════════════════════════════
+
+export const ACHIEVEMENTS = {
+  // Learning
+  FIRST_LESSON: {
+    id: "first_lesson",
+    name: "Primeira Lição",
+    description: "Complete sua primeira missão",
+    emoji: "📖",
+    category: "learning" as const,
+    xpReward: 50,
+    condition: { type: "missions_completed", target: 1, metric: "total" },
+    isSecret: false,
+  },
+  STUDIOUS: {
+    id: "studious",
+    name: "Estudioso",
+    description: "Complete 10 missões",
+    emoji: "🎓",
+    category: "learning" as const,
+    xpReward: 100,
+    condition: { type: "missions_completed", target: 10, metric: "total" },
+    isSecret: false,
+  },
+  MARATHONER: {
+    id: "marathoner",
+    name: "Maratonista",
+    description: "Complete 50 missões",
+    emoji: "📚",
+    category: "learning" as const,
+    xpReward: 300,
+    condition: { type: "missions_completed", target: 50, metric: "total" },
+    isSecret: false,
+  },
+
+  // Consistency
+  SPARK: {
+    id: "spark",
+    name: "Centelha",
+    description: "3 dias seguidos",
+    emoji: "🔥",
+    category: "consistency" as const,
+    xpReward: 50,
+    condition: { type: "streak", target: 3, metric: "days" },
+    isSecret: false,
+  },
+  FLAME: {
+    id: "flame",
+    name: "Chama",
+    description: "7 dias seguidos",
+    emoji: "🔥",
+    category: "consistency" as const,
+    xpReward: 100,
+    condition: { type: "streak", target: 7, metric: "days" },
+    isSecret: false,
+  },
+  BONFIRE: {
+    id: "bonfire",
+    name: "Fogueira",
+    description: "14 dias seguidos",
+    emoji: "🔥",
+    category: "consistency" as const,
+    xpReward: 200,
+    condition: { type: "streak", target: 14, metric: "days" },
+    isSecret: false,
+  },
+  INFERNO: {
+    id: "inferno",
+    name: "Inferno",
+    description: "30 dias seguidos",
+    emoji: "🔥",
+    category: "consistency" as const,
+    xpReward: 500,
+    condition: { type: "streak", target: 30, metric: "days" },
+    isSecret: false,
+  },
+
+  // Building
+  FIRST_BRICK: {
+    id: "first_brick",
+    name: "Primeiro Tijolo",
+    description: "Crie seu primeiro projeto",
+    emoji: "🧱",
+    category: "building" as const,
+    xpReward: 100,
+    condition: { type: "projects_created", target: 1, metric: "total" },
+    isSecret: false,
+  },
+  SHIP_IT: {
+    id: "ship_it",
+    name: "Ship It!",
+    description: "Faça seu primeiro deploy",
+    emoji: "🚀",
+    category: "building" as const,
+    xpReward: 200,
+    condition: { type: "projects_deployed", target: 1, metric: "total" },
+    isSecret: false,
+  },
+
+  // AI
+  FIRST_CONTACT: {
+    id: "first_contact",
+    name: "Primeiro Contato",
+    description: "Faça seu primeiro prompt",
+    emoji: "🗣️",
+    category: "ai" as const,
+    xpReward: 50,
+    condition: { type: "vi_messages", target: 1, metric: "total" },
+    isSecret: false,
+  },
+  PROMPT_WIZARD: {
+    id: "prompt_wizard",
+    name: "Prompt Wizard",
+    description: "Crie 20 prompts eficazes",
+    emoji: "🧙",
+    category: "ai" as const,
+    xpReward: 300,
+    condition: { type: "vi_messages", target: 20, metric: "total" },
+    isSecret: false,
+  },
+
+  // Easter Eggs
+  NIGHT_OWL: {
+    id: "night_owl",
+    name: "Night Owl",
+    description: "Use o app depois da meia-noite",
+    emoji: "🌙",
+    category: "easter_egg" as const,
+    xpReward: 50,
+    condition: { type: "time_of_day", target: 0, metric: "hour_after_midnight" },
+    isSecret: true,
+  },
+} as const;
+
+// ═══════════════════════════════════════
+// ISLANDS STRUCTURE
+// ═══════════════════════════════════════
+
+export const ISLANDS = [
+  {
+    id: "basic",
+    level: "BASIC" as const,
+    name: "As Fundações",
+    subtitle: "Sua jornada começa aqui",
+    emoji: "🏝️",
+    totalMissions: 30,
+    zones: [
+      { id: "z01", name: "Despertar", emoji: "🌅", missions: 7 },
+      { id: "z02", name: "Ferramentas", emoji: "🔧", missions: 8 },
+      { id: "z03", name: "Web Descomplicada", emoji: "🌐", missions: 8 },
+      { id: "z04", name: "Prompt Craft", emoji: "🎨", missions: 7 },
+    ],
+  },
+  {
+    id: "intermediate",
+    level: "INTERMEDIATE" as const,
+    name: "A Escalada",
+    subtitle: "Construa apps reais",
+    emoji: "🏔️",
+    totalMissions: 45,
+    zones: [
+      { id: "z05", name: "Lendo Código", emoji: "🔍", missions: 10 },
+      { id: "z06", name: "Frameworks Web", emoji: "⚛️", missions: 10 },
+      { id: "z07", name: "Backend & APIs", emoji: "🖥️", missions: 10 },
+      { id: "z08", name: "Banco de Dados", emoji: "🗄️", missions: 10 },
+      { id: "z09", name: "Deploy & DevOps", emoji: "🚀", missions: 5 },
+    ],
+  },
+  {
+    id: "advanced",
+    level: "ADVANCED" as const,
+    name: "O Vulcão",
+    subtitle: "Domine arquitetura e IA",
+    emoji: "🌋",
+    totalMissions: 50,
+    zones: [
+      { id: "z10", name: "Arquitetura & Padrões", emoji: "🏛️", missions: 10 },
+      { id: "z11", name: "TypeScript Pro", emoji: "💎", missions: 8 },
+      { id: "z12", name: "React & Next.js Pro", emoji: "⚡", missions: 10 },
+      { id: "z13", name: "IA como Feature", emoji: "🤖", missions: 10 },
+      { id: "z14", name: "DevOps & Infra", emoji: "🏗️", missions: 7 },
+      { id: "z15", name: "Monetização", emoji: "💰", missions: 5 },
+    ],
+  },
+  {
+    id: "expert",
+    level: "EXPERT" as const,
+    name: "O Cosmos",
+    subtitle: "Lidere e escale",
+    emoji: "🚀",
+    totalMissions: 35,
+    zones: [
+      { id: "z16", name: "System Design", emoji: "🌌", missions: 10 },
+      { id: "z17", name: "Segurança", emoji: "🔒", missions: 7 },
+      { id: "z18", name: "AI/ML Architecture", emoji: "🧠", missions: 8 },
+      { id: "z19", name: "Performance", emoji: "⚙️", missions: 5 },
+      { id: "z20", name: "Liderança & Produto", emoji: "👑", missions: 5 },
+    ],
+  },
+] as const;
+
+// ═══════════════════════════════════════
+// APP CONFIG
+// ═══════════════════════════════════════
+
+export const APP_CONFIG = {
+  name: "VibeCode",
+  tagline: "Code the future. Ride the vibe.",
+  maxFreeViMessages: 5,
+  maxFreeProjects: 1,
+  defaultStreakFreezes: 2,
+  proStreakFreezes: 5,
+  dailyChallengeXp: { easy: 50, medium: 100, hard: 150 },
+  coopXpBonus: 1.5,
+  speedRunMaxMinutes: 15,
+} as const;
+
+// ═══════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════
+
+export const COLORS = {
+  bgPrimary: "#0A0A0F",
+  bgSecondary: "#111118",
+  bgCard: "#1A1A2E",
+  bgCardHover: "#222240",
+  bgElevated: "#1E1E3A",
+  bgCode: "#0A0A0F",
+
+  textPrimary: "#FFFFFF",
+  textSecondary: "#CCCCCC",
+  textTertiary: "#888888",
+  textMuted: "#666666",
+
+  borderDefault: "#333333",
+  borderSubtle: "#222222",
+  borderFocus: "#8B5CF6",
+
+  accentPurple: "#8B5CF6",
+  accentBlue: "#3B82F6",
+  accentCyan: "#06B6D4",
+  accentGreen: "#22C55E",
+  accentYellow: "#F59E0B",
+  accentOrange: "#F97316",
+  accentRed: "#EF4444",
+  accentPink: "#EC4899",
+  accentGold: "#FFD700",
+} as const;
+```
+
+### `packages/shared/index.ts`
+
+```typescript
+export * from "./types";
+export * from "./schemas";
+export * from "./constants";
+```
+
+---
+
+### `packages/ai/package.json`
+
+```json
+{
+  "name": "@vibecode/ai",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "ai": "^3.3.0",
+    "openai": "^4.55.0",
+    "@vibecode/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
+```
+
+### `packages/ai/prompts/system.ts`
+
+```typescript
+import type { ViMode } from "@vibecode/shared";
+
+// ═══════════════════════════════════════
+// VI SYSTEM PROMPTS
+// ═══════════════════════════════════════
+
+export function getViSystemPrompt(params: {
+  mode: ViMode;
+  userLevel: number;
+  userName: string;
+  locale: string;
+  currentMission?: string;
+  memories?: string[];
+}): string {
+  const { mode, userLevel, userName, locale, currentMission, memories } = params;
+
+  const levelDescription = getLevelDescription(userLevel);
+  const languageInstruction = getLanguageInstruction(locale);
+  const modeInstructions = getModeInstructions(mode);
+  const memoryContext = memories?.length
+    ? `\n\nMEMÓRIAS SOBRE ${userName.toUpperCase()}:\n${memories.map((m) => `- ${m}`).join("\n")}`
+    : "";
+
+  return `${BASE_PROMPT}
+
+${languageInstruction}
+
+NOME DO ALUNO: ${userName}
+NÍVEL DO ALUNO: ${userLevel} (${levelDescription})
+${currentMission ? `MISSÃO ATUAL: ${currentMission}` : ""}
+
+${modeInstructions}
+${memoryContext}
+
+${TONE_GUIDELINES}
+
+${SAFETY_GUIDELINES}`;
+}
+
+const BASE_PROMPT = `Você é Vi, o mentor pessoal de IA do VibeCode — o app que ensina vibe coding (programar com IA).
+
+SUA PERSONALIDADE:
+- Entusiasmado mas não forçado
+- Paciente e encorajador
+- Usa analogias do dia a dia para explicar conceitos técnicos
+- Celebra conquistas do aluno genuinamente
+- Admite quando não sabe algo
+- Usa emojis com moderação (1-3 por mensagem)
+- Tem senso de humor sutil
+
+SUAS REGRAS FUNDAMENTAIS:
+1. NUNCA gere código inseguro ou com vulnerabilidades conhecidas
+2. SEMPRE explique o que o código faz, não apenas gere
+3. Adapte a complexidade da explicação ao nível do aluno
+4. Se o aluno está frustrado, seja especialmente paciente e quebre o problema em partes menores
+5. Incentive o aluno a entender, não apenas copiar
+6. Use analogias concretas (restaurante, correio, fábrica, etc.)
+7. Quando gerar código, inclua comentários explicativos
+8. Se detectar um erro conceitual, corrija gentilmente
+9. Sugira próximos passos ao final de cada interação`;
+
+function getLevelDescription(level: number): string {
+  if (level <= 5) return "Iniciante — use linguagem super simples, muitas analogias, zero jargão técnico sem explicação";
+  if (level <= 10) return "Explorador — pode usar termos básicos (variável, função, API) mas explique termos novos";
+  if (level <= 15) return "Construtor — familiarizado com JS/TS, React, APIs. Pode usar termos técnicos moderados";
+  if (level <= 20) return "Engenheiro — conhece patterns, TypeScript avançado. Pode ser mais técnico e direto";
+  if (level <= 30) return "Mestre — conhece arquitetura, system design. Seja técnico, conciso e profundo";
+  return "Expert — trate como um colega sênior. Discussões de alto nível, trade-offs, melhores práticas";
+}
+
+function getLanguageInstruction(locale: string): string {
+  const lang = locale.split("-")[0];
+  switch (lang) {
+    case "pt":
+      return "IDIOMA: Responda SEMPRE em Português Brasileiro. Mantenha termos técnicos em inglês (API, deploy, framework, etc.).";
+    case "en":
+      return "LANGUAGE: Always respond in English.";
+    case "es":
+      return "IDIOMA: Responde SIEMPRE en Español. Mantén los términos técnicos en inglés.";
+    case "fr":
+      return "LANGUE: Répondez TOUJOURS en Français. Gardez les termes techniques en anglais.";
+    default:
+      return "IDIOMA: Responda em Português Brasileiro.";
+  }
+}
+
+function getModeInstructions(mode: ViMode): string {
+  const modes: Record<ViMode, string> = {
+    teacher: `MODO PROFESSOR 🎓
+Você está ensinando um conceito. Priorize:
+- Explicações claras com analogias
+- Exemplos de código comentados
+- Verificação de compreensão ("Fez sentido?")
+- Conexão com o que o aluno já aprendeu`,
+
+    builder: `MODO CONSTRUTOR 🔧
+Você está ajudando a construir algo. Priorize:
+- Código funcional e bem estruturado
+- Explicação do que cada parte faz
+- Sugestões de melhoria
+- Próximos passos claros`,
+
+    detective: `MODO DETETIVE 🐛
+Você está ajudando a debugar. Priorize:
+- Análise cuidadosa do erro
+- Possíveis causas (mais provável primeiro)
+- Solução passo a passo
+- Como prevenir no futuro`,
+
+    reviewer: `MODO REVISOR 📝
+Você está revisando código. Priorize:
+- Bugs e problemas de segurança
+- Performance
+- Legibilidade e manutenibilidade
+- Padrões e boas práticas
+- Elogios genuínos para o que está bom`,
+
+    creative: `MODO CRIATIVO 💡
+Você está gerando ideias e sugestões. Priorize:
+- Ideias criativas e viáveis
+- Considerações técnicas
+- MVP vs versão completa
+- Sugestões de stack`,
+
+    quiz: `MODO QUIZ 🎯
+Você está testando conhecimento. Priorize:
+- Perguntas claras e objetivas
+- 4 alternativas plausíveis
+- Explicação da resposta correta
+- Explicação de por que as erradas estão erradas
+- Dificuldade adequada ao nível`,
+
+    conversation: `MODO CONVERSA 🗣️
+Você está em conversa livre sobre tech. Priorize:
+- Ser genuinamente interessante
+- Compartilhar curiosidades e insights
+- Conectar com o que o aluno está aprendendo
+- Manter engajado sem ser didático demais`,
+
+    scanner: `MODO SCANNER 📸
+O aluno enviou uma imagem (screenshot de código, erro, etc.). Priorize:
+- Identificar o que está na imagem
+- Se for erro: explique a causa e a solução
+- Se for código: explique o que faz
+- Se for docs: resuma os pontos principais
+- Sugira missão relacionada do app`,
+  };
+
+  return modes[mode] || modes.teacher;
+}
+
+const TONE_GUIDELINES = `DIRETRIZES DE TOM:
+- Para nível 1-5: "Pense assim: uma função é como uma MÁQUINA. Você coloca ingredientes e ela faz algo com eles!"
+- Para nível 6-10: "O useEffect funciona como um 'observador' — ele fica de olho em mudanças e reage quando algo muda."
+- Para nível 11-20: "Aqui vale usar o pattern Repository para isolar a lógica de acesso a dados. Veja como:"
+- Para nível 21+: "Considere implementar CQRS aqui — a leitura tem padrão de acesso muito diferente da escrita."`;
+
+const SAFETY_GUIDELINES = `DIRETRIZES DE SEGURANÇA:
+- NUNCA revele chaves de API, senhas ou secrets reais
+- NUNCA gere código que executa comandos do sistema sem explicação
+- NUNCA gere código com SQL injection, XSS ou outras vulnerabilidades
+- Se o aluno pedir algo antiético ou perigoso, recuse educadamente
+- Se não souber algo, diga "Não tenho certeza sobre isso, mas posso sugerir onde pesquisar"
+- Mantenha a conversa sobre programação e tecnologia`;
+```
+
+### `packages/ai/providers/router.ts`
+
+```typescript
+import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
+
+// ═══════════════════════════════════════
+// MODEL ROUTER — Chooses best model per task
+// ═══════════════════════════════════════
+
+export type ModelId =
+  | "claude-sonnet"
+  | "claude-haiku"
+  | "gpt-4o"
+  | "gpt-4o-mini"
+  | "groq-llama";
+
+interface ModelConfig {
+  id: ModelId;
+  provider: "anthropic" | "openai" | "groq";
+  model: string;
+  maxTokens: number;
+  costPer1kInput: number;
+  costPer1kOutput: number;
+}
+
+const MODELS: Record<ModelId, ModelConfig> = {
+  "claude-sonnet": {
+    id: "claude-sonnet",
+    provider: "anthropic",
+    model: "claude-sonnet-4-20250514",
+    maxTokens: 8192,
+    costPer1kInput: 0.003,
+    costPer1kOutput: 0.015,
+  },
+  "claude-haiku": {
+    id: "claude-haiku",
+    provider: "anthropic",
+    model: "claude-3-5-haiku-20241022",
+    maxTokens: 4096,
+    costPer1kInput: 0.0008,
+    costPer1kOutput: 0.004,
+  },
+  "gpt-4o": {
+    id: "gpt-4o",
+    provider: "openai",
+    model: "gpt-4o",
+    maxTokens: 4096,
+    costPer1kInput: 0.0025,
+    costPer1kOutput: 0.01,
+  },
+  "gpt-4o-mini": {
+    id: "gpt-4o-mini",
+    provider: "openai",
+    model: "gpt-4o-mini",
+    maxTokens: 4096,
+    costPer1kInput: 0.00015,
+    costPer1kOutput: 0.0006,
+  },
+  "groq-llama": {
+    id: "groq-llama",
+    provider: "groq",
+    model: "llama-3.1-70b-versatile",
+    maxTokens: 4096,
+    costPer1kInput: 0.00005,
+    costPer1kOutput: 0.00008,
+  },
+};
+
+export type TaskType =
+  | "simple_question"
+  | "code_generation"
+  | "complex_reasoning"
+  | "code_review"
+  | "summarization"
+  | "quiz_generation"
+  | "conversation";
+
+export function selectModel(taskType: TaskType, userTier: string): ModelConfig {
+  // Free users get cheaper models
+  if (userTier === "FREE") {
+    switch (taskType) {
+      case "simple_question":
+      case "conversation":
+        return MODELS["groq-llama"];
+      case "code_generation":
+      case "quiz_generation":
+        return MODELS["gpt-4o-mini"];
+      case "complex_reasoning":
+      case "code_review":
+      case "summarization":
+        return MODELS["claude-haiku"];
+      default:
+        return MODELS["gpt-4o-mini"];
+    }
+  }
+
+  // Pro/Team users get best models
+  switch (taskType) {
+    case "simple_question":
+    case "conversation":
+      return MODELS["groq-llama"];
+    case "code_generation":
+      return MODELS["gpt-4o"];
+    case "complex_reasoning":
+    case "code_review":
+      return MODELS["claude-sonnet"];
+    case "summarization":
+    case "quiz_generation":
+      return MODELS["claude-haiku"];
+    default:
+      return MODELS["claude-sonnet"];
+  }
+}
+
+export function classifyTask(message: string): TaskType {
+  const lower = message.toLowerCase();
+
+  if (lower.match(/revise|review|analise|análise|melhore|otimize/)) {
+    return "code_review";
+  }
+  if (lower.match(/crie|gere|faça|construa|implemente|code|código/)) {
+    return "code_generation";
+  }
+  if (lower.match(/por que|como funciona|explique|arquitetura|design|pattern/)) {
+    return "complex_reasoning";
+  }
+  if (lower.match(/quiz|teste|pergunta|avalie/)) {
+    return "quiz_generation";
+  }
+  if (lower.match(/resuma|resumo|sintetize/)) {
+    return "summarization";
+  }
+  if (lower.length < 100) {
+    return "simple_question";
+  }
+
+  return "conversation";
+}
+
+// ═══════════════════════════════════════
+// PROVIDER CLIENTS
+// ═══════════════════════════════════════
+
+let anthropicClient: Anthropic | null = null;
+let openaiClient: OpenAI | null = null;
+let groqClient: OpenAI | null = null;
+
+export function getAnthropicClient(): Anthropic {
+  if (!anthropicClient) {
+    anthropicClient = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY!,
+    });
+  }
+  return anthropicClient;
+}
+
+export function getOpenAIClient(): OpenAI {
+  if (!openaiClient) {
+    openaiClient = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY!,
+    });
+  }
+  return openaiClient;
+}
+
+export function getGroqClient(): OpenAI {
+  if (!groqClient) {
+    groqClient = new OpenAI({
+      apiKey: process.env.GROQ_API_KEY!,
+      baseURL: "https://api.groq.com/openai/v1",
+    });
+  }
+  return groqClient;
+}
+
+export { MODELS };
+```
+
+### `packages/ai/index.ts`
+
+```typescript
+export { getViSystemPrompt } from "./prompts/system";
+export {
+  selectModel,
+  classifyTask,
+  getAnthropicClient,
+  getOpenAIClient,
+  getGroqClient,
+  MODELS,
+  type ModelId,
+  type TaskType,
+} from "./providers/router";
+```
+
+---
+
+## 📱 MOBILE APP (Expo)
+
+### `apps/mobile/package.json`
+
+```json
+{
+  "name": "@vibecode/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "dev": "expo start",
+    "build:ios": "eas build --platform ios",
+    "build:android": "eas build --platform android",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules .expo .turbo"
+  },
+  "dependencies": {
+    "@clerk/clerk-expo": "^2.2.0",
+    "@expo/vector-icons": "^14.0.0",
+    "@react-navigation/native": "^6.1.0",
+    "@tanstack/react-query": "^5.51.0",
+    "expo": "~51.0.0",
+    "expo-constants": "~16.0.0",
+    "expo-haptics": "~13.0.0",
+    "expo-image": "~1.12.0",
+    "expo-linear-gradient": "~13.0.0",
+    "expo-linking": "~6.3.0",
+    "expo-notifications": "~0.28.0",
+    "expo-router": "~3.5.0",
+    "expo-secure-store": "~13.0.0",
+    "expo-splash-screen": "~0.27.0",
+    "expo-status-bar": "~1.12.0",
+    "lottie-react-native": "^6.7.0",
+    "react": "18.2.0",
+    "react-native": "0.74.0",
+    "react-native-mmkv": "^2.12.0",
+    "react-native-reanimated": "~3.10.0",
+    "react-native-safe-area-context": "4.10.0",
+    "react-native-screens": "~3.31.0",
+    "zustand": "^4.5.0",
+    "@vibecode/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "~18.2.0",
+    "typescript": "^5.4.0"
+  }
+}
+```
+
+### `apps/mobile/app.json`
+
+```json
+{
+  "expo": {
+    "name": "VibeCode",
+    "slug": "vibecode",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "vibecode",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A0F"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.vibecode.mobile",
+      "buildNumber": "1"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A0F"
+      },
+      "package": "app.vibecode.mobile",
+      "versionCode": 1
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#8B5CF6"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+```
+
+### `apps/mobile/app/_layout.tsx`
+
+```tsx
+import { useEffect } from "react";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { tokenCache } from "../lib/clerk-token-cache";
+import { COLORS } from "@vibecode/shared";
+
+SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes
+      retry: 2,
+    },
+  },
+});
+
+const CLERK_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+export default function RootLayout() {
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  return (
+    <ClerkProvider publishableKey={CLERK_KEY} tokenCache={tokenCache}>
+      <ClerkLoaded>
+        <QueryClientProvider client={queryClient}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <StatusBar style="light" />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: COLORS.bgPrimary },
+                animation: "slide_from_right",
+              }}
+            >
+              <Stack.Screen name="index" />
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(onboarding)" />
+              <Stack.Screen name="(tabs)" />
+            </Stack>
+          </GestureHandlerRootView>
+        </QueryClientProvider>
+      </ClerkLoaded>
+    </ClerkProvider>
+  );
+}
+```
+
+### `apps/mobile/app/index.tsx`
+
+```tsx
+import { useEffect } from "react";
+import { useRouter } from "expo-router";
+import { useAuth } from "@clerk/clerk-expo";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { useUserStore } from "../stores/user-store";
+import { COLORS } from "@vibecode/shared";
+
+export default function Index() {
+  const { isSignedIn, isLoaded } = useAuth();
+  const { hasCompletedOnboarding } = useUserStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    if (!isSignedIn) {
+      router.replace("/(auth)/sign-in");
+    } else if (!hasCompletedOnboarding) {
+      router.replace("/(onboarding)/welcome");
+    } else {
+      router.replace("/(tabs)/home");
+    }
+  }, [isLoaded, isSignedIn, hasCompletedOnboarding]);
+
+  return (
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color={COLORS.accentPurple} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: COLORS.bgPrimary,
+  },
+});
+```
+
+### `apps/mobile/app/(tabs)/_layout.tsx`
+
+```tsx
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "@vibecode/shared";
+
+export default function TabLayout() {
+  return (
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: COLORS.bgSecondary,
+          borderTopColor: COLORS.borderSubtle,
+          borderTopWidth: 1,
+          height: 83,
+          paddingBottom: 34,
+          paddingTop: 8,
+        },
+        tabBarActiveTintColor: COLORS.accentPurple,
+        tabBarInactiveTintColor: COLORS.textMuted,
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: "600",
+        },
+      }}
+    >
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="trail"
+        options={{
+          title: "Trilha",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="book" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="vi"
+        options={{
+          title: "Vi",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="chatbubble-ellipses" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="social"
+        options={{
+          title: "Social",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
+  );
+}
+```
+
+### `apps/mobile/app/(tabs)/home.tsx`
+
+```tsx
+import { View, Text, ScrollView, StyleSheet, Pressable } from "react-native";
+import { useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { useUser } from "../../hooks/use-user";
+import { useStreak } from "../../hooks/use-streak";
+import { IslandMap } from "../../components/gamification/island-map";
+import { StreakBadge } from "../../components/gamification/streak-badge";
+import { XpBar } from "../../components/gamification/xp-bar";
+import { DailyChallengeCard } from "../../components/mission/daily-challenge-card";
+import { COLORS } from "@vibecode/shared";
+
+export default function HomeScreen() {
+  const { user, isLoading } = useUser();
+  const { streak } = useStreak();
+  const router = useRouter();
+
+  if (isLoading || !user) {
+    return <HomeScreenSkeleton />;
+  }
+
+  return (
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* Header */}
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.greeting}>
+            Olá, {user.name.split(" ")[0]}! 👋
+          </Text>
+          <Text style={styles.subtitle}>
+            Vamos construir algo incrível hoje?
+          </Text>
+        </View>
+        <View style={styles.headerRight}>
+          <StreakBadge days={streak.current} />
+        </View>
+      </View>
+
+      {/* XP Bar */}
+      <XpBar
+        currentXp={user.totalXp}
+        currentLevel={user.currentLevel}
+        style={styles.xpBar}
+      />
+
+      {/* Daily Challenge */}
+      <DailyChallengeCard style={styles.section} />
+
+      {/* Island Map */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>🗺️ Sua Jornada</Text>
+        <IslandMap
+          userLevel={user.currentLevel}
+          onIslandPress={(islandId) => router.push(`/island/${islandId}`)}
+        />
+      </View>
+
+      {/* Continue where you left */}
+      <Pressable
+        style={styles.continueCard}
+        onPress={() => router.push("/mission/current")}
+      >
+        <LinearGradient
+          colors={[COLORS.accentPurple + "20", COLORS.accentBlue + "20"]}
+          style={styles.continueGradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        >
+          <Text style={styles.continueTitle}>▶ Continuar</Text>
+          <Text style={styles.continueMission}>
+            M5: Entendendo o que a IA gerou
+          </Text>
+          <Text style={styles.continueZone}>Zona 1: Despertar 🌅</Text>
+        </LinearGradient>
+      </Pressable>
+
+      <View style={{ height: 32 }} />
+    </ScrollView>
+  );
+}
+
+function HomeScreenSkeleton() {
+  return (
+    <View style={[styles.container, styles.skeletonContainer]}>
+      <View style={styles.skeletonBlock} />
+      <View style={[styles.skeletonBlock, { height: 60 }]} />
+      <View style={[styles.skeletonBlock, { height: 200 }]} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.bgPrimary,
+    paddingHorizontal: 16,
+    paddingTop: 60,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  greeting: {
+    fontSize: 24,
+    fontWeight: "700",
+    color: COLORS.textPrimary,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: COLORS.textTertiary,
+    marginTop: 4,
+  },
+  headerRight: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+  },
+  xpBar: {
+    marginBottom: 20,
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: COLORS.textPrimary,
+    marginBottom: 12,
+  },
+  continueCard: {
+    borderRadius: 20,
+    overflow: "hidden",
+    marginBottom: 16,
+  },
+  continueGradient: {
+    padding: 20,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: COLORS.accentPurple + "30",
+  },
+  continueTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: COLORS.accentPurple,
+    marginBottom: 4,
+  },
+  continueMission: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: COLORS.textPrimary,
+  },
+  continueZone: {
+    fontSize: 13,
+    color: COLORS.textTertiary,
+    marginTop: 4,
+  },
+  skeletonContainer: {
+    justifyContent: "center",
+    gap: 16,
+    paddingTop: 100,
+  },
+  skeletonBlock: {
+    height: 40,
+    backgroundColor: COLORS.bgCard,
+    borderRadius: 12,
+  },
+});
+```
+
+### `apps/mobile/app/(tabs)/vi.tsx`
+
+```tsx
+import { useState, useRef, useCallback } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  Pressable,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useMutation } from "@tanstack/react-query";
+import { ViChatBubble } from "../../components/vi/vi-chat-bubble";
+import { ViModeSelector } from "../../components/vi/vi-mode-selector";
+import { api } from "../../services/api";
+import type { ViMessage, ViMode } from "@vibecode/shared";
+import { COLORS } from "@vibecode/shared";
+
+export default function ViScreen() {
+  const [messages, setMessages] = useState<ViMessage[]>([
+    {
+      id: "welcome",
+      role: "assistant",
+      content:
+        "Oi! Sou o Vi, seu mentor pessoal de vibe coding! 🤖\n\nPode me perguntar qualquer coisa sobre programação, pedir para gerar código, ou simplesmente bater um papo sobre tech.\n\nComo posso te ajudar hoje? 😊",
+      timestamp: new Date(),
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [mode, setMode] = useState<ViMode>("teacher");
+  const [showModeSelector, setShowModeSelector] = useState(false);
+  const flatListRef = useRef<FlatList>(null);
+
+  const sendMessage = useMutation({
+    mutationFn: async (content: string) => {
+      const response = await api.post("/vi/chat", {
+        content,
+        mode,
+        conversationHistory: messages.slice(-10),
+      });
+      return response.data;
+    },
+    onMutate: (content) => {
+      const userMessage: ViMessage = {
+        id: `user-${Date.now()}`,
+        role: "user",
+        content,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, userMessage]);
+      setInput("");
+    },
+    onSuccess: (data) => {
+      const assistantMessage: ViMessage = {
+        id: `vi-${Date.now()}`,
+        role: "assistant",
+        content: data.content,
+        timestamp: new Date(),
+        metadata: {
+          model: data.model,
+          tokensUsed: data.tokensUsed,
+        },
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+    },
+    onError: () => {
+      const errorMessage: ViMessage = {
+        id: `error-${Date.now()}`,
+        role: "assistant",
+        content:
+          "Ops! Tive um problema para responder. Pode tentar de novo? 😅",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    },
+  });
+
+  const handleSend = useCallback(() => {
+    const trimmed = input.trim();
+    if (!trimmed || sendMessage.isPending) return;
+    sendMessage.mutate(trimmed);
+  }, [input, sendMessage]);
+
+  const modeEmoji: Record<ViMode, string> = {
+    teacher: "🎓",
+    builder: "🔧",
+    detective: "🐛",
+    reviewer: "📝",
+    creative: "💡",
+    quiz: "🎯",
+    conversation: "🗣️",
+    scanner: "📸",
+  };
+
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={90}
+    >
+      {/* Header */}
+      <View style={styles.header}>
+        <View style={styles.headerLeft}>
+          <Text style={styles.headerTitle}>🤖 Vi</Text>
+          <Text style={styles.headerSubtitle}>Seu Mentor</Text>
+        </View>
+        <Pressable
+          style={styles.modeButton}
+          onPress={() => setShowModeSelector(!showModeSelector)}
+        >
+          <Text style={styles.modeEmoji}>{modeEmoji[mode]}</Text>
+          <Text style={styles.modeText}>
+            {mode.charAt(0).toUpperCase() + mode.slice(1)}
+          </Text>
+          <Ionicons name="chevron-down" size={14} color={COLORS.textMuted} />
+        </Pressable>
+      </View>
+
+      {/* Mode Selector */}
+      {showModeSelector && (
+        <ViModeSelector
+          currentMode={mode}
+          onSelect={(newMode) => {
+            setMode(newMode);
+            setShowModeSelector(false);
+          }}
+        />
+      )}
+
+      {/* Messages */}
+      <FlatList
+        ref={flatListRef}
+        data={messages}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <ViChatBubble message={item} />}
+        contentContainerStyle={styles.messagesList}
+        onContentSizeChange={() =>
+          flatListRef.current?.scrollToEnd({ animated: true })
+        }
+        showsVerticalScrollIndicator={false}
+      />
+
+      {/* Loading indicator */}
+      {sendMessage.isPending && (
+        <View style={styles.typingIndicator}>
+          <Text style={styles.typingText}>Vi está pensando... 🤔</Text>
+        </View>
+      )}
+
+      {/* Quick suggestions */}
+      <View style={styles.suggestions}>
+        {["Explica", "Dá um exemplo", "Me testa", "Próxima lição"].map(
+          (suggestion) => (
+            <Pressable
+              key={suggestion}
+              style={styles.suggestionChip}
+              onPress={() => {
+                setInput(suggestion);
+                sendMessage.mutate(suggestion);
+              }}
+            >
+              <Text style={styles.suggestionText}>{suggestion}</Text>
+            </Pressable>
+          )
+        )}
+      </View>
+
+      {/* Input */}
+      <View style={styles.inputContainer}>
+        <Pressable style={styles.scanButton}>
+          <Ionicons name="camera" size={22} color={COLORS.textMuted} />
+        </Pressable>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Pergunte ao Vi..."
+          placeholderTextColor={COLORS.textMuted}
+          value={input}
+          onChangeText={setInput}
+          multiline
+          maxLength={10000}
+          returnKeyType="send"
+          onSubmitEditing={handleSend}
+        />
+        <Pressable
+          style={[styles.sendButton, input.trim() ? styles.sendButtonActive : null]}
+          onPress={handleSend}
+          disabled={!input.trim() || sendMessage.isPending}
+        >
+          <Ionicons
+            name="send"
+            size={20}
+            color={input.trim() ? COLORS.textPrimary : COLORS.textMuted}
+          />
+        </Pressable>
+      </View>
+    </KeyboardAvoidingView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.bgPrimary,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 60,
+    paddingBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.borderSubtle,
+  },
+  headerLeft: {},
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: COLORS.textPrimary,
+  },
+  headerSubtitle: {
+    fontSize: 12,
+    color: COLORS.textTertiary,
+  },
+  modeButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    backgroundColor: COLORS.bgCard,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  modeEmoji: { fontSize: 16 },
+  modeText: {
+    fontSize: 13,
+    color: COLORS.textSecondary,
+    fontWeight: "500",
+  },
+  messagesList: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 12,
+  },
+  typingIndicator: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
+  typingText: {
+    fontSize: 13,
+    color: COLORS.textTertiary,
+    fontStyle: "italic",
+  },
+  suggestions: {
+    flexDirection: "row",
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    gap: 8,
+  },
+  suggestionChip: {
+    backgroundColor: COLORS.bgCard,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: COLORS.borderDefault,
+  },
+  suggestionText: {
+    fontSize: 12,
+    color: COLORS.textSecondary,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    paddingBottom: 34,
+    gap: 8,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.borderSubtle,
+    backgroundColor: COLORS.bgSecondary,
+  },
+  scanButton: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textInput: {
+    flex: 1,
+    backgroundColor: COLORS.bgCard,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: COLORS.textPrimary,
+    maxHeight: 120,
+  },
+  sendButton: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  sendButtonActive: {
+    backgroundColor: COLORS.accentPurple,
+  },
+});
+```
+
+### `apps/mobile/stores/user-store.ts`
+
+```typescript
+import { create } from "zustand";
+import { MMKV } from "react-native-mmkv";
+
+const storage = new MMKV();
+
+interface UserState {
+  hasCompletedOnboarding: boolean;
+  dnaProfile: Record<string, unknown> | null;
+  setHasCompletedOnboarding: (value: boolean) => void;
+  setDnaProfile: (profile: Record<string, unknown>) => void;
+  reset: () => void;
+}
+
+export const useUserStore = create<UserState>((set) => ({
+  hasCompletedOnboarding: storage.getBoolean("onboarding_complete") ?? false,
+  dnaProfile: null,
+
+  setHasCompletedOnboarding: (value) => {
+    storage.set("onboarding_complete", value);
+    set({ hasCompletedOnboarding: value });
+  },
+
+  setDnaProfile: (profile) => {
+    storage.set("dna_profile", JSON.stringify(profile));
+    set({ dnaProfile: profile });
+  },
+
+  reset: () => {
+    storage.delete("onboarding_complete");
+    storage.delete("dna_profile");
+    set({ hasCompletedOnboarding: false, dnaProfile: null });
+  },
+}));
+```
+
+### `apps/mobile/services/api.ts`
+
+```typescript
+import { useAuth } from "@clerk/clerk-expo";
+
+const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000/api";
+
+class ApiClient {
+  private getToken: (() => Promise<string | null>) | null = null;
+
+  setTokenGetter(fn: () => Promise<string | null>) {
+    this.getToken = fn;
+  }
+
+  private async getHeaders(): Promise<HeadersInit> {
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (this.getToken) {
+      const token = await this.getToken();
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+      }
+    }
+
+    return headers;
+  }
+
+  async get<T>(path: string): Promise<{ data: T }> {
+    const response = await fetch(`${API_URL}${path}`, {
+      method: "GET",
+      headers: await this.getHeaders(),
+    });
+
+    if (!response.ok) {
+      throw new ApiError(response.status, await response.text());
+    }
+
+    const data = await response.json();
+    return { data };
+  }
+
+  async post<T>(path: string, body?: unknown): Promise<{ data: T }> {
+    const response = await fetch(`${API_URL}${path}`, {
+      method: "POST",
+      headers: await this.getHeaders(),
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    if (!response.ok) {
+      throw new ApiError(response.status, await response.text());
+    }
+
+    const data = await response.json();
+    return { data };
+  }
+
+  async put<T>(path: string, body?: unknown): Promise<{ data: T }> {
+    const response = await fetch(`${API_URL}${path}`, {
+      method: "PUT",
+      headers: await this.getHeaders(),
+      body: body ? JSON.stringify(body) : undefined,
+    });
+
+    if (!response.ok) {
+      throw new ApiError(response.status, await response.text());
+    }
+
+    const data = await response.json();
+    return { data };
+  }
+
+  async delete<T>(path: string): Promise<{ data: T }> {
+    const response = await fetch(`${API_URL}${path}`, {
+      method: "DELETE",
+      headers: await this.getHeaders(),
+    });
+
+    if (!response.ok) {
+      throw new ApiError(response.status, await response.text());
+    }
+
+    const data = await response.json();
+    return { data };
+  }
+}
+
+class ApiError extends Error {
+  constructor(
+    public status: number,
+    public body: string
+  ) {
+    super(`API Error ${status}: ${body}`);
+    this.name = "ApiError";
+  }
+}
+
+export const api = new ApiClient();
+
+// Hook to initialize API with auth token
+export function useApiSetup() {
+  const { getToken } = useAuth();
+
+  api.setTokenGetter(getToken);
+}
+```
+
+### `apps/mobile/hooks/use-user.ts`
+
+```typescript
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@clerk/clerk-expo";
+import { api } from "../services/api";
+import type { UserProfile } from "@vibecode/shared";
+
+export function useUser() {
+  const { isSignedIn } = useAuth();
+
+  const query = useQuery({
+    queryKey: ["user", "profile"],
+    queryFn: async () => {
+      const { data } = await api.get<UserProfile>("/users/me");
+      return data;
+    },
+    enabled: isSignedIn,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  return {
+    user: query.data,
+    isLoading: query.isLoading,
+    error: query.error,
+    refetch: query.refetch,
+  };
+}
+```
+
+### `apps/mobile/hooks/use-streak.ts`
+
+```typescript
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@clerk/clerk-expo";
+import { api } from "../services/api";
+import type { StreakInfo } from "@vibecode/shared";
+
+export function useStreak() {
+  const { isSignedIn } = useAuth();
+
+  const query = useQuery({
+    queryKey: ["user", "streak"],
+    queryFn: async () => {
+      const { data } = await api.get<StreakInfo>("/gamification/streak");
+      return data;
+    },
+    enabled: isSignedIn,
+    staleTime: 1000 * 60 * 2,
+  });
+
+  return {
+    streak: query.data ?? {
+      current: 0,
+      longest: 0,
+      freezesAvailable: 2,
+      todayCompleted: false,
+      nextBonus: { daysNeeded: 3, xpReward: 50, description: "3 dias! 🔥" },
+    },
+    isLoading: query.isLoading,
+    refetch: query.refetch,
+  };
+}
+```
+
+### `apps/mobile/components/ui/button.tsx`
+
+```tsx
+import { Pressable, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
+import { COLORS } from "@vibecode/shared";
+
+interface ButtonProps {
+  title: string;
+  onPress: () => void;
+  variant?: "primary" | "secondary" | "destructive" | "ghost";
+  size?: "sm" | "md" | "lg" | "xl";
+  disabled?: boolean;
+  icon?: React.ReactNode;
+  style?: ViewStyle;
+}
+
+export function Button({
+  title,
+  onPress,
+  variant = "primary",
+  size = "lg",
+  disabled = false,
+  icon,
+  style,
+}: ButtonProps) {
+  const handlePress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    onPress();
+  };
+
+  const sizeStyles: Record<string, { height: number; fontSize: number; paddingHorizontal: number }> = {
+    sm: { height: 36, fontSize: 13, paddingHorizontal: 12 },
+    md: { height: 44, fontSize: 14, paddingHorizontal: 16 },
+    lg: { height: 52, fontSize: 16, paddingHorizontal: 20 },
+    xl: { height: 56, fontSize: 17, paddingHorizontal: 24 },
+  };
+
+  const s = sizeStyles[size];
+
+  if (variant === "primary") {
+    return (
+      <Pressable
+        onPress={handlePress}
+        disabled={disabled}
+        style={[{ opacity: disabled ? 0.5 : 1 }, style]}
+      >
+        <LinearGradient
+          colors={[COLORS.accentPurple, COLORS.accentBlue]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={[
+            styles.base,
+            {
+              height: s.height,
+              paddingHorizontal: s.paddingHorizontal,
+            },
+          ]}
+        >
+          {icon}
+          <Text style={[styles.text, { fontSize: s.fontSize }]}>{title}</Text>
+        </LinearGradient>
+      </Pressable>
+    );
+  }
+
+  const variantStyles: Record<string, { bg: string; text: string; border: string }> = {
+    secondary: {
+      bg: COLORS.bgCard,
+      text: COLORS.textPrimary,
+      border: COLORS.borderDefault,
+    },
+    destructive: {
+      bg: "transparent",
+      text: COLORS.accentRed,
+      border: "transparent",
+    },
+    ghost: {
+      bg: "transparent",
+      text: COLORS.textSecondary,
+      border: "transparent",
+    },
+  };
+
+  const v = variantStyles[variant];
+
+  return (
+    <Pressable
+      onPress={handlePress}
+      disabled={disabled}
+      style={[
+        styles.base,
+        {
+          height: s.height,
+          paddingHorizontal: s.paddingHorizontal,
+          backgroundColor: v.bg,
+          borderWidth: v.border !== "transparent" ? 1 : 0,
+          borderColor: v.border,
+          opacity: disabled ? 0.5 : 1,
+        },
+        style,
+      ]}
+    >
+      {icon}
+      <Text style={[styles.text, { fontSize: s.fontSize, color: v.text }]}>
+        {title}
+      </Text>
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  base: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 16,
+    gap: 8,
+  },
+  text: {
+    color: COLORS.textPrimary,
+    fontWeight: "700",
+  },
+});
+```
+
+### `apps/mobile/components/vi/vi-chat-bubble.tsx`
+
+```tsx
+import { View, Text, StyleSheet } from "react-native";
+import type { ViMessage } from "@vibecode/shared";
+import { COLORS } from "@vibecode/shared";
+
+interface ViChatBubbleProps {
+  message: ViMessage;
+}
+
+export function ViChatBubble({ message }: ViChatBubbleProps) {
+  const isVi = message.role === "assistant";
+
+  return (
+    <View style={[styles.container, isVi ? styles.viContainer : styles.userContainer]}>
+      {isVi && <Text style={styles.viLabel}>🤖 Vi:</Text>}
+      <View style={[styles.bubble, isVi ? styles.viBubble : styles.userBubble]}>
+        <Text style={[styles.text, isVi ? styles.viText : styles.userText]}>
+          {message.content}
+        </Text>
+      </View>
+      <Text style={styles.timestamp}>
+        {new Date(message.timestamp).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}
+      </Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    maxWidth: "85%",
+    gap: 4,
+  },
+  viContainer: {
+    alignSelf: "flex-start",
+  },
+  userContainer: {
+    alignSelf: "flex-end",
+  },
+  viLabel: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: COLORS.textTertiary,
+    marginLeft: 12,
+  },
+  bubble: {
+    padding: 14,
+    borderRadius: 16,
+  },
+  viBubble: {
+    backgroundColor: COLORS.bgCard,
+    borderTopLeftRadius: 4,
+  },
+  userBubble: {
+    backgroundColor: COLORS.accentPurple + "30",
+    borderTopRightRadius: 4,
+  },
+  text: {
+    fontSize: 15,
+    lineHeight: 22,
+  },
+  viText: {
+    color: COLORS.textPrimary,
+  },
+  userText: {
+    color: COLORS.textPrimary,
+  },
+  timestamp: {
+    fontSize: 10,
+    color: COLORS.textMuted,
+    alignSelf: "flex-end",
+    marginRight: 4,
+  },
+});
+```
+
+### `apps/mobile/components/vi/vi-mode-selector.tsx`
+
+```tsx
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import type { ViMode } from "@vibecode/shared";
+import { COLORS } from "@vibecode/shared";
+
+const MODES: { mode: ViMode; emoji: string; label: string; description: string }[] = [
+  { mode: "teacher", emoji: "🎓", label: "Professor", description: "Explica conceitos" },
+  { mode: "builder", emoji: "🔧", label: "Construtor", description: "Ajuda a criar código" },
+  { mode: "detective", emoji: "🐛", label: "Detetive", description: "Debugar erros" },
+  { mode: "reviewer", emoji: "📝", label: "Revisor", description: "Revisa código" },
+  { mode: "creative", emoji: "💡", label: "Criativo", description: "Sugere ideias" },
+  { mode: "quiz", emoji: "🎯", label: "Quiz", description: "Testa conhecimento" },
+  { mode: "conversation", emoji: "🗣️", label: "Conversa", description: "Bate-papo livre" },
+  { mode: "scanner", emoji: "📸", label: "Scanner", description: "Lê imagens" },
+];
+
+interface ViModeSelectorProps {
+  currentMode: ViMode;
+  onSelect: (mode: ViMode) => void;
+}
+
+export function ViModeSelector({ currentMode, onSelect }: ViModeSelectorProps) {
+  return (
+    <View style={styles.container}>
+      {MODES.map((item) => (
+        <Pressable
+          key={item.mode}
+          style={[
+            styles.modeItem,
+            currentMode === item.mode && styles.modeItemActive,
+          ]}
+          onPress={() => onSelect(item.mode)}
+        >
+          <Text style={styles.emoji}>{item.emoji}</Text>
+          <View style={styles.modeInfo}>
+            <Text style={styles.modeLabel}>{item.label}</Text>
+            <Text style={styles.modeDesc}>{item.description}</Text>
+          </View>
+        </Pressable>
+      ))}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: COLORS.bgSecondary,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.borderSubtle,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 6,
+  },
+  modeItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.bgCard,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 12,
+    gap: 8,
+    width: "48%",
+  },
+  modeItemActive: {
+    borderWidth: 1,
+    borderColor: COLORS.accentPurple,
+    backgroundColor: COLORS.accentPurple + "15",
+  },
+  emoji: { fontSize: 18 },
+  modeInfo: {},
+  modeLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: COLORS.textPrimary,
+  },
+  modeDesc: {
+    fontSize: 10,
+    color: COLORS.textMuted,
+  },
+});
+```
+
+### `apps/mobile/lib/clerk-token-cache.ts`
+
+```typescript
+import * as SecureStore from "expo-secure-store";
+import type { TokenCache } from "@clerk/clerk-expo";
+
+export const tokenCache: TokenCache = {
+  async getToken(key: string) {
+    try {
+      return await SecureStore.getItemAsync(key);
+    } catch {
+      return null;
+    }
+  },
+  async saveToken(key: string, value: string) {
+    try {
+      await SecureStore.setItemAsync(key, value);
+    } catch {
+      // Silently fail
+    }
+  },
+};
+```
+
+---
+
+## 🖥️ WEB APP (Next.js API)
+
+### `apps/web/package.json`
+
+```json
+{
+  "name": "@vibecode/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules .turbo"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^5.3.0",
+    "@tanstack/react-query": "^5.51.0",
+    "@upstash/redis": "^1.34.0",
+    "@upstash/ratelimit": "^2.0.0",
+    "ai": "^3.3.0",
+    "next": "14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "stripe": "^16.8.0",
+    "resend": "^3.5.0",
+    "zod": "^3.23.0",
+    "@vibecode/db": "workspace:*",
+    "@vibecode/shared": "workspace:*",
+    "@vibecode/ai": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "typescript": "^5.4.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  }
+}
+```
+
+### `apps/web/app/api/users/me/route.ts`
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@vibecode/db";
+import { getLevelForXp } from "@vibecode/shared";
+
+export async function GET() {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: { clerkId },
+    select: {
+      id: true,
+      clerkId: true,
+      email: true,
+      name: true,
+      username: true,
+      avatarUrl: true,
+      bio: true,
+      currentLevel: true,
+      totalXp: true,
+      streakDays: true,
+      longestStreak: true,
+      streakFreezes: true,
+      subscriptionTier: true,
+      locale: true,
+      timezone: true,
+      learningStyle: true,
+      dailyTimeGoalMinutes: true,
+      buildGoals: true,
+      openToWork: true,
+      preferredStack: true,
+      createdAt: true,
+      lastActiveAt: true,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json(
+      { error: { code: "NOT_FOUND", message: "User not found" } },
+      { status: 404 }
+    );
+  }
+
+  // Update last active
+  await db.user.update({
+    where: { id: user.id },
+    data: { lastActiveAt: new Date() },
+  });
+
+  const levelInfo = getLevelForXp(user.totalXp);
+
+  return NextResponse.json({
+    success: true,
+    data: {
+      ...user,
+      levelTitle: levelInfo.title,
+      viForm: levelInfo.viForm,
+    },
+  });
+}
+
+export async function PUT(request: NextRequest) {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  const body = await request.json();
+
+  const user = await db.user.update({
+    where: { clerkId },
+    data: body,
+  });
+
+  return NextResponse.json({ success: true, data: user });
+}
+```
+
+### `apps/web/app/api/vi/chat/route.ts`
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@vibecode/db";
+import { viMessageSchema } from "@vibecode/shared";
+import {
+  getViSystemPrompt,
+  selectModel,
+  classifyTask,
+  getAnthropicClient,
+  getOpenAIClient,
+  getGroqClient,
+} from "@vibecode/ai";
+import { rateLimit } from "../../../lib/rate-limit";
+
+export async function POST(request: NextRequest) {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  // Rate limiting
+  const rateLimitResult = await rateLimit(clerkId);
+  if (!rateLimitResult.success) {
+    return NextResponse.json(
+      { error: { code: "RATE_LIMIT", message: "Too many requests" } },
+      { status: 429 }
+    );
+  }
+
+  // Parse and validate body
+  const body = await request.json();
+  const parsed = viMessageSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: { code: "VALIDATION", message: parsed.error.message } },
+      { status: 400 }
+    );
+  }
+
+  const { content, mode, context, contextId } = parsed.data;
+
+  // Get user info
+  const user = await db.user.findUnique({
+    where: { clerkId },
+    select: {
+      id: true,
+      name: true,
+      currentLevel: true,
+      subscriptionTier: true,
+      locale: true,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json(
+      { error: { code: "NOT_FOUND", message: "User not found" } },
+      { status: 404 }
+    );
+  }
+
+  // Check free tier message limit
+  if (user.subscriptionTier === "FREE") {
+    const todayMessages = await db.viConversation.count({
+      where: {
+        userId: user.id,
+        createdAt: { gte: new Date(new Date().setHours(0, 0, 0, 0)) },
+      },
+    });
+
+    if (todayMessages >= 5) {
+      return NextResponse.json(
+        {
+          error: {
+            code: "LIMIT_REACHED",
+            message: "Limite de mensagens gratuitas atingido. Upgrade para PRO!",
+          },
+        },
+        { status: 403 }
+      );
+    }
+  }
+
+  // Get user memories for context
+  const memories = await db.viMemory.findMany({
+    where: { userId: user.id },
+    orderBy: { updatedAt: "desc" },
+    take: 5,
+    select: { content: true },
+  });
+
+  // Build system prompt
+  const systemPrompt = getViSystemPrompt({
+    mode: mode as any,
+    userLevel: user.currentLevel,
+    userName: user.name,
+    locale: user.locale,
+    currentMission: context,
+    memories: memories.map((m) => m.content),
+  });
+
+  // Select model based on task
+  const taskType = classifyTask(content);
+  const modelConfig = selectModel(taskType, user.subscriptionTier);
+
+  // Get conversation history
+  const conversationHistory = body.conversationHistory?.slice(-8) || [];
+
+  try {
+    let responseContent: string;
+    let tokensUsed = 0;
+
+    if (modelConfig.provider === "anthropic") {
+      const client = getAnthropicClient();
+      const response = await client.messages.create({
+        model: modelConfig.model,
+        max_tokens: modelConfig.maxTokens,
+        system: systemPrompt,
+        messages: [
+          ...conversationHistory.map((m: any) => ({
+            role: m.role as "user" | "assistant",
+            content: m.content,
+          })),
+          { role: "user", content },
+        ],
+      });
+
+      responseContent =
+        response.content[0].type === "text" ? response.content[0].text : "";
+      tokensUsed =
+        (response.usage?.input_tokens ?? 0) +
+        (response.usage?.output_tokens ?? 0);
+    } else {
+      // OpenAI or Groq (OpenAI-compatible)
+      const client =
+        modelConfig.provider === "groq" ? getGroqClient() : getOpenAIClient();
+
+      const response = await client.chat.completions.create({
+        model: modelConfig.model,
+        max_tokens: modelConfig.maxTokens,
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...conversationHistory.map((m: any) => ({
+            role: m.role as "user" | "assistant",
+            content: m.content,
+          })),
+          { role: "user", content },
+        ],
+      });
+
+      responseContent = response.choices[0]?.message?.content ?? "";
+      tokensUsed = response.usage?.total_tokens ?? 0;
+    }
+
+    // Save conversation
+    await db.viConversation.create({
+      data: {
+        userId: user.id,
+        mode: mode?.toUpperCase() as any ?? "TEACHER",
+        context,
+        contextId,
+        messages: [
+          { role: "user", content, timestamp: new Date().toISOString() },
+          {
+            role: "assistant",
+            content: responseContent,
+            timestamp: new Date().toISOString(),
+          },
+        ],
+        modelUsed: modelConfig.model,
+        tokensUsed,
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      data: {
+        content: responseContent,
+        model: modelConfig.id,
+        tokensUsed,
+      },
+    });
+  } catch (error: any) {
+    console.error("Vi chat error:", error);
+
+    return NextResponse.json(
+      {
+        error: {
+          code: "AI_ERROR",
+          message: "Failed to get response from AI",
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### `apps/web/app/api/gamification/streak/route.ts`
+
+```typescript
+import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@vibecode/db";
+import { STREAK_BONUSES } from "@vibecode/shared";
+
+export async function GET() {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: { clerkId },
+    select: {
+      id: true,
+      streakDays: true,
+      longestStreak: true,
+      streakFreezes: true,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json(
+      { error: { code: "NOT_FOUND", message: "User not found" } },
+      { status: 404 }
+    );
+  }
+
+  // Check if today is completed
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const todayEntry = await db.streakDay.findUnique({
+    where: {
+      userId_date: {
+        userId: user.id,
+        date: today,
+      },
+    },
+  });
+
+  // Find next bonus
+  const nextBonus = STREAK_BONUSES.find((b) => b.days > user.streakDays) ?? 
+    STREAK_BONUSES[STREAK_BONUSES.length - 1];
+
+  return NextResponse.json({
+    success: true,
+    data: {
+      current: user.streakDays,
+      longest: user.longestStreak,
+      freezesAvailable: user.streakFreezes,
+      todayCompleted: !!todayEntry,
+      nextBonus: {
+        daysNeeded: nextBonus.days,
+        xpReward: nextBonus.xp,
+        description: nextBonus.description,
+      },
+    },
+  });
+}
+```
+
+### `apps/web/app/api/gamification/xp/route.ts`
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@vibecode/db";
+import { getLevelForXp, ACHIEVEMENTS } from "@vibecode/shared";
+
+export async function POST(request: NextRequest) {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  const { amount, source } = await request.json();
+
+  if (!amount || amount <= 0) {
+    return NextResponse.json(
+      { error: { code: "VALIDATION", message: "Invalid XP amount" } },
+      { status: 400 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: { clerkId },
+    select: { id: true, totalXp: true, currentLevel: true },
+  });
+
+  if (!user) {
+    return NextResponse.json(
+      { error: { code: "NOT_FOUND", message: "User not found" } },
+      { status: 404 }
+    );
+  }
+
+  const newXp = user.totalXp + amount;
+  const newLevel = getLevelForXp(newXp);
+  const leveledUp = newLevel.level > user.currentLevel;
+
+  // Update user XP and level
+  await db.user.update({
+    where: { id: user.id },
+    data: {
+      totalXp: newXp,
+      currentLevel: newLevel.level,
+    },
+  });
+
+  // Update today's streak
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  await db.streakDay.upsert({
+    where: {
+      userId_date: { userId: user.id, date: today },
+    },
+    update: {
+      xpEarned: { increment: amount },
+    },
+    create: {
+      userId: user.id,
+      date: today,
+      xpEarned: amount,
+    },
+  });
+
+  // Check for new achievements
+  const newAchievements: string[] = [];
+  // (achievement check logic would be more complex in production)
+
+  return NextResponse.json({
+    success: true,
+    data: {
+      newXp,
+      newLevel: newLevel.level,
+      leveledUp,
+      levelTitle: newLevel.title,
+      viForm: newLevel.viForm,
+      newAchievements,
+    },
+  });
+}
+```
+
+### `apps/web/app/api/missions/[missionId]/complete/route.ts`
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@vibecode/db";
+import { completeMissionSchema } from "@vibecode/shared";
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { missionId: string } }
+) {
+  const { userId: clerkId } = await auth();
+
+  if (!clerkId) {
+    return NextResponse.json(
+      { error: { code: "UNAUTHORIZED", message: "Not authenticated" } },
+      { status: 401 }
+    );
+  }
+
+  const body = await request.json();
+  const parsed = completeMissionSchema.safeParse({
+    ...body,
+    missionId: params.missionId,
+  });
+
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: { code: "VALIDATION", message: parsed.error.message } },
+      { status: 400 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: { clerkId },
+    select: { id: true },
+  });
+
+  if (!user) {
+    return NextResponse.json(
+      { error: { code: "NOT_FOUND", message: "User not found" } },
+      { status: 404 }
+    );
+  }
+
+  const { missionId, score, timeSpentSeconds, data } = parsed.data;
+
+  // Calculate XP based on score
+  const baseXp = 50;
+  const xpEarned = Math.round(baseXp * (score / 100));
+
+  // Update mission progress
+  const progress = await db.missionProgress.upsert({
+    where: {
+      userId_missionId: { userId: user.id, missionId },
+    },
+    update: {
+      status: "COMPLETED",
+      score,
+      xpEarned,
+      timeSpentSeconds,
+      data: data ?? undefined,
+      completedAt: new Date(),
+      attempts: { increment: 1 },
+    },
+    create: {
+      userId: user.id,
+      missionId,
+      status: "COMPLETED",
+      score,
+      xpEarned,
+      timeSpentSeconds,
+      data: data ?? undefined,
+      completedAt: new Date(),
+      attempts: 1,
+    },
+  });
+
+  // Unlock next mission
+  // (Logic to determine next mission based on content structure)
+  const nextMissionId = getNextMissionId(missionId);
+  if (nextMissionId) {
+    await db.missionProgress.upsert({
+      where: {
+        userId_missionId: { userId: user.id, missionId: nextMissionId },
+      },
+      update: { status: "AVAILABLE" },
+      create: {
+        userId: user.id,
+        missionId: nextMissionId,
+        status: "AVAILABLE",
+      },
+    });
+  }
+
+  // Award XP
+  await db.user.update({
+    where: { id: user.id },
+    data: { totalXp: { increment: xpEarned } },
+  });
+
+  return NextResponse.json({
+    success: true,
+    data: {
+      progress,
+      xpEarned,
+      nextMissionId,
+    },
+  });
+}
+
+function getNextMissionId(currentId: string): string | null {
+  const num = parseInt(currentId.replace("m", ""), 10);
+  if (isNaN(num)) return null;
+  const next = num + 1;
+  return next <= 160 ? `m${next.toString().padStart(2, "0")}` : null;
+}
+```
+
+### `apps/web/app/api/webhooks/clerk/route.ts`
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+import { Webhook } from "svix";
+import { db } from "@vibecode/db";
+
+const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET!;
+
+export async function POST(request: NextRequest) {
+  const headerPayload = Object.fromEntries(request.headers.entries());
+  const body = await request.text();
+
+  const wh = new Webhook(WEBHOOK_SECRET);
+  let event: any;
+
+  try {
+    event = wh.verify(body, {
+      "svix-id": headerPayload["svix-id"],
+      "svix-timestamp": headerPayload["svix-timestamp"],
+      "svix-signature": headerPayload["svix-signature"],
+    });
+  } catch {
+    return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+  }
+
+  const eventType = event.type;
+
+  if (eventType === "user.created") {
+    const { id, email_addresses, first_name, last_name, image_url, username } =
+      event.data;
+
+    const email = email_addresses[0]?.email_address;
+    const name = [first_name, last_name].filter(Boolean).join(" ") || "Vibe Coder";
+    const generatedUsername =
+      username || email?.split("@")[0] || `user${Date.now()}`;
+
+    await db.user.create({
+      data: {
+        clerkId: id,
+        email,
+        name,
+        username: generatedUsername,
+        avatarUrl: image_url,
+      },
+    });
+
+    console.log(`✅ User created: ${email}`);
+  }
+
+  if (eventType === "user.updated") {
+    const { id, email_addresses, first_name, last_name, image_url } =
+      event.data;
+
+    await db.user.update({
+      where: { clerkId: id },
+      data: {
+        email: email_addresses[0]?.email_address,
+        name: [first_name, last_name].filter(Boolean).join(" "),
+        avatarUrl: image_url,
+      },
+    });
+  }
+
+  if (eventType === "user.deleted") {
+    const { id } = event.data;
+
+    await db.user.delete({
+      where: { clerkId: id },
+    });
+
+    console.log(`🗑️ User deleted: ${id}`);
+  }
+
+  return NextResponse.json({ success: true });
+}
+```
+
+### `apps/web/lib/rate-limit.ts`
+
+```typescript
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
+const redis = new Redis({
+  url: process.env.REDIS_URL!,
+  token: process.env.REDIS_TOKEN!,
+});
+
+const rateLimiter = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(30, "1 m"), // 30 requests per minute
+  analytics: true,
+  prefix: "vibecode:ratelimit",
+});
+
+export async function rateLimit(identifier: string) {
+  try {
+    const result = await rateLimiter.limit(identifier);
+    return result;
+  } catch {
+    // If Redis is down, allow the request
+    return { success: true, limit: 30, remaining: 30, reset: 0 };
+  }
+}
+```
+
+### `apps/web/next.config.ts`
+
+```typescript
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  transpilePackages: ["@vibecode/db", "@vibecode/shared", "@vibecode/ai"],
+  experimental: {
+    serverComponentsExternalPackages: ["@prisma/client"],
+  },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "img.clerk.com" },
+      { protocol: "https", hostname: "*.r2.cloudflarestorage.com" },
+    ],
+  },
+};
+
+export default nextConfig;
+```
+
+---
+
+## 🚀 SETUP COMMANDS
+
+### `README.md`
+
+````markdown
+# VibeCode — Monorepo
+
+## Prerequisites
+
+- Node.js 20+
+- pnpm 9+
+- PostgreSQL 15+ (or use Neon free tier)
+- Redis (or use Upstash free tier)
+
+## Quick Start
+
+```bash
+# 1. Clone and install
+git clone https://github.com/vibecode/vibecode.git
+cd vibecode
+pnpm install
+
+# 2. Setup environment
+cp .env.example .env
+# Edit .env with your keys
+
+# 3. Setup database
+pnpm db:generate
+pnpm db:push
+pnpm db:seed
+
+# 4. Run development
+pnpm dev:web      # API on localhost:3000
+pnpm dev:mobile   # Expo on localhost:8081
+
+# Or run everything:
+pnpm dev
+```
+
+## Project Structure
+
+```
+vibecode/
+├── apps/mobile    → Expo (React Native) app
+├── apps/web       → Next.js API + Web app
+├── packages/db    → Prisma + PostgreSQL
+├── packages/shared → Types, schemas, constants
+└── packages/ai    → AI/Vi service layer
+```
+
+## Key Commands
+
+```bash
+pnpm dev           # Run all apps
+pnpm build         # Build all apps
+pnpm lint          # Lint all apps
+pnpm type-check    # TypeScript check all
+pnpm db:studio     # Open Prisma Studio
+pnpm db:migrate    # Run database migrations
+```
+````
+
+---
+
+> **Boilerplate completo com 40+ arquivos** cobrindo:
+> - ✅ Monorepo com Turborepo + pnpm
+> - ✅ Expo app com Expo Router, Clerk Auth, Zustand, React Query
+> - ✅ Next.js API com endpoints para Users, Vi, Gamification, Missions
+> - ✅ Prisma schema completo com 15 models
+> - ✅ Shared package com types, schemas Zod, constants
+> - ✅ AI package com system prompts, model router, multi-provider
+> - ✅ Rate limiting, webhook handling, auth middleware

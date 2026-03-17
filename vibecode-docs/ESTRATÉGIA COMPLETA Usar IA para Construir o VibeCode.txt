@@ -1,0 +1,1099 @@
+
+
+# 🧠 ESTRATÉGIA COMPLETA: Usar IA para Construir o VibeCode
+
+## A Grande Ironia: Vibe Codar o App que Ensina Vibe Coding
+
+---
+
+## 1. PREPARAÇÃO — Organizar Tudo para a IA
+
+```
+O PROBLEMA:
+A IA tem LIMITE DE CONTEXTO. Você não pode colar
+tudo de uma vez. Precisa de uma estratégia de
+ALIMENTAÇÃO PROGRESSIVA.
+
+A SOLUÇÃO:
+Transformar toda a documentação em BLOCOS MODULARES
+que a IA consome na ordem certa, no momento certo.
+```
+
+### 1.1 — Crie esta estrutura de pastas no seu computador
+
+```
+vibecode-docs/
+│
+├── 📁 01-visao/
+│   ├── 01-conceito-geral.md        ← Resumo do app (1 página)
+│   ├── 02-features-lista.md         ← Lista de features completa
+│   ├── 03-identidade-visual.md      ← Cores, fontes, mascote
+│   └── 04-gamificacao.md            ← XP, níveis, streaks, badges
+│
+├── 📁 02-arquitetura/
+│   ├── 01-stack-tecnologica.md      ← Stack escolhida
+│   ├── 02-estrutura-projeto.md      ← Árvore de pastas
+│   ├── 03-schema-banco.md           ← Prisma schema completo
+│   ├── 04-tipos-compartilhados.md   ← Types e Schemas (Zod)
+│   └── 05-constantes.md             ← Levels, achievements, islands
+│
+├── 📁 03-design/
+│   ├── 01-design-tokens.md          ← Cores, espaçamentos, fontes
+│   ├── 02-componentes-base.md       ← Buttons, cards, inputs, etc.
+│   ├── 03-telas-auth.md             ← Wireframes de auth
+│   ├── 04-telas-onboarding.md       ← Wireframes de onboarding
+│   ├── 05-telas-home.md             ← Wireframes de home/mapa
+│   ├── 06-telas-missao.md           ← Wireframes de missão
+│   ├── 07-telas-vi.md               ← Wireframes do chat Vi
+│   ├── 08-telas-social.md           ← Wireframes social
+│   ├── 09-telas-perfil.md           ← Wireframes perfil
+│   └── 10-telas-extras.md           ← Challenge, scan, boss, etc.
+│
+├── 📁 04-prompts-vi/
+│   ├── 01-base-prompt.md            ← Personalidade do Vi
+│   ├── 02-level-adapter.md          ← Adaptação por nível
+│   ├── 03-modes.md                  ← 8 modos
+│   ├── 04-context.md                ← Contextos (missão, projeto)
+│   ├── 05-memory.md                 ← Sistema de memória
+│   ├── 06-safety.md                 ← Guardrails
+│   └── 07-assembler.md              ← Montagem final
+│
+├── 📁 05-conteudo/
+│   ├── 01-missao-01.md              ← Conteúdo M01
+│   ├── 02-missao-02.md              ← Conteúdo M02
+│   ├── ...
+│   └── 10-missao-10.md              ← Conteúdo M10
+│
+├── 📁 06-api/
+│   ├── 01-endpoints-users.md        ← API de usuários
+│   ├── 02-endpoints-vi.md           ← API do Vi
+│   ├── 03-endpoints-missions.md     ← API de missões
+│   ├── 04-endpoints-gamification.md ← API de gamificação
+│   └── 05-endpoints-social.md       ← API social
+│
+├── 📁 07-prd/
+│   ├── 01-fase1-mvp.md              ← PRD Fase 1
+│   ├── 02-fase2-growth.md           ← PRD Fase 2
+│   ├── 03-fase3-expansion.md        ← PRD Fase 3
+│   └── 04-fase4-expert.md           ← PRD Fase 4
+│
+└── 📄 MASTER-BRIEF.md               ← O DOCUMENTO MAIS IMPORTANTE
+```
+
+### 1.2 — Crie o MASTER-BRIEF.md
+
+```
+Este é O DOCUMENTO que você vai dar à IA SEMPRE no início
+de qualquer sessão. É o "DNA" do projeto em 1 página.
+```
+
+```markdown
+# VIBECODE — Master Brief
+
+## O que é
+App mobile (React Native/Expo) que ensina vibe coding
+(programar com IA) do zero ao avançado, com gamificação
+inspirada no Duolingo e mentor IA personalizado (Vi).
+
+## Stack
+- Mobile: Expo + React Native + Expo Router
+- Backend: Next.js 14 API Routes
+- Database: PostgreSQL (Neon) + Prisma
+- Auth: Clerk
+- AI: Claude (Anthropic) + GPT-4o (OpenAI) + Groq
+- Cache: Redis (Upstash)
+- State: Zustand + React Query
+- UI: Custom components + Expo LinearGradient
+- Deploy: Vercel (API) + EAS (mobile)
+
+## Monorepo
+- apps/mobile — Expo app
+- apps/web — Next.js API
+- packages/db — Prisma schema
+- packages/shared — Types, schemas Zod, constants
+- packages/ai — Prompts do Vi, model router
+
+## Tema Visual
+- Dark mode padrão
+- Cores: bg #0A0A0F, card #1A1A2E, accent #8B5CF6
+- Font: Inter (UI) + JetBrains Mono (code)
+- Mascote: Vi (robô que evolui com o aluno)
+
+## Funcionalidades Core (MVP)
+1. Onboarding + DNA Test
+2. Mapa de ilhas (4 níveis)
+3. Missões interativas (30 no MVP)
+4. Chat com Vi (mentor IA)
+5. Sistema de XP, níveis e streaks
+6. Perfil com badges e progresso
+7. Sandbox de código
+8. Auth (Clerk)
+
+## Arquitetura de Prompts do Vi
+- Base prompt (personalidade)
+- Level adapter (6 níveis)
+- Mode prompt (8 modos)
+- Context layer (missão/projeto)
+- Memory layer (memórias do aluno)
+- Safety layer (guardrails)
+- Montagem server-side apenas
+
+## Database Models Principais
+User, MissionProgress, ViConversation, ViMemory,
+UserAchievement, StreakDay, Project, SocialPost,
+Certificate, Notification
+```
+
+---
+
+## 2. FERRAMENTAS — O que Usar para Cada Parte
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│  FERRAMENTA          │ USAR PARA                        │
+│  ════════════════════╪═════════════════════════════════  │
+│                      │                                  │
+│  🟣 CURSOR           │ TODO O CÓDIGO do app             │
+│  (IDE com IA)        │ É aqui que você vai passar       │
+│                      │ 80% do tempo. Tem chat,          │
+│                      │ composer (multi-arquivo),        │
+│                      │ e auto-complete com IA.          │
+│                      │                                  │
+│  🟠 CLAUDE (chat)    │ PLANEJAMENTO e DECISÕES          │
+│  (Anthropic)         │ Quando precisar pensar sobre     │
+│                      │ arquitetura, resolver problemas  │
+│                      │ complexos, ou gerar documentação.│
+│                      │ Contexto grande (200K tokens).   │
+│                      │                                  │
+│  🟢 BOLT.NEW         │ PROTÓTIPOS RÁPIDOS               │
+│  (StackBlitz)        │ Para testar uma tela ou          │
+│                      │ componente rapidamente antes     │
+│                      │ de integrar no projeto.          │
+│                      │                                  │
+│  🔵 V0.DEV           │ COMPONENTES DE UI                │
+│  (Vercel)            │ Para gerar componentes visuais   │
+│                      │ com Tailwind/React que depois    │
+│                      │ você adapta para React Native.   │
+│                      │                                  │
+│  ⚫ GITHUB COPILOT   │ AUTO-COMPLETE em tempo real      │
+│                      │ Enquanto digita no Cursor,       │
+│                      │ sugestões inline aparecem.       │
+│                      │                                  │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 3. O PLANO DE CONSTRUÇÃO — 8 Sprints
+
+```
+REGRA DE OURO:
+Construa em CAMADAS, não em features isoladas.
+Cada sprint entrega algo FUNCIONAL que você pode
+testar no celular real.
+
+Sprint 1 → App abre e autentica
+Sprint 2 → Home mostra dados reais
+Sprint 3 → Uma missão funciona
+Sprint 4 → Vi responde
+Sprint 5 → Gamificação funciona
+Sprint 6 → Perfil completo
+Sprint 7 → Social básico
+Sprint 8 → Polish + Deploy
+```
+
+---
+
+### SPRINT 1 — FUNDAÇÃO (Semana 1-2)
+
+**O que construir:** Monorepo + Auth + Navegação + Telas vazias
+
+**Passo 1: Setup do Monorepo**
+
+Abra o **Cursor** e no chat (Cmd+L), cole:
+
+```
+CONTEXTO: Estou construindo o VibeCode, um app mobile de
+educação em vibe coding. Aqui está o brief do projeto:
+
+[COLE O MASTER-BRIEF.MD INTEIRO]
+
+TAREFA: Configure o monorepo completo com Turborepo + pnpm
+usando esta estrutura:
+
+- apps/mobile (Expo com Expo Router)
+- apps/web (Next.js 14 App Router)
+- packages/db (Prisma)
+- packages/shared (Types + Zod schemas + Constants)
+- packages/ai (Prompts)
+
+Gere TODOS os arquivos de configuração:
+- package.json (root + cada workspace)
+- turbo.json
+- tsconfig.json (cada workspace)
+- .gitignore
+- .env.example
+
+Use as versões mais recentes de cada dependência.
+O mobile deve usar Expo SDK 51+.
+```
+
+**Passo 2: Prisma Schema**
+
+No Cursor, abra um novo chat e cole:
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+TAREFA: Crie o arquivo packages/db/prisma/schema.prisma
+completo com TODOS estes models:
+
+[COLE A SEÇÃO DO PRISMA SCHEMA DO CÓDIGO INICIAL]
+
+Inclua todos os enums, relações, indexes e mapeamentos.
+```
+
+**Passo 3: Auth com Clerk**
+
+```
+CONTEXTO: Projeto VibeCode. Stack: Expo + Clerk.
+[COLE O MASTER-BRIEF.MD]
+
+TAREFA: Configure autenticação com Clerk no Expo:
+
+1. apps/mobile/app/_layout.tsx com ClerkProvider
+2. apps/mobile/app/(auth)/sign-in.tsx
+3. apps/mobile/app/(auth)/sign-up.tsx
+4. apps/mobile/lib/clerk-token-cache.ts
+5. Webhook handler: apps/web/app/api/webhooks/clerk/route.ts
+
+O webhook deve criar o User no banco quando um novo
+usuário se cadastra no Clerk.
+
+Use SecureStore para cache de tokens.
+Visual: dark mode, cores #0A0A0F (bg), #8B5CF6 (accent).
+```
+
+**Passo 4: Navegação com Tabs**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+TAREFA: Crie a navegação completa com Expo Router:
+
+apps/mobile/app/
+├── _layout.tsx (root - ClerkProvider + QueryClient)
+├── index.tsx (redirect baseado em auth state)
+├── (auth)/
+│   ├── _layout.tsx
+│   ├── sign-in.tsx
+│   └── sign-up.tsx
+├── (onboarding)/
+│   ├── _layout.tsx
+│   ├── welcome.tsx (3 telas swipáveis)
+│   ├── dna-test.tsx
+│   └── dna-result.tsx
+└── (tabs)/
+    ├── _layout.tsx (tab bar com 5 tabs)
+    ├── home.tsx
+    ├── trail.tsx
+    ├── vi.tsx
+    ├── social.tsx
+    └── profile.tsx
+
+Tab bar: dark, ícones Ionicons, active color #8B5CF6.
+Cada tela pode ter placeholder por enquanto.
+
+[COLE AS SPECS DOS WIREFRAMES DA TAB BAR]
+```
+
+**Passo 5: Shared Package**
+
+```
+CONTEXTO: Projeto VibeCode.
+
+TAREFA: Crie o packages/shared com:
+
+1. types/index.ts — Todos os tipos TypeScript
+2. schemas/index.ts — Todos os schemas Zod
+3. constants/index.ts — Levels, achievements, islands, colors
+4. index.ts — Re-export tudo
+
+[COLE O CÓDIGO COMPLETO DO PACKAGES/SHARED QUE JÁ TEMOS]
+```
+
+**Checkpoint Sprint 1:**
+```
+✅ Monorepo funcional (pnpm dev roda)
+✅ App abre no celular/simulador
+✅ Sign in / Sign up funciona (Clerk)
+✅ 5 tabs navegáveis (com placeholder)
+✅ Database conectado (Prisma)
+✅ Webhook cria user no banco
+✅ Shared types funcionando
+```
+
+---
+
+### SPRINT 2 — HOME + ONBOARDING (Semana 3-4)
+
+**Passo 1: Componentes Base de UI**
+
+```
+CONTEXTO: Projeto VibeCode. App mobile em React Native/Expo.
+[COLE O MASTER-BRIEF.MD]
+
+REFERÊNCIA VISUAL:
+[COLE A SEÇÃO DE DESIGN TOKENS + COMPONENT LIBRARY DOS WIREFRAMES]
+
+TAREFA: Crie a biblioteca de componentes base em
+apps/mobile/components/ui/:
+
+1. button.tsx — Primary (gradient), Secondary, Destructive, Ghost
+   Tamanhos: sm (36px), md (44px), lg (52px), xl (56px)
+
+2. card.tsx — Standard (bg #1A1A2E), Highlighted (border gradient)
+
+3. text.tsx — Wrapper com estilos pré-definidos
+   (h1, h2, h3, body, caption, code)
+
+4. input.tsx — Text input dark themed com placeholder
+
+5. chip.tsx — Pills para tags, tech stack, meta info
+
+6. progress-bar.tsx — Default (4px), Thick (8px), com animação
+
+7. avatar.tsx — Sizes S/M/L/XL com border gradient
+
+8. badge-icon.tsx — Para conquistas (earned vs locked)
+
+9. divider.tsx — Linha separadora sutil
+
+Todos devem:
+- Usar as cores do COLORS constant
+- Suportar dark mode
+- Ter haptics feedback (expo-haptics) nos botões
+- Usar LinearGradient do expo-linear-gradient onde necessário
+```
+
+**Passo 2: Tela de Onboarding**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+REFERÊNCIA VISUAL:
+[COLE OS WIREFRAMES DAS TELAS DE ONBOARDING]
+
+TAREFA: Crie as telas de onboarding:
+
+1. welcome.tsx — 3 telas swipáveis com:
+   - Tela 1: "Fale o que quer. A IA constrói."
+   - Tela 2: "Conheça o Vi. Seu mentor pessoal."
+   - Tela 3: "Sua jornada. Seus projetos reais."
+   - Indicadores de página (dots)
+   - Botão "DESCOBRIR MEU DNA" na última
+   - Animações suaves de transição
+
+2. dna-test.tsx — Quiz com 10 perguntas:
+   [COLE A LISTA DE PERGUNTAS DO DNA TEST]
+   - Progress bar no topo
+   - Cards de resposta tocáveis
+   - Animação de transição entre perguntas
+   - Salvar respostas no estado local (Zustand)
+
+3. dna-result.tsx — Resultado do DNA:
+   - Avatar animado
+   - Perfil detectado (Criador/Solucionador/etc)
+   - Tempo estimado por nível
+   - Botão "VER MINHA TRILHA"
+   - Chamar API para salvar perfil no banco
+
+APIs necessárias:
+- POST /api/users/dna — Salvar DNA profile
+  Body: { dnaProfile: {...}, learningStyle: "...", buildGoals: [...] }
+```
+
+**Passo 3: Home Screen com Mapa**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+REFERÊNCIA VISUAL:
+[COLE O WIREFRAME DA HOME / MAPA DE ILHAS]
+
+DADOS:
+[COLE A CONSTANTE ISLANDS DO SHARED/CONSTANTS]
+
+TAREFA: Crie a home screen (apps/mobile/app/(tabs)/home.tsx):
+
+1. Header com saudação + streak badge
+2. XP bar com nível atual e progresso
+3. Card "Continue de onde parou" (última missão)
+4. Mapa de ilhas vertical (scroll):
+   - 4 ilhas com visual distinto
+   - Ilha atual: colorida e acessível
+   - Próximas: escurecidas com cadeado
+   - Progresso (X/Y missões)
+   - Ao tocar: navega para lista de zonas
+
+Componentes necessários:
+- components/gamification/island-map.tsx
+- components/gamification/xp-bar.tsx
+- components/gamification/streak-badge.tsx
+- components/mission/daily-challenge-card.tsx
+
+Hooks necessários:
+- hooks/use-user.ts (busca dados do usuário)
+- hooks/use-streak.ts (busca dados do streak)
+
+APIs necessárias:
+- GET /api/users/me
+- GET /api/gamification/streak
+```
+
+**Checkpoint Sprint 2:**
+```
+✅ Onboarding funcional (3 telas + DNA test)
+✅ DNA result salvo no banco
+✅ Home screen com mapa de ilhas
+✅ XP bar e streak badge funcionando
+✅ Componentes UI base criados
+✅ API /users/me retornando dados reais
+```
+
+---
+
+### SPRINT 3 — MISSÕES (Semana 5-6)
+
+**Passo 1: Estrutura de Dados das Missões**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+TAREFA: Crie o sistema de conteúdo das missões.
+
+As missões são definidas em arquivos JSON estáticos
+(não no banco de dados) e carregadas no app.
+
+Crie: packages/shared/content/missions/
+
+Estrutura de cada missão:
+{
+  "id": "m01",
+  "zoneId": "z01",
+  "title": "O que é Vibe Coding",
+  "description": "...",
+  "order": 1,
+  "estimatedMinutes": 5,
+  "xpReward": 30,
+  "phases": [
+    {
+      "id": "m01-p1",
+      "type": "story",
+      "title": "A Revolução",
+      "estimatedSeconds": 45,
+      "content": {
+        "narration": "E se você pudesse...",
+        "animationId": "lottie-vibe-intro"
+      }
+    },
+    ...
+  ]
+}
+
+CONTEÚDO:
+[COLE O CONTEÚDO COMPLETO DA MISSÃO 01]
+
+Gere o JSON para as missões M01 a M07 (Zona 1 completa)
+usando o conteúdo que forneci.
+```
+
+**Passo 2: Tela de Missão (Player)**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+REFERÊNCIA VISUAL:
+[COLE OS WIREFRAMES DA TELA DE MISSÃO — TODAS AS 4 FASES]
+
+TAREFA: Crie o "Mission Player" — a tela que executa
+uma missão fase por fase.
+
+apps/mobile/app/mission/[missionId].tsx
+
+O player deve:
+1. Carregar dados da missão pelo ID
+2. Exibir fases em sequência:
+   - "story" → Narração + animação + botão continuar
+   - "concept" → Ilustração + texto + cards tocáveis
+   - "interaction" → Drag&drop, quiz, V/F
+   - "sandbox" → Chat com Vi + editor de código
+   - "quiz" → Múltipla escolha com feedback
+3. Barra de progresso no topo (fase X de Y)
+4. Botão Vi (chamar mentor a qualquer momento)
+5. Ao completar todas as fases:
+   - Animação de celebração (confete)
+   - XP ganho
+   - Botão "Próxima Missão"
+   - Chamar API para salvar progresso
+
+Componentes:
+- components/mission/phase-story.tsx
+- components/mission/phase-concept.tsx
+- components/mission/phase-interaction.tsx
+- components/mission/phase-sandbox.tsx
+- components/mission/phase-quiz.tsx
+- components/mission/mission-complete.tsx
+- components/mission/progress-bar.tsx
+
+API:
+- POST /api/missions/{id}/complete
+  Body: { score, timeSpentSeconds, data }
+```
+
+**Passo 3: Exercícios Interativos**
+
+```
+CONTEXTO: Projeto VibeCode.
+
+TAREFA: Crie os componentes de exercícios interativos:
+
+1. components/exercises/drag-drop.tsx
+   - Blocos arrastáveis
+   - Zonas de drop
+   - Feedback visual (verde=certo, vermelho=errado)
+   - Animação de snap
+
+2. components/exercises/quiz-multiple-choice.tsx
+   - 4 opções (A, B, C, D)
+   - Feedback ao selecionar
+   - Explicação da resposta
+
+3. components/exercises/true-false.tsx
+   - Afirmações arrastáveis para V ou F
+   - Feedback por item
+
+4. components/exercises/fill-blank.tsx
+   - Código com lacunas
+   - Opções de preenchimento
+   - Validação
+
+5. components/exercises/code-interactive.tsx
+   - Código com partes tocáveis
+   - Popover de explicação ao tocar
+   - Destaque por cores
+
+Todos devem:
+- Ter haptic feedback
+- Animações suaves (Reanimated)
+- Funcionar offline (sem API call)
+- Retornar score (0-100) ao completar
+```
+
+**Checkpoint Sprint 3:**
+```
+✅ 7 missões da Zona 1 jogáveis
+✅ 5 tipos de exercício interativo
+✅ Mission player com fases sequenciais
+✅ Progresso salvo no banco
+✅ Animação de conclusão
+✅ XP concedido ao completar
+✅ Próxima missão desbloqueada
+```
+
+---
+
+### SPRINT 4 — Vi CHAT (Semana 7-8)
+
+**Passo 1: Backend do Vi**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+SISTEMA DE PROMPTS:
+[COLE O ASSEMBLER.TS + BASE PROMPT + LEVEL ADAPTER
+ DO PACKAGES/AI/PROMPTS]
+
+TAREFA: Crie o endpoint completo do Vi:
+
+apps/web/app/api/vi/chat/route.ts
+
+O endpoint deve:
+1. Autenticar via Clerk
+2. Rate limit (Upstash)
+3. Verificar limite free (5/dia)
+4. Buscar user data (nível, nome, idioma, plano)
+5. Buscar memórias (últimas 5)
+6. Montar system prompt com assembleViPrompt()
+7. Classificar tarefa (classifyTask)
+8. Selecionar modelo (selectModel)
+9. Chamar provider correto (Anthropic/OpenAI/Groq)
+10. Salvar conversa no banco
+11. Retornar resposta
+
+Também crie:
+- packages/ai/prompts/base.ts
+- packages/ai/prompts/level-adapter.ts
+- packages/ai/prompts/modes.ts
+- packages/ai/prompts/safety.ts
+- packages/ai/prompts/assembler.ts
+- packages/ai/providers/router.ts
+
+[COLE O CÓDIGO COMPLETO DE CADA ARQUIVO QUE JÁ TEMOS]
+```
+
+**Passo 2: Chat UI do Vi**
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+REFERÊNCIA VISUAL:
+[COLE O WIREFRAME DA TELA DO Vi]
+
+TAREFA: Crie a tela de chat do Vi:
+
+apps/mobile/app/(tabs)/vi.tsx
+
+Features:
+1. Header com nome "Vi" + seletor de modo
+2. Lista de mensagens (FlatList)
+3. Bolhas de chat (Vi à esquerda, user à direita)
+4. Indicador "Vi está pensando..."
+5. Sugestões rápidas (chips)
+6. Input de texto + botão enviar
+7. Botão de câmera (scan — placeholder)
+8. Seletor de modo (8 modos em grid)
+
+Componentes:
+- components/vi/vi-chat-bubble.tsx
+- components/vi/vi-mode-selector.tsx
+- components/vi/vi-typing-indicator.tsx
+- components/vi/vi-suggestion-chips.tsx
+
+O chat deve:
+- Scroll automático para última mensagem
+- KeyboardAvoidingView funcional
+- Renderizar code blocks no markdown
+- Mostrar sugestões após primeira mensagem
+- Persistir histórico local (MMKV)
+```
+
+**Checkpoint Sprint 4:**
+```
+✅ Vi responde perguntas via chat
+✅ 8 modos selecionáveis
+✅ Respostas adaptadas ao nível do aluno
+✅ Rate limiting funcional
+✅ Limite free (5/dia) funcional
+✅ Conversas salvas no banco
+✅ Histórico local persistido
+✅ Code blocks renderizados
+```
+
+---
+
+### SPRINT 5 — GAMIFICAÇÃO (Semana 9-10)
+
+```
+CONTEXTO: Projeto VibeCode.
+[COLE O MASTER-BRIEF.MD]
+
+SISTEMA DE GAMIFICAÇÃO:
+[COLE A CONSTANTE LEVELS + STREAK_BONUSES + ACHIEVEMENTS]
+
+TAREFA: Implemente o sistema completo de gamificação:
+
+1. BACKEND:
+   - POST /api/gamification/xp — Adicionar XP
+     (auto-calcula level up, checa achievements)
+   - GET /api/gamification/streak — Info do streak
+   - POST /api/gamification/streak/check — Verificar/atualizar streak diário
+   - GET /api/gamification/achievements — Listar conquistas do user
+
+2. MOBILE:
+   - Animação de ganho de XP (popup flutuante +XP)
+   - Animação de level up (tela cheia)
+   - Animação de streak (fogo pulsando)
+   - Animação de achievement (badge desbloqueado)
+   - Tela de conquistas (lista com earned/locked)
+   - Tela de streak detail (calendário + freezes)
+
+3. LÓGICA:
+   - A cada missão completa → dar XP → checar level up → checar achievements
+   - Streak: se completou algo hoje → marcar dia → incrementar streak
+   - Se não completou ontem E não usou freeze → resetar streak
+   - Streak freeze: descontável automaticamente
+
+4. NOTIFICAÇÕES LOCAIS:
+   - 18h: "Seu streak está em risco!"
+   - Ao ganhar achievement: notificação local com vibração
+```
+
+---
+
+### SPRINT 6 — PERFIL (Semana 11)
+
+```
+[COLE WIREFRAMES DO PERFIL]
+
+TAREFA: Crie as telas de perfil completas:
+
+1. profile.tsx — Tela principal
+   - Avatar + nome + level
+   - Stats row (streak, XP, projetos)
+   - Radar chart de skills
+   - Progresso por nível (4 barras)
+   - Grid de conquistas (preview)
+   - Botões: portfolio, certificados
+
+2. profile/achievements.tsx — Todas as conquistas
+   - Filtros: Todas, Ganhas, Próximas
+   - Cards: earned (colorido) vs locked (cinza)
+   - Progress bar nas "quase lá"
+
+3. profile/streak.tsx — Detalhes do streak
+   - Calendário com dias marcados
+   - Freeze tokens disponíveis
+   - Próximo bônus
+
+4. profile/settings.tsx — Configurações
+   - Conta, aprendizado, notificações
+   - Assinatura (link para paywall)
+   - Sobre + logout
+```
+
+---
+
+### SPRINT 7 — SOCIAL (Semana 12)
+
+```
+[COLE WIREFRAMES DO SOCIAL]
+
+TAREFA: Crie o módulo social básico:
+
+1. BACKEND:
+   - GET /api/social/feed — Feed de posts (paginado)
+   - POST /api/social/posts — Criar post
+   - POST /api/social/posts/{id}/like — Curtir
+   - GET /api/social/ranking — Leaderboard semanal
+
+2. MOBILE:
+   - social.tsx — Feed com tabs (Feed, Ranking)
+   - Post cards (achievement, prompt, help, general)
+   - Like/comment buttons
+   - Ranking com pódio visual
+   - FAB "Publicar"
+   - Tela de novo post
+```
+
+---
+
+### SPRINT 8 — POLISH + DEPLOY (Semana 13-14)
+
+```
+TAREFA: Polish final e deploy.
+
+1. PERFORMANCE:
+   - Lazy loading de telas
+   - Memoização de componentes pesados
+   - Otimizar FlatList (windowSize, maxToRenderPerBatch)
+   - Image caching
+
+2. OFFLINE:
+   - Missões disponíveis offline (MMKV)
+   - Fila de sync quando voltar online
+   - Indicador de status de conexão
+
+3. DEPLOY:
+   - EAS Build (iOS + Android)
+   - Vercel deploy (API)
+   - Neon database (produção)
+   - Configurar variáveis de ambiente
+   - App Store + Google Play submission
+
+4. MONITORING:
+   - Sentry (error tracking)
+   - PostHog (analytics)
+   - Pings de health check
+```
+
+---
+
+## 4. REGRAS DE OURO PARA PEDIR CÓDIGO À IA
+
+### 4.1 — Regras do Cursor
+
+```
+CRIE ARQUIVO: .cursorrules (na raiz do projeto)
+```
+
+```markdown
+# VibeCode — Cursor Rules
+
+## Projeto
+App mobile de educação em vibe coding. Monorepo com Expo + Next.js.
+
+## Stack
+- Mobile: React Native + Expo SDK 51+ + Expo Router
+- Backend: Next.js 14 App Router
+- Database: PostgreSQL + Prisma
+- Auth: Clerk
+- AI: Anthropic Claude + OpenAI GPT + Groq
+- State: Zustand + React Query
+- Style: StyleSheet.create (não usar Tailwind no mobile)
+
+## Convenções de Código
+- TypeScript strict em todo lugar
+- Functional components com arrow functions
+- Named exports (nunca default, exceto pages do Next.js/Expo)
+- Variáveis e funções em inglês
+- Comentários em português
+- 2 espaços de indentação
+- Aspas simples para strings (exceto JSX que usa duplas)
+- const > let, nunca var
+- async/await > .then()
+- Zod para validação em todos os endpoints
+- Erro handling com try/catch em todo endpoint
+
+## Padrões Mobile
+- Cores do packages/shared/constants (COLORS)
+- StyleSheet.create no final do arquivo
+- Haptic feedback em todos os botões (expo-haptics)
+- SafeAreaView quando necessário
+- KeyboardAvoidingView em telas com input
+- Platform.OS para código específico iOS/Android
+
+## Padrões API
+- Sempre autenticar com Clerk (auth())
+- Sempre validar body com Zod
+- Sempre retornar { success: boolean, data?, error? }
+- Rate limit em endpoints sensíveis
+- Log errors com console.error
+
+## Estrutura de Arquivos
+- Componentes: apps/mobile/components/[categoria]/[nome].tsx
+- Hooks: apps/mobile/hooks/use-[nome].ts
+- Services: apps/mobile/services/[nome].ts
+- Stores: apps/mobile/stores/[nome]-store.ts
+- API Routes: apps/web/app/api/[recurso]/route.ts
+
+## O que NÃO fazer
+- Não usar any (usar unknown se necessário)
+- Não usar require (usar import)
+- Não hardcodar cores (usar COLORS constant)
+- Não hardcodar strings de UI (preparar para i18n)
+- Não colocar lógica de negócio nos componentes
+- Não fazer chamadas API diretas (usar hooks com React Query)
+```
+
+### 4.2 — Template de Prompt para o Cursor
+
+```
+Sempre que pedir algo ao Cursor, use esta estrutura:
+
+═══════════════════════════════════════════════
+CONTEXTO:
+[1-2 frases sobre onde você está no projeto]
+
+REFERÊNCIA:
+[Cole wireframe, tipo ou spec relevante]
+
+TAREFA:
+[O que você quer que ele faça — ESPECÍFICO]
+
+REGRAS:
+[Restrições ou preferências]
+
+ARQUIVOS ENVOLVIDOS:
+[Liste os arquivos que devem ser criados/modificados]
+═══════════════════════════════════════════════
+```
+
+### 4.3 — Quando Usar Cada Abordagem
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  SITUAÇÃO              │ FERRAMENTA + ABORDAGEM     │
+│  ═══════════════════════╪═══════════════════════════ │
+│                         │                           │
+│  Criar novo arquivo     │ Cursor Chat (Cmd+L)       │
+│  do zero                │ Cole contexto + wireframe │
+│                         │                           │
+│  Editar vários          │ Cursor Composer (Cmd+I)   │
+│  arquivos de uma vez    │ "Modifique X, Y, Z para   │
+│                         │  implementar [feature]"   │
+│                         │                           │
+│  Bug / erro             │ Cursor Chat (Cmd+L)       │
+│                         │ Cole o erro + código +    │
+│                         │ "O que está errado?"      │
+│                         │                           │
+│  Decisão de             │ Claude (chat web)         │
+│  arquitetura            │ Cole docs + "Qual a       │
+│                         │  melhor abordagem?"       │
+│                         │                           │
+│  Prototipar UI          │ v0.dev ou Bolt.new        │
+│  rapidamente            │ "Crie [componente] com    │
+│                         │  [specs]" → depois copie  │
+│                         │  para o projeto           │
+│                         │                           │
+│  Gerar JSON de          │ Claude (chat web)         │
+│  conteúdo (missões)     │ Cole formato + conteúdo   │
+│                         │  "Gere JSON para M01-M07" │
+│                         │                           │
+│  Resolver conflito      │ Cursor Chat               │
+│  de merge               │ Cole as duas versões      │
+│                         │  "Resolva o conflito      │
+│                         │   mantendo ambas features"│
+│                         │                           │
+│  Testes                 │ Cursor Chat               │
+│                         │ "Gere testes Vitest para  │
+│                         │  [arquivo]. Cubra edge    │
+│                         │  cases."                  │
+│                         │                           │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 5. FLUXO DIÁRIO DE TRABALHO
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  MANHÃ (Setup — 15 min):                            │
+│  ├── Abrir Cursor no projeto                        │
+│  ├── git pull (pegar últimas mudanças)              │
+│  ├── Verificar o que fez ontem                      │
+│  ├── Definir 2-3 tarefas para hoje                  │
+│  └── Abrir docs relevantes na sidebar               │
+│                                                     │
+│  TRABALHO (Ciclo de 45 min):                        │
+│  ├── 1. Abrir wireframe/spec da feature             │
+│  ├── 2. Escrever prompt para Cursor                 │
+│  ├── 3. Revisar código gerado                       │
+│  ├── 4. Testar no simulador/celular                 │
+│  ├── 5. Iterar (pedir ajustes)                      │
+│  ├── 6. Quando funcionar → git commit               │
+│  └── 7. Próxima feature → repete                    │
+│                                                     │
+│  FINAL DO DIA (15 min):                             │
+│  ├── git push                                       │
+│  ├── Anotar o que fez e o que falta                 │
+│  ├── Anotar problemas encontrados                   │
+│  └── Planejar amanhã                                │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 6. ARMADILHAS E COMO EVITAR
+
+```
+┌───────────────────────────┬─────────────────────────────────┐
+│ ARMADILHA                 │ COMO EVITAR                     │
+├───────────────────────────┼─────────────────────────────────┤
+│                           │                                 │
+│ ❌ Colar TUDO de uma vez  │ ✅ Alimente em BLOCOS.          │
+│ e esperar que a IA        │ Um arquivo/feature por vez.     │
+│ resolva tudo              │ Contexto + tarefa específica.   │
+│                           │                                 │
+│ ❌ Aceitar código sem     │ ✅ SEMPRE leia o que a IA       │
+│ ler / entender            │ gerou. Pergunte se não          │
+│                           │ entendeu. Você é o piloto.      │
+│                           │                                 │
+│ ❌ Não commitar           │ ✅ git commit a cada feature     │
+│ frequentemente            │ que funciona. Mensagens         │
+│                           │ descritivas. Nunca perca        │
+│                           │ trabalho.                       │
+│                           │                                 │
+│ ❌ Tentar fazer tudo      │ ✅ MVP primeiro. As 10          │
+│ perfeito de primeira      │ primeiras missões + Vi + auth   │
+│                           │ + gamificação = suficiente      │
+│                           │ para testar com usuários.       │
+│                           │                                 │
+│ ❌ Mudar de ferramenta    │ ✅ Cursor como primary.         │
+│ a toda hora               │ Claude para pensar.             │
+│                           │ Bolt para prototipar.           │
+│                           │ Só.                             │
+│                           │                                 │
+│ ❌ Não testar no celular  │ ✅ Teste no celular REAL        │
+│ real                      │ (Expo Go) a cada sprint.        │
+│                           │ Simulador engana.               │
+│                           │                                 │
+│ ❌ Ignorar erros de       │ ✅ Corrija erros TypeScript     │
+│ TypeScript                │ IMEDIATAMENTE. Eles protegem    │
+│                           │ você. Se ignorar, acumulam.     │
+│                           │                                 │
+│ ❌ Fazer features         │ ✅ Vertical slices.             │
+│ "horizontais" (todos os   │ Uma feature COMPLETA            │
+│ botões, depois todos os   │ (UI + API + DB) por vez.        │
+│ modals, etc.)             │ Não "todos os botões primeiro". │
+│                           │                                 │
+│ ❌ Ter medo de perguntar  │ ✅ A IA não julga. Pergunte     │
+│ "coisas básicas" à IA     │ TUDO. "O que é esse erro?"     │
+│                           │ "Por que usou isso?" Aprenda.   │
+│                           │                                 │
+│ ❌ Tentar resolver tudo   │ ✅ Se travar por 30+ min,       │
+│ sozinho                   │ cole o problema no Claude       │
+│                           │ com contexto completo.          │
+│                           │ Economize horas.                │
+│                           │                                 │
+└───────────────────────────┴─────────────────────────────────┘
+```
+
+---
+
+## 7. CHECKLIST FINAL
+
+```
+ANTES DE COMEÇAR:
+├── ☐ Node.js 20+ instalado
+├── ☐ pnpm instalado (npm i -g pnpm)
+├── ☐ Cursor instalado (cursor.com)
+├── ☐ Expo Go no celular
+├── ☐ Conta no Clerk (clerk.com) — free tier
+├── ☐ Conta na Neon (neon.tech) — free tier
+├── ☐ Conta na Anthropic (API key)
+├── ☐ Conta na OpenAI (API key)
+├── ☐ Conta na Vercel (para deploy)
+├── ☐ Conta no GitHub (para git)
+├── ☐ Pasta vibecode-docs/ organizada
+├── ☐ MASTER-BRIEF.md criado
+├── ☐ .cursorrules criado
+└── ☐ Café preparado ☕
+
+PRIMEIRO COMANDO:
+$ mkdir vibecode && cd vibecode && git init
+
+PRIMEIRO PROMPT NO CURSOR:
+"Estou criando o VibeCode. Aqui está o brief:
+[MASTER-BRIEF.MD]. Configure o monorepo completo."
+
+E A VIAGEM COMEÇA. 🚀
+```
+
+---
+
+> **Você tem em mãos TUDO que precisa:**
+> - 📐 Wireframes detalhados de cada tela
+> - 📋 PRD completo com user stories
+> - 💻 Código base funcional
+> - 🤖 Prompts do Vi completos
+> - 📚 Conteúdo das primeiras missões
+> - 🎤 Pitch deck para investidores
+> - 🗺️ Este guia de como usar tudo com IA
+>
+> **O segredo agora é começar pequeno, iterar rápido, e deixar a IA fazer o trabalho pesado enquanto você pilota.**
+>
+> Boa sorte. Construa o futuro. Surfe na vibe. 🏄‍♂️

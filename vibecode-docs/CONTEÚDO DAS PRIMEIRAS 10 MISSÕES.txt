@@ -1,0 +1,2196 @@
+
+
+# 📚 CONTEÚDO DAS PRIMEIRAS 10 MISSÕES
+
+## Zona 1: Despertar 🌅 — Missões M01 a M07
+## Zona 2: Ferramentas 🔧 — Missões M08 a M10
+
+---
+
+## 🗺️ MAPA DAS 10 MISSÕES
+
+```
+ZONA 1: DESPERTAR 🌅
+├── M01: O que é Vibe Coding          ⏱️ 5min   +30 XP
+├── M02: A IA como seu Superpoder     ⏱️ 6min   +30 XP
+├── M03: Seu Primeiro Prompt          ⏱️ 7min   +40 XP
+├── M04: Gerando Código pela 1ª Vez   ⏱️ 8min   +40 XP
+├── M05: Lendo Código sem Pânico      ⏱️ 8min   +50 XP
+├── M06: Pedindo Correções à IA       ⏱️ 7min   +40 XP
+└── M07: O Ciclo Vibe Coding          ⏱️ 6min   +50 XP
+    🎯 Mini-projeto: Página "Sobre Mim"
+
+ZONA 2: FERRAMENTAS 🔧
+├── M08: Terminal sem Medo             ⏱️ 8min   +40 XP
+├── M09: Comandos Essenciais           ⏱️ 9min   +50 XP
+└── M10: VS Code / Cursor — Seu Lab   ⏱️ 8min   +40 XP
+```
+
+---
+
+# MISSÃO 01 — O QUE É VIBE CODING
+
+```
+ID:            m01
+ZONA:          z01 — Despertar 🌅
+ILHA:          Básico 🏝️
+TEMPO:         5 minutos
+XP:            30
+FASES:         4 (Story → Concept → Interaction → Quiz)
+PRÉ-REQUISITO: Nenhum (primeira missão)
+```
+
+---
+
+### FASE 1 — STORY (45 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  [ANIMAÇÃO LOTTIE: Uma pessoa sentada no sofá       │
+│   falando com um robô. A cada frase, linhas de      │
+│   código aparecem e se transformam em um app         │
+│   na tela do celular. O app ganha vida.]            │
+│                                                     │
+│  Duração da animação: 8 segundos                    │
+│  Loop: não                                          │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Narração do Vi:**
+
+> 💬 **Vi:**
+> 
+> E se você pudesse construir um aplicativo apenas **descrevendo o que quer**?
+> 
+> Sem precisar memorizar comandos complicados. Sem passar anos estudando antes de criar algo real.
+> 
+> Isso não é ficção científica. Isso é **Vibe Coding** — e é a revolução que está acontecendo agora mesmo no mundo da tecnologia. 🚀
+> 
+> Vamos entender do que se trata?
+
+**Botão:** `▶ CONTINUAR`
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+**Tela 2.1 — O que é**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  📐 O QUE É VIBE CODING?                            │
+│                                                     │
+│  [ILUSTRAÇÃO COMPARATIVA — LADO A LADO]             │
+│                                                     │
+│  ┌──────────────────┐  ┌──────────────────┐         │
+│  │ PROGRAMAÇÃO       │  │ VIBE CODING      │         │
+│  │ TRADICIONAL       │  │                  │         │
+│  │                  │  │                  │         │
+│  │ 😰 Pessoa        │  │ 😊 Pessoa        │         │
+│  │ digitando código  │  │ conversando      │         │
+│  │ linha por linha   │  │ com a IA         │         │
+│  │                  │  │                  │         │
+│  │ ⬇️               │  │ ⬇️               │         │
+│  │                  │  │                  │         │
+│  │ 📝 Memoriza      │  │ 💬 Descreve      │         │
+│  │ sintaxe          │  │ o que quer       │         │
+│  │                  │  │                  │         │
+│  │ ⬇️               │  │ ⬇️               │         │
+│  │                  │  │                  │         │
+│  │ ⏰ Meses para    │  │ ⚡ Minutos para   │         │
+│  │ criar algo       │  │ ter algo         │         │
+│  │                  │  │ funcionando      │         │
+│  └──────────────────┘  └──────────────────┘         │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Narração do Vi:**
+
+> 💬 **Vi:**
+> 
+> Na **programação tradicional**, você precisa aprender a "falar a língua do computador" — cada vírgula, cada parêntese, cada palavra-chave.
+> 
+> No **Vibe Coding**, você fala **a sua língua** — português, inglês, qualquer uma — e a inteligência artificial transforma suas palavras em código que funciona.
+> 
+> O termo foi criado em fevereiro de 2025 por **Andrej Karpathy**, um dos maiores nomes da IA no mundo. Ele disse:
+> 
+> *"Eu simplesmente surfo na vibe, vejo coisas acontecendo, e digo 'sim' ou 'não'. É divertido."*
+
+**Botão:** `▶ CONTINUAR`
+
+**Tela 2.2 — Analogia**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  💡 PENSE ASSIM:                                    │
+│                                                     │
+│  [ANIMAÇÃO: Duas cenas]                             │
+│                                                     │
+│  CENA 1 — Construir uma casa ANTES:                │
+│  ┌────────────────────────────────────┐             │
+│  │ 🧱 Você precisava:                │             │
+│  │  • Fazer faculdade de engenharia  │             │
+│  │  • Calcular estrutura             │             │
+│  │  • Assentar cada tijolo           │             │
+│  │  • Anos de trabalho               │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  CENA 2 — Construir uma casa AGORA:                │
+│  ┌────────────────────────────────────┐             │
+│  │ 🏠 Você fala pro arquiteto-robô:  │             │
+│  │  "Quero uma casa com 3 quartos,   │             │
+│  │   sala ampla e jardim"            │             │
+│  │                                    │             │
+│  │  🤖 Ele desenha, você aprova,     │             │
+│  │  ajusta, e a casa fica pronta!    │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  A IA é seu arquiteto-robô.                         │
+│  Você é o DONO da casa.                             │
+│  Quem decide o que quer é VOCÊ. 🎯                  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Narração do Vi:**
+
+> 💬 **Vi:**
+> 
+> Vibe Coding é como ter um **arquiteto-robô** super inteligente. Você descreve a casa dos seus sonhos, e ele desenha. Você pede mudanças, ele ajusta. Você aprova, ele constrói.
+> 
+> Mas atenção: **você ainda é o dono da casa**. Precisa saber se o telhado vai aguentar chuva, se a porta abre pro lado certo.
+> 
+> Ou seja: você não precisa ser o pedreiro, mas precisa **entender o que está sendo construído**. Esse é o segredo do vibe coder. 🧠
+
+**Botão:** `▶ CONTINUAR`
+
+**Tela 2.3 — Ferramentas**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔧 FERRAMENTAS DO VIBE CODER                       │
+│                                                     │
+│  [Cards horizontais deslizáveis — toque para ver]   │
+│                                                     │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐     │
+│  │      │ │      │ │      │ │      │ │      │     │
+│  │ 🤖   │ │ 💻   │ │ 🌐   │ │ 📱   │ │ ⚡   │     │
+│  │ChatGPT│ │Cursor│ │ v0   │ │Bolt  │ │Lovable│    │
+│  │Claude │ │      │ │.dev  │ │.new  │ │      │     │
+│  │      │ │      │ │      │ │      │ │      │     │
+│  └──────┘ └──────┘ └──────┘ └──────┘ └──────┘     │
+│                                                     │
+│  ☝️ Deslize para ver cada ferramenta                │
+│                                                     │
+│  Toque no card para detalhes:                       │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 🤖 ChatGPT / Claude                   │         │
+│  │                                        │         │
+│  │ Chatbots de IA que entendem suas       │         │
+│  │ perguntas e geram código.              │         │
+│  │ É como conversar com um programador    │         │
+│  │ que nunca cansa e nunca julga!          │         │
+│  │                                        │         │
+│  │ 📊 Usado por 90% dos vibe coders      │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Detalhes dos cards (ao tocar):**
+
+> **🤖 ChatGPT / Claude** — Chatbots de IA que entendem suas perguntas e geram código. É como conversar com um programador que nunca cansa e nunca julga.
+>
+> **💻 Cursor** — Um editor de código com IA integrada. É como o Word, mas para código, e com um assistente embutido.
+>
+> **🌐 v0.dev** — Você descreve uma página web e a IA cria o visual. É como ter um designer no bolso.
+>
+> **📱 Bolt.new** — Descreva um app inteiro e ele aparece funcionando. Parece magia, mas é IA.
+>
+> **⚡ Lovable** — Similar ao Bolt. Descreve, gera, publica. Tudo em minutos.
+
+**Botão:** `▶ ENTENDI`
+
+---
+
+### FASE 3 — INTERACTION (60 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🧩 VERDADEIRO OU FALSO?                            │
+│                                                     │
+│  Arraste cada afirmação para o lado correto:        │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ "Vibe coding é programar usando IA"  │  ← drag  │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ "Você não precisa entender nada do   │  ← drag  │
+│  │  código que a IA gera"               │           │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ "A IA substitui completamente o     │  ← drag  │
+│  │  programador"                        │           │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ "Você descreve o que quer e a IA    │  ← drag  │
+│  │  gera o código"                      │           │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ "Entender o código gerado é         │  ← drag  │
+│  │  importante para o vibe coder"       │           │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+│           ✅ VERDADEIRO    ❌ FALSO                  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Respostas corretas:**
+
+| Afirmação | Resposta |
+|-----------|----------|
+| "Vibe coding é programar usando IA" | ✅ VERDADEIRO |
+| "Você não precisa entender nada do código" | ❌ FALSO |
+| "A IA substitui completamente o programador" | ❌ FALSO |
+| "Você descreve o que quer e a IA gera o código" | ✅ VERDADEIRO |
+| "Entender o código gerado é importante" | ✅ VERDADEIRO |
+
+**Feedback por item:**
+
+> ✅ *"Vibe coding é programar usando IA"* — **Correto!** Essa é a definição essencial.
+>
+> ❌ *"Você não precisa entender nada do código"* — **Falso!** Você não precisa ESCREVER tudo, mas precisa ENTENDER. Piloto que não entende o painel, cai.
+>
+> ❌ *"A IA substitui completamente o programador"* — **Falso!** A IA é a ferramenta. Você é o piloto. Ela faz o trabalho pesado, você toma as decisões.
+>
+> ✅ *"Você descreve o que quer e a IA gera o código"* — **Correto!** Essa é a mecânica básica.
+>
+> ✅ *"Entender o código gerado é importante"* — **Correto!** Essa é a diferença entre um vibe coder e alguém que só copia e cola.
+
+---
+
+### FASE 4 — QUIZ (45 segundos)
+
+```
+🎯 QUIZ RÁPIDO
+
+Quem cunhou o termo "Vibe Coding" em 2025?
+
+A) Elon Musk
+B) Andrej Karpathy
+C) Mark Zuckerberg
+D) Sam Altman
+
+[Toque na alternativa correta]
+```
+
+**Resposta correta:** B) Andrej Karpathy
+
+**Feedback ao acertar:**
+
+> ✅ **Isso aí!** Andrej Karpathy, ex-Tesla e OpenAI, cunhou o termo em fevereiro de 2025. Ele descreveu como "surfar na vibe" enquanto a IA faz o trabalho pesado. 🏄
+
+**Feedback ao errar:**
+
+> ❌ **Quase!** Foi o **Andrej Karpathy** — um dos maiores nomes da IA no mundo. Ele trabalhou na Tesla e na OpenAI antes de popularizar o termo. Agora você vai lembrar! 😊
+
+---
+
+### CONCLUSÃO DA MISSÃO
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  ⭐⭐⭐ MISSÃO COMPLETA!                             │
+│                                                     │
+│  🤖 Vi diz:                                        │
+│  "Parabéns! Você deu o primeiro passo.              │
+│   Agora você sabe O QUE é vibe coding.              │
+│   Na próxima missão, vou te apresentar              │
+│   o seu superpoder: a IA! 🦸"                       │
+│                                                     │
+│  +30 XP ⚡                                          │
+│                                                     │
+│  [▶ PRÓXIMA MISSÃO]                                 │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+---
+
+# MISSÃO 02 — A IA COMO SEU SUPERPODER
+
+```
+ID:            m02
+ZONA:          z01 — Despertar 🌅
+TEMPO:         6 minutos
+XP:            30
+FASES:         4 (Story → Concept → Interaction → Sandbox)
+PRÉ-REQUISITO: M01
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi (mascote cubo) ganha uma capa de super-herói. Raios saem dele e transformam texto em telas de aplicativos.
+
+**Narração do Vi:**
+
+> 💬 **Vi:**
+>
+> Sabe aquele filme onde o herói descobre que tem um superpoder?
+>
+> Pois é. Você acabou de descobrir o seu: **Inteligência Artificial**.
+>
+> Mas todo superpoder precisa de treino. O Homem-Aranha não saiu voando de primeira — ele caiu, errou, aprendeu.
+>
+> Hoje você vai conhecer seu superpoder e dar os primeiros passos para controlá-lo. 🕸️
+
+---
+
+### FASE 2 — CONCEPT (120 segundos)
+
+**Tela 2.1 — O que é IA (para leigos)**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🧠 O QUE É INTELIGÊNCIA ARTIFICIAL?                │
+│                                                     │
+│  [ANIMAÇÃO: cérebro humano à esquerda,              │
+│   cérebro digital à direita, seta entre eles]       │
+│                                                     │
+│  Pense na IA como um ESTAGIÁRIO super               │
+│  inteligente que:                                   │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │ 📚 Leu MILHÕES de livros, sites   │             │
+│  │    e códigos                       │             │
+│  │                                    │             │
+│  │ ⚡ Responde em SEGUNDOS            │             │
+│  │                                    │             │
+│  │ 🔄 Nunca CANSA e nunca JULGA      │             │
+│  │                                    │             │
+│  │ 🤔 Mas pode ERRAR e precisa       │             │
+│  │    de SUPERVISÃO                   │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  Como todo estagiário: tem muito conhecimento,      │
+│  é rápido, mas você precisa VERIFICAR o             │
+│  trabalho dele. 👀                                  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> A IA não é mágica. Ela é uma máquina que **aprendeu padrões** analisando bilhões de textos e códigos.
+>
+> Quando você pergunta algo, ela não "pensa" como você. Ela **prevê** a melhor resposta com base em tudo que já leu.
+>
+> Por isso, às vezes ela acerta perfeitamente e às vezes ela inventa coisas. A gente chama isso de **"alucinação"** — quando a IA responde com confiança algo que está errado.
+>
+> Não se preocupe — vou te ensinar a detectar quando isso acontece. 🔍
+
+**Tela 2.2 — ChatGPT vs Claude vs Outros**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🤖 AS IAs QUE VOCÊ VAI USAR                        │
+│                                                     │
+│  [Cards tocáveis — toque para expandir]             │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │ 💚 ChatGPT (OpenAI)               │             │
+│  │                                    │             │
+│  │ O mais popular do mundo.           │             │
+│  │ Ótimo para código e explicações.   │             │
+│  │ Versão grátis disponível.          │             │
+│  │                                    │             │
+│  │ Melhor para: gerar código rápido   │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │ 🟠 Claude (Anthropic)             │             │
+│  │                                    │             │
+│  │ Mais "pensativo" e detalhista.     │             │
+│  │ Excelente em explicar conceitos.   │             │
+│  │ Versão grátis disponível.          │             │
+│  │                                    │             │
+│  │ Melhor para: explicações longas    │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │ 🔵 Gemini (Google)                │             │
+│  │                                    │             │
+│  │ IA do Google. Acessa internet.     │             │
+│  │ Bom para pesquisas atualizadas.    │             │
+│  │ Integrado ao Google.               │             │
+│  │                                    │             │
+│  │ Melhor para: pesquisar e comparar  │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  💡 No VibeCode, seu Vi usa o MELHOR                │
+│  modelo para cada situação                          │
+│  automaticamente! 🎯                                │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Tela 2.3 — O que a IA pode e não pode**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  ✅ A IA PODE:                                      │
+│  ├── Gerar código a partir de descrições            │
+│  ├── Explicar conceitos de programação              │
+│  ├── Encontrar e corrigir erros (bugs)              │
+│  ├── Sugerir melhorias no código                    │
+│  ├── Traduzir código entre linguagens               │
+│  └── Criar interfaces visuais                       │
+│                                                     │
+│  ❌ A IA NÃO PODE:                                  │
+│  ├── Garantir que o código está 100% correto        │
+│  ├── Entender o CONTEXTO completo do seu projeto    │
+│  ├── Tomar decisões de negócio por você             │
+│  ├── Substituir seu julgamento                      │
+│  └── Acessar seus arquivos (a menos que você envie) │
+│                                                     │
+│  ⚠️ CUIDADO COM:                                    │
+│  ├── "Alucinações" — respostas incorretas com       │
+│  │    cara de certas                                │
+│  ├── Código desatualizado — a IA tem data de corte  │
+│  └── Código inseguro — sempre verifique             │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 3 — INTERACTION (60 segundos)
+
+```
+🧩 CLASSIFIQUE CADA SITUAÇÃO
+
+Para cada cenário, diga se a IA pode ajudar
+bem (✅), parcialmente (⚠️), ou não (❌):
+
+1. "Criar uma página web com meu nome e foto"
+   [✅]  [⚠️]  [❌]
+
+2. "Decidir se devo cobrar R$50 ou R$100 pelo meu serviço"
+   [✅]  [⚠️]  [❌]
+
+3. "Encontrar por que meu código não funciona"
+   [✅]  [⚠️]  [❌]
+
+4. "Acessar meu banco de dados e arrumar os dados"
+   [✅]  [⚠️]  [❌]
+
+5. "Explicar o que significa 'async/await'"
+   [✅]  [⚠️]  [❌]
+```
+
+**Respostas:**
+
+| Cenário | Resposta | Explicação |
+|---------|----------|------------|
+| Criar página web | ✅ | IA faz isso muito bem! É uma das melhores aplicações. |
+| Decidir preço | ⚠️ | IA pode dar sugestões, mas a decisão de negócio é sua. |
+| Encontrar bug | ✅ | IA é excelente em debugar! Manda o erro e ela ajuda. |
+| Acessar banco de dados | ❌ | IA não tem acesso aos seus sistemas. Ela gera o CÓDIGO, mas você executa. |
+| Explicar async/await | ✅ | Explicar conceitos é um dos maiores superpoderes da IA! |
+
+---
+
+### FASE 4 — SANDBOX (60 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 EXPERIMENTE AGORA!                               │
+│                                                     │
+│  Faça sua primeira pergunta ao Vi.                  │
+│  Pode ser QUALQUER coisa sobre tecnologia:          │
+│                                                     │
+│  Sugestões:                                         │
+│  • "O que é um site?"                               │
+│  • "Como apps de celular são feitos?"               │
+│  • "O que é programação?"                           │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 💬 Digite sua pergunta para o Vi...    │         │
+│  │                                   [📤] │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  [Vi responde em tempo real no chat abaixo]         │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Após o aluno enviar qualquer pergunta e receber resposta:**
+
+> 💬 **Vi:**
+>
+> Viu? Você acabou de usar IA para aprender algo novo! 🎉
+>
+> Essa é a base do vibe coding: **conversar, perguntar, iterar**.
+>
+> Na próxima missão, vamos dar o próximo passo: fazer a IA gerar CÓDIGO de verdade. Preparado? 💪
+
+**Conclusão: +30 XP**
+
+---
+
+---
+
+# MISSÃO 03 — SEU PRIMEIRO PROMPT
+
+```
+ID:            m03
+ZONA:          z01 — Despertar 🌅
+TEMPO:         7 minutos
+XP:            40
+FASES:         4 (Story → Concept → Interaction → Sandbox)
+PRÉ-REQUISITO: M02
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi segurando um megafone. De um lado, uma pessoa murmurando (bolhas de fala confusas). Do outro, uma pessoa falando claramente (bolhas de fala nítidas com ícones). A IA reage de forma confusa ao primeiro e feliz ao segundo.
+
+> 💬 **Vi:**
+>
+> Imagina que você liga para pedir uma pizza:
+>
+> ❌ *"Oi, quero comida"* → O atendente não sabe o que fazer.
+>
+> ✅ *"Quero uma pizza grande, mussarela, borda recheada, para o endereço X"* → Pizza perfeita na sua porta!
+>
+> Com a IA é igual. Quanto **mais claro** você fala o que quer, **melhor** o resultado. A arte de falar com a IA tem até um nome: **Prompt Engineering**. 🎯
+>
+> Hoje você vai aprender a fazer isso!
+
+---
+
+### FASE 2 — CONCEPT (120 segundos)
+
+**Tela 2.1 — O que é um Prompt**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  📝 O QUE É UM PROMPT?                              │
+│                                                     │
+│  Prompt = a MENSAGEM que você envia para a IA.      │
+│                                                     │
+│  É como um PEDIDO no restaurante.                   │
+│  Quanto mais detalhado, melhor o prato.             │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │                                    │             │
+│  │   VOCÊ ──[prompt]──▶ IA            │             │
+│  │                                    │             │
+│  │   "Crie um botão   ──▶  🤖         │             │
+│  │    azul que diz                    │             │
+│  │    Clique Aqui"                    │             │
+│  │                                    │             │
+│  │   IA ──[resposta]──▶ VOCÊ          │             │
+│  │                                    │             │
+│  │   🤖 ──▶  <button>Clique</button> │             │
+│  │                                    │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Tela 2.2 — Prompts Ruins vs Bons**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔴 PROMPT RUIM:                                    │
+│  ┌────────────────────────────────────┐             │
+│  │ "faz um site"                      │             │
+│  └────────────────────────────────────┘             │
+│  Problema: Vago demais. Que tipo de site?           │
+│  Para quem? Sobre o quê? Com o quê?                 │
+│                                                     │
+│  🟡 PROMPT MÉDIO:                                   │
+│  ┌────────────────────────────────────┐             │
+│  │ "Crie uma página web sobre mim"    │             │
+│  └────────────────────────────────────┘             │
+│  Melhor, mas ainda faltam detalhes.                 │
+│                                                     │
+│  🟢 PROMPT BOM:                                     │
+│  ┌────────────────────────────────────┐             │
+│  │ "Crie uma página web pessoal com:  │             │
+│  │  - Meu nome: Maria Silva           │             │
+│  │  - Uma foto (placeholder)          │             │
+│  │  - Uma frase sobre mim             │             │
+│  │  - Links para redes sociais        │             │
+│  │  - Cores: roxo e branco            │             │
+│  │  - Use HTML e CSS"                 │             │
+│  └────────────────────────────────────┘             │
+│  Perfeito! A IA sabe EXATAMENTE o que fazer.        │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> A regra de ouro do prompt é: **seja específico**.
+>
+> Um bom prompt tem:
+> 1. **O que** você quer (uma página web)
+> 2. **Detalhes** do conteúdo (nome, foto, frase)
+> 3. **Estilo** desejado (cores, visual)
+> 4. **Tecnologia** (HTML e CSS)
+>
+> Você não precisa ser perfeito de primeira! Pode começar simples e ir melhorando. Isso se chama **iterar**. 🔄
+
+**Tela 2.3 — Fórmula do Prompt**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🧪 A FÓRMULA DO PROMPT PERFEITO                    │
+│                                                     │
+│  ┌────────────────────────────────────┐             │
+│  │                                    │             │
+│  │  [AÇÃO] + [O QUE] + [DETALHES]    │             │
+│  │  + [TECNOLOGIA] + [ESTILO]        │             │
+│  │                                    │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+│  EXEMPLO:                                           │
+│                                                     │
+│  [AÇÃO]      → "Crie"                              │
+│  [O QUE]     → "um botão"                           │
+│  [DETALHES]  → "com o texto 'Enviar'"              │
+│  [TECNOLOGIA]→ "usando HTML e CSS"                  │
+│  [ESTILO]    → "cor verde, cantos arredondados"     │
+│                                                     │
+│  RESULTADO:                                         │
+│  "Crie um botão com o texto 'Enviar'               │
+│   usando HTML e CSS, com cor verde e                │
+│   cantos arredondados."                             │
+│                                                     │
+│  Simples, né? 😊                                    │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 3 — INTERACTION (90 segundos)
+
+```
+🧩 MONTE O PROMPT PERFEITO
+
+Arraste os blocos na ordem certa para
+montar um bom prompt:
+
+BLOCOS DISPONÍVEIS (desordenados):
+┌─────────────────────────────────┐
+│ "cantos arredondados e sombra"  │  ← ESTILO
+└─────────────────────────────────┘
+┌─────────────────────────────────┐
+│ "com o texto 'Saiba Mais'"      │  ← DETALHES
+└─────────────────────────────────┘
+┌─────────────────────────────────┐
+│ "Crie"                          │  ← AÇÃO
+└─────────────────────────────────┘
+┌─────────────────────────────────┐
+│ "usando HTML e CSS"             │  ← TECNOLOGIA
+└─────────────────────────────────┘
+┌─────────────────────────────────┐
+│ "um botão azul"                 │  ← O QUE
+└─────────────────────────────────┘
+
+MONTE AQUI (arraste para as linhas):
+┌─────────────────────────────────┐
+│  1. ___________________________  │
+│  2. ___________________________  │
+│  3. ___________________________  │
+│  4. ___________________________  │
+│  5. ___________________________  │
+└─────────────────────────────────┘
+```
+
+**Resposta correta (ordem):**
+1. "Crie"
+2. "um botão azul"
+3. "com o texto 'Saiba Mais'"
+4. "usando HTML e CSS"
+5. "cantos arredondados e sombra"
+
+**Feedback:**
+
+> ✅ **Perfeito!** Seu prompt ficou:
+>
+> *"Crie um botão azul com o texto 'Saiba Mais' usando HTML e CSS, cantos arredondados e sombra."*
+>
+> A IA vai entender EXATAMENTE o que fazer! 🎯
+
+---
+
+### FASE 4 — SANDBOX (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 AGORA VOCÊ!                                     │
+│                                                     │
+│  Escreva um prompt para o Vi usando a fórmula:      │
+│  [AÇÃO] + [O QUE] + [DETALHES] + [TECNOLOGIA]      │
+│                                                     │
+│  DESAFIO: Peça ao Vi para criar um título           │
+│  de página com seu nome.                            │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 💬 Escreva seu prompt...               │         │
+│  │                                   [📤] │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  💡 Dica: Não esqueça de incluir seu nome           │
+│  e a tecnologia (HTML)!                             │
+│                                                     │
+│  [Vi responde com o código gerado]                  │
+│                                                     │
+│  [PREVIEW do resultado renderizado]                 │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Se o aluno enviar algo vago como "faz um título":**
+
+> 💬 **Vi:**
+>
+> Hmm, posso fazer, mas vou ter que adivinhar muita coisa! 😅
+>
+> Tenta de novo sendo mais específico. Que tal incluir:
+> - Qual é o seu nome?
+> - Que cor você quer?
+> - Que tecnologia usar?
+>
+> Exemplo: *"Crie um título HTML com o texto 'Maria Silva' em cor roxa e tamanho grande."*
+
+**Se o aluno enviar algo bom:**
+
+> 💬 **Vi:**
+>
+> **Mandou bem!** 🎉 Olha o prompt perfeito! Aqui vai o código:
+>
+> ```html
+> <!-- Título criado pelo Vi para você! -->
+> <h1 style="color: purple; font-size: 48px; text-align: center;">
+>   Maria Silva
+> </h1>
+> ```
+>
+> Viu como a especificidade faz diferença? Na próxima missão, vamos gerar código de VERDADE e ver ele funcionando! 🚀
+
+**Conclusão: +40 XP**
+
+---
+
+---
+
+# MISSÃO 04 — GERANDO CÓDIGO PELA PRIMEIRA VEZ
+
+```
+ID:            m04
+ZONA:          z01 — Despertar 🌅
+TEMPO:         8 minutos
+XP:            40
+FASES:         5 (Story → Concept → Demo → Sandbox → Quiz)
+PRÉ-REQUISITO: M03
+```
+
+---
+
+### FASE 1 — STORY (30 segundos)
+
+**Animação:** Vi com um chapéu de mágico. Ele fala palavras e, como mágica, uma página web aparece do nada com confete.
+
+> 💬 **Vi:**
+>
+> Chegou a hora do show! 🎩✨
+>
+> Até agora você entendeu O QUE é vibe coding e COMO falar com a IA. Agora vamos fazer a mágica acontecer: **gerar código real que funciona de verdade**.
+>
+> Bora?
+
+---
+
+### FASE 2 — CONCEPT (60 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🧱 OS 3 INGREDIENTES DE UMA PÁGINA WEB             │
+│                                                     │
+│  [ILUSTRAÇÃO: Uma casa sendo construída]            │
+│                                                     │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+│  │          │  │          │  │          │          │
+│  │  🧱 HTML │  │  🎨 CSS  │  │ ⚡ JS    │          │
+│  │          │  │          │  │          │          │
+│  │ ESTRUTURA│  │  VISUAL  │  │ AÇÃO     │          │
+│  │          │  │          │  │          │          │
+│  │ Tijolos  │  │  Pintura │  │ Elétrica │          │
+│  │ e paredes│  │  e       │  │ e        │          │
+│  │          │  │  decoração│  │ encanam. │          │
+│  └──────────┘  └──────────┘  └──────────┘          │
+│                                                     │
+│  Hoje vamos usar só HTML e CSS.                     │
+│  JavaScript vem depois! 😉                          │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> Uma página web é como uma casa:
+> - **HTML** = os tijolos e paredes (estrutura)
+> - **CSS** = a pintura e decoração (visual)
+> - **JavaScript** = a elétrica e encanamento (faz as coisas funcionarem)
+>
+> Não precisa decorar nada! A IA vai gerar o código para você. Mas é importante saber que essas 3 partes existem. 🏠
+
+---
+
+### FASE 3 — DEMO (120 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  👀 VEJA A MÁGICA ACONTECER                         │
+│                                                     │
+│  Vou pedir ao Vi para criar um cartão de visita     │
+│  digital. Observe:                                  │
+│                                                     │
+│  PROMPT:                                            │
+│  ┌────────────────────────────────────────┐         │
+│  │ "Crie um cartão de visita digital      │         │
+│  │  usando HTML e CSS com:                │         │
+│  │  - Nome: Ana Costa                     │         │
+│  │  - Profissão: Designer                 │         │
+│  │  - Email: ana@email.com                │         │
+│  │  - Fundo escuro, texto branco          │         │
+│  │  - Cantos arredondados"                │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  [ANIMAÇÃO: código aparecendo linha por linha]      │
+│                                                     │
+│  CÓDIGO GERADO:                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ <!-- Cartão de visita digital -->      │ ← HTML  │
+│  │ <div style="                           │ ← CSS   │
+│  │   background: #1a1a2e;                 │         │
+│  │   color: white;                        │         │
+│  │   padding: 30px;                       │         │
+│  │   border-radius: 16px;                 │         │
+│  │   text-align: center;                  │         │
+│  │   max-width: 300px;                    │         │
+│  │   font-family: Arial;                  │         │
+│  │ ">                                     │         │
+│  │   <h2>Ana Costa</h2>                   │         │
+│  │   <p>Designer</p>                      │         │
+│  │   <p>📧 ana@email.com</p>              │         │
+│  │ </div>                                 │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  RESULTADO:                                         │
+│  ┌────────────────────────────────────────┐         │
+│  │  ┌──────────────────────────────┐      │         │
+│  │  │                              │      │         │
+│  │  │        Ana Costa             │      │  ← Live │
+│  │  │        Designer              │      │  Preview│
+│  │  │     📧 ana@email.com         │      │         │
+│  │  │                              │      │         │
+│  │  └──────────────────────────────┘      │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  ☝️ Toque em partes do código para Vi               │
+│  explicar cada uma!                                 │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Ao tocar nas partes do código:**
+
+> **`<div>`** → "Div é uma 'caixa invisível'. Todo conteúdo fica dentro dela."
+>
+> **`style="..."`** → "Style é onde colocamos o visual. Cor, tamanho, formato."
+>
+> **`background: #1a1a2e`** → "Esse código de cor (#1a1a2e) é um roxo escuro."
+>
+> **`border-radius: 16px`** → "Isso arredonda os cantos. Quanto maior o número, mais redondo."
+>
+> **`<h2>`** → "H2 é um título. H1 é o maior, H2 o segundo maior, e assim vai."
+>
+> **`<p>`** → "P de parágrafo. Texto normal."
+
+---
+
+### FASE 4 — SANDBOX (120 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 SUA VEZ!                                        │
+│                                                     │
+│  Crie seu PRÓPRIO cartão de visita digital!         │
+│                                                     │
+│  Peça ao Vi com SEUS dados:                         │
+│  - Seu nome                                         │
+│  - Sua profissão (ou o que quiser)                  │
+│  - Seu email (ou um fictício)                       │
+│  - Cores que você gosta                             │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 💬 Peça ao Vi seu cartão...            │         │
+│  │                                   [📤] │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  [CÓDIGO GERADO aparece aqui]                       │
+│                                                     │
+│  [PREVIEW VISUAL aparece aqui]                      │
+│                                                     │
+│  Gostou? Quer mudar algo?                           │
+│  ┌──────────────┐ ┌──────────────────┐              │
+│  │ ✅ Ficou ótimo│ │ ✏️ Quero mudar   │              │
+│  └──────────────┘ └──────────────────┘              │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Se o aluno toca "Quero mudar":**
+
+> 💬 **Vi:**
+>
+> Perfeito! Diga o que quer mudar. Por exemplo:
+> - "Mude a cor de fundo para azul"
+> - "Aumente o tamanho do nome"
+> - "Adicione meu telefone"
+>
+> Isso é **iterar** — o coração do vibe coding! 🔄
+
+---
+
+### FASE 5 — QUIZ (45 segundos)
+
+```
+🎯 QUIZ RÁPIDO
+
+Qual das opções é um prompt BOM para gerar código?
+
+A) "faz algo legal"
+
+B) "Crie um botão verde com o texto 'Comprar'
+    usando HTML e CSS, com sombra"
+
+C) "programa pra mim"
+
+D) "quero um site bonito"
+```
+
+**Resposta correta:** B
+
+**Conclusão: +40 XP**
+
+---
+
+---
+
+# MISSÃO 05 — LENDO CÓDIGO SEM PÂNICO
+
+```
+ID:            m05
+ZONA:          z01 — Despertar 🌅
+TEMPO:         8 minutos
+XP:            50
+FASES:         5 (Story → Concept → Interactive Code → Interaction → Quiz)
+PRÉ-REQUISITO: M04
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi como detetive com lupa, olhando código. Partes do código brilham em cores diferentes à medida que Vi aponta para elas.
+
+> 💬 **Vi:**
+>
+> A IA gerou código para você. Maravilha! Mas e agora?
+>
+> Se algo der errado, você precisa saber **ler** esse código. Não decorar — apenas **entender a lógica**.
+>
+> É como ler uma receita de bolo: você não precisa ser chef, mas precisa saber se tem ovo ou farinha na lista. 🍰
+>
+> Hoje você vai aprender a ler código sem pânico. Vamos ser detetives! 🔍
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+**Tela 2.1 — Código em Cores**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔍 ANATOMIA DO CÓDIGO HTML                         │
+│                                                     │
+│  ☝️ TOQUE em cada parte colorida para entender      │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │                                        │         │
+│  │  🟣 <h1 🔵 style="🟢color: red;" 🟣>   │         │
+│  │    🟠 Olá Mundo!                       │         │
+│  │  🟣 </h1>                              │         │
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  LEGENDA:                                           │
+│  🟣 TAG    = tipo do elemento (título, parágrafo)   │
+│  🔵 ATRIB. = propriedade extra (estilo, link)       │
+│  🟢 VALOR  = o que a propriedade recebe             │
+│  🟠 CONTEÚDO = o texto que aparece na tela          │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Ao tocar cada cor:**
+
+> 🟣 **Tag `<h1>`** — "É como uma etiqueta. Diz ao navegador: 'isso é um título grande'. H1 = título principal. Existe h1, h2, h3... até h6."
+>
+> 🔵 **Atributo `style`** — "É uma instrução extra. Nesse caso, diz: 'aplique este visual'. Pense como uma nota adesiva colada no elemento."
+>
+> 🟢 **Valor `color: red`** — "A instrução específica: 'a cor deve ser vermelha'. Mude para blue, green, purple... e a cor muda!"
+>
+> 🟠 **Conteúdo `Olá Mundo!`** — "O texto que aparece na tela. É o que o visitante da página vai ler."
+>
+> 🟣 **Tag de fechamento `</h1>`** — "A barra (/) diz: 'aqui termina o título'. Todo elemento que abre precisa fechar."
+
+**Tela 2.2 — CSS em Cores**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎨 ANATOMIA DO CSS (estilo)                        │
+│                                                     │
+│  ☝️ TOQUE para entender                             │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │                                        │         │
+│  │  style="                               │         │
+│  │    🔴 background: #1a1a2e;             │         │
+│  │    🟡 color: white;                    │         │
+│  │    🟢 padding: 20px;                   │         │
+│  │    🔵 border-radius: 12px;             │         │
+│  │    🟣 font-size: 24px;                 │         │
+│  │  "                                     │         │
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  ┌─ PREVIEW ─────────────────────────────┐         │
+│  │  ┌──────────────────────────────┐      │         │
+│  │  │      Olá Mundo!              │      │         │
+│  │  └──────────────────────────────┘      │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  Toque em cada propriedade para ver o que           │
+│  muda no preview!                                   │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Ao tocar (o preview muda em tempo real):**
+
+> 🔴 **`background: #1a1a2e`** — "Cor de fundo. Mude para `#ff0000` e fica vermelho!" *(preview muda)*
+>
+> 🟡 **`color: white`** — "Cor do texto. Mude para `yellow` e o texto fica amarelo!" *(preview muda)*
+>
+> 🟢 **`padding: 20px`** — "Espaço INTERNO. Como a margem de um quadro. Mais padding = mais espaço ao redor do texto." *(preview anima)*
+>
+> 🔵 **`border-radius: 12px`** — "Arredonda os cantos. 0 = quadrado. 50% = círculo." *(preview anima de quadrado a círculo)*
+>
+> 🟣 **`font-size: 24px`** — "Tamanho da letra. 12px = pequeno. 48px = gigante." *(preview anima)*
+
+---
+
+### FASE 3 — INTERACTIVE CODE (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎮 LABORATÓRIO DE CORES                            │
+│                                                     │
+│  Mude os valores e veja o resultado em tempo real!  │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │                                        │         │
+│  │ <div style="                           │         │
+│  │   background: [____];  ← toque p/mudar│         │
+│  │   color: [____];       ← toque p/mudar│         │
+│  │   padding: [____];     ← deslize      │         │
+│  │   border-radius: [____]; ← deslize    │         │
+│  │   font-size: [____];   ← deslize      │         │
+│  │ ">                                     │         │
+│  │   [____________]       ← digite texto  │         │
+│  │ </div>                                 │         │
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  PREVIEW:                                           │
+│  ┌────────────────────────────────────────┐         │
+│  │  ┌──────────────────────────────┐      │         │
+│  │  │  [resultado em tempo real]   │      │         │
+│  │  └──────────────────────────────┘      │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  CORES RÁPIDAS: 🔴 🟢 🔵 🟡 🟣 ⚫ ⚪              │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Controles interativos:**
+- **Background:** Color picker com cores pré-definidas
+- **Color:** Color picker para texto
+- **Padding:** Slider de 0px a 60px
+- **Border-radius:** Slider de 0px a 50%
+- **Font-size:** Slider de 12px a 72px
+- **Texto:** Campo de texto livre
+
+O preview atualiza **em tempo real** conforme o aluno mexe.
+
+> 💬 **Vi:** (após o aluno brincar por 30+ segundos)
+>
+> Percebeu como funciona? Cada propriedade CSS controla **uma coisa** do visual. Você não precisa decorar — precisa saber que elas existem e a IA pode te ajudar com os valores! 🎨
+
+---
+
+### FASE 4 — INTERACTION (60 segundos)
+
+```
+🧩 O QUE ESSE CÓDIGO FAZ?
+
+Olhe o código abaixo e responda:
+
+<p style="color: blue; font-size: 32px;">
+  Bem-vindo ao VibeCode!
+</p>
+
+O que aparece na tela?
+
+A) Um título pequeno em vermelho
+
+B) Um parágrafo grande em azul dizendo
+   "Bem-vindo ao VibeCode!"
+
+C) Um botão azul
+
+D) Uma imagem
+```
+
+**Resposta: B**
+
+> ✅ **Exato!** `<p>` é parágrafo, `color: blue` = texto azul, `font-size: 32px` = tamanho grande. Você já está lendo código como um detetive! 🔍
+
+**Mais uma:**
+
+```
+O que acontece se eu mudar
+"color: blue" para "color: green"?
+
+A) O fundo fica verde
+B) O texto fica verde
+C) Nada muda
+D) Dá erro
+```
+
+**Resposta: B**
+
+> ✅ **Perfeito!** `color` controla a cor do TEXTO. Para mudar o fundo, usaríamos `background`. Mandou bem! 🎯
+
+---
+
+### FASE 5 — QUIZ (45 segundos)
+
+```
+🎯 QUIZ RÁPIDO
+
+Qual propriedade CSS arredonda os cantos?
+
+A) color
+B) padding
+C) border-radius
+D) font-size
+```
+
+**Resposta: C**
+
+**Conclusão: +50 XP**
+
+---
+
+---
+
+# MISSÃO 06 — PEDINDO CORREÇÕES À IA
+
+```
+ID:            m06
+ZONA:          z01 — Despertar 🌅
+TEMPO:         7 minutos
+XP:            40
+FASES:         4 (Story → Concept → Sandbox → Quiz)
+PRÉ-REQUISITO: M05
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi olhando um cartão de visita com um erro (nome escrito errado, cor horrível). Vi faz cara de desapontado, depois sorri e fala com a IA. O cartão é corrigido magicamente.
+
+> 💬 **Vi:**
+>
+> A IA nem sempre acerta de primeira. E tudo bem!
+>
+> O segredo do vibe coder é saber **pedir ajustes**. É como trabalhar com um designer: ele mostra o primeiro rascunho, você diz "muda aqui, ajusta ali", e cada versão fica melhor.
+>
+> Hoje você vai aprender a arte de **iterar** — pedir mudanças até ficar perfeito. 🔄
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔄 3 TIPOS DE CORREÇÃO                             │
+│                                                     │
+│  1️⃣ MUDAR VISUAL                                    │
+│  ┌────────────────────────────────────┐             │
+│  │ "Mude a cor de fundo para azul     │             │
+│  │  e aumente a fonte para 20px"      │             │
+│  └────────────────────────────────────┘             │
+│  Quando o código funciona mas não está              │
+│  do jeito que você quer.                            │
+│                                                     │
+│  2️⃣ CORRIGIR ERRO                                   │
+│  ┌────────────────────────────────────┐             │
+│  │ "O botão não aparece na tela.      │             │
+│  │  Aqui está o código: [código].     │             │
+│  │  Aqui está o erro: [erro].         │             │
+│  │  O que está errado?"               │             │
+│  └────────────────────────────────────┘             │
+│  Quando algo não funciona e aparece                 │
+│  uma mensagem de erro.                              │
+│                                                     │
+│  3️⃣ ADICIONAR FUNCIONALIDADE                       │
+│  ┌────────────────────────────────────┐             │
+│  │ "Adicione um botão de 'Contato'    │             │
+│  │  abaixo do nome. Quando clicado,   │             │
+│  │  deve abrir o email."              │             │
+│  └────────────────────────────────────┘             │
+│  Quando quer algo novo no que já existe.            │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> A regra de ouro para pedir correções:
+>
+> **Seja ESPECÍFICO sobre O QUE mudar.**
+>
+> ❌ "Não gostei, faz de novo" → A IA não sabe o que você não gostou.
+>
+> ✅ "Mude o fundo para azul escuro e aumente o espaçamento entre os elementos" → A IA sabe exatamente o que fazer.
+>
+> E quando der erro? Copie a mensagem de erro e mande para a IA. Ela adora resolver enigmas! 🧩
+
+**Template de correção de erro:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  📋 TEMPLATE: PEDINDO CORREÇÃO DE ERRO              │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ "Meu código não está funcionando.      │         │
+│  │                                        │         │
+│  │  O que eu quero: [descreva]            │         │
+│  │                                        │         │
+│  │  Meu código:                           │         │
+│  │  [cole o código aqui]                  │         │
+│  │                                        │         │
+│  │  O erro que aparece:                   │         │
+│  │  [cole a mensagem de erro]             │         │
+│  │                                        │         │
+│  │  O que já tentei:                      │         │
+│  │  [descreva o que tentou]"              │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  [📋 COPIAR TEMPLATE]                               │
+│                                                     │
+│  💡 Salvo nos seus Templates de Prompt!              │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 3 — SANDBOX (120 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 PRATIQUE ITERAR!                                 │
+│                                                     │
+│  Aqui está um cartão de visita com PROBLEMAS.       │
+│  Peça ao Vi para corrigir CADA UM:                  │
+│                                                     │
+│  CÓDIGO ATUAL:                                      │
+│  ┌────────────────────────────────────────┐         │
+│  │ <div style="                           │         │
+│  │   background: yellow;                  │ ← feio! │
+│  │   color: yellow;                       │ ← texto │
+│  │   padding: 5px;                        │   invisí│
+│  │   font-size: 10px;                     │ ← pequen│
+│  │ ">                                     │         │
+│  │   <h2>Seu Nmoe</h2>                    │ ← typo! │
+│  │   <p>Profisão</p>                      │ ← typo! │
+│  │ </div>                                 │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  PREVIEW (quase ilegível):                          │
+│  ┌────────────────────────────────────────┐         │
+│  │  [texto amarelo em fundo amarelo =     │         │
+│  │   invisível, minúsculo]                │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  PROBLEMAS PARA CORRIGIR:                           │
+│  ⬜ 1. Texto invisível (mesma cor que o fundo)      │
+│  ⬜ 2. Fonte muito pequena                          │
+│  ⬜ 3. Pouco espaçamento (padding)                  │
+│  ⬜ 4. Erros de digitação ("Nmoe", "Profisão")      │
+│  ⬜ 5. Colocar SEU nome e profissão                 │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 💬 Peça ao Vi para corrigir...         │         │
+│  │                                   [📤] │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Exemplo de pedidos que o aluno pode fazer:**
+
+> "Vi, corrija esse código: mude o fundo para azul escuro, o texto para branco, aumente a fonte para 24px, o padding para 20px, e corrija os erros de escrita. Coloque meu nome: João Silva, profissão: Estudante."
+
+**Conforme o aluno corrige cada item, o checklist atualiza:**
+
+```
+  ✅ 1. Texto invisível — CORRIGIDO!
+  ✅ 2. Fonte muito pequena — CORRIGIDO!
+  ✅ 3. Pouco espaçamento — CORRIGIDO!
+  ✅ 4. Erros de digitação — CORRIGIDO!
+  ✅ 5. Dados pessoais — CORRIGIDO!
+```
+
+> 💬 **Vi:**
+>
+> **Todos os 5 problemas corrigidos!** 🎉
+>
+> Percebeu o poder de iterar? Você começou com algo horrível e, pedido a pedido, transformou em algo profissional.
+>
+> Na vida real é assim: a primeira versão nunca é perfeita. O segredo é saber pedir ajustes. 🔄
+
+**Conclusão: +40 XP**
+
+---
+
+---
+
+# MISSÃO 07 — O CICLO VIBE CODING
+
+```
+ID:            m07
+ZONA:          z01 — Despertar 🌅
+TEMPO:         6 minutos
+XP:            50
+FASES:         4 (Story → Concept → Interaction → Celebration)
+PRÉ-REQUISITO: M06
+NOTA:          Última missão da Zona 1
+```
+
+---
+
+### FASE 1 — STORY (30 segundos)
+
+> 💬 **Vi:**
+>
+> Nas últimas 6 missões, você aprendeu cada peça do quebra-cabeça. Agora vamos juntar tudo e ver o **ciclo completo** do vibe coding — o fluxo que você vai usar TODOS os dias daqui pra frente! 🔄
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔄 O CICLO DO VIBE CODING                         │
+│                                                     │
+│  [ANIMAÇÃO CIRCULAR — cada etapa ilumina            │
+│   conforme Vi explica]                              │
+│                                                     │
+│         ┌──────────┐                                │
+│         │ 1. PENSE │                                │
+│         │ O que eu │                                │
+│         │ quero?   │                                │
+│         └────┬─────┘                                │
+│              │                                      │
+│              ▼                                      │
+│     ┌────────────────┐                              │
+│     │ 2. DESCREVA    │                              │
+│     │ Prompt claro   │                              │
+│     │ para a IA      │                              │
+│     └────────┬───────┘                              │
+│              │                                      │
+│              ▼                                      │
+│     ┌────────────────┐                              │
+│     │ 3. GERE        │                              │
+│     │ A IA cria      │                              │
+│     │ o código       │                              │
+│     └────────┬───────┘                              │
+│              │                                      │
+│              ▼                                      │
+│     ┌────────────────┐                              │
+│     │ 4. ENTENDA     │                              │
+│     │ Leia o código  │                              │
+│     │ gerado         │                              │
+│     └────────┬───────┘                              │
+│              │                                      │
+│              ▼                                      │
+│     ┌────────────────┐                              │
+│     │ 5. TESTE       │                              │
+│     │ Veja se        │                              │
+│     │ funciona       │                              │
+│     └────────┬───────┘                              │
+│              │                                      │
+│              ▼                                      │
+│     ┌────────────────┐         ┌────────────┐       │
+│     │ 6. AJUSTE      │────────▶│ REPITA     │       │
+│     │ Peça correções │         │ até ficar  │       │
+│     │ se necessário  │◀────────│ perfeito!  │       │
+│     └────────────────┘         └────────────┘       │
+│                                                     │
+│  Este ciclo se repete INFINITAMENTE.                │
+│  Cada volta, seu projeto fica melhor. 📈            │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> **PENSE → DESCREVA → GERE → ENTENDA → TESTE → AJUSTE → REPITA**
+>
+> Esse é o fluxo. É simples, é poderoso, e é o que todo vibe coder profissional faz.
+>
+> A diferença entre um iniciante e um expert? O expert faz esse ciclo **mais rápido** e pede **ajustes mais precisos**. Mas o ciclo é o mesmo! 🔄
+
+---
+
+### FASE 3 — INTERACTION (90 segundos)
+
+```
+🧩 ORGANIZE O CICLO
+
+As etapas do vibe coding estão embaralhadas.
+Arraste-as na ordem correta:
+
+[TESTE]  [DESCREVA]  [GERE]  [PENSE]  [AJUSTE]  [ENTENDA]
+
+Ordem correta:
+1. ____
+2. ____
+3. ____
+4. ____
+5. ____
+6. ____
+```
+
+**Resposta:** PENSE → DESCREVA → GERE → ENTENDA → TESTE → AJUSTE
+
+Após acertar:
+
+> ✅ **Perfeito!** Você internalizou o ciclo. Isso vai guiar TUDO que você faz daqui pra frente. Parabéns por completar a Zona 1! 🎉
+
+---
+
+### FASE 4 — CELEBRATION (Conclusão da Zona 1)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎊 ZONA 1 COMPLETA! 🎊                             │
+│                                                     │
+│  [Animação de confete + Vi evoluindo levemente]     │
+│                                                     │
+│  🤖 Vi diz:                                        │
+│  "Você completou o DESPERTAR! 🌅                    │
+│                                                     │
+│   Em 7 missões, você aprendeu:                      │
+│   ✅ O que é vibe coding                             │
+│   ✅ Como funciona a IA                              │
+│   ✅ A arte do prompt                                │
+│   ✅ Gerar código com IA                             │
+│   ✅ Ler código sem pânico                           │
+│   ✅ Pedir correções                                 │
+│   ✅ O ciclo completo                                │
+│                                                     │
+│   Próximo passo: preparar suas                      │
+│   FERRAMENTAS de trabalho! 🔧"                      │
+│                                                     │
+│  +50 XP ⚡                                          │
+│  🏅 Badge: "Despertou!" desbloqueado               │
+│  🔓 Zona 2: Ferramentas — DESBLOQUEADA             │
+│                                                     │
+│  ┌──────────────────────────────────────┐           │
+│  │ 🔧 IR PARA ZONA 2: FERRAMENTAS      │           │
+│  └──────────────────────────────────────┘           │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+---
+
+# MISSÃO 08 — TERMINAL SEM MEDO
+
+```
+ID:            m08
+ZONA:          z02 — Ferramentas 🔧
+TEMPO:         8 minutos
+XP:            40
+FASES:         5 (Story → Concept → Interactive Terminal → Sandbox → Quiz)
+PRÉ-REQUISITO: M07
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi vestido de explorador abrindo uma porta para um quarto escuro (o terminal). Quando ele acende a luz, é um painel de controle amigável com botões coloridos.
+
+> 💬 **Vi:**
+>
+> O **terminal** assusta muita gente. Aquela tela preta com letras verdes parece coisa de hacker de filme, né? 😄
+>
+> Mas na real, o terminal é só um **controle remoto** do seu computador. Em vez de clicar com o mouse, você digita comandos.
+>
+> É como a diferença entre pedir pizza por **telefone** (terminal) ou pelo **app** (interface visual). O resultado é o mesmo: pizza na porta! 🍕
+>
+> Vamos perder o medo?
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  💻 O QUE É O TERMINAL?                             │
+│                                                     │
+│  [COMPARAÇÃO VISUAL]                                │
+│                                                     │
+│  ┌──────────────────┐  ┌──────────────────┐         │
+│  │ COM INTERFACE     │  │ COM TERMINAL     │         │
+│  │ (mouse/clique)   │  │ (teclado/texto)  │         │
+│  │                  │  │                  │         │
+│  │ 📁 Clique na     │  │ $ ls             │         │
+│  │    pasta         │  │ > fotos/         │         │
+│  │                  │  │ > docs/          │         │
+│  │ 📁 Clique em     │  │ > musica/        │         │
+│  │    "Nova Pasta"  │  │                  │         │
+│  │                  │  │ $ mkdir projetos │         │
+│  │ ✏️ Digite nome   │  │ > (pasta criada) │         │
+│  └──────────────────┘  └──────────────────┘         │
+│                                                     │
+│  MESMA COISA. Jeitos diferentes de fazer.           │
+│                                                     │
+│  Por que programadores usam o terminal?             │
+│  ┌────────────────────────────────────┐             │
+│  │ ⚡ Mais rápido (quando você aprende)│             │
+│  │ 🔧 Mais poderoso (mais opções)     │             │
+│  │ 🤖 Automatizável (scripts)         │             │
+│  │ 💻 Funciona em qualquer lugar      │             │
+│  └────────────────────────────────────┘             │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+> 💬 **Vi:**
+>
+> Você não precisa virar expert em terminal. Precisa aprender **uns 10 comandos** e pronto. Dá pra contar nos dedos! ✋
+>
+> E a melhor parte: se esquecer algum, é só perguntar pra mim! 😊
+
+---
+
+### FASE 3 — INTERACTIVE TERMINAL (120 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎮 TERMINAL SIMULADO                                │
+│                                                     │
+│  Digite os comandos conforme Vi pedir!              │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ ~/vibecode $                           │         │
+│  │                                        │         │
+│  │ 💬 Vi: "Digite 'ls' para ver o que     │         │
+│  │  tem nessa pasta!"                     │         │
+│  │                                        │         │
+│  │ ~/vibecode $ ls█                       │ ← cursor│
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 💬 Digite: ls                     [⏎]  │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Sequência guiada (o aluno digita cada comando):**
+
+```
+PASSO 1:
+Vi: "Digite 'ls' para ver os arquivos aqui."
+Aluno digita: ls
+Resultado:
+  documents/  photos/  projects/
+Vi: "Viu? 3 pastas! 'ls' = LIST (listar). Fácil!"
+
+PASSO 2:
+Vi: "Agora entre na pasta 'projects'. Digite 'cd projects'"
+Aluno digita: cd projects
+Resultado:
+  ~/vibecode/projects $
+Vi: "'cd' = CHANGE DIRECTORY (mudar de pasta). Você entrou!"
+
+PASSO 3:
+Vi: "Crie uma pasta nova: 'mkdir meu-app'"
+Aluno digita: mkdir meu-app
+Resultado:
+  (nada aparece — é normal!)
+Vi: "'mkdir' = MAKE DIRECTORY (criar pasta). Silêncio = sucesso!"
+
+PASSO 4:
+Vi: "Confira se criou! Digite 'ls' de novo."
+Aluno digita: ls
+Resultado:
+  meu-app/
+Vi: "Lá está! Você criou sua primeira pasta pelo terminal! 🎉"
+
+PASSO 5:
+Vi: "Entre nela: 'cd meu-app'"
+Aluno digita: cd meu-app
+Resultado:
+  ~/vibecode/projects/meu-app $
+Vi: "Perfeito! E pra voltar: 'cd ..' (dois pontos = voltar)"
+
+PASSO 6:
+Aluno digita: cd ..
+Resultado:
+  ~/vibecode/projects $
+Vi: "De volta! Você dominou os primeiros comandos! 💪"
+```
+
+---
+
+### FASE 4 — SANDBOX (60 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 DESAFIO LIVRE                                    │
+│                                                     │
+│  Use o terminal simulado para:                      │
+│  ⬜ 1. Listar os arquivos (ls)                      │
+│  ⬜ 2. Criar uma pasta chamada "portfolio"          │
+│  ⬜ 3. Entrar nela                                  │
+│  ⬜ 4. Criar outra pasta dentro: "images"           │
+│  ⬜ 5. Voltar para a pasta anterior                 │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ ~/home $ █                             │         │
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  💡 Não lembra? Pergunte ao Vi!                     │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 5 — QUIZ
+
+```
+🎯 O que o comando 'mkdir' faz?
+
+A) Lista arquivos
+B) Cria uma pasta nova
+C) Apaga um arquivo
+D) Abre o navegador
+```
+
+**Resposta: B**
+
+**Conclusão: +40 XP**
+
+---
+
+---
+
+# MISSÃO 09 — COMANDOS ESSENCIAIS
+
+```
+ID:            m09
+ZONA:          z02 — Ferramentas 🔧
+TEMPO:         9 minutos
+XP:            50
+FASES:         4 (Concept → Interactive Terminal → Challenges → Quiz)
+PRÉ-REQUISITO: M08
+```
+
+---
+
+### FASE 1 — CONCEPT (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  📋 OS 10 COMANDOS QUE VOCÊ PRECISA                 │
+│                                                     │
+│  [Card-deck deslizável — cada card = 1 comando]     │
+│                                                     │
+│  ┌─────────────────────────────────────┐            │
+│  │ 📂 ls                               │            │
+│  │ "Listar" — mostra arquivos e pastas │            │
+│  │ Analogia: Abrir a gaveta e ver o    │            │
+│  │ que tem dentro                      │            │
+│  │                                     │            │
+│  │ Exemplo: ls                         │            │
+│  │ Resultado: fotos/ docs/ app.js      │            │
+│  └─────────────────────────────────────┘            │
+│                                                     │
+│  ◀ Deslize para ver todos os 10 ▶                   │
+│                                                     │
+│  ● ○ ○ ○ ○ ○ ○ ○ ○ ○                               │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Os 10 cards:**
+
+| # | Comando | Nome | Analogia | Exemplo |
+|---|---------|------|----------|---------|
+| 1 | `ls` | Listar | Abrir gaveta e ver o que tem | `ls` → `fotos/ docs/` |
+| 2 | `cd` | Entrar na pasta | Andar pelo corredor até outra sala | `cd projetos` |
+| 3 | `cd ..` | Voltar | Dar meia-volta | `cd ..` |
+| 4 | `mkdir` | Criar pasta | Construir uma sala nova | `mkdir meu-app` |
+| 5 | `touch` | Criar arquivo | Colocar uma folha em branco na mesa | `touch index.html` |
+| 6 | `rm` | Remover arquivo | Jogar no lixo (sem volta!) | `rm teste.txt` |
+| 7 | `pwd` | Onde estou? | Olhar o GPS | `pwd` → `/home/user/projetos` |
+| 8 | `clear` | Limpar tela | Apagar o quadro | `clear` |
+| 9 | `cat` | Ver conteúdo | Abrir e ler um documento | `cat index.html` |
+| 10 | `code .` | Abrir editor | Abrir o laboratório! | `code .` |
+
+---
+
+### FASE 2 — INTERACTIVE TERMINAL (150 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎮 MISSÃO NO TERMINAL                              │
+│                                                     │
+│  Vi diz: "Você recebeu uma missão!                  │
+│  Complete as tarefas em sequência."                  │
+│                                                     │
+│  TAREFAS:                                           │
+│  ⬜ 1. Descubra onde você está (pwd)                │
+│  ⬜ 2. Liste o que tem aqui (ls)                    │
+│  ⬜ 3. Crie uma pasta "meu-site" (mkdir)            │
+│  ⬜ 4. Entre nela (cd)                              │
+│  ⬜ 5. Crie um arquivo "index.html" (touch)         │
+│  ⬜ 6. Confira se o arquivo existe (ls)             │
+│  ⬜ 7. Veja o que tem no arquivo (cat)              │
+│  ⬜ 8. Limpe a tela (clear)                         │
+│  ⬜ 9. Volte uma pasta (cd ..)                      │
+│  ⬜ 10. Liste novamente para ver sua pasta (ls)     │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ ~/home $ █                             │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  💡 Cola de comandos:                               │
+│  ls · cd · mkdir · touch · rm · pwd · clear · cat   │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Cada tarefa completa:**
+- ✅ aparece no checklist
+- Vi dá feedback curto: "✅ Isso! `pwd` mostra seu 'GPS'!"
+- Sons/haptics de confirmação
+
+**Ao completar todas as 10:**
+
+> 💬 **Vi:**
+>
+> **10/10! Você é um ninja do terminal!** 🥷
+>
+> Com esses 10 comandos, você tem 90% do que precisa no dia a dia. Os outros 10% você pergunta pra mim quando precisar! 😄
+
+---
+
+### FASE 3 — CHALLENGES (60 segundos)
+
+```
+🧩 DESAFIO RELÂMPAGO
+
+Para cada descrição, escolha o comando certo:
+
+1. "Quero ver os arquivos desta pasta"
+   [ls]  [cd]  [mkdir]  [rm]
+
+2. "Quero criar uma pasta chamada 'fotos'"
+   [touch]  [mkdir]  [ls]  [cat]
+
+3. "Quero entrar na pasta 'fotos'"
+   [pwd]  [rm]  [cd fotos]  [clear]
+
+4. "Quero criar um arquivo vazio 'foto.jpg'"
+   [mkdir]  [touch foto.jpg]  [cd]  [ls]
+
+5. "Quero saber em que pasta estou"
+   [ls]  [pwd]  [cd]  [cat]
+```
+
+**Respostas:** ls, mkdir, cd fotos, touch foto.jpg, pwd
+
+---
+
+### FASE 4 — QUIZ
+
+```
+🎯 Qual sequência cria uma pasta "app" e
+entra nela?
+
+A) cd app → mkdir app
+B) mkdir app → cd app
+C) touch app → cd app
+D) ls → cd app
+```
+
+**Resposta: B** — Primeiro cria (mkdir), depois entra (cd).
+
+**Conclusão: +50 XP**
+
+---
+
+---
+
+# MISSÃO 10 — VS CODE / CURSOR — SEU LABORATÓRIO
+
+```
+ID:            m10
+ZONA:          z02 — Ferramentas 🔧
+TEMPO:         8 minutos
+XP:            40
+FASES:         5 (Story → Concept → Interactive Tour → Sandbox → Quiz)
+PRÉ-REQUISITO: M09
+```
+
+---
+
+### FASE 1 — STORY (40 segundos)
+
+**Animação:** Vi abrindo uma porta para um laboratório futurista. Dentro, há um editor de código gigante com cores neon, terminal embaixo, e uma IA brilhando na lateral.
+
+> 💬 **Vi:**
+>
+> Todo super-herói precisa de um **quartel-general**. O seu é o **editor de código**!
+>
+> É onde você vai escrever, editar e testar tudo o que criar. E a melhor parte: ele tem IA EMBUTIDA para te ajudar! 🤖
+>
+> Os dois editores mais populares para vibe coding são:
+> - **VS Code** — o clássico (grátis, da Microsoft)
+> - **Cursor** — o turbinado (VS Code + IA nativa)
+>
+> Vamos conhecer seu laboratório!
+
+---
+
+### FASE 2 — CONCEPT (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  💻 ANATOMIA DO EDITOR DE CÓDIGO                    │
+│                                                     │
+│  [IMAGEM INTERATIVA — Toque em cada região]         │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐    │
+│  │ ┌─────┐ ┌─────────────────────────────┐     │    │
+│  │ │     │ │                             │     │    │
+│  │ │  A  │ │           B                 │     │    │
+│  │ │     │ │                             │     │    │
+│  │ │Side │ │      Editor Principal       │     │    │
+│  │ │bar  │ │      (onde o código vive)   │     │    │
+│  │ │     │ │                             │     │    │
+│  │ │     │ │                             │     │    │
+│  │ │     │ ├─────────────────────────────┤     │    │
+│  │ │     │ │           C                 │     │    │
+│  │ │     │ │      Terminal Integrado     │     │    │
+│  │ │     │ │      (aquele da missão 8!)  │     │    │
+│  │ └─────┘ └─────────────────────────────┘     │    │
+│  │              D: Barra inferior              │    │
+│  └─────────────────────────────────────────────┘    │
+│                                                     │
+│  ☝️ Toque em A, B, C ou D para aprender            │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Ao tocar:**
+
+> **A — Sidebar:** "Aqui ficam suas pastas e arquivos. É como o explorador de arquivos do Windows/Mac, mas dentro do editor. Você navega pelo projeto aqui."
+>
+> **B — Editor Principal:** "Onde a magia acontece! Você escreve (ou a IA escreve) código aqui. Ele colore tudo automaticamente para facilitar a leitura — isso se chama 'syntax highlighting'."
+>
+> **C — Terminal Integrado:** "Lembra do terminal da missão anterior? Pois é, ele fica AQUI DENTRO! Não precisa abrir outra janela. Atalho: Ctrl+` (backtick)."
+>
+> **D — Barra Inferior:** "Mostra informações úteis: em que linha você está, a linguagem do arquivo, erros, e mais."
+
+**VS Code vs Cursor:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  ⚖️ VS CODE vs CURSOR                               │
+│                                                     │
+│  ┌──────────────────┐  ┌──────────────────┐         │
+│  │ 💙 VS Code       │  │ 💜 Cursor        │         │
+│  │                  │  │                  │         │
+│  │ ✅ Grátis        │  │ ✅ Grátis (base) │         │
+│  │ ✅ Muito popular │  │ ✅ IA integrada  │         │
+│  │ ✅ Muitas extensões│ │ ✅ Chat com IA   │         │
+│  │ ✅ Confiável     │  │ ✅ Auto-complete │         │
+│  │ ⚠️ IA via extensão│ │    com IA       │         │
+│  │                  │  │ ✅ Baseado no    │         │
+│  │ Bom para:        │  │    VS Code!     │         │
+│  │ Começar,         │  │                  │         │
+│  │ projetos gerais  │  │ Bom para:        │         │
+│  │                  │  │ Vibe coding      │         │
+│  │                  │  │ máximo! 🚀       │         │
+│  └──────────────────┘  └──────────────────┘         │
+│                                                     │
+│  💡 Recomendação do Vi: Comece com CURSOR.          │
+│  É VS Code + superpoderes de IA! 🦸                 │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 3 — INTERACTIVE TOUR (90 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🎮 TOUR INTERATIVO — ATALHOS ESSENCIAIS            │
+│                                                     │
+│  Vi vai te mostrar 5 atalhos que você vai           │
+│  usar TODOS os dias. Pratique cada um!              │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │                                        │         │
+│  │  [Simulação visual do editor]          │         │
+│  │                                        │         │
+│  │  Vi: "Pressione Ctrl+S (Cmd+S no Mac) │         │
+│  │  para SALVAR o arquivo!"              │         │
+│  │                                        │         │
+│  │  [Botão virtual do atalho]             │         │
+│  │                                        │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  ATALHO 1 de 5: ████░░░░░░ 20%                     │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+**Os 5 atalhos (um por vez, com simulação):**
+
+| # | Atalho | Ação | Vi diz |
+|---|--------|------|--------|
+| 1 | `Ctrl+S` | Salvar | "O mais importante! Salve SEMPRE. Se perder código por não salvar... dói. 😅" |
+| 2 | `` Ctrl+` `` | Abrir terminal | "Terminal sem sair do editor! Muito prático." |
+| 3 | `Ctrl+P` | Buscar arquivo | "Tem 50 arquivos? Não precisa clicar em cada um. Busca pelo nome!" |
+| 4 | `Ctrl+Z` | Desfazer | "Errou? Ctrl+Z é a máquina do tempo! Volta quantas vezes quiser." |
+| 5 | `Ctrl+/` | Comentar linha | "Comenta/descomenta uma linha de código. Super útil para testes." |
+
+---
+
+### FASE 4 — SANDBOX (60 segundos)
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  🔨 PRATIQUE!                                        │
+│                                                     │
+│  Vi criou um mini-editor dentro do app.             │
+│  Complete as tarefas usando os atalhos!             │
+│                                                     │
+│  ┌────────────────────────────────────────┐         │
+│  │ 1│ <h1>Olá Mundo!</h1>                │         │
+│  │ 2│ <p>Meu primeiro código</p>         │         │
+│  │ 3│                                    │         │
+│  └────────────────────────────────────────┘         │
+│                                                     │
+│  TAREFAS:                                           │
+│  ⬜ 1. Salve o arquivo (Ctrl+S / Cmd+S)            │
+│  ⬜ 2. Adicione uma linha 3: <p>Feito com Vi!</p>  │
+│  ⬜ 3. Salve novamente                             │
+│  ⬜ 4. Desfaça a última ação (Ctrl+Z)              │
+│  ⬜ 5. Comente a linha 2 (Ctrl+/)                  │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### FASE 5 — QUIZ
+
+```
+🎯 Qual é a diferença principal entre
+VS Code e Cursor?
+
+A) Cursor é pago, VS Code é grátis
+B) Cursor tem IA integrada nativamente
+C) VS Code não funciona no Mac
+D) Cursor não suporta extensões
+```
+
+**Resposta: B**
+
+> ✅ **Exato!** Cursor é basicamente VS Code + IA embutida. Mesmo visual, mesmas extensões, mas com superpoderes de vibe coding! 🦸
+
+---
+
+### CONCLUSÃO DA MISSÃO 10
+
+```
+┌─────────────────────────────────────────────────────┐
+│                                                     │
+│  ⭐⭐⭐ MISSÃO COMPLETA!                             │
+│                                                     │
+│  🤖 Vi diz:                                        │
+│  "Agora você conhece seu laboratório! 🔬            │
+│                                                     │
+│   Nas últimas 10 missões você:                      │
+│   ✅ Entendeu vibe coding                            │
+│   ✅ Conheceu a IA                                   │
+│   ✅ Aprendeu a fazer prompts                        │
+│   ✅ Gerou seu primeiro código                       │
+│   ✅ Leu código sem pânico                           │
+│   ✅ Pediu correções                                 │
+│   ✅ Aprendeu o ciclo completo                       │
+│   ✅ Dominou o terminal                              │
+│   ✅ Conheceu os comandos essenciais                 │
+│   ✅ Explorou o editor de código                     │
+│                                                     │
+│   Próxima missão: instalar tudo isso                │
+│   NO SEU COMPUTADOR de verdade! 💻"                 │
+│                                                     │
+│  +40 XP ⚡                                          │
+│  TOTAL ACUMULADO: 410 XP                            │
+│  NÍVEL ATUAL: 4 — Curioso                           │
+│                                                     │
+│  [▶ PRÓXIMA MISSÃO: Instalando Node.js e Python]    │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📊 RESUMO DAS 10 MISSÕES
+
+```
+┌────┬─────────────────────────────┬──────┬─────┬────────────┐
+│ #  │ MISSÃO                      │TEMPO │ XP  │ TIPO       │
+├────┼─────────────────────────────┼──────┼─────┼────────────┤
+│ 01 │ O que é Vibe Coding         │ 5min │  30 │ Conceitual │
+│ 02 │ A IA como seu Superpoder    │ 6min │  30 │ Conceitual │
+│ 03 │ Seu Primeiro Prompt         │ 7min │  40 │ Prático    │
+│ 04 │ Gerando Código pela 1ª Vez  │ 8min │  40 │ Prático    │
+│ 05 │ Lendo Código sem Pânico     │ 8min │  50 │ Interativo │
+│ 06 │ Pedindo Correções à IA      │ 7min │  40 │ Prático    │
+│ 07 │ O Ciclo Vibe Coding         │ 6min │  50 │ Conceitual │
+│ 08 │ Terminal sem Medo            │ 8min │  40 │ Prático    │
+│ 09 │ Comandos Essenciais          │ 9min │  50 │ Prático    │
+│ 10 │ VS Code / Cursor             │ 8min │  40 │ Interativo │
+├────┼─────────────────────────────┼──────┼─────┼────────────┤
+│    │ TOTAL                       │72min │ 410 │            │
+└────┴─────────────────────────────┴──────┴─────┴────────────┘
+
+TIPOS DE EXERCÍCIO USADOS:
+├── Drag & Drop (ordenar blocos): M01, M03, M07
+├── Verdadeiro/Falso: M01
+├── Classificação: M02
+├── Código interativo (tocar para explorar): M04, M05, M10
+├── Slider/color picker (mudar valores): M05
+├── Terminal simulado: M08, M09
+├── Sandbox com Vi (prompt livre): M02, M03, M04, M06
+├── Quiz múltipla escolha: M01, M04, M05, M06, M08, M09, M10
+└── Checklist de tarefas: M06, M08, M09, M10
+
+CONQUISTAS DESBLOQUEÁVEIS NAS 10 MISSÕES:
+├── 📖 Primeira Lição (M01): +50 XP
+├── 🗣️ Primeiro Contato (M02, primeiro prompt ao Vi): +50 XP
+├── 🔥 Centelha (3 dias seguidos): +50 XP
+└── 🎓 Estudioso (10 missões): +100 XP ← desbloqueia em M10!
+```
+
+---
+

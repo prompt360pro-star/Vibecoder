@@ -1,0 +1,482 @@
+// VibeCode — Schema Completo do Banco de Dados
+// 16 models + enums — PostgreSQL (Neon) via Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ═══════════════════════════════════════
+// ENUMS
+// ═══════════════════════════════════════
+
+enum SubscriptionTier {
+  FREE
+  PRO
+  TEAM
+  LIFETIME
+}
+
+enum MissionStatus {
+  LOCKED
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum IslandLevel {
+  BASIC
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum ViMode {
+  TEACHER
+  BUILDER
+  DETECTIVE
+  REVIEWER
+  CREATIVE
+  QUIZ
+  CONVERSATION
+  SCANNER
+}
+
+enum PostType {
+  ACHIEVEMENT
+  PROJECT
+  PROMPT
+  HELP
+  GENERAL
+}
+
+enum CoopStatus {
+  MATCHING
+  ACTIVE
+  COMPLETED
+  ABANDONED
+}
+
+enum LearningStyle {
+  READING
+  WATCHING
+  DOING
+  TALKING
+}
+
+enum MemoryType {
+  FACT
+  PREFERENCE
+  STRUGGLE
+  PROJECT
+  GOAL
+}
+
+// ═══════════════════════════════════════
+// MODEL: User (central)
+// ═══════════════════════════════════════
+
+model User {
+  id       String @id @default(cuid())
+  clerkId  String @unique
+  email    String @unique
+  name     String?
+  username String? @unique
+  avatarUrl String?
+  bio       String?
+
+  // DNA Profile (resultado do quiz de onboarding)
+  dnaProfile      Json?
+  learningStyle   LearningStyle?
+  dailyTimeGoalMinutes Int @default(15)
+  buildGoals      String[]
+
+  // Gamificação
+  currentLevel  Int @default(1)
+  totalXp       Int @default(0)
+  streakDays    Int @default(0)
+  streakFreezes Int @default(2)
+  longestStreak Int @default(0)
+
+  // Subscrição
+  subscriptionTier     SubscriptionTier @default(FREE)
+  stripeCustomerId     String? @unique
+  stripeSubscriptionId String?
+
+  // Preferências
+  locale         String @default("pt")
+  timezone       String @default("Europe/Lisbon")
+  soundEnabled   Boolean @default(true)
+  hapticsEnabled Boolean @default(true)
+  notifyStreak   Boolean @default(true)
+  notifyNewMission Boolean @default(true)
+  notifySocial   Boolean @default(true)
+  notifyNews     Boolean @default(true)
+
+  // Portfolio
+  openToWork     Boolean @default(false)
+  preferredStack String[]
+
+  // Timestamps
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastActiveAt DateTime @default(now())
+
+  // Relações
+  missionProgress MissionProgress[]
+  achievements    UserAchievement[]
+  streakHistory   StreakDay[]
+  projects        Project[]
+  conversations   ViConversation[]
+  memories        ViMemory[]
+  posts           SocialPost[]
+  likes           PostLike[]
+  comments        PostComment[]
+  sharedPrompts   SharedPrompt[]
+  savedPrompts    SavedPrompt[]
+  certificates    Certificate[]
+  notifications   Notification[]
+  pushTokens      PushToken[]
+  coopSessionsA   CoopSession[] @relation("PlayerA")
+  coopSessionsB   CoopSession[] @relation("PlayerB")
+
+  @@map("users")
+}
+
+// ═══════════════════════════════════════
+// MODEL: MissionProgress
+// ═══════════════════════════════════════
+
+model MissionProgress {
+  id        String @id @default(cuid())
+  userId    String
+  missionId String
+  status    MissionStatus @default(LOCKED)
+  score     Int @default(0)
+  xpEarned  Int @default(0)
+  timeSpentSeconds Int @default(0)
+  attempts  Int @default(0)
+  data      Json?
+  completedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, missionId])
+  @@index([userId])
+  @@index([missionId])
+  @@map("mission_progress")
+}
+
+// ═══════════════════════════════════════
+// MODEL: UserAchievement
+// ═══════════════════════════════════════
+
+model UserAchievement {
+  id            String @id @default(cuid())
+  userId        String
+  achievementId String
+  earnedAt      DateTime @default(now())
+  data          Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, achievementId])
+  @@index([userId])
+  @@map("user_achievements")
+}
+
+// ═══════════════════════════════════════
+// MODEL: StreakDay
+// ═══════════════════════════════════════
+
+model StreakDay {
+  id                String @id @default(cuid())
+  userId            String
+  date              DateTime @db.Date
+  xpEarned          Int @default(0)
+  missionsCompleted Int @default(0)
+  timeSpentMinutes  Int @default(0)
+  freezeUsed        Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@map("streak_days")
+}
+
+// ═══════════════════════════════════════
+// MODEL: Project
+// ═══════════════════════════════════════
+
+model Project {
+  id            String @id @default(cuid())
+  userId        String
+  title         String
+  description   String?
+  type          String?
+  techStack     String[]
+  sourceCodeUrl String?
+  liveUrl       String?
+  thumbnailUrl  String?
+  isPublic      Boolean @default(true)
+  isPortfolio   Boolean @default(false)
+  likesCount    Int @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("projects")
+}
+
+// ═══════════════════════════════════════
+// MODEL: ViConversation
+// ═══════════════════════════════════════
+
+model ViConversation {
+  id         String @id @default(cuid())
+  userId     String
+  mode       ViMode @default(TEACHER)
+  context    String?
+  contextId  String?
+  messages   Json[]
+  modelUsed  String?
+  tokensUsed Int @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([userId, context])
+  @@map("vi_conversations")
+}
+
+// ═══════════════════════════════════════
+// MODEL: ViMemory
+// ═══════════════════════════════════════
+
+model ViMemory {
+  id                   String @id @default(cuid())
+  userId               String
+  type                 MemoryType
+  content              String
+  sourceConversationId String?
+  confidence           Float @default(0.8)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([userId, type])
+  @@map("vi_memories")
+}
+
+// ═══════════════════════════════════════
+// MODEL: SocialPost
+// ═══════════════════════════════════════
+
+model SocialPost {
+  id            String @id @default(cuid())
+  userId        String
+  type          PostType @default(GENERAL)
+  content       String
+  codeBlock     String?
+  attachment    Json?
+  tags          String[]
+  likesCount    Int @default(0)
+  commentsCount Int @default(0)
+
+  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes    PostLike[]
+  comments PostComment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([createdAt(sort: Desc)])
+  @@index([type])
+  @@map("social_posts")
+}
+
+// ═══════════════════════════════════════
+// MODEL: PostLike
+// ═══════════════════════════════════════
+
+model PostLike {
+  id     String @id @default(cuid())
+  userId String
+  postId String
+
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+  @@map("post_likes")
+}
+
+// ═══════════════════════════════════════
+// MODEL: PostComment
+// ═══════════════════════════════════════
+
+model PostComment {
+  id      String @id @default(cuid())
+  userId  String
+  postId  String
+  content String
+
+  user User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post SocialPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("post_comments")
+}
+
+// ═══════════════════════════════════════
+// MODEL: SharedPrompt
+// ═══════════════════════════════════════
+
+model SharedPrompt {
+  id         String @id @default(cuid())
+  userId     String
+  title      String
+  prompt     String
+  category   String?
+  tags       String[]
+  savesCount Int @default(0)
+  usesCount  Int @default(0)
+
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  savedByUsers SavedPrompt[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@map("shared_prompts")
+}
+
+// ═══════════════════════════════════════
+// MODEL: SavedPrompt
+// ═══════════════════════════════════════
+
+model SavedPrompt {
+  id       String @id @default(cuid())
+  userId   String
+  promptId String
+  savedAt  DateTime @default(now())
+
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompt SharedPrompt @relation(fields: [promptId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, promptId])
+  @@map("saved_prompts")
+}
+
+// ═══════════════════════════════════════
+// MODEL: CoopSession
+// ═══════════════════════════════════════
+
+model CoopSession {
+  id          String @id @default(cuid())
+  missionId   String
+  playerAId   String
+  playerBId   String?
+  playerARole String?
+  playerBRole String?
+  status      CoopStatus @default(MATCHING)
+  chatHistory Json[]
+  ratings     Json?
+  startedAt   DateTime @default(now())
+  completedAt DateTime?
+
+  playerA User  @relation("PlayerA", fields: [playerAId], references: [id], onDelete: Cascade)
+  playerB User? @relation("PlayerB", fields: [playerBId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+
+  @@map("coop_sessions")
+}
+
+// ═══════════════════════════════════════
+// MODEL: Certificate
+// ═══════════════════════════════════════
+
+model Certificate {
+  id                String @id @default(cuid())
+  userId            String
+  certificateNumber String @unique
+  level             IslandLevel
+  issuedAt          DateTime @default(now())
+  skills            String[]
+  projects          Json?
+  bossFightScore    Int?
+  totalStudyHours   Float?
+  signatureHash     String?
+  pdfUrl            String?
+  pngUrl            String?
+  isRevoked         Boolean @default(false)
+  metadata          Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("certificates")
+}
+
+// ═══════════════════════════════════════
+// MODEL: Notification
+// ═══════════════════════════════════════
+
+model Notification {
+  id     String @id @default(cuid())
+  userId String
+  type   String
+  title  String
+  body   String
+  data   Json?
+  read   Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("notifications")
+}
+
+// ═══════════════════════════════════════
+// MODEL: PushToken
+// ═══════════════════════════════════════
+
+model PushToken {
+  id       String @id @default(cuid())
+  userId   String
+  token    String @unique
+  platform String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("push_tokens")
+}

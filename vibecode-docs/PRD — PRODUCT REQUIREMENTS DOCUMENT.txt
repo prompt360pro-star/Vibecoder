@@ -1,0 +1,4922 @@
+📋 PRD — PRODUCT REQUIREMENTS DOCUMENT
+VIBECODE — O App Definitivo para Aprender Vibe Coding
+DOCUMENTO MESTRE
+text
+
+Versão:        1.0.0
+Data:          28 Janeiro 2025
+Autor:         Chief Innovation Officer
+Status:        APROVADO PARA DESENVOLVIMENTO
+Classificação: CONFIDENCIAL
+PARTE 1 — VISÃO GERAL DO PRODUTO
+1.1 — SUMÁRIO EXECUTIVO
+text
+
+PROBLEMA:
+Milhões de pessoas querem aprender a programar com IA
+(vibe coding), mas não existe um método estruturado,
+gamificado e prático para aprender do zero ao expert.
+As ferramentas existentes (Codecademy, freeCodeCamp,
+Sololearn) ensinam programação TRADICIONAL, não a nova
+realidade de desenvolvimento assistido por IA.
+
+SOLUÇÃO:
+VibeCode é um aplicativo mobile que ensina vibe coding
+do básico ao expert através de um mentor IA personalizado
+(Vi), missões interativas, projetos reais com deploy, e
+gamificação profunda. O aluno aprende CONSTRUINDO apps
+reais desde o dia 1.
+
+PROPOSTA DE VALOR ÚNICA:
+"Aprenda a construir apps com IA construindo apps com IA."
+O app usa vibe coding como MÉTODO para ensinar vibe coding.
+É meta, prático e viciante.
+
+MERCADO:
+- TAM: $50B (EdTech global)
+- SAM: $8B (Coding education)
+- SOM: $200M (AI-assisted coding education)
+- Crescimento: 35% YoY no segmento IA
+
+TARGET:
+- Pessoas de 18-45 anos
+- Sem experiência em programação OU programadores 
+  querendo aprender IA-assisted development
+- Empreendedores querendo criar seus próprios produtos
+- Profissionais em transição de carreira
+
+MODELO DE NEGÓCIO:
+- Freemium com assinatura PRO ($14.99/mês)
+- Plano anual ($99/ano)
+- Lifetime ($299)
+- Team ($29.99/mês por pessoa)
+1.2 — OBJETIVOS DO PRODUTO
+Objetivos de Negócio (12 meses pós-lançamento)
+text
+
+┌────────────────────────────────────────────────┐
+│ MÉTRICA                │ META           │ PRAZO │
+├────────────────────────┼────────────────┼───────┤
+│ Downloads totais       │ 500.000        │ 12m   │
+│ MAU (Monthly Active)   │ 100.000        │ 12m   │
+│ DAU/MAU ratio          │ >35%           │ 6m    │
+│ Free→Pro conversion    │ >5%            │ 6m    │
+│ MRR                    │ $75.000        │ 12m   │
+│ ARR                    │ $900.000       │ 12m   │
+│ Churn mensal           │ <5%            │ 6m    │
+│ NPS                    │ >50            │ 6m    │
+│ App Store rating       │ >4.7           │ 3m    │
+│ D1/D7/D30 retention    │ 60/40/25%      │ 6m    │
+│ Avg session duration   │ >12min         │ 6m    │
+│ Mission completion rate│ >70%           │ 6m    │
+│ Referral rate          │ >15%           │ 12m   │
+└────────────────────────┴────────────────┴───────┘
+Objetivos do Usuário
+text
+
+PARA O INICIANTE:
+├── Sentir-se capaz de criar algo desde o dia 1
+├── Ter um mentor que nunca perde a paciência
+├── Entender código gerado por IA (não ser "cego")
+├── Publicar seu primeiro projeto na internet em <7 dias
+└── Construir um portfolio real em <3 meses
+
+PARA O INTERMEDIÁRIO:
+├── Dominar frameworks modernos (React, Next.js)
+├── Construir e monetizar um SaaS completo
+├── Integrar IA como feature nos seus produtos
+├── Ter certificações verificáveis
+└── Acelerar 10x sua produtividade com IA
+
+PARA O AVANÇADO/EXPERT:
+├── Dominar system design e arquitetura
+├── Liderar equipes de vibe coders
+├── Construir sistemas distribuídos com IA
+├── Lançar produtos escaláveis
+└── Ser referência na comunidade
+1.3 — PERSONAS
+Persona 1: "Ana, a Empreendedora"
+text
+
+┌─────────────────────────────────────────────────┐
+│ PERFIL                                          │
+│ Nome:        Ana Rodrigues                      │
+│ Idade:       32 anos                            │
+│ Profissão:   Marketing Manager                  │
+│ Localização: São Paulo, SP                      │
+│ Renda:       R$12.000/mês                       │
+│ Tech Level:  Usa apps mas nunca programou        │
+│                                                 │
+│ MOTIVAÇÃO:                                      │
+│ "Tenho uma ideia de app há 2 anos mas não       │
+│  consigo pagar um dev. Quero criar sozinha."     │
+│                                                 │
+│ FRUSTRAÇÕES:                                    │
+│ ├── Já tentou Codecademy, desistiu na semana 3  │
+│ ├── Acha programação "coisa de gênio"           │
+│ ├── Não tem tempo (30min/dia máximo)            │
+│ └── Se sente burra quando vê código             │
+│                                                 │
+│ OBJETIVOS NO APP:                               │
+│ ├── Criar MVP do seu app em 3 meses             │
+│ ├── Validar ideia sem gastar com dev             │
+│ ├── Aprender o suficiente para contratar bem    │
+│ └── Eventualmente criar seu SaaS                │
+│                                                 │
+│ DISPOSITIVO: iPhone 15, MacBook Air              │
+│ HORÁRIO DE USO: 21h-22h (após filhos dormirem)  │
+│ PLANO PROVÁVEL: PRO (anual)                     │
+│                                                 │
+│ CITAÇÃO:                                        │
+│ "Se a IA faz o código, eu só preciso saber      │
+│  o que pedir, certo? Mas preciso aprender       │
+│  a pedir DIREITO."                              │
+└─────────────────────────────────────────────────┘
+Persona 2: "Pedro, o Desenvolvedor Curioso"
+text
+
+┌─────────────────────────────────────────────────┐
+│ PERFIL                                          │
+│ Nome:        Pedro Almeida                      │
+│ Idade:       26 anos                            │
+│ Profissão:   Dev Junior (2 anos exp)            │
+│ Localização: Belo Horizonte, MG                 │
+│ Renda:       R$6.000/mês                        │
+│ Tech Level:  Sabe HTML/CSS/JS básico            │
+│                                                 │
+│ MOTIVAÇÃO:                                      │
+│ "Vejo os seniors usando Cursor e Copilot e      │
+│  fazendo em 1h o que eu faço em 1 dia. Quero    │
+│  aprender a usar IA pra não ficar pra trás."    │
+│                                                 │
+│ FRUSTRAÇÕES:                                    │
+│ ├── Síndrome do impostor                        │
+│ ├── Não sabe por onde começar com IA            │
+│ ├── Tutoriais de YouTube são desorganizados     │
+│ └── Sente que vai perder o emprego pra IA       │
+│                                                 │
+│ OBJETIVOS NO APP:                               │
+│ ├── Dominar Cursor/Copilot                      │
+│ ├── Aprender a integrar IA em projetos          │
+│ ├── Subir de nível pra Pleno/Senior             │
+│ ├── Criar side projects monetizáveis            │
+│ └── Construir portfolio impressionante          │
+│                                                 │
+│ DISPOSITIVO: Samsung Galaxy S24, Linux laptop   │
+│ HORÁRIO DE USO: Almoço (12h) + noite (19h-21h) │
+│ PLANO PROVÁVEL: PRO (mensal, depois anual)      │
+│                                                 │
+│ CITAÇÃO:                                        │
+│ "Não quero que a IA me substitua. Quero usar    │
+│  a IA como meu superpoder."                     │
+└─────────────────────────────────────────────────┘
+Persona 3: "Carlos, o Completo Iniciante"
+text
+
+┌─────────────────────────────────────────────────┐
+│ PERFIL                                          │
+│ Nome:        Carlos Ferreira                    │
+│ Idade:       42 anos                            │
+│ Profissão:   Contador                           │
+│ Localização: Porto Alegre, RS                   │
+│ Renda:       R$8.000/mês                        │
+│ Tech Level:  Usa Excel avançado, zero código    │
+│                                                 │
+│ MOTIVAÇÃO:                                      │
+│ "Vi no TikTok que dá pra criar apps com IA      │
+│  sem saber programar. Será verdade?"            │
+│                                                 │
+│ FRUSTRAÇÕES:                                    │
+│ ├── Acha que é "velho demais" pra aprender      │
+│ ├── Tem medo de tecnologia                      │
+│ ├── Não entende termos em inglês                │
+│ ├── Já foi enganado por curso caro de "programe │
+│ │   em 3 semanas"                               │
+│ └── Quer algo SIMPLES e PRÁTICO                 │
+│                                                 │
+│ OBJETIVOS NO APP:                               │
+│ ├── Criar uma ferramenta para seu escritório    │
+│ ├── Automatizar planilhas chatas                │
+│ ├── Entender o que seu sobrinho dev fala        │
+│ └── Hobby: criar sites para amigos              │
+│                                                 │
+│ DISPOSITIVO: iPhone 13, Windows 11              │
+│ HORÁRIO DE USO: Manhã cedo (6h-7h)             │
+│ PLANO PROVÁVEL: FREE → LIFETIME (se gostar)    │
+│                                                 │
+│ CITAÇÃO:                                        │
+│ "Eu não quero ser programador. Quero resolver   │
+│  meus problemas com tecnologia."                │
+└─────────────────────────────────────────────────┘
+Persona 4: "Julia, a Tech Lead"
+text
+
+┌─────────────────────────────────────────────────┐
+│ PERFIL                                          │
+│ Nome:        Julia Santos                       │
+│ Idade:       35 anos                            │
+│ Profissão:   Tech Lead (8 anos exp)             │
+│ Localização: Remoto (Florianópolis, SC)         │
+│ Renda:       R$25.000/mês                       │
+│ Tech Level:  Expert em programação tradicional  │
+│                                                 │
+│ MOTIVAÇÃO:                                      │
+│ "Preciso treinar meu time de 12 devs a usar     │
+│  IA de forma consistente e produtiva."          │
+│                                                 │
+│ FRUSTRAÇÕES:                                    │
+│ ├── Cada dev usa IA de um jeito diferente       │
+│ ├── Não existe padrão de qualidade com IA       │
+│ ├── Juniors estão gerando código ruim com IA    │
+│ ├── Precisa de métricas de aprendizado          │
+│ └── Cursos existentes não focam em AI workflow  │
+│                                                 │
+│ OBJETIVOS NO APP:                               │
+│ ├── Treinar o time inteiro                      │
+│ ├── Estabelecer padrões de vibe coding          │
+│ ├── Dashboard com progresso de cada membro      │
+│ ├── Trilhas customizadas por role               │
+│ └── Certificações para o time                   │
+│                                                 │
+│ DISPOSITIVO: MacBook Pro M3, iPhone 15 Pro      │
+│ HORÁRIO DE USO: Reuniões de team (10h-12h)      │
+│ PLANO PROVÁVEL: TEAM ($29.99/pessoa/mês)        │
+│                                                 │
+│ CITAÇÃO:                                        │
+│ "Preciso que TODOS no meu time saibam pilotar   │
+│  IA, não só os early adopters."                 │
+└─────────────────────────────────────────────────┘
+1.4 — PRINCÍPIOS DE DESIGN DO PRODUTO
+text
+
+1. CONSTRUA DESDE O DIA 1
+   O aluno nunca fica mais de 10 minutos sem
+   FAZER algo prático. Teoria é veículo, não destino.
+
+2. FALHAR É APRENDER
+   Erros são celebrados como oportunidade.
+   Vi nunca julga. Vi guia.
+
+3. PROGRESSÃO VISÍVEL
+   O aluno SENTE seu progresso a cada sessão.
+   XP, streak, badges, projetos no portfolio.
+
+4. ADAPTATIVO, NÃO GENÉRICO
+   O app se adapta ao ritmo, estilo e objetivo
+   de cada aluno. Dois alunos nunca têm a mesma
+   experiência exata.
+
+5. REAL, NÃO SIMULADO
+   Os projetos vão para a internet real.
+   O portfolio é um site real. Os pagamentos
+   são reais. Nada de "faz de conta".
+
+6. MOBILE-FIRST, ANYWHERE
+   Aprenda no ônibus, no sofá, na fila.
+   Código longo é no desktop, mas conceitos
+   e prática cabem no bolso.
+
+7. SOCIAL BY DESIGN
+   Aprender sozinho é difícil. Aprender com
+   comunidade é sustentável. Co-op, ranking,
+   ajuda mútua.
+
+8. RESPEITE O TEMPO
+   Se o aluno tem 10 minutos, dê valor em 10min.
+   Se tem 2 horas, não bloqueie o fluxo.
+   Sessões de 5min a 2h são igualmente válidas.
+1.5 — ESCOPO POR FASE
+text
+
+┌────────────────────────────────────────────────────────┐
+│                                                        │
+│  FASE 1 — MVP (3 meses)                               │
+│  "Provar que funciona"                                 │
+│                                                        │
+│  FASE 2 — CRESCIMENTO (3 meses)                        │
+│  "Escalar usuários"                                    │
+│                                                        │
+│  FASE 3 — EXPANSÃO (3 meses)                           │
+│  "Expandir features"                                   │
+│                                                        │
+│  FASE 4 — EXPERT (3 meses)                             │
+│  "Conteúdo expert + enterprise"                        │
+│                                                        │
+│  FASE 5 — ESCALA (contínuo)                            │
+│  "Plataforma e marketplace"                            │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+PARTE 2 — PRD FASE 1 (MVP)
+2.1 — VISÃO DA FASE 1
+text
+
+OBJETIVO: Lançar versão mínima que prove a hipótese:
+"Pessoas sem experiência conseguem construir e publicar
+um app funcional usando vibe coding em menos de 2 semanas,
+guiadas por um mentor IA."
+
+DURAÇÃO: 12 semanas (3 meses)
+EQUIPE: 4-6 pessoas
+BUDGET: $80.000-120.000
+
+ENTREGAS:
+├── App iOS + Android (Expo)
+├── 30 missões interativas (Ilha Básico completa)
+├── Vi (mentor IA) com chat texto
+├── Sandbox de código básico
+├── Sistema de XP, streak e badges
+├── Onboarding + DNA Test
+├── Auth (signup/login)
+├── Deploy funcional (aluno publica app real)
+├── Landing page + waitlist
+└── Backend API + Database
+
+NÃO INCLUÍDO NO MVP:
+├── Voice mode
+├── Scan & Learn
+├── Co-op missions
+├── Speed runs
+├── Lab mode
+├── Vibe News
+├── Portfolio auto-gerado (versão simples apenas)
+├── Certificados verificáveis
+├── Team plan
+├── Forked paths
+└── Ilha 2, 3, 4
+2.2 — REQUISITOS FUNCIONAIS (FASE 1)
+EPIC 1: Autenticação e Onboarding
+text
+
+EPIC: AUTH-ONBOARD
+PRIORIDADE: P0 (Blocker)
+SPRINT: 1-2
+
+────────────────────────────────────────────
+
+US-001: Splash Screen
+COMO usuário
+QUERO ver a tela de abertura do app
+PARA saber que o app está carregando
+
+Critérios de Aceite:
+├── Logo VibeCode centralizado com animação fade-in
+├── Tagline "Code the future. Ride the vibe."
+├── Duração máxima: 2 segundos
+├── Transição suave para tela de login/onboarding
+├── Se já logado, redireciona para Home
+└── Funciona offline (assets locais)
+
+Specs:
+├── Animação: Lottie, 2s, ease-out
+├── Logo: SVG, 120x120px centralizado
+├── BG: #0A0A0F
+├── Tagline: Inter 16px, #888
+└── Transition: fade, 300ms
+
+────────────────────────────────────────────
+
+US-002: Onboarding Screens (3 telas)
+COMO novo usuário
+QUERO entender o que é o VibeCode
+PARA decidir se quero continuar
+
+Critérios de Aceite:
+├── 3 telas swipáveis horizontalmente
+├── Cada tela tem: ilustração animada + título + descrição
+├── Indicador de página (dots) na parte inferior
+├── Botão "Pular" no canto superior direito
+├── Última tela tem CTA "Descobrir meu DNA"
+├── Se já viu onboarding, não mostrar novamente
+├── Animações Lottie em cada tela
+└── Suporta swipe left/right e tap nos dots
+
+Specs:
+├── Tela 1: "Fale o que quer. A IA constrói."
+│   └── Lottie: pessoa falando com IA
+├── Tela 2: "Conheça o Vi. Seu mentor pessoal."
+│   └── Lottie: Vi (mascote) evoluindo
+├── Tela 3: "Sua jornada. Seus projetos reais."
+│   └── Lottie: mapa com ilhas
+├── Skip button: 14px, #888, top-right
+├── Dots: 8px, active=#8B5CF6, inactive=#333
+├── CTA: h:56px, gradient purple→blue
+└── Persist: AsyncStorage key "onboarding_seen"
+
+────────────────────────────────────────────
+
+US-003: Signup / Login
+COMO novo usuário
+QUERO criar uma conta
+PARA salvar meu progresso
+
+Critérios de Aceite:
+├── Login com Email + Senha
+├── Login com Google (OAuth)
+├── Login com Apple (obrigatório para iOS)
+├── Login com GitHub (relevante para público dev)
+├── Validação de email em tempo real
+├── Senha: mínimo 8 caracteres
+├── Confirmação de email (magic link OU código)
+├── "Esqueci minha senha" funcional
+├── Termos de Uso e Política de Privacidade linkados
+├── Loading state em todos os botões
+├── Error states com mensagens claras em PT-BR
+├── Rate limiting: máximo 5 tentativas por minuto
+├── Redirect para DNA Test após primeiro signup
+└── Redirect para Home após login subsequente
+
+Specs:
+├── Provider: Clerk
+├── Social OAuth: Google, Apple, GitHub
+├── Session: JWT com refresh token
+├── Expiry: 30 dias (remember me default)
+├── Storage: Clerk + SecureStore (Expo)
+└── Error messages: mapeadas em PT-BR
+
+Dependências:
+├── Clerk SDK (expo-clerk)
+├── expo-auth-session
+├── expo-secure-store
+└── expo-web-browser
+
+────────────────────────────────────────────
+
+US-004: DNA Test (Quiz Adaptativo)
+COMO novo usuário
+QUERO responder perguntas sobre mim
+PARA receber uma trilha personalizada
+
+Critérios de Aceite:
+├── 10 perguntas sequenciais
+├── Cards swipáveis com ilustrações
+├── Progress bar no topo (0-100%)
+├── Cada pergunta tem 3-5 opções visuais
+├── Transição animada entre perguntas
+├── Não é possível pular perguntas
+├── Botão "Voltar" para corrigir respostas
+├── Respostas salvas no backend
+├── Resultado gera perfil com:
+│   ├── Tipo de aprendiz (Criador/Explorador/Analítico)
+│   ├── Nível inicial sugerido
+│   ├── Tempo estimado por nível
+│   ├── Projeto principal sugerido
+│   └── Avatar Vi inicial
+├── Tela de resultado com animação do perfil
+├── CTA "Ver minha trilha" → Home
+├── Tempo máximo estimado: 3 minutos
+└── Pode refazer via Settings
+
+Specs:
+├── Perguntas: definidas em JSON estático (V1)
+├── Algoritmo de classificação:
+│   ├── Pontuação por eixo: tech_level, style, 
+│   │   goal, time, device
+│   ├── Cluster: Criador (build-focused), 
+│   │   Explorador (breadth-focused), 
+│   │   Analítico (depth-focused)
+│   └── Stored in: users.dna_profile (JSONB)
+├── Animation: card flip, 300ms
+├── Progress: animated bar, gradient purple→cyan
+└── Result: Lottie celebration, 2s
+
+Perguntas (V1):
+Q1:  Relação com tecnologia (4 opções)
+Q2:  Experiência com programação (4 opções)
+Q3:  Reação ao ver código (4 opções)
+Q4:  Experiência com ChatGPT/IA (4 opções)
+Q5:  O que quer construir (8 opções, multi-select)
+Q6:  Como aprende melhor (4 opções)
+Q7:  Tempo diário disponível (4 opções)
+Q8:  Objetivo principal (4 opções)
+Q9:  Sistema operacional (4 opções)
+Q10: Área atual de trabalho (6 opções + outro)
+
+────────────────────────────────────────────
+
+US-005: Logout
+COMO usuário logado
+QUERO sair da minha conta
+PARA proteger minha privacidade
+
+Critérios de Aceite:
+├── Botão em Settings
+├── Confirmação: "Tem certeza?"
+├── Limpa session local
+├── Redireciona para tela de Login
+├── NÃO apaga dados do servidor
+└── Mantém cache local por 30 dias
+
+────────────────────────────────────────────
+
+US-006: Delete Account
+COMO usuário
+QUERO excluir minha conta permanentemente
+PARA exercer meu direito LGPD/GDPR
+
+Critérios de Aceite:
+├── Botão em Settings (fundo da página)
+├── Requer confirmação com digitação "EXCLUIR"
+├── Requer senha atual
+├── Envia email de confirmação
+├── Soft delete: marca como deleted, executa 
+│   hard delete em 30 dias
+├── Permite cancelar exclusão em 30 dias
+├── Remove dados pessoais do banco
+├── Mantém dados anonimizados para analytics
+└── Notifica via email que conta foi excluída
+EPIC 2: Home e Navegação
+text
+
+EPIC: HOME-NAV
+PRIORIDADE: P0 (Blocker)
+SPRINT: 2-3
+
+────────────────────────────────────────────
+
+US-007: Tab Bar (Navegação Principal)
+COMO usuário
+QUERO navegar entre as seções do app
+PARA acessar diferentes funcionalidades
+
+Critérios de Aceite:
+├── 5 tabs: Home, Trilha, Vi, Social, Perfil
+├── Ícones Phosphor Icons com label
+├── Tab ativa: ícone preenchido + cor accent
+├── Tab inativa: ícone outline + #666
+├── Safe area respeitada (bottom)
+├── Haptic feedback ao trocar de tab
+├── Mantém estado de cada tab (não recarrega)
+├── Badge de notificação no Social (count)
+├── Animação sutil na troca (cross-fade)
+└── Tab bar oculta em telas de foco (missão, editor)
+
+Specs:
+├── Height: 49px + 34px safe area = 83px total
+├── BG: #111118
+├── Border-top: 1px #222222
+├── Active color: #8B5CF6
+├── Inactive color: #666666
+├── Label: 10px Inter Medium
+├── Icon size: 24px
+├── Haptic: impactLight
+└── Implementation: Expo Router Tab Layout
+
+────────────────────────────────────────────
+
+US-008: Home Screen (Mapa de Ilhas)
+COMO usuário
+QUERO ver meu progresso visual no mapa
+PARA saber onde estou e o que vem a seguir
+
+Critérios de Aceite:
+├── Mapa visual estilo RPG/jogo de aventura
+├── 4 ilhas visíveis (1 desbloqueada no MVP)
+├── Ilha 1 (Básico) ativa com indicador "Você está aqui"
+├── Ilhas 2-4 com ícone de cadeado e aspecto nebuloso
+├── Header com: streak 🔥, XP ⚡, nível/avatar
+├── Toque na ilha ativa → expande com lista de zonas
+├── Toque em ilha bloqueada → modal explicando requisito
+├── Scroll vertical para navegar entre ilhas
+├── Nuvens animadas e ondas do mar (atmosfera)
+├── Pull-to-refresh atualiza dados do servidor
+├── Daily challenge banner no topo (se disponível)
+└── Loading skeleton enquanto carrega dados
+
+Specs:
+├── BG: #0A0A0F
+├── Mapa: SVG ou Canvas com Skia
+├── Ilhas: Lottie animations
+│   ├── Básico: ilha tropical verde-água
+│   ├── Intermediário: montanha azul-roxo
+│   ├── Avançado: vulcão roxo-vermelho
+│   └── Expert: planeta/estação espacial dourado
+├── Locked: opacity:0.4 + blur(4px)
+├── Current: pulsing glow #8B5CF6
+├── Stats header: sticky, h:60px, bg:blur(20px)
+├── "Você está aqui": animated pin, bouncing
+└── Performance: 60fps scroll, lazy load assets
+
+Dados carregados:
+├── user.current_level
+├── user.total_xp
+├── user.streak_days
+├── island_progress (missions completed/total)
+├── daily_challenge (if available)
+└── notifications_count
+
+────────────────────────────────────────────
+
+US-009: Zona Expandida (Missões de uma Zona)
+COMO usuário
+QUERO ver as missões de cada zona
+PARA escolher o que estudar
+
+Critérios de Aceite:
+├── Ao tocar numa zona, abre lista de missões
+├── Cada missão mostra: ícone de status, título, XP
+├── Status: ✅ completa, 🔵 atual, ⬜ disponível, 🔒 locked
+├── Mini-projeto ao final da zona destacado visualmente
+├── Zona title + progress bar no topo
+├── Scroll vertical dentro da zona
+├── Toque em missão disponível → abre missão
+├── Toque em missão completa → abre em modo review
+├── Toque em missão locked → tooltip "Complete X primeiro"
+├── Animação de abertura: slide-up com spring
+└── Botão fechar ou swipe-down para voltar ao mapa
+
+Specs:
+├── Container: bottom sheet, 80% height
+├── Animation: spring(damping:20, stiffness:150)
+├── Mission item: h:64px, padding:16px
+├── Status icons:
+│   ├── Complete: #22C55E checkmark filled
+│   ├── Current: #3B82F6 circle filled (pulsing)
+│   ├── Available: #555 circle outline
+│   └── Locked: #333 lock icon
+├── XP badge: right-aligned, #F59E0B
+├── Mini-project: highlighted card, border gradient
+└── Progress bar: h:4px, gradient zone color
+EPIC 3: Sistema de Missões
+text
+
+EPIC: MISSIONS
+PRIORIDADE: P0 (Blocker)
+SPRINT: 3-6
+
+────────────────────────────────────────────
+
+US-010: Missão — Fase 1: História (Context)
+COMO aluno
+QUERO entender POR QUE vou aprender este conceito
+PARA estar motivado e ter contexto
+
+Critérios de Aceite:
+├── Tela com ilustração animada (Lottie ou imagem)
+├── Vi (mascote) introduz o conceito com analogia
+├── Linguagem adaptada ao nível do DNA Test
+├── Texto máximo: 100 palavras
+├── Ilustração ocupa 40% da tela
+├── Botão "Continuar" na parte inferior
+├── Tempo estimado: 30 segundos
+├── NavBar: título da missão + número
+├── Pode voltar para missão anterior
+└── Animação de entrada: fade-in staggered
+
+Specs:
+├── Layout: illustration (40%) + text (40%) + CTA (20%)
+├── Vi bubble: bg:#1A1A2E, rounded:16px, padding:16px
+├── Vi avatar: 32px, left-aligned
+├── Text: 16px Inter, #CCCCCC, line-height:24px
+├── CTA: full-width, h:52px, gradient
+├── Illustration: Lottie, max 200KB
+└── Content source: missions.json (static V1)
+
+────────────────────────────────────────────
+
+US-011: Missão — Fase 2: Conceito Visual
+COMO aluno
+QUERO ver o conceito explicado visualmente
+PARA entender sem precisar ler muito texto
+
+Critérios de Aceite:
+├── Código ou conceito exibido com cores interativas
+├── Cada parte do código tem uma cor diferente
+├── Toque em parte colorida → popup com explicação
+├── Animações de destaque ao tocar
+├── Analogia visual (diagrama, metáfora ilustrada)
+├── Máximo 3 conceitos por tela
+├── Botão "Entendi" para avançar
+├── Vi aparece com dica contextual se demorar >30s
+└── Acessível: alto contraste nas cores
+
+Specs:
+├── Code block: bg:#0A0A0F, font:JetBrains Mono 14px
+├── Highlighted parts: colored spans with onPress
+├── Colors:
+│   ├── Keywords (function, return): #C792EA (purple)
+│   ├── Parameters: #82AAFF (blue)
+│   ├── Strings: #C3E88D (green)
+│   ├── Numbers: #F78C6C (orange)
+│   └── Comments: #546E7A (gray)
+├── Popup: bottom sheet, h:auto, bg:#1A1A2E
+├── Diagram: SVG with animated arrows
+└── Vi hint: appears after 30s idle, gentle animation
+
+────────────────────────────────────────────
+
+US-012: Missão — Fase 3: Exercício Interativo
+COMO aluno
+QUERO praticar o conceito com exercício
+PARA fixar o aprendizado
+
+Tipos de exercícios (V1):
+├── DRAG_AND_DROP: Arrastar blocos de código na ordem
+├── FILL_IN_BLANK: Preencher espaços no código
+├── MULTIPLE_CHOICE: Escolher resposta correta
+├── TRUE_FALSE: Verdadeiro ou falso sobre código
+├── MATCH_PAIRS: Conectar conceito → definição
+└── SPOT_THE_BUG: Identificar erro no código
+
+Critérios de Aceite (gerais):
+├── Instrução clara no topo
+├── Área de exercício no centro
+├── Feedback imediato (certo ✅ / errado ❌)
+├── Se errar: Vi explica por quê (popup)
+├── Máximo 3 tentativas antes de dar a resposta
+├── Haptic feedback: sucesso/erro
+├── Som: sucesso (ding) / erro (subtle buzz)
+├── XP parcial: 100% na primeira, 66% na segunda, 33% na terceira
+├── Hint disponível (reduz XP em 20%)
+├── Animação de celebração ao acertar
+└── Tempo de resolução tracked (analytics)
+
+Specs por tipo:
+
+DRAG_AND_DROP:
+├── Blocos: h:44px, bg:#1E1E3A, rounded:12px
+├── Drop zones: dashed border #555, rounded:12px
+├── Active drag: scale(1.05), shadow, haptic
+├── Correct drop: green flash, snap animation
+├── Wrong drop: red flash, bounce back
+└── Implementation: react-native-reanimated + gesture-handler
+
+FILL_IN_BLANK:
+├── Code with _____ gaps
+├── Keyboard: custom code keyboard with suggestions
+├── Auto-complete after 3 characters
+├── Case-sensitive matching
+└── Partial credit for close answers
+
+MULTIPLE_CHOICE:
+├── 4 options, single select
+├── Options: h:52px, bg:#1A1A2E, rounded:12px
+├── Selected: border:#8B5CF6
+├── Correct: bg:#22C55E/20, border:#22C55E
+├── Wrong: bg:#EF4444/20, border:#EF4444
+└── Explanation appears after selection
+
+────────────────────────────────────────────
+
+US-013: Missão — Fase 4: Sandbox Prático
+COMO aluno
+QUERO escrever/gerar código real
+PARA aplicar o que aprendi
+
+Critérios de Aceite:
+├── Editor de código embutido (Sandpack/CodeMirror)
+├── Instrução clara: "Peça ao Vi para criar X"
+├── Campo de input para prompt (pedir ao Vi)
+├── Vi gera código baseado no prompt
+├── Código aparece no editor com animação de digitação
+├── Botão "▶ Rodar" executa o código
+├── Output/Preview visível abaixo do editor
+├── Se erro: mensagem de erro legível + Vi oferece fix
+├── Aluno pode editar código manualmente
+├── Botão "Resetar" volta ao estado inicial
+├── Botão "Copiar" copia código
+├── Validação automática: checa se requisitos foram atendidos
+├── Ao completar: animação de sucesso + XP
+├── Tempo tracking (sem limite, mas tracked)
+└── Vi disponível para perguntas durante sandbox
+
+Specs:
+├── Editor:
+│   ├── Component: Sandpack (client-side execution)
+│   ├── Languages V1: HTML, CSS, JavaScript
+│   ├── Theme: Dracula
+│   ├── Font: JetBrains Mono 13px
+│   ├── Line numbers: visible
+│   ├── Min height: 200px
+│   ├── Max height: 60% screen
+│   └── Resizable: drag divider
+├── Preview:
+│   ├── WebView (Sandpack preview)
+│   ├── Console output visible
+│   └── Error overlay
+├── Vi integration:
+│   ├── Context: current mission + code state
+│   ├── Model: Claude 3.5 Sonnet (V1)
+│   ├── Max tokens: 1000 per response
+│   ├── Streaming: true (typewriter effect)
+│   └── Rate limit: 30 requests/hour (free)
+├── Validation:
+│   ├── Rules defined in mission config
+│   ├── Types: output_match, code_contains, 
+│   │   function_exists, renders_element
+│   └── Auto-check on "Run"
+└── Execution: client-side (Sandpack), no server needed
+
+────────────────────────────────────────────
+
+US-014: Missão — Conclusão e XP
+COMO aluno
+QUERO ver meu resultado ao completar uma missão
+PARA sentir progresso e motivação
+
+Critérios de Aceite:
+├── Tela de celebração com confetti (Lottie)
+├── XP ganho com animação de contagem
+├── Estrelas: 1-3 baseado em performance
+│   ├── ⭐: Completou (com ajuda ou múltiplas tentativas)
+│   ├── ⭐⭐: Bom (máximo 1 erro)
+│   └── ⭐⭐⭐: Perfeito (primeira tentativa)
+├── Streak atualizado (se primeira ação do dia)
+├── Botão "Próxima Missão"
+├── Botão "Revisar" (refazer para melhorar estrelas)
+├── Unlock animation se próxima missão foi desbloqueada
+├── Badge popup se conquista foi desbloqueada
+├── Dados salvos no servidor imediatamente
+├── Funciona offline (sync quando online)
+└── Share button (captura screenshot do resultado)
+
+Specs:
+├── Confetti: Lottie, 3s, full screen
+├── XP counter: animated count-up, 1.5s
+├── Stars: scale animation, 0.5s each, staggered
+├── Sound: success jingle (0.5s)
+├── Haptic: notificationSuccess
+├── Streak badge: flame animation (Lottie, 2s)
+├── Next mission unlock: slide-in from right
+├── Achievement popup: modal, 3s auto-dismiss
+├── Save: PATCH /api/missions/{id}/complete
+│   └── Body: { score, stars, time_seconds, xp }
+└── Offline: queue with expo-task-manager
+EPIC 4: Vi (Mentor IA)
+text
+
+EPIC: VI-MENTOR
+PRIORIDADE: P0 (Blocker)
+SPRINT: 3-5
+
+────────────────────────────────────────────
+
+US-015: Vi Chat Interface
+COMO aluno
+QUERO conversar com o Vi por texto
+PARA tirar dúvidas e receber ajuda
+
+Critérios de Aceite:
+├── Interface de chat familiar (estilo iMessage/WhatsApp)
+├── Bolhas de chat: Vi (esquerda), Usuário (direita)
+├── Campo de input com botão enviar
+├── Sugestões rápidas (chips) abaixo do input:
+│   ├── "Explica de novo"
+│   ├── "Dá um exemplo"
+│   ├── "Me testa"
+│   └── "Próxima lição"
+├── Vi digita com animação (3 dots pulsing)
+├── Respostas em streaming (typewriter effect)
+├── Vi pode enviar:
+│   ├── Texto formatado (markdown renderizado)
+│   ├── Blocos de código (syntax highlighted)
+│   ├── Ilustrações (geradas ou predefinidas)
+│   └── Links para missões relacionadas
+├── Histórico de conversa mantido por sessão
+├── Novo botão "Nova conversa" para limpar contexto
+├── Vi se adapta ao nível do usuário (tom e vocabulário)
+├── Vi tem personalidade: simpático, paciente, encorajador
+├── Vi NUNCA dá respostas condescendentes
+├── Vi admite quando não sabe algo
+├── Vi redireciona para missões quando apropriado
+├── Rate limit: 
+│   ├── Free: 5 mensagens/dia
+│   └── Pro: ilimitado
+├── Loading state se API demorar >3s
+├── Error handling: retry automático + mensagem amigável
+├── Funciona em modo standalone E dentro de missões
+└── Código copiável com botão dedicado
+
+Specs:
+├── Chat UI:
+│   ├── Vi bubble: bg:#1A1A2E, rounded:16px, tl:4px
+│   ├── User bubble: bg:#8B5CF6/20, rounded:16px, tr:4px
+│   ├── Vi avatar: 32px, rounded:full, left
+│   ├── Timestamp: 11px, #555, below bubble
+│   ├── Code block inside bubble: bg:#0A0A0F, rounded:8px
+│   ├── Copy code button: absolute top-right of code block
+│   └── Markdown: rendered with react-native-markdown
+├── Input:
+│   ├── Height: 44px (expandable to 120px)
+│   ├── BG: #1A1A2E
+│   ├── Rounded: 22px (pill shape)
+│   ├── Send button: #8B5CF6, right, 36px
+│   ├── Placeholder: "Pergunte ao Vi..."
+│   └── Microphone icon (future, disabled V1)
+├── Suggestions:
+│   ├── Horizontal scroll
+│   ├── Chip: h:36px, bg:#1E1E3A, rounded:full
+│   └── Max 4-6 visible
+├── AI Backend:
+│   ├── Provider: Anthropic (Claude 3.5 Sonnet)
+│   ├── Streaming: Server-Sent Events
+│   ├── System prompt: see US-015-PROMPT below
+│   ├── Context window: 
+│   │   ├── System prompt (~1000 tokens)
+│   │   ├── User profile summary (~200 tokens)
+│   │   ├── Current mission context (~500 tokens)
+│   │   ├── Last 10 messages (~2000 tokens)
+│   │   └── Total: ~3700 tokens input
+│   ├── Max output: 1500 tokens
+│   ├── Temperature: 0.7
+│   ├── Timeout: 30s
+│   └── Fallback: pre-written responses for common Qs
+├── Storage:
+│   ├── Conversations: PostgreSQL (vi_conversations table)
+│   ├── Messages: JSONB array in conversation record
+│   ├── Retention: 90 days
+│   └── Max conversations: 100 per user (FIFO)
+└── Rate limiting:
+    ├── Free: 5 msg/day (reset at midnight UTC)
+    ├── Pro: 100 msg/day (soft limit, warn at 80)
+    ├── Counter: Redis (Upstash)
+    └── UI: show remaining count to free users
+
+────────────────────────────────────────────
+
+US-015-PROMPT: System Prompt do Vi (V1)
+
+"""
+Você é o Vi, o mentor de vibe coding do app VibeCode.
+
+PERSONALIDADE:
+- Simpático, paciente e encorajador
+- Usa analogias do dia a dia para explicar conceitos
+- Usa emojis com moderação (1-2 por mensagem)
+- Nunca é condescendente ou assume que o aluno é burro
+- Celebra pequenas vitórias
+- Admite quando não sabe algo
+- Tem senso de humor leve
+
+CONTEXTO DO ALUNO:
+- Nome: {user.name}
+- Nível: {user.current_level}
+- Perfil DNA: {user.dna_profile.type}
+- Missão atual: {current_mission.title} (se aplicável)
+- Skills aprendidas: {completed_skills}
+- Objetivo: {user.dna_profile.goal}
+
+REGRAS:
+1. SEMPRE responda em português brasileiro
+2. Adapte a complexidade ao nível do aluno
+3. Se o aluno está no nível básico, NÃO use jargão sem explicar
+4. Se o aluno está em nível avançado, seja técnico e direto
+5. Quando mostrar código, SEMPRE inclua comentários explicativos
+6. Limite respostas a 300 palavras (seja conciso)
+7. Se perguntarem algo fora de programação/tech, redirecione gentilmente
+8. Se o aluno parecer frustrado, encoraje e simplifique
+9. Sugira missões relevantes quando apropriado
+10. NUNCA gere código malicioso, inseguro ou com más práticas
+11. Se não souber, diga "Não tenho certeza, mas posso pesquisar!" e sugira docs
+12. Use formatação markdown para organizar respostas longas
+
+FORMATO DE RESPOSTA:
+- Comece com o ponto principal
+- Use listas quando houver múltiplos pontos
+- Código em blocos ```linguagem
+- Termine com pergunta ou sugestão de próximo passo
+"""
+
+────────────────────────────────────────────
+
+US-016: Vi Contextual (Dentro de Missões)
+COMO aluno
+QUERO pedir ajuda ao Vi DURANTE uma missão
+PARA entender algo sem sair da missão
+
+Critérios de Aceite:
+├── Botão "🤖 Vi" disponível em todas as fases da missão
+├── Abre chat em bottom sheet (50% da tela)
+├── Vi já tem contexto da missão atual
+├── Vi pode:
+│   ├── Explicar o conceito da fase atual
+│   ├── Dar dica para o exercício
+│   ├── Explicar por que a resposta está errada
+│   ├── Gerar código de exemplo
+│   └── Sugerir próximo passo
+├── Dica via Vi reduz XP potencial em 10% (máx 3 dicas)
+├── Aviso: "Pedir ajuda reduz XP em 10%. Continuar?"
+├── Fechar bottom sheet preserva estado da missão
+├── Chat contextual é separado do chat geral
+└── Histórico da conversa contextual salvo com a missão
+
+Specs:
+├── Bottom sheet: 50% height, drag to expand/collapse
+├── Context injected:
+│   ├── mission_title
+│   ├── mission_phase (1-4)
+│   ├── current_exercise (if applicable)
+│   ├── user_answer (if applicable)
+│   └── correct_answer (hidden from user, available to AI)
+├── Additional system prompt:
+│   "O aluno está na missão '{mission_title}', 
+│    fase {phase}. Exercício: {exercise_description}.
+│    Ajude sem dar a resposta direta. Guie o raciocínio."
+└── XP penalty tracked in mission_progress.data
+EPIC 5: Sandbox / Playground
+text
+
+EPIC: SANDBOX
+PRIORIDADE: P1 (Important)
+SPRINT: 4-6
+
+────────────────────────────────────────────
+
+US-017: Sandbox Standalone
+COMO aluno
+QUERO ter um playground para experimentar código
+PARA praticar livremente fora das missões
+
+Critérios de Aceite:
+├── Acessível via tab "Trilha" → seção "Sandbox"
+├── Selector de linguagem: HTML/CSS/JS (V1)
+├── Templates iniciais: Vazio, Hello World, Starter
+├── Editor de código com syntax highlighting
+├── Botão "▶ Rodar" → executa e mostra preview
+├── Preview renderizado abaixo do editor
+├── Console de output (logs, errors)
+├── Botão "🤖 Vi" → pedir código ao Vi
+├── Vi gera código no editor com animação
+├── Salvar sandbox (máximo 10 no free, ilimitado pro)
+├── Listar sandboxes salvos
+├── Compartilhar sandbox (link)
+├── Resetar código
+├── Undo/Redo
+└── Funciona completamente offline (client-side)
+
+Specs:
+├── Editor: Sandpack (CodeSandbox)
+│   ├── Template: vanilla (HTML/CSS/JS)
+│   ├── Theme: custom dark (#0A0A0F)
+│   ├── Font: JetBrains Mono 13px
+│   ├── Line numbers: yes
+│   ├── Auto-complete: basic
+│   └── File tabs: visible for multi-file
+├── Layout: vertical split (editor 50% / preview 50%)
+├── Divider: draggable, 4px, #333
+├── Console: toggleable, bottom, h:120px
+├── Save: 
+│   ├── Storage: local (MMKV) + server sync
+│   ├── Schema: { id, title, files, language, created_at }
+│   └── Limit: 10 (free), unlimited (pro)
+├── Share: deep link vibecode.app/sandbox/{id}
+└── Offline: full (Sandpack runs client-side)
+EPIC 6: Gamificação
+text
+
+EPIC: GAMIFICATION
+PRIORIDADE: P0 (Blocker)
+SPRINT: 2-4
+
+────────────────────────────────────────────
+
+US-018: Sistema de XP e Níveis
+COMO aluno
+QUERO ganhar XP e subir de nível
+PARA sentir progresso tangível
+
+Critérios de Aceite:
+├── XP exibido no header: ⚡ {total_xp} XP
+├── Nível exibido no avatar/header
+├── XP ganho com:
+│   ├── Completar missão: 30-100 XP (baseado em estrelas)
+│   ├── Completar projeto: 200-500 XP
+│   ├── Completar Boss Fight: 500-1000 XP
+│   ├── Desafio diário: 50-150 XP
+│   ├── Manter streak (7 dias): 200 XP bonus
+│   └── Desbloquear conquista: 100-500 XP
+├── Level up:
+│   ├── Tela de celebração full-screen
+│   ├── Vi evolui visualmente em marcos (5, 10, 15, 20)
+│   ├── Animação de transição do avatar
+│   ├── Haptic: notificationSuccess
+│   └── Sound: level-up fanfare
+├── Progresso para próximo nível visível
+├── Tabela de XP por nível (exponencial suave):
+│   ├── Lv 1→2: 100 XP
+│   ├── Lv 2→3: 150 XP
+│   ├── Lv 5→6: 300 XP
+│   ├── Lv 10→11: 500 XP
+│   ├── Lv 20→21: 1000 XP
+│   ├── Lv 30→31: 1500 XP
+│   └── Formula: XP_needed = 100 * (1 + level * 0.15)^1.5
+├── XP NÃO é removido (sempre sobe)
+├── XP popup: animação "+50 XP" flutuante
+└── XP sync: otimistic UI + server validation
+
+Specs:
+├── Storage: users.total_xp, users.current_level
+├── Calculation: server-side (prevent cheating)
+├── Validation: XP source must match valid action
+├── Level-up check: on every XP gain
+├── Vi evolution:
+│   ├── Lv 1-5: 🟦 Cubo simples (3 sprites)
+│   ├── Lv 6-10: 🟦+ Cubo com olhos (3 sprites)
+│   ├── Lv 11-15: 🤖 Robô básico (3 sprites)
+│   ├── Lv 16-20: 🤖+ Robô com ferramentas (3 sprites)
+│   ├── Lv 21-30: ⚡ Robô avançado (3 sprites)
+│   └── Lv 31+: 🌟 Holograma (3 sprites)
+├── Sprites: PNG sequence or Lottie per evolution
+└── XP popup: Reanimated, float up + fade, 1.5s
+
+────────────────────────────────────────────
+
+US-019: Sistema de Streak
+COMO aluno
+QUERO manter uma sequência diária
+PARA criar hábito de estudo
+
+Critérios de Aceite:
+├── Streak = dias consecutivos com pelo menos 1 ação qualificante
+├── Ações qualificantes:
+│   ├── Completar 1 missão
+│   ├── Completar 1 desafio diário
+│   ├── Completar 1 fase de projeto
+│   ├── Enviar 3+ mensagens ao Vi (engajamento)
+│   └── Praticar 5+ minutos no sandbox
+├── Streak exibido: 🔥 {days} no header
+├── Streak incrementa à meia-noite do timezone do usuário
+├── Streak reseta se nenhuma ação qualificante no dia
+├── Streak Freeze:
+│   ├── Protege streak por 1 dia sem atividade
+│   ├── Usuário inicia com 1 freeze
+│   ├── Ganha 1 freeze a cada 7 dias de streak
+│   ├── Máximo acumulável: 3 (free), 5 (pro)
+│   ├── Usado automaticamente se dia passar sem atividade
+│   └── Notificação: "Freeze usado! Seu streak está salvo ❄️"
+├── Notificações de streak em risco:
+│   ├── 18h: "Seu streak de X dias está em risco!"
+│   ├── 21h: "Última chance! 5 minutos salvam seu streak 🔥"
+│   └── Pós-perda: "Streak resetado 😢 Mas você pode começar de novo!"
+├── Streak milestones: 3, 7, 14, 30, 60, 100, 365 dias
+├── Milestone alcançado → badge + XP bonus
+├── Calendário visual de streak (na tela de Streak Detail)
+├── Melhor streak pessoal exibido
+└── Streak data synced com servidor
+
+Specs:
+├── Storage: 
+│   ├── users.streak_days (current)
+│   ├── streak_history table (daily log)
+│   └── Redis: streak:{user_id} (fast check)
+├── Timezone: user-configurable, default from device
+├── Reset check: cron job at midnight per timezone
+│   └── OR: check on app open, calculate from last activity
+├── Freeze:
+│   ├── users.streak_freezes (available count)
+│   ├── streak_history.freeze_used (boolean per day)
+│   └── Auto-use: if midnight passes without qualifying action
+├── Notifications:
+│   ├── Scheduled: expo-notifications (local)
+│   ├── 18h: if no qualifying action today
+│   ├── 21h: if still no qualifying action
+│   └── Respect: notification settings
+└── Calendar:
+    ├── Component: custom calendar grid
+    ├── Active day: bg:#F59E0B/20, text:#F59E0B
+    ├── Freeze day: bg:#06B6D4/20, ❄️ icon
+    ├── Missed day: bg:transparent, text:#333
+    └── Today: border:#8B5CF6, pulsing
+
+────────────────────────────────────────────
+
+US-020: Sistema de Conquistas (Badges)
+COMO aluno
+QUERO ganhar badges por marcos atingidos
+PARA colecionar e mostrar minha evolução
+
+Critérios de Aceite:
+├── 15 conquistas no MVP (do total de 45 planejadas)
+├── Badge desbloqueado → popup animado
+├── Popup: tela com badge em destaque + descrição
+├── Som e haptic ao desbloquear
+├── Badges visíveis no perfil
+├── Badges: earned (colorido) vs locked (grayscale)
+├── Progresso para próximo badge visível
+├── Compartilhar badge (imagem gerada)
+├── Badges do MVP:
+
+│   📚 APRENDIZADO:
+│   ├── B01: 📖 Primeira Lição (completar 1 missão)
+│   ├── B02: 🎓 Estudioso (completar 10 missões)
+│   └── B03: 📚 Maratonista (completar 30 missões)
+│
+│   🔥 CONSISTÊNCIA:
+│   ├── B04: 🔥 Centelha (streak 3 dias)
+│   ├── B05: 🔥 Chama (streak 7 dias)
+│   └── B06: 🔥 Fogueira (streak 14 dias)
+│
+│   🏗️ CONSTRUÇÃO:
+│   ├── B07: 🧱 Primeiro Tijolo (criar 1 projeto)
+│   ├── B08: 🚀 Ship It! (primeiro deploy)
+│   └── B09: 🌍 Na Internet! (app com URL real)
+│
+│   🤖 IA:
+│   ├── B10: 🗣️ Primeiro Contato (1º prompt ao Vi)
+│   ├── B11: 🎯 Prompt Sniper (acertar de primeira 5x)
+│   └── B12: 🧙 Prompt Wizard (20 prompts eficazes)
+│
+│   🐛 DEBUG:
+│   ├── B13: 🐛 Bug Hunter (corrigir 1º bug)
+│   └── B14: 🔍 Detetive (corrigir 10 bugs)
+│
+│   🏆 BOSS:
+│   └── B15: 🏆 Foundation Master (completar Boss básico)
+
+├── Badge check: server-side, triggered by relevant actions
+├── Badge notification: push + in-app
+└── Badge storage: user_achievements table
+
+Specs:
+├── Badge assets: PNG 128x128 (earned) + grayscale variant
+├── Popup: modal, center, bg:#111 with gold border
+├── Animation: scale 0→1 with bounce, 0.5s
+├── Sound: badge_unlock.mp3, 1s
+├── Haptic: notificationSuccess
+├── Share image: generated card 1080x1080
+│   └── Template: badge + user name + app branding
+├── Storage: user_achievements table
+│   ├── user_id, achievement_id, earned_at, data
+│   └── Unique constraint: (user_id, achievement_id)
+├── Check triggers:
+│   ├── Mission complete → check B01, B02, B03
+│   ├── Streak update → check B04, B05, B06
+│   ├── Project create → check B07
+│   ├── Deploy → check B08, B09
+│   ├── Vi message → check B10, B11, B12
+│   ├── Bug fix → check B13, B14
+│   └── Boss complete → check B15
+└── Push: Expo Notifications, title: "🏅 Badge Desbloqueado!"
+
+────────────────────────────────────────────
+
+US-021: Desafio Diário
+COMO aluno
+QUERO um desafio novo todo dia
+PARA ter motivo de abrir o app diariamente
+
+Critérios de Aceite:
+├── 1 desafio por dia (reseta à meia-noite timezone)
+├── Desafio adaptado ao nível do aluno
+├── Tipos de desafio (V1):
+│   ├── CODE: "Crie X usando IA em Y minutos"
+│   ├── QUIZ: 5 perguntas rápidas
+│   ├── DEBUG: "Encontre e corrija o bug"
+│   └── PROMPT: "Escreva o prompt ideal para conseguir X"
+├── Tela de apresentação com:
+│   ├── Título criativo
+│   ├── Descrição do desafio
+│   ├── Dificuldade (⭐-⭐⭐⭐)
+│   ├── Tempo limite
+│   ├── Recompensa (XP)
+│   ├── Quantas pessoas já fizeram
+│   ├── Tempo médio
+│   └── Botão "Aceitar Desafio"
+├── Timer visível durante o desafio
+├── Resultado: tempo, posição, XP ganho
+├── Conta para streak
+├── Pular é possível (mas perde streak se não fizer nada)
+├── Desafio expira em 24h
+├── Histórico de desafios passados
+└── Pool inicial: 30 desafios pré-criados
+
+Specs:
+├── Challenge selection:
+│   ├── Pool: JSON file with 30+ challenges
+│   ├── Selection: based on user level + random
+│   ├── Never repeat within 30 days
+│   └── Seed: date-based (same challenge for same level)
+├── Timer: 
+│   ├── Display: MM:SS countdown
+│   ├── Warning at 20%: color turns #F59E0B
+│   ├── Warning at 10%: color turns #EF4444, pulsing
+│   └── Timeout: auto-submit current state
+├── Scoring:
+│   ├── Completion: 70% of XP
+│   ├── Time bonus: up to 30% of XP (faster = more)
+│   ├── Formula: xp = base_xp * (0.7 + 0.3 * (1 - time_used/time_limit))
+│   └── Minimum: 50% of base_xp (for completing)
+├── Storage: daily_challenges table
+│   └── user_id, challenge_id, date, score, time_seconds, xp
+├── Community stats:
+│   ├── Cached in Redis
+│   ├── Updated on each completion
+│   └── Fields: total_completions, avg_time, best_time
+└── Banner on Home: conditional, if not completed today
+EPIC 7: Projetos e Deploy
+text
+
+EPIC: PROJECTS
+PRIORIDADE: P1 (Important)
+SPRINT: 5-8
+
+────────────────────────────────────────────
+
+US-022: Lista de Projetos por Zona
+COMO aluno
+QUERO ver os projetos disponíveis
+PARA escolher o que construir
+
+Critérios de Aceite:
+├── Cada zona tem 1 mini-projeto
+├── Projetos da Ilha Básico (V1):
+│   ├── Zona 1: Página "Sobre Mim" (HTML/CSS)
+│   ├── Zona 2: Ambiente configurado + primeiro commit
+│   ├── Zona 3: Página responsiva completa
+│   └── Zona 4: Biblioteca pessoal de prompts
+├── Boss Fight: Landing Page profissional com deploy
+├── Projeto card mostra: preview, título, tempo, dificuldade, XP
+├── Status: locked/available/in_progress/completed
+├── Progress bar com etapas
+├── Stats: quantas pessoas construindo
+└── Toque → abre projeto detalhado
+
+────────────────────────────────────────────
+
+US-023: Construtor de Projeto (Step-by-Step)
+COMO aluno
+QUERO ser guiado passo a passo na construção
+PARA não me perder
+
+Critérios de Aceite:
+├── Cada projeto tem 4-6 etapas
+├── Cada etapa tem:
+│   ├── Instrução clara (o que fazer)
+│   ├── Vi explica o contexto
+│   ├── Sub-passos (checklist)
+│   ├── Dica (como pedir ao Vi)
+│   ├── Botão "Pedir ao Vi"
+│   ├── Botão "Abrir Sandbox"
+│   └── Botão "Marcar como feito"
+├── Progresso salvo automaticamente
+├── Vi disponível em todo o processo
+├── Pode voltar para etapas anteriores
+├── Etapa só marca como completa se sub-passos concluídos
+└── Ao completar todas as etapas → tela de celebração
+
+────────────────────────────────────────────
+
+US-024: Deploy (Vercel Integration)
+COMO aluno
+QUERO publicar meu projeto na internet
+PARA ter uma URL real do meu trabalho
+
+Critérios de Aceite:
+├── Integração com Vercel (via API)
+├── Flow:
+│   1. Aluno completa projeto no sandbox
+│   2. Botão "🚀 Publicar"
+│   3. App cria repositório no GitHub (conta do aluno)
+│   4. App faz deploy na Vercel
+│   5. URL gerada: projeto-nome.vercel.app
+│   6. URL exibida com botão de copiar
+│   7. Projeto adicionado ao portfolio
+├── Requer: conta GitHub conectada
+├── Se não tem GitHub: guiar criação de conta
+├── Deploy automático (zero config para o aluno)
+├── Suporte V1: sites estáticos (HTML/CSS/JS)
+├── Preview antes de publicar
+├── Indicador de status: deploying/success/error
+├── Retry em caso de falha
+└── Badge "Ship It!" desbloqueado no primeiro deploy
+
+Specs:
+├── GitHub Integration:
+│   ├── OAuth: GitHub via Clerk
+│   ├── Repo creation: Octokit (GitHub API)
+│   ├── Repo name: vibecode-{project-slug}
+│   ├── Visibility: public
+│   └── Files: pushed via GitHub Contents API
+├── Vercel Integration:
+│   ├── API: Vercel REST API v13
+│   ├── Method: Deploy from GitHub (hook trigger)
+│   ├── OR: Direct deploy via Vercel API (file upload)
+│   ├── Framework: auto-detect
+│   └── Domain: {project}-{username}.vercel.app
+├── Deploy status:
+│   ├── Polling: every 3s until complete
+│   ├── States: queued → building → ready → error
+│   └── Timeout: 5 minutes
+├── Error handling:
+│   ├── Build error: show log, ask Vi to fix
+│   ├── Rate limit: queue and retry
+│   └── Fallback: offer Netlify as alternative
+└── Storage: projects table
+    ├── live_url, source_code_url
+    └── deploy_status, deploy_log
+EPIC 8: Perfil e Portfolio
+text
+
+EPIC: PROFILE
+PRIORIDADE: P1 (Important)
+SPRINT: 7-9
+
+────────────────────────────────────────────
+
+US-025: Tela de Perfil
+COMO aluno
+QUERO ver meu perfil completo
+PARA acompanhar minha evolução
+
+Critérios de Aceite:
+├── Avatar com nível
+├── Nome e username
+├── Stats: streak, XP, projetos
+├── Radar de skills (6 eixos)
+├── Progresso por nível (barras)
+├── Grid de conquistas (earned + locked)
+├── Botão "Ver Portfolio"
+├── Botão "Meus Certificados"
+├── Botão Settings (gear icon)
+├── Dados carregados do servidor
+├── Pull-to-refresh
+└── Editar perfil (nome, bio, avatar)
+
+────────────────────────────────────────────
+
+US-026: Portfolio Simples (V1)
+COMO aluno
+QUERO ter uma página com meus projetos
+PARA mostrar o que já construí
+
+Critérios de Aceite (V1 simplificado):
+├── Lista de projetos publicados
+├── Cada projeto mostra: thumbnail, título, URL, tech stack
+├── Ordenação: mais recente primeiro
+├── Link compartilhável (deep link)
+├── Exportar como texto/lista
+└── V2: página web gerada automaticamente
+
+────────────────────────────────────────────
+
+US-027: Settings
+COMO aluno
+QUERO configurar o app
+PARA personalizar minha experiência
+
+Critérios de Aceite:
+├── Seções: Conta, Aprendizado, Notificações, Assinatura, Sobre
+├── Conta: editar perfil, email, senha, refazer DNA
+├── Aprendizado: lembrete, meta diária, idioma, sons
+├── Notificações: toggles por tipo
+├── Assinatura: plano atual, upgrade CTA
+├── Sobre: termos, privacidade, avaliar, contato, versão
+├── Logout button
+├── Delete account button (destructive)
+└── Todas as configurações sync com servidor
+EPIC 9: Boss Fight (Nível Básico)
+text
+
+EPIC: BOSS-FIGHT
+PRIORIDADE: P1 (Important)
+SPRINT: 8-10
+
+────────────────────────────────────────────
+
+US-028: Boss Fight — Landing Page
+COMO aluno que completou todas as zonas do Básico
+QUERO enfrentar o desafio final
+PARA provar que dominei os fundamentos
+
+Critérios de Aceite:
+├── Desbloqueado apenas após 30/30 missões do Básico
+├── Tela de intro cinematográfica (Vi em forma épica)
+├── Objetivo: Construir landing page profissional + deploy
+├── 10 etapas guiadas:
+│   1. Definir o tema/produto da landing page
+│   2. Criar estrutura HTML (hero section)
+│   3. Estilizar com CSS (cores, fontes, espaçamento)
+│   4. Adicionar seção de features (3+ itens)
+│   5. Adicionar seção de depoimentos
+│   6. Adicionar seção de pricing (tabela simples)
+│   7. Adicionar formulário de contato
+│   8. Tornar responsivo (mobile)
+│   9. Revisar e polir (Vi faz review)
+│   10. Deploy na Vercel
+├── Boss HP bar: progresso visual (10 segmentos)
+├── Vi como assistente durante todo o processo
+├── Timer tracking (sem limite, mas mostrar tempo)
+├── Ao completar:
+│   ├── Tela épica de vitória
+│   ├── +500 XP
+│   ├── Badge "Foundation Master" 🏆
+│   ├── Vi evolui para próxima forma
+│   ├── Ilha Intermediário desbloqueada (preview)
+│   ├── Projeto no portfolio
+│   ├── URL real funcionando
+│   └── Certificado "Nível Básico" gerado
+├── Pode pausar e retomar
+├── Progresso salvo a cada etapa
+└── Compartilhar resultado
+
+Specs:
+├── Duration estimate: 45-90 minutes
+├── Content: guided prompts for each step
+├── Code execution: Sandpack (client-side)
+├── Deploy: Vercel integration (US-024)
+├── Certificate: generated image/PDF
+│   ├── Template: SVG with user data
+│   ├── QR code: verify.vibecode.app/{cert_id}
+│   └── Storage: S3 (Cloudflare R2)
+├── Boss HP:
+│   ├── Visual: 10 hearts, red → green as progress
+│   ├── Animation: heart break when step complete
+│   └── Sound: impact sound per step
+└── Victory:
+    ├── Lottie: epic confetti, 5s
+    ├── Sound: victory fanfare, 3s
+    ├── Haptic: heavy impact
+    └── Share: generated card with screenshot
+EPIC 10: Backend e Infraestrutura
+text
+
+EPIC: BACKEND-INFRA
+PRIORIDADE: P0 (Blocker)
+SPRINT: 1-4 (parallel)
+
+────────────────────────────────────────────
+
+US-029: API Backend
+COMO sistema
+QUERO um backend robusto
+PARA servir dados e lógica ao app
+
+Endpoints (V1):
+
+AUTH:
+├── POST   /api/auth/webhook (Clerk webhook)
+└── GET    /api/auth/me
+
+USERS:
+├── GET    /api/users/me
+├── PATCH  /api/users/me
+├── PUT    /api/users/me/dna
+├── DELETE /api/users/me
+└── GET    /api/users/me/stats
+
+MISSIONS:
+├── GET    /api/missions (list with progress)
+├── GET    /api/missions/:id
+├── PATCH  /api/missions/:id/progress
+└── POST   /api/missions/:id/complete
+
+PROJECTS:
+├── GET    /api/projects
+├── GET    /api/projects/:id
+├── POST   /api/projects
+├── PATCH  /api/projects/:id
+├── POST   /api/projects/:id/deploy
+└── GET    /api/projects/:id/deploy-status
+
+VI (AI):
+├── POST   /api/vi/chat (streaming)
+├── GET    /api/vi/conversations
+├── GET    /api/vi/conversations/:id
+└── DELETE /api/vi/conversations/:id
+
+GAMIFICATION:
+├── GET    /api/streak
+├── POST   /api/streak/check-in
+├── GET    /api/achievements
+├── GET    /api/leaderboard?period=week|month|all
+└── GET    /api/daily-challenge
+
+SANDBOX:
+├── GET    /api/sandboxes
+├── POST   /api/sandboxes
+├── PATCH  /api/sandboxes/:id
+└── DELETE /api/sandboxes/:id
+
+Specs:
+├── Framework: Next.js API Routes (App Router)
+├── Runtime: Edge Runtime (where possible)
+├── Auth: Clerk middleware (token validation)
+├── Database: PostgreSQL (Neon)
+├── ORM: Drizzle
+├── Cache: Redis (Upstash)
+├── AI: Anthropic SDK (Claude 3.5 Sonnet)
+├── Streaming: Server-Sent Events (for Vi chat)
+├── Rate limiting: Upstash Ratelimit
+├── Validation: Zod
+├── Error handling: consistent error format
+│   └── { error: string, code: string, details?: any }
+├── Logging: Pino (structured JSON)
+├── Monitoring: Sentry
+└── CORS: configured for app + web domains
+
+────────────────────────────────────────────
+
+US-030: Database Schema
+COMO sistema
+QUERO um schema bem modelado
+PARA armazenar dados de forma eficiente
+
+Tables (V1):
+├── users (see schema in main doc)
+├── mission_progress
+├── projects
+├── vi_conversations
+├── user_achievements
+├── streak_history
+├── daily_challenge_results
+├── sandboxes
+└── waitlist (landing page)
+
+Migrations:
+├── Tool: Drizzle Kit
+├── Strategy: forward-only migrations
+├── Naming: YYYYMMDD_description
+├── Seeding: mission content + achievements
+└── Backup: Neon automated daily
+
+────────────────────────────────────────────
+
+US-031: Infrastructure Setup
+COMO equipe de desenvolvimento
+QUERO infraestrutura configurada
+PARA desenvolver e deployar com confiança
+
+Specs:
+├── Hosting:
+│   ├── API: Vercel (Next.js)
+│   ├── Database: Neon (PostgreSQL)
+│   ├── Cache: Upstash (Redis)
+│   ├── Storage: Cloudflare R2 (S3-compatible)
+│   └── CDN: Cloudflare
+├── CI/CD:
+│   ├── GitHub Actions
+│   ├── Workflows:
+│   │   ├── lint + typecheck on PR
+│   │   ├── test on PR
+│   │   ├── deploy staging on merge to develop
+│   │   └── deploy production on merge to main
+│   └── Environments: development, staging, production
+├── Monitoring:
+│   ├── Error tracking: Sentry
+│   ├── Uptime: Better Uptime
+│   ├── Analytics: PostHog
+│   └── AI observability: Langfuse
+├── Security:
+│   ├── Secrets: Vercel environment variables
+│   ├── API keys: rotated quarterly
+│   ├── Dependencies: Dependabot enabled
+│   └── HTTPS: enforced everywhere
+└── Development:
+    ├── Local: Docker Compose (DB + Redis)
+    ├── Branch previews: Vercel
+    ├── Database branching: Neon
+    └── Feature flags: environment variables (V1)
+EPIC 11: Landing Page + Waitlist
+text
+
+EPIC: LANDING
+PRIORIDADE: P1 (Important)
+SPRINT: 1-2
+
+────────────────────────────────────────────
+
+US-032: Landing Page
+COMO visitante
+QUERO entender o que é o VibeCode
+PARA decidir se quero baixar
+
+Critérios de Aceite:
+├── URL: vibecode.app
+├── Seções:
+│   ├── Hero: tagline + CTA + mockup do app
+│   ├── O que é Vibe Coding (explicação)
+│   ├── Como funciona (3 passos visuais)
+│   ├── Features (6 cards com ícones)
+│   ├── Depoimentos (quando disponíveis)
+│   ├── Pricing (free vs pro)
+│   ├── FAQ
+│   └── Footer (links, social, legal)
+├── CTA: "Entrar na Waitlist" (pré-lançamento)
+├── CTA: "Baixar" (pós-lançamento)
+├── Email capture → waitlist
+├── Confirmation email após signup
+├── Social proof: contador de waitlist
+├── Mobile responsive
+├── SEO otimizado
+├── Open Graph meta tags
+├── Analytics: PostHog
+├── Performance: Lighthouse >95
+└── Framework: Next.js (mesmo repo do backend)
+
+────────────────────────────────────────────
+
+US-033: Waitlist System
+COMO visitante
+QUERO entrar na lista de espera
+PARA ser notificado quando o app lançar
+
+Critérios de Aceite:
+├── Form: email + nome (opcional)
+├── Validação de email
+├── Duplicate check
+├── Confirmation email (Resend)
+├── Referral system:
+│   ├── Cada cadastro gera link único
+│   ├── Referrer sobe na fila
+│   ├── Dashboard de posição na fila
+│   └── Incentivo: "Indique 3 amigos e ganhe acesso antecipado"
+├── Admin dashboard: ver total, exportar emails
+├── GDPR compliant: double opt-in, unsubscribe
+└── Table: waitlist (email, name, referral_code, referred_by, position, created_at)
+2.3 — REQUISITOS NÃO-FUNCIONAIS (FASE 1)
+text
+
+PERFORMANCE:
+├── App start (cold): < 3 segundos
+├── App start (warm): < 1 segundo
+├── Screen transition: < 300ms
+├── API response (p95): < 500ms
+├── API response (p99): < 2s
+├── Vi first token: < 2s
+├── Vi streaming: smooth (no jank)
+├── Sandpack load: < 3s
+├── Code execution: < 2s
+├── Animation: 60fps consistently
+├── Bundle size: < 50MB (app download)
+├── Image loading: progressive/lazy
+└── Offline: cached content available
+
+SCALABILITY:
+├── Support 10.000 DAU at launch
+├── Support 100.000 DAU at 6 months
+├── Database: auto-scaling (Neon)
+├── Cache: auto-scaling (Upstash)
+├── API: edge deployment (Vercel)
+├── CDN: global (Cloudflare)
+└── AI: rate limiting per user tier
+
+SECURITY:
+├── Authentication: Clerk (SOC2, GDPR)
+├── Data encryption: at rest (AES-256) + in transit (TLS 1.3)
+├── API authentication: JWT (Clerk tokens)
+├── Input validation: Zod schemas on all endpoints
+├── SQL injection: prevented by ORM (Drizzle)
+├── XSS: React auto-escaping + CSP headers
+├── Rate limiting: per user, per endpoint
+├── Secrets: never in code, Vercel env vars
+├── Dependency audit: weekly (Dependabot)
+├── Sandpack: sandboxed execution (iframe)
+├── User data: LGPD/GDPR compliant
+│   ├── Data portability (export)
+│   ├── Right to deletion
+│   ├── Consent management
+│   └── Privacy policy
+└── PII: minimized collection
+
+RELIABILITY:
+├── Uptime target: 99.9%
+├── Error budget: 8.7 hours/year
+├── Monitoring: 24/7 automated alerts
+├── Backup: daily automated (database)
+├── Recovery: < 1 hour RPO, < 4 hours RTO
+├── Graceful degradation:
+│   ├── AI unavailable → show cached responses
+│   ├── DB unavailable → show cached progress
+│   └── Network unavailable → offline mode
+└── Health checks: /api/health endpoint
+
+ACCESSIBILITY:
+├── VoiceOver (iOS) and TalkBack (Android) support
+├── Minimum touch target: 44x44px
+├── Color contrast: WCAG AA minimum
+├── Text scaling: support dynamic type
+├── Reduce motion: respect system preference
+├── Screen reader labels on all interactive elements
+└── Keyboard navigation: where applicable
+
+INTERNATIONALIZATION (Preparation):
+├── All strings in translation files (i18n)
+├── Date/time: locale-aware
+├── Number formatting: locale-aware
+├── RTL: not required V1 but architecture should support
+├── V1 language: Português Brasileiro
+├── V2 languages: English, Español
+└── Framework: i18next / expo-localization
+
+ANALYTICS:
+├── Provider: PostHog
+├── Events tracked:
+│   ├── Signup, Login, DNA Test completion
+│   ├── Mission start, phase change, complete
+│   ├── Project start, step complete, deploy
+│   ├── Vi message sent, response received
+│   ├── Daily challenge start, complete
+│   ├── Achievement unlocked
+│   ├── Streak increment, freeze used, reset
+│   ├── Sandbox create, run, save
+│   ├── Screen views (all screens)
+│   ├── Button taps (key CTAs)
+│   ├── Error events
+│   ├── Paywall view, upgrade, cancel
+│   └── App open, background, close
+├── User properties:
+│   ├── DNA profile, level, XP, streak
+│   ├── Subscription tier
+│   ├── Device, OS, app version
+│   └── Registration date
+├── Dashboards:
+│   ├── DAU/MAU, retention cohorts
+│   ├── Mission completion funnel
+│   ├── Conversion funnel (free→pro)
+│   └── AI usage and costs
+└── GDPR: anonymize IP, opt-out option
+2.4 — CONTEÚDO DA FASE 1
+30 Missões da Ilha Básico
+text
+
+ZONA 1: Despertar 🌅 (7 missões + 1 mini-projeto)
+──────────────────────────────────────────
+
+M01: "O que é Vibe Coding"
+├── Fase 1: Animação - Karpathy cunhando o termo
+├── Fase 2: Comparação visual (trad vs vibe)
+├── Fase 3: Quiz - 4 perguntas sobre o conceito
+├── Fase 4: Prompt - pedir algo simples ao Vi
+├── XP: 30
+├── Duration: 5 min
+└── Prereq: none
+
+M02: "Conhecendo a IA"
+├── Fase 1: Vi se apresenta, explica o que é IA
+├── Fase 2: Diagrama - como LLMs funcionam (simplificado)
+├── Fase 3: True/False - 5 mitos sobre IA
+├── Fase 4: Conversa livre com Vi (3 mensagens)
+├── XP: 30
+├── Duration: 5 min
+└── Prereq: M01
+
+M03: "Seu Primeiro Prompt"
+├── Fase 1: O que é um prompt (analogia: receita)
+├── Fase 2: Anatomia do prompt (partes coloridas)
+├── Fase 3: Drag-and-drop - montar um prompt
+├── Fase 4: Escrever prompt real → Vi gera código
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M02
+
+M04: "Gerando Seu Primeiro Código"
+├── Fase 1: Vi explica o que vai acontecer
+├── Fase 2: Código gerado explicado (interativo)
+├── Fase 3: Fill-in-blank - completar código
+├── Fase 4: Pedir ao Vi uma variação do código
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M03
+
+M05: "Entendendo o que a IA Gerou"
+├── Fase 1: "Código é como uma receita" (analogia)
+├── Fase 2: Anatomia: function, params, return (interativo)
+├── Fase 3: Drag-and-drop - montar uma função
+├── Fase 4: Pedir ao Vi uma função multiplicadora
+├── XP: 50
+├── Duration: 10 min
+└── Prereq: M04
+
+M06: "Pedindo Correções"
+├── Fase 1: Erros são normais (Vi encoraja)
+├── Fase 2: Como ler uma mensagem de erro (visual)
+├── Fase 3: Spot-the-bug em 3 códigos
+├── Fase 4: Enviar erro real ao Vi e receber correção
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M05
+
+M07: "O Ciclo Mágico"
+├── Fase 1: Prompt → Código → Teste → Ajuste (diagrama)
+├── Fase 2: Demonstração animada do ciclo
+├── Fase 3: Quiz - quando usar cada parte do ciclo
+├── Fase 4: Ciclo completo - criar, testar, ajustar
+├── XP: 80
+├── Duration: 12 min
+└── Prereq: M06
+
+MINI-PROJETO Z1: "Página Sobre Mim"
+├── Gerar página pessoal com IA
+├── 3 etapas: estrutura, conteúdo, estilo
+├── XP: 200
+├── Duration: 20 min
+└── Prereq: M07
+
+ZONA 2: Ferramentas 🔧 (8 missões + 1 mini-projeto)
+──────────────────────────────────────────
+
+M08: "Terminal — Seu Controle Remoto"
+├── Fase 1: O que é terminal (analogia: controle remoto)
+├── Fase 2: Interface do terminal explicada (visual)
+├── Fase 3: Match-pairs - comando → o que faz
+├── Fase 4: Exercício guiado - cd, ls, mkdir
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M07
+
+M09: "Comandos Essenciais"
+├── Fase 1: Top 10 comandos que mudam sua vida
+├── Fase 2: Tabela interativa (toque para exemplos)
+├── Fase 3: Fill-in-blank - completar comandos
+├── Fase 4: Sequência de comandos (narrativa guiada)
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M08
+
+M10: "VS Code / Cursor — Seu Laboratório"
+├── Fase 1: O que é IDE (analogia: oficina completa)
+├── Fase 2: Tour visual do Cursor (áreas anotadas)
+├── Fase 3: Quiz - identificar áreas da IDE
+├── Fase 4: Abrir, criar arquivo, salvar (guiado)
+├── XP: 50
+├── Duration: 10 min
+└── Prereq: M09
+
+M11: "Instalando Node.js e Python"
+├── Fase 1: Por que precisamos instalar coisas
+├── Fase 2: Passo a passo visual (por OS)
+├── Fase 3: Quiz - o que cada ferramenta faz
+├── Fase 4: Verificar instalação (node -v, python --version)
+├── XP: 50
+├── Duration: 10 min
+└── Prereq: M10
+
+M12: "Git — A Máquina do Tempo"
+├── Fase 1: Analogia - ctrl+Z infinito e inteligente
+├── Fase 2: Fluxo visual: add → commit → push
+├── Fase 3: Drag-and-drop - ordenar comandos Git
+├── Fase 4: Primeiro git init + commit (guiado)
+├── XP: 80
+├── Duration: 12 min
+└── Prereq: M11
+
+M13: "Salvando no GitHub"
+├── Fase 1: GitHub = cofre na nuvem (analogia)
+├── Fase 2: Criar conta + conectar (passo a passo)
+├── Fase 3: Quiz - Git vs GitHub
+├── Fase 4: Push para GitHub (guiado)
+├── XP: 80
+├── Duration: 12 min
+└── Prereq: M12
+
+M14: "Variáveis de Ambiente — Seus Segredos"
+├── Fase 1: O que são secrets (analogia: cofre de senhas)
+├── Fase 2: .env explicado (visual)
+├── Fase 3: True/False - segurança básica
+├── Fase 4: Criar .env + .gitignore (guiado)
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M13
+
+M15: "Organizando Pastas como Pro"
+├── Fase 1: Por que organização importa
+├── Fase 2: Estrutura de projeto típica (árvore visual)
+├── Fase 3: Drag-and-drop - organizar arquivos nas pastas
+├── Fase 4: Criar estrutura de projeto com Vi
+├── XP: 50
+├── Duration: 8 min
+└── Prereq: M14
+
+MINI-PROJETO Z2: "Setup Completo"
+├── Configurar ambiente real no computador
+├── 4 etapas: instalar, configurar, commitar, push
+├── XP: 200
+├── Duration: 25 min
+└── Prereq: M15
+
+ZONA 3: Web Descomplicada 🌐 (8 missões + 1 mini-projeto)
+──────────────────────────────────────────
+
+M16-M23: (HTML, CSS, JavaScript, Navegador, JSON,
+          URLs, Responsividade, DevTools)
+├── Formato similar às zonas anteriores
+├── XP: 50-80 cada
+├── Duration: 8-12 min cada
+└── Total zona: ~75 min
+
+MINI-PROJETO Z3: "Página Responsiva Completa"
+├── XP: 200
+└── Duration: 30 min
+
+ZONA 4: Prompt Craft 🎨 (7 missões + 1 mini-projeto)
+──────────────────────────────────────────
+
+M24-M30: (Anatomia do prompt, Vagos vs Precisos,
+          Partes, Enviar erros, Explicações,
+          Iterar, Templates)
+├── Formato similar
+├── XP: 50-80 cada
+├── Duration: 8-12 min cada
+└── Total zona: ~65 min
+
+MINI-PROJETO Z4: "Biblioteca de Prompts"
+├── XP: 200
+└── Duration: 20 min
+
+BOSS FIGHT: Landing Page (US-028)
+├── XP: 500
+└── Duration: 45-90 min
+2.5 — CRONOGRAMA FASE 1
+text
+
+SPRINT 1 (Semanas 1-2): FUNDAÇÕES
+──────────────────────────────────
+├── Setup: repo, CI/CD, infra (Neon, Upstash, Vercel)
+├── Design system: tokens, componentes base
+├── Auth: Clerk integration (signup, login, OAuth)
+├── Database: schema, migrations, seed
+├── Landing page + waitlist
+├── Splash screen + Onboarding screens
+└── MILESTONE: Auth funcional + landing page no ar
+
+SPRINT 2 (Semanas 3-4): CORE NAVIGATION
+──────────────────────────────────
+├── Tab bar + navigation structure
+├── Home screen (mapa de ilhas)
+├── Zone expansion (lista de missões)
+├── DNA Test (quiz completo)
+├── XP system (backend + UI)
+├── Streak system (backend + UI)
+├── Profile screen (básico)
+└── MILESTONE: Navegação completa + perfil funcional
+
+SPRINT 3 (Semanas 5-6): MISSIONS ENGINE
+──────────────────────────────────
+├── Mission framework (4 fases)
+├── Phase 1: Story/Context rendering
+├── Phase 2: Visual Concept (interactive code)
+├── Phase 3: Exercises (drag-drop, fill-blank, quiz)
+├── Phase 4: Sandbox (Sandpack integration)
+├── Mission completion flow (XP, stars)
+├── Content: Zona 1 (7 missões) implementada
+└── MILESTONE: Missões 1-7 jogáveis end-to-end
+
+SPRINT 4 (Semanas 7-8): VI + CONTENT
+──────────────────────────────────
+├── Vi chat interface (standalone)
+├── Vi contextual (dentro de missões)
+├── Claude API integration + streaming
+├── Rate limiting (free vs pro)
+├── Content: Zona 2 (8 missões)
+├── Content: Zona 3 (8 missões)
+├── Achievements system (15 badges)
+└── MILESTONE: Vi funcional + 23 missões
+
+SPRINT 5 (Semanas 9-10): PROJECTS + DEPLOY
+──────────────────────────────────
+├── Content: Zona 4 (7 missões)
+├── Project builder (step-by-step)
+├── Mini-projetos (4 zonas)
+├── GitHub integration
+├── Vercel deploy integration
+├── Daily challenge system
+├── Sandbox standalone
+└── MILESTONE: 30 missões + deploy funcional
+
+SPRINT 6 (Semanas 11-12): BOSS + POLISH
+──────────────────────────────────
+├── Boss Fight completo (10 etapas)
+├── Portfolio page (V1 simples)
+├── Settings page
+├── Push notifications (streak, achievements)
+├── Bug fixing sprint
+├── Performance optimization
+├── App Store assets (screenshots, description)
+├── TestFlight / Internal Testing
+├── App Store / Google Play submission
+└── MILESTONE: APP SUBMITTED 🚀
+
+BUFFER: 1 semana para App Store review + fixes
+2.6 — EQUIPE FASE 1
+text
+
+EQUIPE MÍNIMA (4-6 pessoas):
+
+1. PRODUCT OWNER / CEO
+   ├── Define prioridades
+   ├── Valida entregas
+   ├── Toma decisões de produto
+   └── Comunica visão
+
+2. MOBILE DEVELOPER (React Native/Expo)
+   ├── App iOS + Android
+   ├── UI components
+   ├── Navigation
+   ├── Sandpack integration
+   ├── Animations (Reanimated + Lottie)
+   └── Offline support
+
+3. FULLSTACK DEVELOPER (Next.js/TypeScript)
+   ├── API backend
+   ├── Database (Drizzle + Neon)
+   ├── AI integration (Claude API)
+   ├── Auth (Clerk)
+   ├── Deploy integration (Vercel API)
+   └── Landing page
+
+4. DESIGNER (UI/UX)
+   ├── Figma: all screens
+   ├── Design system
+   ├── Illustrations / Lottie animations
+   ├── App Store assets
+   └── User testing
+
+5. CONTENT CREATOR / EDUCATOR (part-time)
+   ├── 30 mission scripts
+   ├── Exercise design
+   ├── Project step-by-step guides
+   ├── Boss Fight content
+   ├── Daily challenge pool
+   └── Vi personality/tone guide
+
+6. QA / DevOps (part-time)
+   ├── Testing (manual + automated)
+   ├── CI/CD setup
+   ├── Performance testing
+   ├── Security review
+   └── App Store submission
+
+OPÇÃO ALTERNATIVA (equipe mínima 3 pessoas):
+├── 1 Fullstack (mobile + API)
+├── 1 Designer/Content (design + conteúdo)
+└── 1 Product/QA (produto + qualidade)
+Com uso intensivo de Cursor/IA para acelerar
+2.7 — ORÇAMENTO ESTIMADO FASE 1
+text
+
+CUSTOS FIXOS MENSAIS (infraestrutura):
+├── Neon (PostgreSQL):     $19/mês (Launch plan)
+├── Upstash (Redis):       $10/mês (Pay-as-you-go)
+├── Vercel (Hosting):      $20/mês (Pro plan)
+├── Clerk (Auth):          $25/mês (Pro plan)
+├── Anthropic (Claude):    $200-500/mês (API usage)
+├── Sentry (Errors):       $26/mês (Team)
+├── PostHog (Analytics):   $0/mês (Free tier)
+├── Cloudflare (CDN):      $0/mês (Free tier)
+├── Resend (Email):        $0/mês (Free tier V1)
+├── Better Uptime:         $0/mês (Free tier)
+├── Langfuse (AI Obs):     $0/mês (Free tier)
+├── Apple Developer:       $99/ano ($8.25/mês)
+├── Google Play:            $25 (one-time)
+├── Domain (vibecode.app): $15/ano ($1.25/mês)
+├── GitHub (Organization): $0/mês (Free tier)
+└── Figma (Design):        $15/mês (Professional)
+────────────────────────────────────────
+SUBTOTAL INFRA:            ~$325-625/mês
+
+CUSTOS DE EQUIPE (3 meses):
+├── Opção A (contratados):
+│   ├── Mobile Dev:    $3.000-8.000/mês
+│   ├── Fullstack Dev: $3.000-8.000/mês
+│   ├── Designer:      $2.000-5.000/mês
+│   ├── Content:       $1.500-3.000/mês (part-time)
+│   └── QA:            $1.000-2.000/mês (part-time)
+│   └── Total/mês:     $10.500-26.000
+│   └── Total 3 meses: $31.500-78.000
+│
+├── Opção B (co-founders + equity):
+│   └── Total/mês:     $0-5.000 (bootstrapped)
+│   └── Total 3 meses: $0-15.000
+│
+└── Opção C (solo + AI + freelancers):
+    ├── Freelance design: $2.000-5.000 (one-time)
+    ├── Freelance content: $1.000-3.000 (one-time)
+    ├── AI tools (Cursor Pro): $20/mês
+    └── Total 3 meses: $3.060-8.060
+
+CUSTOS TOTAIS ESTIMADOS:
+├── Budget mínimo (solo + AI):  $4.000-10.000
+├── Budget médio (equipe lean): $35.000-80.000
+├── Budget confortável (team):  $80.000-120.000
+└── Com buffer 20%:             $96.000-144.000
+2.8 — RISCOS E MITIGAÇÕES (FASE 1)
+text
+
+┌──────────────────────────────────────────────────────────────┐
+│ RISCO                     │ PROBABILIDADE │ IMPACTO │ MITIGAÇÃO                                │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Custo de API Claude       │ Alta          │ Alto    │ Rate limiting agressivo, cache de         │
+│ exceder budget            │               │         │ respostas comuns, fallback para Groq      │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ App Store rejection       │ Média         │ Alto    │ Seguir guidelines desde dia 1, submit     │
+│                           │               │         │ early para feedback, TestFlight beta      │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Sandpack performance      │ Média         │ Médio   │ Lazy load, web view otimizada, fallback   │
+│ ruim no mobile            │               │         │ para texto se necessário                  │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Conteúdo de missões       │ Média         │ Alto    │ Começar conteúdo no sprint 1, pipeline    │
+│ atrasar                   │               │         │ de criação, usar IA para drafts           │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Retenção baixa (D30<15%)  │ Média         │ Alto    │ Streak system forte, push notifications   │
+│                           │               │         │ inteligentes, daily challenges, social    │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Conversão free→pro <3%    │ Média         │ Alto    │ Paywall strategy: limit Vi msgs, não      │
+│                           │               │         │ features. Valor claro do PRO.             │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Claude API instabilidade  │ Baixa         │ Alto    │ Fallback para GPT-4o, respostas cached,   │
+│                           │               │         │ retry logic, circuit breaker              │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Concorrente lançar antes  │ Média         │ Médio   │ Velocidade de execução, diferenciação     │
+│                           │               │         │ por qualidade e mentor IA personalizado   │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Scope creep               │ Alta          │ Alto    │ PRD rígido, sprint reviews, PO diz "não"  │
+│                           │               │         │ a features fora do MVP                   │
+├───────────────────────────┼───────────────┼─────────┼──────────────────────────────────────────┤
+│ Burnout da equipe         │ Média         │ Alto    │ Sprints sustentáveis, expectativas claras │
+│                           │               │         │ buffer de 1 semana incluído               │
+└───────────────────────────┴───────────────┴─────────┴──────────────────────────────────────────┘
+2.9 — CRITÉRIOS DE SUCESSO DA FASE 1
+text
+
+LAUNCH CRITERIA (para submeter às stores):
+├── ✅ 30 missões jogáveis end-to-end sem bugs críticos
+├── ✅ Vi responde em <3s com qualidade aceitável
+├── ✅ Pelo menos 1 projeto deployável com URL real
+├── ✅ Boss Fight completável
+├── ✅ XP, streak e badges funcionando
+├── ✅ Auth (email + Google + Apple) funcional
+├── ✅ Performance: Lighthouse >85 (landing), app <3s cold start
+├── ✅ Zero crashes em sessão de 30min (testado com 20 users)
+├── ✅ App Store guidelines compliance
+├── ✅ Privacy policy e Terms of Service publicados
+├── ✅ Analytics funcionando (PostHog)
+├── ✅ Error tracking funcionando (Sentry)
+└── ✅ Backup do banco configurado e testado
+
+POST-LAUNCH SUCCESS (30 dias):
+├── 🎯 1.000+ downloads
+├── 🎯 App Store rating >4.5 (mínimo 20 reviews)
+├── 🎯 D1 retention >50%
+├── 🎯 D7 retention >30%
+├── 🎯 >100 Boss Fights completadas
+├── 🎯 >50 deploys realizados por alunos
+├── 🎯 NPS >40 (survey in-app)
+├── 🎯 <5 bugs críticos reported
+├── 🎯 AI cost <$500/mês
+└── 🎯 Zero data breaches
+PARTE 3 — PRD FASE 2 (CRESCIMENTO)
+3.1 — VISÃO DA FASE 2
+text
+
+OBJETIVO: Escalar a base de usuários, aumentar retenção
+e iniciar monetização real.
+
+DURAÇÃO: 12 semanas (3 meses)
+INÍCIO: Após 30 dias do lançamento da Fase 1
+PREREQ: Fase 1 lançada + métricas de baseline coletadas
+
+ENTREGAS:
+├── 45 missões novas (Ilha Intermediário completa)
+├── Portfolio auto-gerado (página web real)
+├── Comunidade (feed social + ranking)
+├── Desafios diários expandidos (60+ pool)
+├── Scan & Learn (câmera que lê código/erros)
+├── Monetização (Stripe: PRO mensal e anual)
+├── Push notifications inteligentes
+├── Onboarding melhorado (baseado em dados da Fase 1)
+├── Analytics avançados (PostHog dashboards)
+├── Referral system
+└── Performance e bug fixes da Fase 1
+3.2 — EPICS DA FASE 2
+text
+
+EPIC 12: Ilha Intermediário — Conteúdo (45 missões)
+PRIORIDADE: P0
+SPRINT: 1-6
+
+├── Zona 5:  Lendo Código (10 missões)
+├── Zona 6:  Frameworks Web (10 missões)
+├── Zona 7:  Backend & APIs (10 missões)
+├── Zona 8:  Banco de Dados (10 missões)
+├── Zona 9:  Deploy & DevOps Inicial (5 missões)
+├── Boss Fight: App CRUD Fullstack
+├── Mini-projetos: 5 (1 por zona)
+└── Total: ~45 missões + 5 projetos + 1 boss
+
+Content specs:
+├── Missions follow same 4-phase format
+├── Complexity increase: more code, less hand-holding
+├── Sandbox: React/Next.js templates (not just HTML/CSS)
+├── Vi: more technical responses for this level
+└── Boss Fight: Next.js + Prisma + Supabase + Vercel
+
+────────────────────────────────────────────
+
+EPIC 13: Portfolio Auto-Gerado
+PRIORIDADE: P1
+SPRINT: 3-5
+
+├── Portfolio page generated from user data
+├── URL: portfolio.vibecode.app/{username}
+├── Sections: avatar, bio, projects, skills, badges
+├── Templates: 4 themes (Minimal, Modern, Bold, Hacker)
+├── Auto-populated from completed projects
+├── Editable: bio, project descriptions, order
+├── Skills radar chart
+├── Social links (GitHub, LinkedIn, Twitter)
+├── Export as PDF
+├── Share link + Open Graph metadata
+├── SEO optimized
+├── Mobile responsive
+└── Custom domain support (V3)
+
+Tech specs:
+├── Generation: Static page (ISR) via Next.js
+├── Route: /portfolio/[username]
+├── Data: API call to user + projects + achievements
+├── Template engine: React components + Tailwind
+├── PDF export: puppeteer (serverless) or react-pdf
+├── OG image: dynamic via Vercel OG
+└── Cache: revalidate on project update
+
+────────────────────────────────────────────
+
+EPIC 14: Comunidade (Social)
+PRIORIDADE: P1
+SPRINT: 2-5
+
+├── Feed principal:
+│   ├── Post types: achievement, project, prompt, help, general
+│   ├── Reactions: 👏 (claps) — single type, simple
+│   ├── Comments: threaded (1 level)
+│   ├── Share: deep link
+│   ├── Report: flag inappropriate content
+│   ├── Moderation: automated (AI) + manual
+│   └── Infinite scroll with virtualization
+├── Ranking (Leaderboard):
+│   ├── Periods: weekly, monthly, all-time
+│   ├── Metrics: XP earned in period
+│   ├── Podium: top 3 with visual
+│   ├── Your position highlighted
+│   ├── Friends filter (V3)
+│   └── Cache: Redis, refresh every 5 min
+├── Prompts library:
+│   ├── Browse community-shared prompts
+│   ├── Categories and tags
+│   ├── Save/bookmark prompts
+│   ├── Copy with one tap
+│   ├── Usage counter
+│   ├── Rating system (1-5 stars)
+│   └── Search by keyword
+├── Create post:
+│   ├── Text content
+│   ├── Code block attachment
+│   ├── Image attachment (1 per post)
+│   ├── Link attachment
+│   ├── Project link (from portfolio)
+│   ├── Tag selection
+│   └── Post type selection
+└── Notifications:
+    ├── Someone reacted to your post
+    ├── Someone commented on your post
+    ├── Someone answered your help request
+    ├── Weekly digest (top posts)
+    └── Push + in-app notification center
+
+Database additions:
+├── social_posts table
+├── social_comments table
+├── social_reactions table
+├── shared_prompts table
+├── user_saved_prompts table
+├── reports table
+└── notifications table
+
+Moderation:
+├── AI pre-screening: Claude checks for toxicity
+├── User reporting: flag → review queue
+├── Auto-remove: if >3 reports
+├── Admin panel: review reported content
+├── Ban system: temporary (7d) + permanent
+└── Content guidelines: published and enforced
+
+────────────────────────────────────────────
+
+EPIC 15: Scan & Learn (Camera)
+PRIORIDADE: P2
+SPRINT: 5-7
+
+├── Camera permission request
+├── Capture photo of code/error
+├── OR paste screenshot from gallery
+├── Send image to AI (Claude Vision)
+├── Vi analyzes and responds:
+│   ├── Identifies the language
+│   ├── Explains what the code does
+│   ├── Identifies errors
+│   ├── Suggests fixes
+│   ├── Links to related missions
+│   └── Provides visual explanation
+├── Save scan result (history)
+├── Share scan result
+├── Rate limit: 5/day (free), 30/day (pro)
+└── Works offline: queue scan, process when online
+
+Tech specs:
+├── Camera: expo-camera
+├── Gallery: expo-image-picker
+├── Processing: resize to max 1024px
+├── AI: Claude 3.5 Sonnet (vision)
+│   ├── System prompt: "Analyze this code/error screenshot..."
+│   ├── Max tokens: 1500
+│   └── Model: claude-3-5-sonnet-20241022
+├── Storage: scan results in vi_conversations (context: 'scan')
+└── Fallback: if image unclear, ask to retake
+
+────────────────────────────────────────────
+
+EPIC 16: Monetização (Stripe)
+PRIORIDADE: P0
+SPRINT: 3-6
+
+├── Stripe integration:
+│   ├── Stripe SDK (React Native)
+│   ├── Customer creation on signup
+│   ├── Payment sheet (native)
+│   └── Webhook handling
+├── Plans:
+│   ├── PRO Monthly: $14.99/mês
+│   ├── PRO Annual: $99/ano ($8.25/mês)
+│   └── Lifetime: $299 (one-time)
+├── In-App Purchase (IAP):
+│   ├── Apple: StoreKit 2 (via expo-in-app-purchases)
+│   ├── Google: Google Play Billing
+│   ├── Required for iOS (Apple 30% cut)
+│   └── Web option for better margin
+├── Paywall screen:
+│   ├── Shown when hitting pro limit (Vi messages, etc.)
+│   ├── Feature comparison (free vs pro)
+│   ├── Plan selection (monthly vs annual)
+│   ├── Lifetime option
+│   ├── Trial: 7-day free trial for annual
+│   ├── Guarantee: 7-day money back
+│   └── Restore purchases
+├── Pro features gating:
+│   ├── Vi: 5 msg/day (free) → unlimited (pro)
+│   ├── Islands: 1 (free) → all 4 (pro)
+│   ├── Scan & Learn: 2/day (free) → 30/day (pro)
+│   ├── Sandbox: 10 saved (free) → unlimited (pro)
+│   ├── Portfolio: 1 project (free) → unlimited (pro)
+│   ├── Streak freezes: 1 (free) → 5 (pro)
+│   ├── Daily challenges: 3/week (free) → all (pro)
+│   └── Badge: "PRO" visible on profile
+├── Subscription management:
+│   ├── View current plan in Settings
+│   ├── Upgrade/downgrade
+│   ├── Cancel (goes to free at period end)
+│   ├── Billing history
+│   └── Receipt emails
+├── Webhook events:
+│   ├── checkout.session.completed
+│   ├── customer.subscription.updated
+│   ├── customer.subscription.deleted
+│   ├── invoice.payment_succeeded
+│   └── invoice.payment_failed
+└── Metrics tracking:
+    ├── Paywall views
+    ├── Conversion rate per trigger point
+    ├── Revenue per plan
+    ├── Churn by cohort
+    └── LTV calculation
+
+────────────────────────────────────────────
+
+EPIC 17: Notificações Inteligentes
+PRIORIDADE: P1
+SPRINT: 4-6
+
+├── Types:
+│   ├── Streak at risk (18h, 21h)
+│   ├── Streak lost
+│   ├── Achievement unlocked
+│   ├── Level up
+│   ├── New daily challenge
+│   ├── Social (reactions, comments, help answers)
+│   ├── New content available
+│   ├── Weekly progress summary
+│   └── Promotional (sparingly)
+├── Channels:
+│   ├── Push notification (Expo Notifications)
+│   ├── In-app notification center
+│   └── Email (weekly digest only)
+├── Scheduling:
+│   ├── Based on user timezone
+│   ├── Based on usual app usage time
+│   ├── Max 2 push notifications/day
+│   ├── Respect system DnD/Focus mode
+│   └── Smart timing: learn when user responds best
+├── Opt-in/opt-out:
+│   ├── Granular toggles in Settings
+│   ├── Global on/off
+│   └── Unsubscribe from email
+├── A/B testing:
+│   ├── Message variations
+│   ├── Timing variations
+│   └── Track open rates
+└── Implementation:
+    ├── Push: Expo Push Notification Service
+    ├── Scheduling: expo-notifications (local) for streak
+    ├── Server-triggered: Expo push API for social
+    ├── Email: Resend API
+    └── In-app: notifications table + badge count
+
+────────────────────────────────────────────
+
+EPIC 18: Referral System
+PRIORIDADE: P2
+SPRINT: 7-8
+
+├── Unique referral link per user
+├── Landing page: vibecode.app/ref/{code}
+├── Rewards:
+│   ├── Referrer: +1 streak freeze + 100 XP per referral
+│   ├── Referred: starts with 50 XP bonus
+│   ├── Milestone: 3 referrals = 1 week PRO free
+│   └── Milestone: 10 referrals = 1 month PRO free
+├── Tracking:
+│   ├── Referral code in signup
+│   ├── Attribution: 30-day cookie
+│   └── Dashboard: referrals count in Profile
+├── Sharing:
+│   ├── Share sheet (native)
+│   ├── Copy link
+│   ├── WhatsApp direct share
+│   └── Twitter/X template
+└── Storage: users.referral_code, users.referred_by
+3.3 — CRONOGRAMA FASE 2
+text
+
+SPRINT 7 (Semanas 1-2): CONTENT + SOCIAL FOUNDATION
+├── Start Ilha Intermediário content creation
+├── Social: database schema + API endpoints
+├── Social: feed UI (posts, reactions)
+├── Paywall: design + Stripe account setup
+└── Bug fixes from Fase 1 launch
+
+SPRINT 8 (Semanas 3-4): MONETIZATION + CONTENT
+├── Stripe integration + IAP
+├── Paywall screen + gating logic
+├── Zona 5 content complete (10 missions)
+├── Zona 6 content complete (10 missions)
+├── Social: ranking/leaderboard
+└── Social: create post + prompts library
+
+SPRINT 9 (Semanas 5-6): FEATURES + CONTENT
+├── Scan & Learn (camera + Claude Vision)
+├── Portfolio auto-gerado
+├── Zona 7 content complete (10 missions)
+├── Zona 8 content complete (10 missions)
+├── Push notifications system
+└── Referral system
+
+SPRINT 10 (Semanas 7-8): BOSS + POLISH
+├── Zona 9 content complete (5 missions)
+├── Boss Fight: App CRUD Fullstack
+├── Notifications optimization
+├── Performance optimization
+├── A/B testing setup (paywall)
+└── Analytics dashboards
+
+SPRINT 11 (Semanas 9-10): TESTING + ITERATION
+├── User testing (10 beta users)
+├── Content review and fixes
+├── Bug fixing sprint
+├── Conversion optimization
+├── Onboarding optimization (based on data)
+└── App Store update submission
+
+SPRINT 12 (Semanas 11-12): LAUNCH + GROWTH
+├── Final polish
+├── Marketing: Product Hunt launch
+├── Marketing: Twitter/X thread
+├── Marketing: YouTube demo video
+├── Press outreach
+└── Growth loops activation (referrals)
+PARTE 4 — PRD FASE 3 (EXPANSÃO)
+4.1 — VISÃO DA FASE 3
+text
+
+OBJETIVO: Expandir funcionalidades premium, aumentar
+engajamento e LTV, diferenciar fortemente da concorrência.
+
+DURAÇÃO: 12 semanas (3 meses)
+
+ENTREGAS:
+├── 50 missões novas (Ilha Avançado completa)
+├── Vi Voice Mode (conversa por voz)
+├── Co-Op Missions (multiplayer)
+├── Speed Runs (desafios contra o relógio)
+├── Lab Mode (sandbox livre com IA)
+├── Forked Paths (caminhos alternativos)
+├── Replays de Experts
+├── Widget (Home Screen)
+├── Team Plan (início B2B)
+├── Certificados verificáveis
+└── Melhorias baseadas em dados Fases 1-2
+
+
+
+# 📋 PRD — PRODUCT REQUIREMENTS DOCUMENT (Continuação)
+
+## FASE 3 — EXPANSÃO
+
+---
+
+### 4.2 — EPICS DA FASE 3
+
+---
+
+#### EPIC 3.1: Ilha Avançado (50 missões)
+
+```
+EPIC ID:       E-3.1
+EPIC NAME:     Ilha Avançado — "O Vulcão"
+PRIORITY:      P0 (Critical)
+EFFORT:        13 semanas
+OWNER:         Content Lead + AI Lead
+DEPENDENCIES:  E-2.1 (Ilha Intermediário completa)
+```
+
+**User Stories:**
+
+```
+US-3.1.1  Como aluno que completou o intermediário,
+          quero acessar conteúdo avançado sobre
+          arquitetura de software para evoluir
+          minha carreira.
+          
+          Acceptance Criteria:
+          ├── Ilha desbloqueia após Boss Fight 2
+          ├── 5 zonas com 50 missões totais
+          ├── Cada zona tem mini-projeto
+          ├── Boss Fight final do nível
+          ├── Animação de desbloqueio da ilha
+          └── Notificação push de parabéns
+
+US-3.1.2  Como aluno avançado, quero aprender
+          SOLID e Design Patterns através de
+          exemplos práticos reais com IA.
+          
+          Acceptance Criteria:
+          ├── Zona 10: 10 missões de arquitetura
+          ├── Cada princípio SOLID = 1 missão
+          ├── Cada pattern com exemplo interativo
+          ├── Exercício de refatoração assistida
+          ├── Vi explica com analogias visuais
+          └── Quiz final da zona
+
+US-3.1.3  Como aluno avançado, quero aprender a
+          integrar IA (OpenAI, Claude) nos meus
+          apps como feature.
+          
+          Acceptance Criteria:
+          ├── Zona 13: 10 missões de IA
+          ├── Missão com OpenAI API real
+          ├── Missão de streaming de respostas
+          ├── Missão de RAG com embeddings
+          ├── Missão de function calling
+          ├── Missão de agents
+          ├── Sandbox com API keys do aluno
+          └── Mini-projeto: Chatbot RAG
+
+US-3.1.4  Como aluno avançado, quero aprender
+          Docker, CI/CD e monitoramento para
+          profissionalizar meus deploys.
+          
+          Acceptance Criteria:
+          ├── Zona 14: 7 missões de DevOps
+          ├── Tutorial visual de Docker
+          ├── GitHub Actions workflow guiado
+          ├── Integração Sentry no projeto
+          ├── Conceito de feature flags
+          └── Mini-projeto: Pipeline CI/CD
+
+US-3.1.5  Como aluno avançado, quero aprender
+          a monetizar com Stripe para criar
+          meu próprio SaaS.
+          
+          Acceptance Criteria:
+          ├── Zona 15: 5 missões de monetização
+          ├── Stripe Checkout integrado
+          ├── Webhooks explicados visualmente
+          ├── Feature gating por plano
+          ├── Dashboard de analytics
+          └── Mini-projeto: SaaS com pagamento real
+
+US-3.1.6  Como aluno, quero enfrentar o Boss Fight
+          do nível avançado construindo e lançando
+          um micro-SaaS completo.
+          
+          Acceptance Criteria:
+          ├── Boss Fight com 15 etapas
+          ├── Auth + IA + Stripe + Dashboard
+          ├── Deploy em produção real
+          ├── URL funcionando publicamente
+          ├── Automação CI/CD
+          ├── Portfolio atualizado
+          ├── Certificado de nível avançado
+          └── Desbloqueio da Ilha Expert
+```
+
+**Conteúdo detalhado das 50 missões:**
+
+```
+ZONA 10: Arquitetura & Padrões 🏛️
+├── M76:  SOLID — Single Responsibility
+│         Formato: Ilustração → Código bom vs ruim → Refatore
+│         Analogia: "Cada funcionário faz UMA coisa"
+│         Exercício: Separar classe monolítica em partes
+│
+├── M77:  SOLID — Open/Closed + Liskov
+│         Formato: Comparador visual → Quiz interativo
+│         Analogia: "Tomada universal vs adaptador"
+│         Exercício: Estender sem modificar código existente
+│
+├── M78:  SOLID — Interface Segregation + DI
+│         Formato: Diagrama interativo → Sandbox
+│         Analogia: "Controle remoto com botões demais"
+│         Exercício: Injetar dependências no projeto
+│
+├── M79:  Design Patterns — Factory & Observer
+│         Formato: Animação → Código → Identifique o pattern
+│         Analogia: "Fábrica de carros / Assinatura de jornal"
+│         Exercício: Implementar ambos num mini-app
+│
+├── M80:  Design Patterns — Strategy & Adapter
+│         Formato: Problema → 3 soluções → Qual é o pattern?
+│         Exercício: Trocar estratégia de pagamento em runtime
+│
+├── M81:  Clean Architecture (visão geral)
+│         Formato: Diagrama de camadas interativo
+│         Analogia: "Cebola — cada camada protege o centro"
+│         Exercício: Reorganizar pasta de projeto
+│
+├── M82:  Monolito vs Microserviços
+│         Formato: Comparador lado a lado → Trade-offs
+│         Analogia: "Restaurante único vs food court"
+│         Quiz: Quando usar cada um?
+│
+├── M83:  Event-Driven Architecture
+│         Formato: Animação de eventos fluindo
+│         Analogia: "Pedido no restaurante → cozinha → garçom"
+│         Exercício: Pub/Sub simples
+│
+├── M84:  Repository & Service Pattern
+│         Formato: Antes/Depois de aplicar patterns
+│         Exercício: Refatorar API para usar Repository
+│
+└── M85:  Refatoração assistida por IA
+          Formato: Código legado → Pedir ao Vi → Comparar
+          Exercício: Refatorar projeto do nível intermediário
+          🎯 Mini-projeto: Refatorar app para Clean Architecture
+
+ZONA 11: TypeScript Pro 💎
+├── M86:  Generics — Funções e tipos flexíveis
+│         Formato: Problema sem generics → Com generics
+│         Analogia: "Caixa que aceita qualquer tipo"
+│
+├── M87:  Utility Types — Partial, Pick, Omit, Record
+│         Formato: Referência visual + exercícios
+│         Exercício: Transformar tipos existentes
+│
+├── M88:  Discriminated Unions
+│         Formato: Pattern matching visual
+│         Exercício: Modelar estados de um pedido
+│
+├── M89:  Type Guards — typeof, in, instanceof, is
+│         Formato: Fluxograma de decisão → Código
+│         Exercício: Narrow types em runtime
+│
+├── M90:  Zod — Schema validation + type inference
+│         Formato: Tutorial passo a passo
+│         Exercício: Validar form data com Zod
+│
+├── M91:  tsconfig.json — Configuração profissional
+│         Formato: Cada opção explicada visualmente
+│         Exercício: Configurar strict mode + paths
+│
+├── M92:  Types avançados na prática
+│         Formato: Desafio — tipar uma API inteira
+│         Exercício: Full type coverage em mini-API
+│
+└── M93:  tRPC — Full-stack type safety
+          Formato: Comparação REST vs tRPC
+          Exercício: Criar API tRPC com Next.js
+          🎯 Mini-projeto: API 100% type-safe
+
+ZONA 12: React & Next.js Pro ⚡
+├── M94:  Custom Hooks — Criar hooks reutilizáveis
+│         Formato: Hook existente → Extrair → Reutilizar
+│         Exercício: useLocalStorage, useDebounce, useFetch
+│
+├── M95:  State Management — Context + Zustand
+│         Formato: Comparador Context vs Zustand vs Redux
+│         Exercício: Store global com Zustand
+│
+├── M96:  React Query / TanStack Query
+│         Formato: Fetch manual vs React Query
+│         Exercício: CRUD com cache, mutations, optimistic
+│
+├── M97:  Server Components — O futuro do React
+│         Formato: Client vs Server — visualização de fluxo
+│         Exercício: Converter componentes para Server
+│
+├── M98:  Server Actions — Mutations simplificadas
+│         Formato: API Route vs Server Action
+│         Exercício: Form com Server Action
+│
+├── M99:  Performance — memo, useMemo, useCallback
+│         Formato: Profiler visual antes/depois
+│         Exercício: Otimizar lista com 1000 itens
+│
+├── M100: Suspense & Streaming
+│         Formato: Loading waterfall vs streaming
+│         Exercício: Implementar Suspense boundaries
+│
+├── M101: Auth com NextAuth/Auth.js
+│         Formato: Fluxo OAuth visual → Implementação
+│         Exercício: Login com Google + GitHub
+│
+├── M102: Middleware no Next.js
+│         Formato: Requisição passando por filtros
+│         Exercício: Middleware de auth + redirect
+│
+└── M103: SEO & Metadata API
+          Formato: Checklist SEO interativo
+          Exercício: Metadata dinâmica + OG images
+          🎯 Mini-projeto: Dashboard SSR + real-time
+
+ZONA 13: IA como Feature 🤖
+├── M104: OpenAI API — Seu primeiro chatbot
+│         Formato: Setup → Primeira chamada → Chat UI
+│         Exercício: Chat funcional com GPT-4o
+│
+├── M105: Streaming de respostas
+│         Formato: Resposta completa vs streaming visual
+│         Exercício: Implementar streaming com readableStream
+│
+├── M106: Vercel AI SDK — IA no frontend
+│         Formato: SDK overview → useChat hook
+│         Exercício: Chat com UI profissional
+│
+├── M107: Function Calling — IA executando ações
+│         Formato: Conceito → Definir tools → IA decide
+│         Exercício: IA que busca dados e executa ações
+│
+├── M108: Embeddings — Texto como vetores
+│         Formato: Visualização 3D de embeddings
+│         Analogia: "GPS do significado das palavras"
+│         Exercício: Similaridade semântica entre textos
+│
+├── M109: RAG — Retrieval Augmented Generation
+│         Formato: Pipeline visual: Doc → Chunk → Embed → Search → Generate
+│         Exercício: RAG com documentos próprios
+│
+├── M110: Vector Databases — pgvector / Pinecone
+│         Formato: SQL vs Vector Search — comparador
+│         Exercício: Busca semântica em produção
+│
+├── M111: Prompt Engineering para produção
+│         Formato: Dev prompts vs Production prompts
+│         Exercício: Prompt versioning + testing
+│
+├── M112: Agents — IA que age sozinha
+│         Formato: Chatbot vs Agent — diferenças
+│         Exercício: Agente que navega web e extrai dados
+│
+└── M113: MCP — Model Context Protocol
+          Formato: O que é MCP → Criar MCP server
+          Exercício: Conectar IA a banco de dados via MCP
+          🎯 Mini-projeto: Chatbot RAG com seus documentos
+
+ZONA 14: DevOps & Infra 🏗️
+├── M114: Docker — Empacotando seu app
+│         Formato: Conceito de container → Dockerfile
+│         Analogia: "Container de navio = app empacotado"
+│         Exercício: Dockerizar app Next.js
+│
+├── M115: Docker Compose — Orquestrando serviços
+│         Formato: App + DB + Redis em containers
+│         Exercício: docker-compose.yml completo
+│
+├── M116: GitHub Actions — CI/CD automático
+│         Formato: Workflow visual → YAML
+│         Exercício: Pipeline: lint → test → deploy
+│
+├── M117: Monitoramento com Sentry
+│         Formato: Setup → Erros capturados → Alertas
+│         Exercício: Integrar Sentry no projeto
+│
+├── M118: Logging profissional
+│         Formato: console.log vs structured logging
+│         Exercício: Implementar Pino/Winston
+│
+├── M119: Feature Flags
+│         Formato: Deploy ≠ Release — conceito visual
+│         Exercício: Implementar feature flag simples
+│
+└── M120: Testes automatizados — Vitest + Playwright
+          Formato: Tipos de teste → Pirâmide → Prática
+          Exercício: Testes unit + e2e no projeto
+          🎯 Mini-projeto: Pipeline CI/CD completo
+
+ZONA 15: Monetização 💰
+├── M121: Stripe — Recebendo pagamentos
+│         Formato: Conceito → Setup → Primeiro pagamento
+│         Exercício: Integrar Stripe no projeto
+│
+├── M122: Checkout + Subscriptions
+│         Formato: One-time vs Recurring visual
+│         Exercício: Checkout Session + Subscription
+│
+├── M123: Webhooks — Reagindo a pagamentos
+│         Formato: Fluxo webhook visual animado
+│         Exercício: Webhook handler + signature verification
+│
+├── M124: Feature gating — Planos e limites
+│         Formato: Free vs Pro features — middleware
+│         Exercício: Gate features por subscription status
+│
+└── M125: Analytics — Entendendo seus usuários
+          Formato: Setup PostHog → Eventos → Funis
+          Exercício: Track custom events + dashboard
+          🎯 Mini-projeto: SaaS com pagamento real
+
+🏆 BOSS FIGHT 3: Micro-SaaS Completo
+   15 etapas cobrindo:
+   ├── Auth (NextAuth + Google/GitHub)
+   ├── Database (PostgreSQL + Prisma)
+   ├── IA Feature (OpenAI chat ou RAG)
+   ├── Stripe (Checkout + Webhooks)
+   ├── Feature gating (Free vs Pro)
+   ├── Dashboard admin
+   ├── Testes (unit + e2e)
+   ├── CI/CD (GitHub Actions)
+   ├── Docker
+   ├── Monitoramento (Sentry)
+   ├── Logging
+   ├── SEO + Metadata
+   ├── Analytics (PostHog)
+   ├── Deploy produção (Vercel + Railway)
+   └── Domínio customizado
+```
+
+**Technical Requirements:**
+
+```
+BACKEND:
+├── Novo content type: "advanced_mission"
+│   ├── Suporta code diff view (antes/depois)
+│   ├── Suporta diagramas interativos
+│   ├── Suporta multi-file editing
+│   └── Suporta external API calls (OpenAI, Stripe)
+│
+├── Sandbox avançado:
+│   ├── Suportar múltiplos arquivos
+│   ├── Suportar npm packages
+│   ├── Suportar environment variables do aluno
+│   ├── Suportar database connections (demo)
+│   └── Suportar API calls reais (com rate limit)
+│
+├── Project Builder avançado:
+│   ├── Git integration (commit automático)
+│   ├── Deploy automático para Vercel
+│   ├── Database provisioning (Neon free tier)
+│   └── Stripe test mode integration
+│
+└── Certificação:
+    ├── Gerar certificado PDF
+    ├── QR code de verificação
+    ├── Página pública de verificação
+    └── LinkedIn integration (add certification)
+
+FRONTEND:
+├── Diagrama interativo (React Flow / D3)
+├── Code diff viewer (Monaco Diff Editor)
+├── Multi-file tab interface
+├── Architecture diagram builder
+├── Terminal emulator (xterm.js)
+└── Performance profiler visualization
+
+AI:
+├── Vi com contexto de arquitetura
+├── Vi code review mode
+├── Vi refactoring suggestions
+├── Vi security audit mode
+└── Vi cost estimation for AI usage
+```
+
+---
+
+#### EPIC 3.2: Vi Voice Mode
+
+```
+EPIC ID:       E-3.2
+EPIC NAME:     Vi Voice Mode
+PRIORITY:      P0 (Critical)
+EFFORT:        6 semanas
+OWNER:         AI Lead + Mobile Lead
+DEPENDENCIES:  E-1.3 (Vi Chat funcional)
+```
+
+**User Stories:**
+
+```
+US-3.2.1  Como aluno, quero conversar com o Vi
+          por voz para aprender enquanto caminho,
+          dirijo ou faço exercício.
+          
+          Acceptance Criteria:
+          ├── Botão de microfone no chat do Vi
+          ├── Speech-to-text em tempo real
+          ├── Vi responde por áudio + texto
+          ├── Indicador visual de "Vi falando"
+          ├── Pausa/retoma durante áudio
+          ├── Funciona em background
+          └── Latência < 2 segundos
+
+US-3.2.2  Como aluno, quero que o Vi adapte suas
+          respostas de voz ao meu nível, usando
+          linguagem simples no básico e técnica
+          no avançado.
+          
+          Acceptance Criteria:
+          ├── Prompt de sistema inclui nível do aluno
+          ├── Respostas em voz usam analogias no básico
+          ├── Respostas em voz usam termos técnicos no avançado
+          ├── Velocidade de fala ajustável
+          └── Idioma configurável (PT-BR padrão)
+
+US-3.2.3  Como aluno, quero um modo "aula por voz"
+          onde o Vi me guia por uma missão inteira
+          usando áudio, como um podcast educativo.
+          
+          Acceptance Criteria:
+          ├── Modo "Guided Lesson" por voz
+          ├── Vi narra + faz perguntas
+          ├── Aluno responde por voz
+          ├── Vi confirma e avança
+          ├── Pausa automática ao detectar silêncio
+          ├── Transcrição disponível após
+          └── XP ganho normalmente
+
+US-3.2.4  Como aluno, quero que o Vi leia código
+          em voz alta e explique linha por linha.
+          
+          Acceptance Criteria:
+          ├── Modo "Code Narration"
+          ├── Vi lê código com pausas naturais
+          ├── Destaca linha atual na tela
+          ├── Explica cada bloco
+          ├── Aluno pode perguntar "por que?"
+          └── Funciona offline (cache de áudio)
+```
+
+**Technical Requirements:**
+
+```
+SPEECH-TO-TEXT:
+├── Provider: Whisper API (OpenAI) ou Deepgram
+├── Streaming transcription (real-time)
+├── Language detection (PT-BR, EN, ES)
+├── Noise cancellation
+├── Latência target: < 500ms
+└── Fallback: on-device (iOS Speech, Android Speech)
+
+TEXT-TO-SPEECH:
+├── Provider: ElevenLabs ou OpenAI TTS
+├── Voz customizada para Vi (consistente)
+├── Variação de tom (entusiasmado, sério, encorajador)
+├── Speed control (0.75x, 1x, 1.25x, 1.5x)
+├── Caching de áudios frequentes
+├── Streaming de áudio (não esperar tudo)
+└── Estimativa de custo: ~$0.015/1000 chars
+
+MOBILE:
+├── Audio session management (iOS/Android)
+├── Background audio playback
+├── Bluetooth headset support
+├── Interruption handling (call, notification)
+├── Audio focus management
+├── Waveform visualization
+└── Voice activity detection (VAD)
+
+AI PIPELINE:
+├── STT → LLM → TTS (< 2s total)
+├── Context includes current mission
+├── Conversation memory (last 10 exchanges)
+├── Graceful degradation if slow connection
+└── Cost optimization: short responses for voice
+```
+
+**UI Specifications:**
+
+```
+Voice Button (in Vi Chat):
+┌────┐
+│ 🎤 │  w:56px h:56px
+└────┘  rounded:full
+        bg:accent-purple
+        pulse animation when active
+
+Recording State:
+┌─────────────────────────────────┐
+│  🎤 Ouvindo...                   │  waveform animation
+│  ~~~~~~~~~~~~~~~~~~~~~~~~        │  red dot indicator
+│  [Cancelar]                      │  h:120px
+└─────────────────────────────────┘  bg:#1A1A2E
+
+Vi Speaking State:
+┌─────────────────────────────────┐
+│  🤖🔊 Vi está falando...        │  avatar animated
+│  ~~~~~~~~~~~~~~~~~~~~~~~~        │  speaker icon
+│  [⏸️ Pausar]  [⏭️ Pular]         │  waveform
+└─────────────────────────────────┘  bg:#1E1E3A
+```
+
+---
+
+#### EPIC 3.3: Co-Op Missions
+
+```
+EPIC ID:       E-3.3
+EPIC NAME:     Co-Op Missions (Multiplayer)
+PRIORITY:      P1 (High)
+EFFORT:        8 semanas
+OWNER:         Backend Lead + Mobile Lead
+DEPENDENCIES:  E-2.4 (Social/Community)
+```
+
+**User Stories:**
+
+```
+US-3.3.1  Como aluno, quero encontrar um parceiro
+          do meu nível para fazer missões
+          colaborativas onde cada um faz uma parte.
+          
+          Acceptance Criteria:
+          ├── Matchmaking por nível (±3 levels)
+          ├── Matchmaking por idioma
+          ├── Matchmaking por disponibilidade (online agora)
+          ├── Tempo máximo de espera: 60 segundos
+          ├── Fallback: jogar com Vi (IA como parceiro)
+          ├── Opção de convidar amigo por link/código
+          └── Notificação quando match encontrado
+
+US-3.3.2  Como aluno em missão co-op, quero me
+          comunicar com meu parceiro via chat
+          em tempo real para coordenar o trabalho.
+          
+          Acceptance Criteria:
+          ├── Chat em tempo real (WebSocket)
+          ├── Compartilhar trechos de código
+          ├── Compartilhar screenshots
+          ├── Indicador de "parceiro digitando"
+          ├── Notificação de mensagem nova
+          ├── Histórico da conversa salvo
+          └── Report/block se necessário
+
+US-3.3.3  Como aluno, quero que a missão co-op
+          divida tarefas claramente (ex: frontend
+          vs backend) para aprendermos colaboração.
+          
+          Acceptance Criteria:
+          ├── Role assignment (Frontend/Backend/IA/Design)
+          ├── Task list separada por role
+          ├── Progress tracker compartilhado
+          ├── API contract definition (como vão se conectar)
+          ├── Merge point (onde juntam o trabalho)
+          └── Avaliação mútua ao final
+
+US-3.3.4  Como aluno, quero receber XP bônus e
+          badge especial ao completar co-op missions.
+          
+          Acceptance Criteria:
+          ├── XP bônus de 50% vs missão solo
+          ├── Badge "Team Player" após 1 co-op
+          ├── Badge "Dream Team" após 5 co-ops
+          ├── Badge "Líder" após 10 co-ops
+          ├── Avaliação do parceiro (1-5 estrelas)
+          └── Histórico de co-ops no perfil
+```
+
+**Technical Requirements:**
+
+```
+REAL-TIME:
+├── WebSocket server (Socket.io ou Ably)
+├── Rooms: 1 room per co-op session
+├── Events: message, code_update, task_complete, typing
+├── Reconnection handling (30s grace period)
+├── Presence: online/offline/typing indicators
+└── Persistence: save to DB after session
+
+MATCHMAKING:
+├── Queue system (Redis sorted set)
+├── Scoring: level_diff * 10 + language_match * 50 + timezone_diff * 5
+├── Max wait: 60 seconds
+├── Notification via push when matched
+├── Session creation on match
+└── Graceful timeout → offer Vi as partner
+
+DATABASE:
+├── coop_sessions table
+│   ├── id, mission_id
+│   ├── player_a_id, player_b_id
+│   ├── player_a_role, player_b_role
+│   ├── status (matching/active/completed/abandoned)
+│   ├── started_at, completed_at
+│   ├── chat_history (jsonb)
+│   └── ratings (jsonb)
+│
+├── coop_missions table
+│   ├── id, title, description
+│   ├── role_a_tasks (jsonb)
+│   ├── role_b_tasks (jsonb)
+│   ├── api_contract (jsonb)
+│   ├── merge_instructions (text)
+│   └── difficulty, xp_reward
+│
+└── Indexes: user_id + status, level + language
+
+CONTENT (5 co-op missions at launch):
+├── CoOp-1: "API & UI" (Backend + Frontend)
+├── CoOp-2: "Chat Duo" (Backend IA + Frontend Chat)
+├── CoOp-3: "Data & Display" (DB + Dashboard)
+├── CoOp-4: "Auth & Profile" (Auth + Profile UI)
+└── CoOp-5: "Deploy & Monitor" (DevOps + Frontend)
+```
+
+---
+
+#### EPIC 3.4: Speed Runs
+
+```
+EPIC ID:       E-3.4
+EPIC NAME:     Speed Runs
+PRIORITY:      P1 (High)
+EFFORT:        4 semanas
+OWNER:         Frontend Lead + Content Lead
+DEPENDENCIES:  E-1.5 (Sandbox funcional)
+```
+
+**User Stories:**
+
+```
+US-3.4.1  Como aluno, quero desafios contra o
+          relógio para testar minha velocidade
+          com vibe coding.
+          
+          Acceptance Criteria:
+          ├── Timer countdown visível
+          ├── Requisitos claros (checklist)
+          ├── Editor + Preview split view
+          ├── Vi disponível para ajudar
+          ├── Auto-submit quando tempo acabar
+          ├── Resultado com tempo + score
+          └── Ranking global por tempo
+
+US-3.4.2  Como aluno, quero assistir replays das
+          melhores soluções para aprender com
+          os experts.
+          
+          Acceptance Criteria:
+          ├── Top 3 soluções visíveis após completar
+          ├── Replay keystroke-by-keystroke
+          ├── Speed control (0.5x, 1x, 2x)
+          ├── Vi comenta o replay automaticamente
+          ├── Botão "copiar solução" para estudar
+          └── Favoritar replays
+
+US-3.4.3  Como aluno, quero competir em speed runs
+          semanais temáticos com premiação.
+          
+          Acceptance Criteria:
+          ├── 1 speed run temático por semana
+          ├── Tema anunciado segunda-feira
+          ├── Ranking fecha domingo
+          ├── Top 10 recebe XP bônus
+          ├── #1 recebe badge exclusivo
+          └── Histórico de speed runs
+```
+
+**Technical Requirements:**
+
+```
+RECORDING:
+├── Capture keystrokes with timestamps
+├── Capture cursor position
+├── Capture file changes
+├── Store as compressed JSON
+├── Playback engine (reconstruct session)
+├── Max recording size: 2MB per session
+└── Retention: 30 days (top 100 forever)
+
+RANKING:
+├── Global leaderboard per speed run
+├── Scoring: time_seconds * 100 + quality_bonus
+├── Quality bonus: meets all requirements = +500
+├── Anti-cheat: min time threshold (can't finish in 5s)
+├── Weekly rotation of challenges
+└── Prize distribution automated
+
+CONTENT (10 speed runs at launch):
+├── SR-1:  Landing page em 10 min
+├── SR-2:  Todo app em 15 min
+├── SR-3:  API REST em 10 min
+├── SR-4:  Form com validação em 8 min
+├── SR-5:  Dashboard chart em 12 min
+├── SR-6:  Auth flow em 15 min
+├── SR-7:  Chatbot UI em 10 min
+├── SR-8:  E-commerce product page em 12 min
+├── SR-9:  Blog com MDX em 15 min
+└── SR-10: Portfolio page em 10 min
+```
+
+---
+
+#### EPIC 3.5: Lab Mode
+
+```
+EPIC ID:       E-3.5
+EPIC NAME:     Lab Mode (Sandbox Livre)
+PRIORITY:      P1 (High)
+EFFORT:        5 semanas
+OWNER:         Frontend Lead + AI Lead
+DEPENDENCIES:  E-1.5 (Sandbox básico), E-1.3 (Vi Chat)
+```
+
+**User Stories:**
+
+```
+US-3.5.1  Como aluno, quero um espaço livre para
+          pedir ao Vi que construa QUALQUER app
+          que eu imaginar, sem restrições de nível.
+          
+          Acceptance Criteria:
+          ├── Input de texto livre "O que quer construir?"
+          ├── Vi analisa pedido e sugere stack
+          ├── Vi gera código multi-arquivo
+          ├── File tree navegável
+          ├── Editor com syntax highlighting
+          ├── Live preview
+          ├── Iteração via chat ("agora mude X")
+          └── Salvar projeto na conta
+
+US-3.5.2  Como aluno, quero fazer deploy do que
+          construí no Lab para ter uma URL real.
+          
+          Acceptance Criteria:
+          ├── Botão "Deploy" no Lab
+          ├── Deploy para Vercel (1 click)
+          ├── URL gerada automaticamente
+          ├── Adicionar ao portfolio
+          └── Limite: 3 deploys/mês (free) ou ilimitado (pro)
+
+US-3.5.3  Como aluno, quero templates de projetos
+          populares para começar mais rápido.
+          
+          Acceptance Criteria:
+          ├── 20+ templates categorizados
+          ├── Templates: SaaS, Blog, E-commerce, Dashboard,
+          │   Portfolio, Chat, Game, Tool, API, Mobile
+          ├── Preview de cada template
+          ├── "Use this template" → Vi customiza
+          └── Comunidade pode submeter templates
+```
+
+**Technical Requirements:**
+
+```
+SANDBOX:
+├── Engine: StackBlitz WebContainers ou Sandpack
+├── Multi-file support (up to 50 files)
+├── npm package installation
+├── Environment variables
+├── Terminal emulator
+├── Hot reload
+├── File system persistence (IndexedDB)
+├── Export to GitHub repo
+└── Resource limits: 256MB memory, 5min CPU/session
+
+AI:
+├── Vi generates full project structure
+├── Multi-file generation pipeline:
+│   1. Analyze request
+│   2. Choose stack
+│   3. Generate file tree
+│   4. Generate each file
+│   5. Install dependencies
+│   6. Test build
+│   7. Preview
+├── Iterative editing (change single file)
+├── Context: entire project in memory
+└── Cost limit: max 50K tokens per Lab session
+
+TEMPLATES (stored as JSON blueprints):
+├── Category, title, description, preview image
+├── File tree structure
+├── Base code for each file
+├── Required npm packages
+├── Environment variables needed
+├── Suggested customizations
+└── Difficulty level
+```
+
+---
+
+#### EPIC 3.6: Forked Paths
+
+```
+EPIC ID:       E-3.6
+EPIC NAME:     Forked Paths (Caminhos Alternativos)
+PRIORITY:      P1 (High)
+EFFORT:        6 semanas
+OWNER:         Content Lead + Backend Lead
+DEPENDENCIES:  E-2.1 (Ilha Intermediário)
+```
+
+**User Stories:**
+
+```
+US-3.6.1  Como aluno, quero escolher COMO aprender
+          os próximos conceitos, escolhendo entre
+          projetos diferentes que ensinam as mesmas
+          skills.
+          
+          Acceptance Criteria:
+          ├── Fork points em 4 momentos da trilha
+          ├── Cada fork oferece 2-4 caminhos
+          ├── Cada caminho = projeto diferente
+          ├── Mesmos conceitos, contextos diferentes
+          ├── Preview visual de cada caminho
+          ├── Indicador de popularidade
+          ├── Recomendação do Vi baseada no perfil
+          └── Pode trocar de caminho (perde progresso parcial)
+
+US-3.6.2  Como aluno, quero poder voltar e fazer
+          caminhos alternativos que não escolhi,
+          para aprender com projetos extras.
+          
+          Acceptance Criteria:
+          ├── Caminhos não escolhidos ficam acessíveis
+          ├── Marcados como "Extra" ou "Alternativo"
+          ├── XP ganho normalmente
+          ├── Projetos adicionados ao portfolio
+          └── Não obrigatórios para avançar de nível
+```
+
+**Fork Points definidos:**
+
+```
+FORK 1 — Após Zona 7 (Backend Básico):
+├── 🤖 Caminho IA: Chatbot com OpenAI
+├── 📱 Caminho Mobile: App React Native
+├── 🛒 Caminho E-commerce: Loja com Stripe
+└── 📊 Caminho Dashboard: Analytics com charts
+
+FORK 2 — Após Zona 10 (Arquitetura):
+├── 🏗️ Caminho Monolito: App monolítico robusto
+├── 🔌 Caminho API: Microserviço com message queue
+└── ☁️ Caminho Serverless: App com Lambda/Edge
+
+FORK 3 — Após Zona 13 (IA como Feature):
+├── 🧠 Caminho RAG: Knowledge base com busca semântica
+├── 🤖 Caminho Agents: Multi-agent system
+└── 🎨 Caminho Multimodal: App com visão + texto
+
+FORK 4 — Após Zona 14 (DevOps):
+├── 🐳 Caminho Container: K8s deployment
+├── 🔄 Caminho CI/CD: Pipeline avançado
+└── 📊 Caminho Observability: Monitoring stack
+```
+
+---
+
+#### EPIC 3.7: Replays de Experts
+
+```
+EPIC ID:       E-3.7
+EPIC NAME:     Expert Replays
+PRIORITY:      P2 (Medium)
+EFFORT:        4 semanas
+OWNER:         Content Lead + Frontend Lead
+DEPENDENCIES:  E-3.4 (Speed Runs recording)
+```
+
+**User Stories:**
+
+```
+US-3.7.1  Como aluno, quero assistir experts
+          construindo apps em tempo real para
+          aprender técnicas e workflows.
+          
+          Acceptance Criteria:
+          ├── Biblioteca de replays curada
+          ├── Categorização por nível e tech
+          ├── Player com controles (play, pause, speed)
+          ├── Vi comenta automaticamente o que acontece
+          ├── Pop-ups explicam decisões do expert
+          ├── Bookmark momentos importantes
+          └── 10 replays no lançamento
+
+US-3.7.2  Como aluno expert, quero gravar meus
+          próprios replays e compartilhar com
+          a comunidade.
+          
+          Acceptance Criteria:
+          ├── Botão "Gravar" no sandbox/editor
+          ├── Recording com keystroke capture
+          ├── Adicionar narração (voz)
+          ├── Adicionar anotações em momentos
+          ├── Publicar na comunidade
+          ├── Moderação antes de publicar
+          └── XP ganho por visualizações
+```
+
+**Technical Requirements:**
+
+```
+RECORDING FORMAT:
+├── Keystroke events with timestamps
+├── File state snapshots (every 30s)
+├── Cursor position tracking
+├── Terminal output capture
+├── Audio track (optional narration)
+├── Annotation markers (timestamp + text)
+├── Compressed format: ~500KB per 10min
+└── Storage: S3/R2 with CDN
+
+PLAYBACK:
+├── Reconstruct editor state from events
+├── Smooth cursor animation
+├── Speed controls: 0.25x, 0.5x, 1x, 1.5x, 2x, 4x
+├── Seek to any timestamp
+├── Chapter markers (auto-detected from file saves)
+├── Picture-in-picture mode
+└── Offline caching (PWA)
+
+AI COMMENTARY:
+├── Analyze recording events
+├── Generate commentary at key moments:
+│   ├── "Aqui o expert criou um custom hook para..."
+│   ├── "Note como ele usou o pattern X..."
+│   └── "Essa é uma técnica de performance..."
+├── Commentary adapts to viewer's level
+└── Optional: viewer can ask Vi about any moment
+```
+
+---
+
+#### EPIC 3.8: Widget (Micro-doses)
+
+```
+EPIC ID:       E-3.8
+EPIC NAME:     Home Screen Widget
+PRIORITY:      P2 (Medium)
+EFFORT:        3 semanas
+OWNER:         Mobile Lead
+DEPENDENCIES:  E-1.1 (Core app functional)
+```
+
+**User Stories:**
+
+```
+US-3.8.1  Como aluno, quero um widget na tela
+          inicial do meu celular que mostra
+          dica do dia + streak + desafio rápido.
+          
+          Acceptance Criteria:
+          ├── 3 tamanhos: Small (2x2), Medium (4x2), Large (4x4)
+          ├── Dica do dia rotativa (muda a cada hora)
+          ├── Streak counter sempre visível
+          ├── Botão de desafio rápido (2min)
+          ├── Toque abre a seção relevante no app
+          ├── Dark mode matching system theme
+          ├── Update frequency: every 30 min
+          └── iOS (WidgetKit) + Android (Glance/AppWidget)
+
+US-3.8.2  Como aluno, quero que a dica do dia
+          seja adaptada ao meu nível atual.
+          
+          Acceptance Criteria:
+          ├── Dicas pré-geradas por nível (200+ por nível)
+          ├── Rotação inteligente (não repetir recente)
+          ├── Relacionada ao conteúdo que estou aprendendo
+          ├── Formato: conceito em 2-3 frases com analogia
+          └── Cache local para funcionar offline
+```
+
+**Technical Requirements:**
+
+```
+iOS:
+├── WidgetKit (SwiftUI)
+├── Sizes: .systemSmall, .systemMedium, .systemLarge
+├── Timeline provider: refresh every 30 min
+├── Shared UserDefaults (App Group) for user data
+├── Deep links to specific app sections
+└── Expo config plugin for widget setup
+
+Android:
+├── Jetpack Glance (Compose) or AppWidget
+├── Sizes: 2x2, 4x2, 4x4
+├── WorkManager for periodic refresh
+├── SharedPreferences for user data
+├── PendingIntent for deep links
+└── Expo config plugin for widget setup
+
+Content:
+├── 200 tips per level (800 total)
+├── Stored as JSON in app bundle
+├── Daily rotation: hash(date + user_id) % total
+├── Fallback: static tips if no user data
+└── A/B test: different tip styles
+```
+
+---
+
+### 4.3 — TIMELINE DA FASE 3
+
+```
+FASE 3: EXPANSÃO (13 semanas = ~3 meses)
+
+SEMANA  │ EPIC                      │ STATUS
+────────┼───────────────────────────┼────────
+S1-S2   │ E-3.1 Zona 10-11 content │ 🔵
+S1-S3   │ E-3.2 Voice Mode         │ 🔵
+S3-S4   │ E-3.1 Zona 12 content    │ 🔵
+S3-S6   │ E-3.3 Co-Op Missions     │ 🔵
+S4-S5   │ E-3.8 Widget             │ 🔵
+S5-S6   │ E-3.1 Zona 13 content    │ 🔵
+S5-S8   │ E-3.4 Speed Runs         │ 🔵
+S7-S8   │ E-3.1 Zona 14-15 content │ 🔵
+S7-S11  │ E-3.5 Lab Mode           │ 🔵
+S9-S10  │ E-3.1 Boss Fight 3       │ 🔵
+S9-S12  │ E-3.6 Forked Paths       │ 🔵
+S11-S13 │ E-3.7 Replays            │ 🔵
+S12-S13 │ QA + Polish + Launch     │ 🔵
+
+MILESTONES:
+├── S4:  Voice Mode beta release
+├── S6:  Co-Op beta + Zones 10-12 ready
+├── S8:  Speed Runs + Widget live
+├── S10: All 50 missions + Boss Fight 3
+├── S12: Lab Mode + Forked Paths
+└── S13: Full Phase 3 launch 🚀
+```
+
+### 4.4 — MÉTRICAS DE SUCESSO DA FASE 3
+
+```
+TARGET METRICS:
+
+📈 GROWTH:
+├── MAU: 50,000 → 120,000 (+140%)
+├── DAU: 15,000 → 40,000 (+167%)
+├── DAU/MAU: 42% → 45%
+└── New installs/month: 25,000
+
+💰 REVENUE:
+├── MRR: $15,000 → $45,000 (+200%)
+├── Pro conversion: 5% → 7%
+├── Churn: 5% → 4%
+└── LTV: $89 → $135
+
+📚 LEARNING:
+├── Zona 10 completion: >55%
+├── Zona 13 (IA) completion: >60%
+├── Boss Fight 3 completion: >40%
+├── Co-Op participation: >25% of MAU
+├── Speed Run participation: >30% of MAU
+└── Lab Mode usage: >20% of Pro users
+
+🤖 AI:
+├── Voice Mode adoption: >30% of Pro
+├── Voice sessions/day: >5,000
+├── Vi satisfaction (voice): >4.5/5
+└── AI cost/user/month: <$0.80
+
+👥 ENGAGEMENT:
+├── Co-Op matches/day: >200
+├── Speed Runs completed/week: >2,000
+├── Expert Replays views/week: >5,000
+├── Widget installs: >30% of users
+└── Session duration: 12min → 18min
+```
+
+---
+
+## FASE 4 — EXPERT
+
+### 4.5 — VISÃO GERAL DA FASE 4
+
+```
+FASE 4: EXPERT (13 semanas = ~3 meses)
+GOAL: Completar a jornada do usuário com conteúdo
+      expert, certificações verificáveis, job board,
+      internacionalização e escala global.
+```
+
+### 4.6 — EPICS DA FASE 4
+
+---
+
+#### EPIC 4.1: Ilha Expert (35 missões)
+
+```
+EPIC ID:       E-4.1
+EPIC NAME:     Ilha Expert — "O Cosmos"
+PRIORITY:      P0 (Critical)
+EFFORT:        10 semanas
+OWNER:         Content Lead + AI Lead
+DEPENDENCIES:  E-3.1 (Ilha Avançado completa)
+```
+
+**User Stories:**
+
+```
+US-4.1.1  Como aluno que completou o avançado,
+          quero acessar conteúdo expert sobre
+          system design, segurança e IA avançada.
+          
+          Acceptance Criteria:
+          ├── Ilha desbloqueia após Boss Fight 3
+          ├── 5 zonas com 35 missões totais
+          ├── Visual épico (espaço/cosmos)
+          ├── Missões mais longas e complexas
+          ├── Cada zona com mini-projeto
+          ├── Boss Fight final épico
+          └── Certificado "Expert" verificável
+
+US-4.1.2  Como aluno expert, quero aprender system
+          design através de exercícios de whiteboard
+          interativo assistido por IA.
+          
+          Acceptance Criteria:
+          ├── Zona 16: 10 missões de System Design
+          ├── Whiteboard interativo (draw.io style)
+          ├── Vi como "entrevistador" de system design
+          ├── Templates de diagramas de sistema
+          ├── Exercícios: "Projete o Twitter/Uber/etc"
+          ├── Vi avalia o design e sugere melhorias
+          └── Exportar diagrama como imagem
+
+US-4.1.3  Como aluno expert, quero aprender a
+          construir sistemas multi-agente de IA
+          em produção.
+          
+          Acceptance Criteria:
+          ├── Zona 18: 8 missões de AI/ML Architecture
+          ├── Multi-agent com LangGraph/CrewAI
+          ├── LLM Observability (Langfuse)
+          ├── Cost optimization techniques
+          ├── Guardrails e responsible AI
+          ├── Exercício: orquestrar 3 agentes
+          └── Mini-projeto: sistema multi-agente funcional
+```
+
+**Conteúdo das 35 missões:**
+
+```
+ZONA 16: System Design 🌌 (10 missões)
+├── M126: Escalabilidade — horizontal vs vertical
+│         Formato: Simulador visual de carga
+│         Exercício: Identificar bottleneck num sistema
+│
+├── M127: Message Queues & Event Streaming
+│         Formato: Animação de mensagens fluindo
+│         Exercício: Desenhar sistema com SQS/Kafka
+│
+├── M128: Caching em múltiplas camadas
+│         Formato: Diagrama interativo L1/L2/L3
+│         Exercício: Cache strategy para e-commerce
+│
+├── M129: CAP Theorem na prática
+│         Formato: Triângulo interativo com trade-offs
+│         Quiz: Qual database para cada cenário?
+│
+├── M130: Circuit Breakers & Resiliência
+│         Formato: Simulador de falha em cascata
+│         Exercício: Implementar circuit breaker
+│
+├── M131: Distributed Systems — conceitos
+│         Formato: Animação de consenso entre nodes
+│         Quiz: Problemas clássicos de dist. systems
+│
+├── M132: Database Sharding & Replication
+│         Formato: Visualização de dados distribuídos
+│         Exercício: Sharding strategy para 1B rows
+│
+├── M133: Rate Limiting avançado
+│         Formato: Token bucket vs sliding window visual
+│         Exercício: Implementar rate limiter
+│
+├── M134: Saga Pattern — transações distribuídas
+│         Formato: Fluxo de saga com compensação
+│         Exercício: Saga para processo de pagamento
+│
+└── M135: System Design Interview (Whiteboard)
+          Formato: Vi como entrevistador
+          Exercício: Projetar sistema completo
+          🎯 Mini-projeto: Design document completo
+
+ZONA 17: Segurança 🔒 (7 missões)
+├── M136: OWASP Top 10
+│         Formato: Cada vulnerabilidade com demo interativa
+│         Exercício: Encontrar vulns num código dado
+│
+├── M137: Security Headers & CSP
+│         Formato: Checklist interativo + scanner
+│         Exercício: Configurar headers no Next.js
+│
+├── M138: Secret Management em produção
+│         Formato: Fluxo de secrets rotation
+│         Exercício: Vault/AWS Secrets Manager setup
+│
+├── M139: Dependency Scanning
+│         Formato: npm audit → Snyk → Fix
+│         Exercício: Auditar e corrigir dependências
+│
+├── M140: Encryption — at rest & in transit
+│         Formato: Animação de criptografia
+│         Exercício: Implementar encryption layer
+│
+├── M141: GDPR/LGPD — Compliance de dados
+│         Formato: Checklist legal + implementação
+│         Exercício: Data deletion + export endpoint
+│
+└── M142: Incident Response
+          Formato: Simulação de incidente
+          Exercício: Escrever runbook + post-mortem
+          🎯 Mini-projeto: Security audit do próprio SaaS
+
+ZONA 18: AI/ML Architecture 🧠 (8 missões)
+├── M143: AI Pipeline — coleta a produção
+│         Formato: Pipeline visual end-to-end
+│         Exercício: Pipeline de processamento de docs
+│
+├── M144: Multi-agent Systems
+│         Formato: Orquestração de agentes visual
+│         Exercício: 3 agentes colaborando
+│
+├── M145: LLM Observability — Langfuse
+│         Formato: Dashboard de métricas de LLM
+│         Exercício: Instrumentar app com Langfuse
+│
+├── M146: Agentic Workflows em produção
+│         Formato: Deterministic vs Agentic pipeline
+│         Exercício: Workflow com human-in-the-loop
+│
+├── M147: Fine-tuning (quando e como)
+│         Formato: Decision tree → Fine-tune vs Prompt
+│         Exercício: Preparar dataset + fine-tune demo
+│
+├── M148: Cost & Latency Optimization
+│         Formato: Calculator de custos de IA
+│         Exercício: Otimizar pipeline em 5x
+│
+├── M149: Responsible AI & Guardrails
+│         Formato: Cenários de bias e mitigação
+│         Exercício: Implementar guardrails
+│
+└── M150: AI Governance em equipes
+          Formato: Framework de governance
+          Exercício: Documentar política de IA
+          🎯 Mini-projeto: Sistema multi-agente em produção
+
+ZONA 19: Performance Engineering ⚙️ (5 missões)
+├── M151: Profiling & Bottleneck Identification
+│         Formato: Flamegraph visual + ferramentas
+│         Exercício: Profiling de app Node.js
+│
+├── M152: Load Testing & Stress Testing
+│         Formato: k6/Artillery visual dashboard
+│         Exercício: Load test da própria API
+│
+├── M153: Database Optimization avançada
+│         Formato: EXPLAIN ANALYZE visual
+│         Exercício: Otimizar queries lentas
+│
+├── M154: Edge Computing em produção
+│         Formato: Latência global visual (mapa)
+│         Exercício: Deploy Edge Function
+│
+└── M155: Capacity Planning
+          Formato: Calculator de infra
+          Exercício: Planejar para 100K users
+          🎯 Mini-projeto: Otimizar app para 10x tráfego
+
+ZONA 20: Liderança & Produto 👑 (5 missões)
+├── M156: Tech Decision Making (ADRs)
+│         Formato: Template ADR + exemplos reais
+│         Exercício: Escrever ADR para decisão real
+│
+├── M157: Developer Experience (DX)
+│         Formato: Checklist DX + métricas
+│         Exercício: Auditar DX do próprio projeto
+│
+├── M158: Build vs Buy
+│         Formato: Framework de decisão
+│         Exercício: Análise para 3 cenários reais
+│
+├── M159: Product-Market Fit para devs
+│         Formato: Lean Canvas interativo
+│         Exercício: Preencher canvas para seu SaaS
+│
+└── M160: Growth Engineering
+          Formato: Viral loops + referral systems
+          Exercício: Implementar referral no SaaS
+          🎯 Mini-projeto: Documentação de arquitetura
+
+🏆 BOSS FIGHT FINAL: Produto Completo em Escala
+   20 etapas cobrindo:
+   ├── System Design document
+   ├── Architecture Decision Records
+   ├── Multi-agent IA feature
+   ├── Security audit + hardening
+   ├── Performance optimization
+   ├── Load testing (prova de escala)
+   ├── GDPR/LGPD compliance
+   ├── Incident response runbook
+   ├── Monitoring + alerting
+   ├── Cost analysis + optimization
+   ├── Growth feature (referral)
+   ├── Analytics dashboard
+   ├── A/B testing framework
+   ├── Documentation completa
+   ├── CI/CD pipeline avançado
+   ├── Feature flags em produção
+   ├── Multi-tenancy (se SaaS)
+   ├── Rate limiting em produção
+   ├── Deploy global (edge)
+   └── Post-mortem template
+```
+
+---
+
+#### EPIC 4.2: Certificações Verificáveis
+
+```
+EPIC ID:       E-4.2
+EPIC NAME:     Verifiable Certifications
+PRIORITY:      P0 (Critical)
+EFFORT:        4 semanas
+OWNER:         Backend Lead + Design Lead
+DEPENDENCIES:  E-3.1 (Ilha Avançado + Boss Fight 3)
+```
+
+**User Stories:**
+
+```
+US-4.2.1  Como aluno, quero receber certificados
+          digitais verificáveis ao completar cada
+          nível, para comprovar minhas habilidades.
+          
+          Acceptance Criteria:
+          ├── Certificado gerado ao completar Boss Fight
+          ├── Design profissional (4 templates por nível)
+          ├── Dados: nome, nível, data, skills, ID único
+          ├── QR code linkando para página de verificação
+          ├── Download em PDF (alta resolução)
+          ├── Share direto para LinkedIn/Twitter
+          ├── Página pública: verify.vibecode.app/[id]
+          └── Anti-fraude: hash + signature
+
+US-4.2.2  Como recrutador, quero verificar a
+          autenticidade do certificado de um
+          candidato em uma página pública.
+          
+          Acceptance Criteria:
+          ├── verify.vibecode.app/[certificate_id]
+          ├── Mostra: nome, nível, data, skills
+          ├── Mostra: projetos construídos
+          ├── Mostra: tempo total de estudo
+          ├── Mostra: pontuação do Boss Fight
+          ├── Status: "Verificado ✅" ou "Inválido ❌"
+          ├── Link para portfolio do aluno
+          └── SEO otimizado (indexável)
+
+US-4.2.3  Como aluno, quero adicionar meu certificado
+          ao LinkedIn com 1 clique.
+          
+          Acceptance Criteria:
+          ├── Integração LinkedIn Add to Profile API
+          ├── Pre-fills: issuer, name, date, URL
+          ├── Credential ID preenchido
+          └── Skills associadas automaticamente
+```
+
+**Technical Requirements:**
+
+```
+CERTIFICATE GENERATION:
+├── Template: React component → PDF (react-pdf)
+├── 4 visual themes (1 per level)
+├── Dynamic data: name, level, skills, date, projects
+├─�� QR code: qrcode.js → embeds verification URL
+├── Resolution: 3508x2480 (A4 landscape, 300dpi)
+├── File format: PDF + PNG
+├── Storage: S3/R2 with CDN
+└── Generation: serverless function (< 5s)
+
+VERIFICATION:
+├── Certificate ID: VC-[YEAR]-[SEQUENTIAL]
+├── Signature: HMAC-SHA256(cert_data, secret_key)
+├── Verification page: static site with API call
+├── Public data: name, level, date, skills, projects
+├── No private data exposed
+├── Rate limited: 100 requests/min per IP
+└── Cache: CDN with 24h TTL
+
+DATABASE:
+certificates
+├── id (uuid, PK)
+├── user_id (FK)
+├── certificate_number (string, unique)  -- VC-2025-00847
+├── level (enum: basic/intermediate/advanced/expert)
+├── issued_at (timestamp)
+├── skills (string[])
+├── projects (jsonb)
+├── boss_fight_score (int)
+├── total_study_hours (float)
+├── signature_hash (string)
+├── pdf_url (string)
+├── png_url (string)
+├── is_revoked (boolean, default false)
+└── metadata (jsonb)
+```
+
+---
+
+#### EPIC 4.3: Job Board & Parcerias
+
+```
+EPIC ID:       E-4.3
+EPIC NAME:     Job Board & Partnerships
+PRIORITY:      P1 (High)
+EFFORT:        6 semanas
+OWNER:         Product Lead + Business Lead
+DEPENDENCIES:  E-4.2 (Certificações)
+```
+
+**User Stories:**
+
+```
+US-4.3.1  Como aluno expert, quero ver vagas de
+          trabalho relevantes para minhas skills
+          dentro do app.
+          
+          Acceptance Criteria:
+          ├── Seção "Oportunidades" no app
+          ├── Vagas filtradas por skills do aluno
+          ├── Vagas de empresas parceiras
+          ├── Link externo para aplicar
+          ├── Destaque para vagas "Vibe Coder friendly"
+          ├── Notificação de novas vagas relevantes
+          └── Revenue: empresas pagam para listar
+
+US-4.3.2  Como empresa, quero encontrar vibe coders
+          certificados para contratar.
+          
+          Acceptance Criteria:
+          ├── Portal web para empresas
+          ├── Busca por skills, nível, localização
+          ├── Ver perfil público + certificados
+          ├── Contato via plataforma
+          ├── Pricing: $199/mês por listing
+          └── Dashboard de métricas para empresa
+
+US-4.3.3  Como aluno, quero que meu perfil público
+          funcione como currículo tech com tudo
+          que construí e aprendi.
+          
+          Acceptance Criteria:
+          ├── Perfil público: profile.vibecode.app/[user]
+          ├── Bio, skills, nível, badges
+          ├── Projetos com links e previews
+          ├── Certificados verificáveis
+          ├── GitHub link
+          ├── Disponibilidade para trabalho (toggle)
+          ├── Stack preferida
+          └── SEO otimizado
+```
+
+---
+
+#### EPIC 4.4: Vibe News
+
+```
+EPIC ID:       E-4.4
+EPIC NAME:     Vibe News (Tech News Feed)
+PRIORITY:      P2 (Medium)
+EFFORT:        4 semanas
+OWNER:         AI Lead + Content Lead
+DEPENDENCIES:  E-1.3 (Vi functional)
+```
+
+**User Stories:**
+
+```
+US-4.4.1  Como aluno, quero um feed de notícias
+          tech curado e adaptado ao meu nível
+          dentro do app.
+          
+          Acceptance Criteria:
+          ├── Feed de notícias com scroll infinito
+          ├── Fontes: HN, tech blogs, Twitter, releases
+          ├── Curadoria por IA (relevância + qualidade)
+          ├── Adaptação ao nível do aluno
+          ├── Linguagem simplificada para básico
+          ├── Linguagem técnica para avançado
+          ├── 3-5 novidades por dia
+          ├── Dicas rápidas entre notícias
+          └── "Experimentar no Vi" button
+
+US-4.4.2  Como aluno, quero receber notificação
+          quando houver novidade relevante para
+          minha stack.
+          
+          Acceptance Criteria:
+          ├── Push notification para breaking news
+          ├── Filtro por stack (React, Next, Python, etc.)
+          ├── Máximo 1 push de news/dia
+          └── Desativável nas configurações
+```
+
+**Technical Requirements:**
+
+```
+CONTENT PIPELINE:
+├── Sources:
+│   ├── Hacker News API (top stories)
+│   ├── DEV.to API
+│   ├── GitHub Trending
+│   ├── Official blogs (Vercel, Supabase, etc.)
+│   ├── Twitter/X lists (curated tech accounts)
+│   └── RSS feeds (20+ sources)
+│
+├── Processing (background job, hourly):
+│   1. Fetch new articles from all sources
+│   2. Deduplicate (similar content)
+│   3. Score relevance (AI classification)
+│   4. Filter quality (min score threshold)
+│   5. Categorize (IA, Framework, DevOps, etc.)
+│   6. Generate summaries (3 versions per level)
+│   7. Store in database
+│   8. Push notification for top stories
+│
+├── Personalization:
+│   ├── User's current level → summary version
+│   ├── User's tech stack → category weighting
+│   ├── User's reading history → diversity
+│   └── Trending among similar users
+│
+└── AI Processing:
+    ├── Summarization: Claude Haiku (fast + cheap)
+    ├── 3 summary versions: basic, intermediate, advanced
+    ├── Category classification
+    ├── Relevance scoring (0-100)
+    ├── "Try in Vi" prompt generation
+    └── Cost estimate: ~$5/day for 50 articles
+
+DATABASE:
+news_articles
+├── id (uuid, PK)
+├── source (string)
+├── source_url (string)
+├── title (string)
+├── thumbnail_url (string)
+├── category (string)
+├── tags (string[])
+├── summary_basic (text)
+├── summary_intermediate (text)
+├── summary_advanced (text)
+├── relevance_score (int)
+├── published_at (timestamp)
+├── processed_at (timestamp)
+├── try_in_vi_prompt (text)
+└── metadata (jsonb)
+```
+
+---
+
+#### EPIC 4.5: Internacionalização (i18n)
+
+```
+EPIC ID:       E-4.5
+EPIC NAME:     Internationalization
+PRIORITY:      P1 (High)
+EFFORT:        6 semanas
+OWNER:         Mobile Lead + Content Lead
+DEPENDENCIES:  All Phase 1-3 content finalized
+```
+
+**User Stories:**
+
+```
+US-4.5.1  Como aluno que fala inglês/espanhol/
+          francês, quero usar o app no meu
+          idioma nativo.
+          
+          Acceptance Criteria:
+          ├── Idiomas no lançamento: PT-BR, EN, ES, FR
+          ├── Detecção automática de idioma do device
+          ├── Seleção manual na onboarding e settings
+          ├── UI 100% traduzida
+          ├── Missões traduzidas (160 × 4 idiomas)
+          ├── Vi responde no idioma selecionado
+          ├── Comunidade filtrada por idioma
+          ├── Certificados no idioma do aluno
+          └── Vibe News no idioma do aluno
+
+US-4.5.2  Como aluno, quero que termos técnicos
+          permaneçam em inglês mesmo quando o
+          app está em outro idioma.
+          
+          Acceptance Criteria:
+          ├── Termos técnicos não traduzidos (API, deploy, etc.)
+          ├── Código sempre em inglês
+          ├── Nomes de frameworks em inglês
+          ├── Glossário técnico por idioma
+          └── Vi explica termos em contexto
+```
+
+**Technical Requirements:**
+
+```
+FRAMEWORK:
+├── Library: i18next + react-i18next
+├── Namespace separation:
+│   ├── common (UI elements)
+│   ├── missions (lesson content)
+│   ├── projects (project descriptions)
+│   ├── achievements (badges & titles)
+│   ├── notifications (push & in-app)
+│   └── emails (transactional)
+│
+├── File structure:
+│   locales/
+│   ├── pt-BR/
+│   │   ├── common.json
+│   │   ├── missions.json
+│   │   └── ...
+│   ├── en/
+│   ├── es/
+│   └── fr/
+│
+├── Translation pipeline:
+│   1. PT-BR content finalized (source of truth)
+│   2. AI translation (Claude) → first pass
+│   3. Human review (native speakers) → corrections
+│   4. QA testing in-app
+│   5. Community feedback loop
+│
+├── Cost estimate:
+│   ├── ~500K words total across all content
+│   ├── AI translation: ~$200 per language
+│   ├── Human review: ~$5,000 per language
+│   └── Total: ~$15,600 for 3 new languages
+│
+└── Technical considerations:
+    ├── RTL support (future: Arabic, Hebrew)
+    ├── Date/time formatting per locale
+    ├── Number formatting per locale
+    ├── Currency formatting per locale
+    ├── Pluralization rules per language
+    └── Dynamic content (Vi responses) via AI
+```
+
+---
+
+#### EPIC 4.6: AI Avançada Multi-Modelo
+
+```
+EPIC ID:       E-4.6
+EPIC NAME:     Advanced Multi-Model AI
+PRIORITY:      P0 (Critical)
+EFFORT:        5 semanas
+OWNER:         AI Lead
+DEPENDENCIES:  E-1.3 (Vi base), E-3.2 (Voice Mode)
+```
+
+**User Stories:**
+
+```
+US-4.6.1  Como aluno, quero que o Vi use o modelo
+          de IA mais adequado para cada tipo de
+          tarefa automaticamente.
+          
+          Acceptance Criteria:
+          ├── Router inteligente de modelos:
+          │   ├── Raciocínio/arquitetura → Claude 4
+          │   ├── Code generation rápido → GPT-4o
+          │   ├── Contexto longo → Gemini 1.5 Pro
+          │   ├── Respostas rápidas/simples → Groq (Llama)
+          │   └── Embeddings → OpenAI text-embedding-3
+          ├── Transparente para o usuário
+          ├── Fallback automático se modelo indisponível
+          ├── Cost optimization (modelo mais barato que funciona)
+          └── Latency optimization (modelo mais rápido que funciona)
+
+US-4.6.2  Como aluno PRO, quero poder escolher
+          o modelo de IA manualmente quando
+          quiser.
+          
+          Acceptance Criteria:
+          ├── Seletor de modelo no chat do Vi (PRO only)
+          ├── Opções: Claude 4, GPT-4o, Gemini, Groq
+          ├── Indicador de qual modelo está respondendo
+          ├── Comparação de respostas (side by side)
+          └── Favoritar modelo preferido
+
+US-4.6.3  Como aluno, quero que o Vi mantenha
+          memória de longo prazo sobre mim,
+          meu estilo e minhas dificuldades.
+          
+          Acceptance Criteria:
+          ├── Memory store por usuário
+          ├── Vi lembra preferências ("gosta de analogias")
+          ├── Vi lembra dificuldades ("teve problemas com async")
+          ├── Vi lembra projetos anteriores
+          ├── Vi adapta explicações baseado no histórico
+          ├── Memória persistente entre sessões
+          └── Usuário pode ver/editar/deletar memórias
+```
+
+**Technical Requirements:**
+
+```
+MODEL ROUTER:
+├── Classification of request type:
+│   ├── Simple question → Groq (Llama 3.1 70B)
+│   ├── Code generation → GPT-4o
+│   ├── Complex reasoning → Claude 4 Sonnet
+│   ├── Architecture discussion → Claude 4 Opus
+│   ├── Long context (>50K tokens) → Gemini 1.5 Pro
+│   └── Code review → Claude 4 Sonnet
+│
+├── Classification method:
+│   ├── Keyword analysis (fast, free)
+│   ├── Intent classification (small model)
+│   └── Heuristic rules (length, complexity)
+│
+├── Cost matrix (per 1M tokens):
+│   ├── Groq Llama 3.1: $0.05 input / $0.08 output
+│   ├── GPT-4o-mini: $0.15 / $0.60
+│   ├── GPT-4o: $2.50 / $10.00
+│   ├── Claude Sonnet: $3.00 / $15.00
+│   ├── Claude Opus: $15.00 / $75.00
+│   └── Gemini Pro: $3.50 / $10.50
+│
+├── Optimization target:
+│   ├── Average cost per conversation: <$0.05
+│   ├── P50 latency: <2s
+│   ├── P95 latency: <5s
+│   └── Quality score: >4.5/5
+│
+└── Fallback chain:
+    Primary → Secondary → Tertiary
+    Claude → GPT-4o → Groq
+
+LONG-TERM MEMORY:
+├── Storage: Vector DB (Pinecone) + PostgreSQL
+├── Memory types:
+│   ├── Facts ("User prefers React over Vue")
+│   ├── Preferences ("Likes analogies")
+│   ├── Struggles ("Had trouble with async/await")
+│   ├── Projects ("Built a todo app with Next.js")
+│   └── Goals ("Wants to build a SaaS")
+│
+├── Memory creation:
+│   ├── Automatic extraction from conversations
+│   ├── End-of-session summary
+│   ├── Key learning moments
+│   └── User explicit input
+│
+├── Memory retrieval:
+│   ├── Semantic search on new message
+│   ├── Top 5 relevant memories included in context
+│   ├── Recent conversation summary
+│   └── Current mission context
+│
+├── Privacy:
+│   ├── User can view all memories
+│   ├── User can edit/delete any memory
+│   ├── Data deletion on account removal
+│   └── Memories never shared with other users
+│
+└── Database:
+    vi_memories
+    ├── id (uuid, PK)
+    ├── user_id (FK)
+    ├── type (enum: fact/preference/struggle/project/goal)
+    ├── content (text)
+    ├── embedding (vector, 1536 dims)
+    ├── source_conversation_id (FK, nullable)
+    ├── confidence (float, 0-1)
+    ├── created_at (timestamp)
+    └── updated_at (timestamp)
+```
+
+---
+
+#### EPIC 4.7: Web App Companion
+
+```
+EPIC ID:       E-4.7
+EPIC NAME:     Web App Companion
+PRIORITY:      P1 (High)
+EFFORT:        6 semanas
+OWNER:         Frontend Lead
+DEPENDENCIES:  Phase 1-3 (mobile app stable)
+```
+
+**User Stories:**
+
+```
+US-4.7.1  Como aluno, quero acessar o VibeCode
+          pelo navegador no computador para ter
+          um editor de código maior e mais confortável.
+          
+          Acceptance Criteria:
+          ├── Web app em app.vibecode.com
+          ├── Mesmo login (Clerk SSO)
+          ├── Progresso sincronizado com mobile
+          ├── Editor full-size (Monaco Editor)
+          ├── Terminal integrado
+          ├── Vi chat sidebar
+          ├── Todas as missões acessíveis
+          ├── Sandbox com multi-file
+          └── Responsive (tablet + desktop)
+
+US-4.7.2  Como aluno, quero continuar no computador
+          de onde parei no celular e vice-versa.
+          
+          Acceptance Criteria:
+          ├── Sync em tempo real (< 5s delay)
+          ├── Progresso de missão sincronizado
+          ├── Projetos sincronizados
+          ├── Conversas com Vi sincronizadas
+          ├── Streak conta independente do device
+          └── Notificação "Continue no computador"
+```
+
+**Technical Requirements:**
+
+```
+STACK:
+├── Framework: Next.js 15 (App Router)
+├── UI: same component library (Tailwind + shadcn)
+├── Editor: Monaco Editor (full)
+├── Terminal: xterm.js
+├── Sandbox: StackBlitz WebContainers
+├── Auth: Clerk (same instance)
+├── State: same API, same database
+├── Real-time: same WebSocket server
+└── Deploy: Vercel
+
+LAYOUT (Desktop):
+┌─────────────────────────────────────────────────────┐
+│ NavBar                                              │
+├────────┬────────────────────────────────┬────────────┤
+│        │                                │            │
+│ Side   │     Main Content               │  Vi Chat   │
+│ bar    │     (Mission / Editor /        │  Sidebar   │
+│        │      Project)                  │            │
+│ • Map  │                                │  🤖 ...    │
+│ • Zones│     ┌──────────────────────┐   │            │
+│ • Miss.│     │    Monaco Editor     │   │            │
+│ • Prof.│     │    or Sandbox        │   │            │
+│        │     │                      │   │            │
+│        │     └──────────────────────┘   │            │
+│        │     ┌──────────────────────┐   │            │
+│        │     │    Terminal / Output │   │            │
+│        │     └──────────────────────┘   │            │
+│        │                                │            │
+├────────┴────────────────────────────────┴────────────┤
+│ Status Bar                                          │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+#### EPIC 4.8: API Pública
+
+```
+EPIC ID:       E-4.8
+EPIC NAME:     Public API
+PRIORITY:      P2 (Medium)
+EFFORT:        4 semanas
+OWNER:         Backend Lead
+DEPENDENCIES:  E-4.2 (Certificates)
+```
+
+**User Stories:**
+
+```
+US-4.8.1  Como desenvolvedor, quero uma API pública
+          para verificar certificados VibeCode
+          programaticamente.
+          
+          Acceptance Criteria:
+          ├── GET /api/v1/certificates/[id]
+          ├── Returns: name, level, skills, date, valid
+          ├── Rate limited: 100 req/min
+          ├── API key authentication
+          ├── OpenAPI/Swagger documentation
+          └── Free tier: 1000 requests/month
+
+US-4.8.2  Como empresa parceira, quero integrar
+          dados do VibeCode nos meus sistemas
+          de RH/recruitment.
+          
+          Acceptance Criteria:
+          ├── GET /api/v1/profiles/[username]
+          ├── GET /api/v1/certificates/verify/[id]
+          ├── Webhook: certificate.issued
+          ├── OAuth2 for user authorization
+          ├── Paid tier: $49/month
+          └── Documentation site: docs.vibecode.app
+```
+
+---
+
+#### EPIC 4.9: Programa de Afiliados
+
+```
+EPIC ID:       E-4.9
+EPIC NAME:     Affiliate Program
+PRIORITY:      P2 (Medium)
+EFFORT:        3 semanas
+OWNER:         Business Lead + Backend Lead
+DEPENDENCIES:  E-2.5 (Stripe integration)
+```
+
+**User Stories:**
+
+```
+US-4.9.1  Como creator/influencer, quero um link
+          de afiliado para recomendar o VibeCode
+          e ganhar comissão.
+          
+          Acceptance Criteria:
+          ├── Portal de afiliados: affiliate.vibecode.app
+          ├── Cadastro com aprovação
+          ├── Link único: vibecode.app/?ref=[code]
+          ├── Dashboard com métricas:
+          │   ├── Clicks
+          │   ├── Signups
+          │   ├── Conversões
+          │   └── Comissão acumulada
+          ├── Comissão: 30% recorrente por 12 meses
+          ├── Payout: mensal via Stripe Connect
+          ├── Mínimo para saque: $50
+          └── Materiais de marketing (banners, copy)
+```
+
+---
+
+### 4.7 — TIMELINE DA FASE 4
+
+```
+FASE 4: EXPERT (13 semanas = ~3 meses)
+
+SEMANA  │ EPIC                         │ STATUS
+────────┼──────────────────────────────┼────────
+S1-S3   │ E-4.1 Zonas 16-17 content   │ 🔵
+S1-S4   │ E-4.2 Certificações         │ 🔵
+S2-S5   │ E-4.6 Multi-Model AI        │ 🔵
+S4-S6   │ E-4.1 Zonas 18-19 content   │ 🔵
+S4-S7   │ E-4.4 Vibe News             │ 🔵
+S5-S10  │ E-4.5 Internacionalização   │ 🔵
+S7-S8   │ E-4.1 Zona 20 + Boss Fight  │ 🔵
+S7-S12  │ E-4.7 Web App Companion     │ 🔵
+S8-S11  │ E-4.3 Job Board             │ 🔵
+S10-S12 │ E-4.8 API Pública           │ 🔵
+S11-S13 │ E-4.9 Programa Afiliados    │ 🔵
+S12-S13 │ QA + Polish + Launch        │ 🔵
+
+MILESTONES:
+├── S4:  Certifications live + Zones 16-17
+├── S6:  Multi-Model AI + Zones 18-19
+├── S8:  All 35 missions + Boss Fight 4
+├── S10: i18n (EN + ES) live
+├── S12: Web App + Job Board
+└── S13: Full Phase 4 launch 🚀
+```
+
+### 4.8 — MÉTRICAS DE SUCESSO DA FASE 4
+
+```
+TARGET METRICS:
+
+📈 GROWTH:
+├── MAU: 120,000 → 300,000 (+150%)
+├── DAU: 40,000 → 100,000 (+150%)
+├── International users: 40% of total
+├── Web app users: 25% of total
+└── New installs/month: 60,000
+
+💰 REVENUE:
+├── MRR: $45,000 → $150,000 (+233%)
+├── Pro conversion: 7% → 9%
+├── Job Board revenue: $5,000/month
+├── Affiliate revenue share: $3,000/month
+├── Team plan: 50 teams × $29.99 × avg 5 seats
+└── API revenue: $2,000/month
+
+📚 LEARNING:
+├── Expert island completion: >30%
+├── Boss Fight 4 completion: >25%
+├── Certificates issued: >10,000
+├── Certificates verified: >2,000/month
+└── Average completion time (all levels): 8 months
+
+🌍 INTERNATIONAL:
+├── EN users: 40%
+├── PT-BR users: 35%
+├── ES users: 15%
+├── FR users: 10%
+└── Content quality score (all languages): >4.3/5
+```
+
+---
+
+## 5. REQUISITOS NÃO-FUNCIONAIS (Cross-cutting)
+
+### 5.1 — Performance
+
+```
+MOBILE:
+├── Cold start: < 2 seconds
+├── Screen transitions: < 300ms
+├── Scroll: 60fps constant
+├── Image loading: progressive + cached
+├── Offline: core features work offline
+├── Bundle size: < 30MB initial download
+├── Memory: < 200MB active usage
+└── Battery: < 5% per hour of active use
+
+API:
+├── P50 latency: < 200ms
+├── P95 latency: < 500ms
+├── P99 latency: < 1000ms
+├── Uptime: 99.9% (8.76h downtime/year max)
+├── Throughput: 10,000 req/min sustained
+└── Error rate: < 0.1%
+
+AI:
+├── Vi response (text): < 2 seconds TTFB
+├── Vi response (voice): < 3 seconds
+├── Code generation: < 5 seconds
+├── Sandbox execution: < 3 seconds
+├── Scan & Learn: < 4 seconds
+└── Model router decision: < 100ms
+
+DATABASE:
+├── Query P95: < 50ms
+├── Write P95: < 100ms
+├── Connection pool: 20-100 connections
+├── Read replicas: 2 minimum
+├── Backup: every 6 hours
+└── Point-in-time recovery: 30 days
+```
+
+### 5.2 — Segurança
+
+```
+AUTH:
+├── Clerk managed authentication
+├── MFA optional for all users
+├── Session timeout: 30 days (mobile), 7 days (web)
+├── Token rotation: every 24 hours
+└── Brute force protection: 5 attempts → 15min lockout
+
+DATA:
+├── Encryption at rest: AES-256
+├── Encryption in transit: TLS 1.3
+├── PII minimization
+├── Data residency: user choice (US/EU)
+├── GDPR compliance: data export, deletion
+├── LGPD compliance: same as GDPR
+└── SOC2 Type II: target for Year 2
+
+API:
+├── Rate limiting: per user + per IP
+├── Input validation: Zod schemas on all endpoints
+├── Output sanitization: no PII in error messages
+├── CORS: whitelist only known origins
+├── CSP: strict content security policy
+├── API keys: hashed, rotatable
+└── Webhook signatures: HMAC-SHA256
+
+SECRETS:
+├── .env for local development
+├── Vercel/Railway environment variables for production
+├── No secrets in code or logs
+├── Key rotation: every 90 days
+├── Audit log: all secret access
+└── Alert: on unusual access patterns
+
+INFRASTRUCTURE:
+├── DDoS protection: CloudFlare
+├── WAF: CloudFlare rules
+├── Dependency scanning: Snyk + Dependabot
+├── Container scanning: if Docker used
+├── Penetration testing: annually
+└── Bug bounty: after 50K users
+```
+
+### 5.3 — Acessibilidade (a11y)
+
+```
+STANDARDS:
+├── WCAG 2.1 Level AA compliance
+├── Screen reader support (VoiceOver, TalkBack)
+├── Minimum contrast ratio: 4.5:1 (text), 3:1 (large)
+├── Touch targets: minimum 44x44px
+├── Focus indicators: visible on all interactive elements
+├── Semantic HTML in web views
+├── Alt text on all images
+├── Captions on all videos
+├── Reduced motion respect (prefers-reduced-motion)
+├── Dynamic type support (iOS/Android)
+├── Color-blind safe (no color-only information)
+└── Keyboard navigation (web app)
+```
+
+### 5.4 — Privacidade
+
+```
+DATA COLLECTION:
+├── Minimum data principle
+├── Analytics: anonymized by default (PostHog)
+├── No selling of user data
+├── No third-party ad tracking
+├── Conversation with Vi: not used for AI training
+├── Code in sandbox: not stored permanently (unless saved)
+├── Clear privacy policy: plain language
+├── Cookie consent: only essential cookies
+├── Data portability: JSON export of all user data
+└── Right to deletion: full account removal < 48h
+```
+
+### 5.5 — Escalabilidade
+
+```
+TARGET SCALE:
+├── Year 1: 300K users, 100K MAU
+├── Year 2: 1M users, 400K MAU
+├── Year 3: 5M users, 1.5M MAU
+
+ARCHITECTURE FOR SCALE:
+├── Stateless API servers (horizontal scaling)
+├── Database: read replicas + connection pooling
+├── Cache: Redis cluster
+├── CDN: all static assets
+├── Queue: async processing for heavy operations
+├── Edge: latency-sensitive operations
+├── Monitoring: auto-scale triggers
+└── Cost: linear growth with users (no exponential)
+```
+
+---
+
+## 6. RISCOS E MITIGAÇÕES
+
+```
+┌─────────────────────────────────┬──────────┬─────────────────────────────────┐
+│ RISCO                           │SEVERIDADE│ MITIGAÇÃO                       │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Custo de IA por usuário alto    │ 🔴 Alto  │ Model router + caching +        │
+│ demais ($$$)                    │          │ rate limit free tier + cheaper   │
+│                                 │          │ models for simple tasks         │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Qualidade do conteúdo gerado    │ 🔴 Alto  │ Human review loop + community   │
+│ por IA inconsistente            │          │ feedback + A/B testing          │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Retenção baixa após nível      │ 🟡 Médio │ Gamificação forte + co-op +     │
+│ básico (drop-off)               │          │ daily challenges + social       │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Concorrente lança produto       │ 🟡 Médio │ Speed to market + community +   │
+│ similar (Codecademy, etc.)      │          │ Vi como diferencial             │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Dependência de APIs de LLM      │ 🟡 Médio │ Multi-model + fallback chain +  │
+│ (rate limits, pricing changes)  │          │ local models como backup        │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ App Store rejection             │ 🟡 Médio │ Follow guidelines strictly +    │
+│ (Apple/Google)                  │          │ no external payment links +     │
+│                                 │          │ content moderation              │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Sandbox security (code exec)    │ 🟡 Médio │ Client-side only (Sandpack) +   │
+│                                 │          │ no server-side code execution   │
+│                                 │          │ + resource limits               │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Scale de conteúdo para 4        │ 🟡 Médio │ AI-assisted translation +       │
+│ idiomas (qualidade)             │          │ native speaker review +         │
+│                                 │          │ community corrections           │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Privacy concerns com Vi         │ 🟢 Baixo │ Clear policy + data control +   │
+│ (conversation data)             │          │ deletion option + no training   │
+├─────────────────────────────────┼──────────┼─────────────────────────────────┤
+│ Burnout da equipe (scope)       │ 🟡 Médio │ Phase-based delivery +          │
+│                                 │          │ realistic timelines + hire      │
+└─────────────────────────────────┴──────────┴─────────────────────────────────┘
+```
+
+---
+
+## 7. EQUIPE NECESSÁRIA
+
+```
+FASE 1 (MVP): 5-7 pessoas
+├── 1 Product Manager / Founder
+├── 1 Mobile Developer (React Native/Expo)
+├── 1 Backend Developer (Next.js API)
+├── 1 AI Engineer (LLM integration)
+├── 1 Designer (UI/UX + Illustrations)
+├── 0.5 Content Creator (missions)
+└── 0.5 QA Engineer
+
+FASE 2 (Crescimento): 8-12 pessoas
+├── + 1 Mobile Developer
+├── + 1 Backend Developer
+├── + 1 Content Creator (full-time)
+├── + 1 Community Manager
+└── + 1 Growth/Marketing
+
+FASE 3 (Expansão): 12-18 pessoas
+├── + 1 AI Engineer (voice + multi-model)
+├── + 1 Frontend Developer (web app)
+���── + 1 DevOps Engineer
+├── + 1 Content Creator
+├── + 2 Translators/Reviewers
+└── + 1 Data Analyst
+
+FASE 4 (Expert): 18-25 pessoas
+├── + 1 Mobile Developer
+├── + 1 Backend Developer
+├── + 1 Business Development
+├── + 1 Customer Success
+├── + 1 Security Engineer
+├── + 2 Content Creators
+└── + 1 QA Engineer
+```
+
+---
+
+## 8. ORÇAMENTO ESTIMADO
+
+```
+FASE 1 — MVP (3 meses):
+├── Equipe (5 pessoas × $8K avg): $120,000
+├── AI APIs (dev + testing):       $3,000
+├── Infra (Vercel, Neon, etc):     $500
+├── Tools & Licenses:              $2,000
+├── Apple Dev + Google Play:       $125
+├── Design assets (Lottie, etc):   $2,000
+├── Legal (privacy, terms):        $3,000
+└── TOTAL FASE 1:                  ~$130,625
+
+FASE 2 — Crescimento (3 meses):
+├── Equipe (10 pessoas × $8K):     $240,000
+├── AI APIs (production):          $15,000
+├── Infra (scaled):                $3,000
+├── Marketing (organic + paid):    $20,000
+├── Content (illustrations, etc):  $5,000
+└── TOTAL FASE 2:                  ~$283,000
+
+FASE 3 — Expansão (3 meses):
+├── Equipe (15 pessoas × $8K):     $360,000
+├── AI APIs (scaled):              $30,000
+├── Infra (scaled):                $8,000
+├── Marketing:                     $40,000
+├── Translation:                   $15,000
+└── TOTAL FASE 3:                  ~$453,000
+
+FASE 4 — Expert (3 meses):
+├── Equipe (20 pessoas × $8K):     $480,000
+├── AI APIs (global scale):        $50,000
+├── Infra (global):                $15,000
+├── Marketing:                     $60,000
+├── Legal (compliance):            $10,000
+└── TOTAL FASE 4:                  ~$615,000
+
+═══════════════════════════════════════
+TOTAL ESTIMADO (12 meses):  ~$1,481,625
+═══════════════════════════════════════
+
+REVENUE PROJECTION (12 months):
+├── Month 1-3:   $0 (MVP, no monetization)
+├── Month 4-6:   $15K-45K MRR (launch Pro)
+├── Month 7-9:   $45K-100K MRR (growth)
+├── Month 10-12: $100K-150K MRR (scale)
+└── Year 1 total revenue: ~$600K-$900K
+
+BREAK-EVEN: Month 14-18 (estimated)
+```
+
+---
+
+> **PRD completo: Fase 3 (Epics 3.1-3.8) + Fase 4 (Epics 4.1-4.9) + Requisitos Não-Funcionais + Riscos + Equipe + Orçamento**
+

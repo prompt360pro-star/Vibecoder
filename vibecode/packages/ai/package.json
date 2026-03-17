@@ -1,0 +1,21 @@
+{
+  "name": "@vibecode/ai",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules .turbo dist"
+  },
+  "dependencies": {
+    "@vibecode/shared": "workspace:*",
+    "ai": "^3.3.21",
+    "@ai-sdk/anthropic": "^0.0.54",
+    "@ai-sdk/openai": "^0.0.62",
+    "@ai-sdk/groq": "^0.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

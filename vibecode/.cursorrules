@@ -1,0 +1,32 @@
+﻿# VibeCode — Rules (Cursor/Antigravity Compatible)
+# Este ficheiro é compatível com Cursor e Antigravity.
+# Para regras completas, ver .antigravity/rules.md
+
+## Projeto
+VibeCode — App mobile de educação em vibe coding.
+Monorepo: Expo (mobile) + Next.js (API) + Prisma (DB).
+
+## Documentação
+Toda a doc está em: C:\Users\Administrator\Documents\vibecoder\vibecode-docs\
+Consultar SEMPRE antes de implementar.
+
+## Stack
+Mobile: Expo 51+ / Expo Router / TypeScript / Zustand / React Query / MMKV
+Backend: Next.js 14 / Prisma / Zod / Clerk
+AI: Claude + GPT-4o + Groq (via model router em packages/ai)
+DB: PostgreSQL (Neon) + Redis (Upstash)
+
+## Regras Críticas
+- TypeScript strict SEMPRE
+- Named exports (nunca default, exceto pages)
+- Variáveis em inglês, comentários em português
+- const > let, nunca var, nunca any
+- StyleSheet.create no final (mobile)
+- Cores de COLORS (@vibecode/shared), nunca hardcoded
+- Haptic feedback em todos os botões
+- Auth (Clerk) em todos os endpoints
+- Validação (Zod) em todos os endpoints
+- Retorno padrão: { success, data?, error? }
+- Prompts do Vi APENAS no servidor
+- API keys NUNCA no mobile
+- Max 300 linhas por ficheiro

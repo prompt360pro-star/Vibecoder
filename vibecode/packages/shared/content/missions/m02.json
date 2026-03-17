@@ -1,0 +1,119 @@
+{
+  "id": "m02",
+  "zoneId": "basic-z1",
+  "title": "A IA como seu Superpoder",
+  "description": "Aprende a trabalhar com a IA como um parceiro inteligente — entendendo os seus limites e o seu potencial.",
+  "order": 2,
+  "estimatedMinutes": 6,
+  "xpReward": 30,
+  "phases": [
+    {
+      "id": "m02-p1",
+      "type": "story",
+      "title": "O Herói e o Seu Poder",
+      "estimatedSeconds": 40,
+      "content": {
+        "emoji": "🦸",
+        "narration": "Todo superpoder precisa de treino. A IA é o teu — incrivelmente poderosa, mas só funciona bem quando sabes como usá-la. Vamos descobrir os seus segredos."
+      }
+    },
+    {
+      "id": "m02-p2",
+      "type": "concept",
+      "title": "O Estagiário Super Inteligente",
+      "estimatedSeconds": 120,
+      "content": {
+        "sections": [
+          {
+            "type": "text",
+            "text": "Pensa na IA como um estagiário extraordinário: leu milhões de livros, responde em segundos, nunca se cansa... mas pode cometer erros e precisa de orientação clara."
+          },
+          {
+            "type": "cards",
+            "items": [
+              { "emoji": "🤖", "title": "ChatGPT", "description": "Criado pela OpenAI. Versátil e poderoso. O modelo GPT-4o é excelente para código e raciocínio complexo." },
+              { "emoji": "🎭", "title": "Claude", "description": "Criado pela Anthropic. Especialista em textos longos, análise e respostas muito detalhadas e seguras." },
+              { "emoji": "💎", "title": "Gemini", "description": "Criado pela Google. Integrado com o Google Search e Drive. Ótimo para pesquisa e análise de documentos." }
+            ]
+          },
+          {
+            "type": "comparison",
+            "leftTitle": "IA Consegue",
+            "rightTitle": "IA Não Consegue",
+            "leftItems": [
+              "Gerar código funcional",
+              "Explicar conceitos complexos",
+              "Traduzir e resumir textos",
+              "Sugerir soluções criativas",
+              "Rever e melhorar código"
+            ],
+            "rightItems": [
+              "Garantir que está sempre certo",
+              "Saber o que aconteceu ontem",
+              "Testar o código por si",
+              "Adivinhar o teu objetivo vago",
+              "Substituir o teu julgamento"
+            ]
+          },
+          {
+            "type": "text",
+            "text": "⚠️ Atenção: a IA pode 'alucinar' — inventar factos com confiança. Verifica sempre informações críticas, especialmente datas, nomes e dados técnicos específicos."
+          }
+        ]
+      }
+    },
+    {
+      "id": "m02-p3",
+      "type": "interaction",
+      "title": "Classifica os Cenários",
+      "estimatedSeconds": 60,
+      "content": {
+        "exerciseType": "classify",
+        "instruction": "Para cada cenário, decide se a IA ajuda bem, parcialmente, ou não é a ferramenta certa:",
+        "categories": [
+          { "id": "yes", "label": "IA ajuda bem", "emoji": "✅" },
+          { "id": "partial", "label": "Parcialmente", "emoji": "⚠️" },
+          { "id": "no", "label": "Não é ideal", "emoji": "❌" }
+        ],
+        "classifyItems": [
+          {
+            "text": "Gerar o código inicial de um botão em React",
+            "correctCategory": "yes",
+            "explanation": "Perfeito para IA! Geração de código padrão é um dos pontos fortes de qualquer modelo."
+          },
+          {
+            "text": "Confirmar se um facto histórico é verdadeiro",
+            "correctCategory": "partial",
+            "explanation": "A IA tem boa cultura geral, mas pode alucinar. Verifica sempre em fontes primárias para factos críticos."
+          },
+          {
+            "text": "Fazer uma transação bancária por ti",
+            "correctCategory": "no",
+            "explanation": "A IA não tem acesso a sistemas externos nem pode executar ações no mundo real por si só."
+          },
+          {
+            "text": "Explicar por que o teu código tem um erro",
+            "correctCategory": "yes",
+            "explanation": "Debug com IA é excelente! Copia o erro e o contexto, e a IA identifica o problema muito bem."
+          },
+          {
+            "text": "Dizer-te o que aconteceu nas notícias hoje",
+            "correctCategory": "partial",
+            "explanation": "Modelos com acesso à internet (ex: ChatGPT com Search) conseguem. Modelos offline têm dados desatualizados."
+          }
+        ]
+      }
+    },
+    {
+      "id": "m02-p4",
+      "type": "sandbox",
+      "title": "A Tua Primeira Conversa",
+      "estimatedSeconds": 60,
+      "content": {
+        "instruction": "Faz a tua primeira pergunta ao Vi! Pergunta qualquer coisa sobre tecnologia, programação, ou o que quiseres aprender.",
+        "placeholder": "Ex: O que é uma API? Como funciona a internet? O que posso construir com código?",
+        "hint": "💡 Não há respostas erradas! O Vi adapta-se ao teu nível. Sê curioso."
+      }
+    }
+  ]
+}

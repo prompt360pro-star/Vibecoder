@@ -1,0 +1,119 @@
+{
+  "id": "m01",
+  "zoneId": "basic-z1",
+  "title": "O que é Vibe Coding?",
+  "description": "Descobre o paradigma que está a revolucionar como as pessoas criam software.",
+  "order": 1,
+  "estimatedMinutes": 5,
+  "xpReward": 30,
+  "phases": [
+    {
+      "id": "m01-p1",
+      "type": "story",
+      "title": "A Descoberta",
+      "estimatedSeconds": 45,
+      "content": {
+        "emoji": "🤖",
+        "narration": "E se você pudesse construir um app apenas descrevendo o que quer? Sem memorizar comandos. Sem anos de faculdade. Só tu, as tuas ideias... e eu. Isso é Vibe Coding."
+      }
+    },
+    {
+      "id": "m01-p2",
+      "type": "concept",
+      "title": "O Novo Paradigma",
+      "estimatedSeconds": 90,
+      "content": {
+        "sections": [
+          {
+            "type": "comparison",
+            "leftTitle": "Programação Tradicional",
+            "rightTitle": "Vibe Coding",
+            "leftItems": [
+              "Memorizas sintaxe",
+              "Aprendes por anos",
+              "Escreves cada linha",
+              "Debug manual horas"
+            ],
+            "rightItems": [
+              "Descreves o que queres",
+              "Começas a construir hoje",
+              "IA escreve, tu validas",
+              "IA ajuda a corrigir"
+            ]
+          },
+          {
+            "type": "quote",
+            "text": "There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists.",
+            "author": "Andrej Karpathy",
+            "date": "Fev 2025"
+          },
+          {
+            "type": "cards",
+            "items": [
+              { "emoji": "🤖", "title": "ChatGPT", "description": "O assistente mais popular do mundo. Perfeito para gerar código, explicar conceitos e resolver dúvidas." },
+              { "emoji": "⚡", "title": "Cursor", "description": "Editor de código com IA integrada. Escreve, refatora e corrige código em tempo real." },
+              { "emoji": "🖥️", "title": "v0.dev", "description": "Gera interfaces web completas com React apenas com uma descrição em texto." },
+              { "emoji": "🔩", "title": "Bolt.new", "description": "Cria apps full-stack completos no browser. Deploy em segundos." },
+              { "emoji": "❤️", "title": "Lovable", "description": "Converte ideias em apps reais com design profissional. Made in Europe." }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "m01-p3",
+      "type": "interaction",
+      "title": "Verdade ou Mito?",
+      "estimatedSeconds": 60,
+      "content": {
+        "exerciseType": "true_false",
+        "instruction": "Marca cada afirmação como Verdadeira ou Falsa:",
+        "statements": [
+          {
+            "text": "Vibe Coding foi um termo criado por Andrej Karpathy.",
+            "isTrue": true,
+            "explanation": "Karpathy cunhou o termo em fevereiro de 2025, descrevendo o paradigma de programar com IA."
+          },
+          {
+            "text": "Com Vibe Coding precisas de saber programar fluentemente antes de começar.",
+            "isTrue": false,
+            "explanation": "Não! A IA trata da sintaxe técnica. Tu focuses nas ideias e na validação do resultado."
+          },
+          {
+            "text": "A IA pode gerar código incorreto que precisa de verificação humana.",
+            "isTrue": true,
+            "explanation": "Correto. A IA pode alucinar. O Vibe Coder verifica, testa e itera."
+          },
+          {
+            "text": "Ferramentas como Cursor e v0.dev são exemplos de ferramentas de Vibe Coding.",
+            "isTrue": true,
+            "explanation": "Exatamente! São ferramentas que usam IA para acelerar e democratizar o desenvolvimento."
+          },
+          {
+            "text": "Vibe Coding só funciona para projetos pequenos e simples.",
+            "isTrue": false,
+            "explanation": "Errado! Startups e produtos profissionais são construídos com Vibe Coding hoje em dia."
+          }
+        ]
+      }
+    },
+    {
+      "id": "m01-p4",
+      "type": "interaction",
+      "title": "Quiz Final",
+      "estimatedSeconds": 45,
+      "content": {
+        "exerciseType": "quiz",
+        "question": "Quem cunhou o termo \"Vibe Coding\"?",
+        "options": [
+          "Elon Musk",
+          "Andrej Karpathy",
+          "Mark Zuckerberg",
+          "Sam Altman"
+        ],
+        "correctIndex": 1,
+        "explanation": "Andrej Karpathy, ex-diretor de IA da Tesla e cofundador da OpenAI, publicou o conceito em fevereiro de 2025. Ele descreveu o processo de programar \"vibrando\" com a IA."
+      }
+    }
+  ]
+}
