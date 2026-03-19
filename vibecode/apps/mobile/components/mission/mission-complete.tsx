@@ -1,17 +1,61 @@
-import { useEffect, useRef } from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
-import Text from '../ui/text'
-import Button from '../ui/button'
-import { COLORS } from '@vibecode/shared'
+import { useEffect, useState } from 'react'
+import { StyleSheet, View } from 'react-native'
 import * as Haptics from 'expo-haptics'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated'
+import { ACHIEVEMENTS, COLORS } from '@vibecode/shared'
+import { useStaggerIn } from '../../lib/animations'
+import { useGamificationStore } from '../../stores/gamification-store'
+import Button from '../ui/button'
+import { ConfettiBurst } from '../ui/confetti'
+import Text from '../ui/text'
 
 interface MissionCompleteProps {
   xpEarned: number
   score: number
   missionTitle: string
   nextMissionId?: string | null
+  newAchievements?: string[]
+  leveledUp?: boolean
+  newLevel?: number | null
+  levelTitle?: string | null
+  viForm?: string | null
   onNextMission: () => void
   onBackToMap: () => void
+}
+
+interface AnimatedStarProps {
+  filled: boolean
+  delay: number
+}
+
+function StaggerButton({ index, children }: { index: number; children: React.ReactNode }) {
+  const animatedStyle = useStaggerIn(index, 120)
+  return <Animated.View style={animatedStyle}>{children}</Animated.View>
+}
+
+function AnimatedStar({ filled, delay }: AnimatedStarProps) {
+  const scale = useSharedValue(0)
+  const rotate = useSharedValue(-30)
+
+  useEffect(() => {
+    if (!filled) return
+
+    scale.value = withDelay(delay, withSpring(1, { damping: 8, stiffness: 200 }))
+    rotate.value = withDelay(delay, withSpring(0, { damping: 10, stiffness: 150 }))
+  }, [delay, filled, rotate, scale])
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: scale.value,
+    transform: [{ scale: scale.value }, { rotate: `${rotate.value}deg` }],
+  }))
+
+  return <Animated.Text style={[styles.star, animatedStyle]}>⭐</Animated.Text>
 }
 
 export default function MissionComplete({
@@ -19,82 +63,103 @@ export default function MissionComplete({
   score,
   missionTitle,
   nextMissionId,
+  newAchievements,
+  leveledUp,
+  newLevel,
+  levelTitle,
+  viForm,
   onNextMission,
   onBackToMap,
 }: MissionCompleteProps) {
-  const scaleAnim = useRef(new Animated.Value(0)).current
-  const xpCountAnim = useRef(new Animated.Value(0)).current
-
+  const { triggerAchievement, triggerLevelUp } = useGamificationStore()
+  const [displayXp, setDisplayXp] = useState(0)
+  const containerScale = useSharedValue(0.88)
+  const containerOpacity = useSharedValue(0)
   const stars = score >= 90 ? 3 : score >= 70 ? 2 : 1
 
   useEffect(() => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
+    containerScale.value = withSpring(1, { damping: 10, stiffness: 180 })
+    containerOpacity.value = withTiming(1, { duration: 250 })
 
-    Animated.parallel([
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        useNativeDriver: true,
-        tension: 40,
-        friction: 7,
-      }),
-      Animated.timing(xpCountAnim, {
-        toValue: xpEarned,
-        duration: 1200,
-        useNativeDriver: false,
-      }),
-    ]).start()
-  }, [scaleAnim, xpCountAnim, xpEarned])
+    const revealTimer = setTimeout(() => {
+      if (newAchievements && newAchievements.length > 0) {
+        newAchievements.forEach((id) => {
+          const achievement = ACHIEVEMENTS.find((a) => a.id === id)
+          if (achievement) {
+            triggerAchievement({
+              id: achievement.id,
+              name: achievement.name,
+              emoji: achievement.emoji,
+              xpReward: achievement.xpReward,
+            })
+          }
+        })
+      }
+
+      if (leveledUp && newLevel) {
+        triggerLevelUp({
+          level: newLevel,
+          title: levelTitle ?? 'Novo Nível',
+          viForm: viForm ?? '🎉',
+        })
+      }
+    }, 800)
+
+    return () => clearTimeout(revealTimer)
+  }, [containerOpacity, containerScale, leveledUp, newAchievements, newLevel, levelTitle, viForm, triggerAchievement, triggerLevelUp])
+
+  useEffect(() => {
+    const duration = 1200
+    const start = Date.now()
+    const timer = setInterval(() => {
+      const elapsed = Date.now() - start
+      const progress = Math.min(elapsed / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setDisplayXp(Math.round(eased * xpEarned))
+      if (progress >= 1) clearInterval(timer)
+    }, 16)
+
+    return () => clearInterval(timer)
+  }, [xpEarned])
+
+  const containerStyle = useAnimatedStyle(() => ({
+    opacity: containerOpacity.value,
+    transform: [{ scale: containerScale.value }],
+  }))
 
   return (
     <View style={styles.overlay}>
-      <Animated.View style={[styles.container, { transform: [{ scale: scaleAnim }] }]}>
-        {/* Confete animado */}
-        <Text style={styles.confetti}>🎉</Text>
+      <ConfettiBurst count={48} />
 
+      <Animated.View style={[styles.container, containerStyle]}>
+        <Text style={styles.confetti}>🎉</Text>
         <Text style={styles.title}>MISSÃO COMPLETA!</Text>
         <Text style={styles.missionName}>{missionTitle}</Text>
 
-        {/* Estrelas */}
         <View style={styles.stars}>
-          {[1, 2, 3].map((s) => (
-            <Text key={s} style={[styles.star, { opacity: s <= stars ? 1 : 0.25 }]}>
-              ⭐
-            </Text>
+          {[1, 2, 3].map((starIndex) => (
+            <AnimatedStar key={starIndex} filled={starIndex <= stars} delay={starIndex * 300} />
           ))}
         </View>
 
-        {/* XP animado */}
         <View style={styles.xpBadge}>
-          <Animated.Text style={styles.xpValue}>
-            +{Math.round(xpEarned)} XP
-          </Animated.Text>
+          <Text style={styles.xpValue}>+{displayXp} XP</Text>
           <Text style={styles.scoreText}>Score: {score}%</Text>
         </View>
 
-        {/* Botões */}
         <View style={styles.buttons}>
-          {nextMissionId && (
-            <Button
-              title="PRÓXIMA MISSÃO →"
-              onPress={onNextMission}
-              variant="primary"
-              size="lg"
-            />
-          )}
-          <Button
-            title="VOLTAR AO MAPA"
-            onPress={onBackToMap}
-            variant="secondary"
-            size="lg"
-          />
+          {nextMissionId ? (
+            <StaggerButton index={0}>
+              <Button title="PRÓXIMA MISSÃO →" onPress={onNextMission} variant="primary" size="lg" />
+            </StaggerButton>
+          ) : null}
+
+          <StaggerButton index={1}>
+            <Button title="VOLTAR AO MAPA" onPress={onBackToMap} variant="secondary" size="lg" />
+          </StaggerButton>
         </View>
       </Animated.View>
-
-      {/* Sparkles decorativos */}
-      <Text style={[styles.sparkle, { top: '8%', left: '10%' }]}>✨</Text>
-      <Text style={[styles.sparkle, { top: '12%', right: '15%' }]}>🎊</Text>
-      <Text style={[styles.sparkle, { bottom: '15%', left: '8%' }]}>⭐</Text>
-      <Text style={[styles.sparkle, { bottom: '20%', right: '10%' }]}>✨</Text>
     </View>
   )
 }
@@ -129,7 +194,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  star: { fontSize: 40 },
+  star: {
+    fontSize: 48,
+  },
   xpBadge: {
     backgroundColor: 'rgba(139,92,246,0.15)',
     borderRadius: 20,
@@ -153,9 +220,5 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: 12,
     marginTop: 8,
-  },
-  sparkle: {
-    position: 'absolute',
-    fontSize: 28,
   },
 })

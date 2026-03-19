@@ -1,34 +1,57 @@
-// Tela de Sign Up — Nome, Email, Password + OAuth
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import {
-  View,
-  Text,
-  TextInput,
-  Pressable,
-  StyleSheet,
-  ScrollView,
+  ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native'
 import { useRouter } from 'expo-router'
-import { useSignUp, useSSO } from '@clerk/clerk-expo'
+import { useSSO, useSignUp } from '@clerk/clerk-expo'
 import * as Haptics from 'expo-haptics'
 import * as WebBrowser from 'expo-web-browser'
 import { LinearGradient } from 'expo-linear-gradient'
+import { Ionicons } from '@expo/vector-icons'
+import { COLORS } from '@vibecode/shared'
 
 WebBrowser.maybeCompleteAuthSession()
 
-// Avalia a força da password
-const getPasswordStrength = (pw: string): { level: number; label: string; color: string } => {
+const CLERK_ERROR_PT: Record<string, string> = {
+  session_exists: 'Ja tens sessao iniciada.',
+  form_password_incorrect: 'Password incorrecta.',
+  form_identifier_not_found: 'Email nao encontrado.',
+  form_param_format_invalid: 'Formato de email invalido.',
+  too_many_requests: 'Demasiadas tentativas. Aguarda.',
+  network_error: 'Sem conexao. Verifica o Wi-Fi.',
+  form_password_pwned: 'Password comprometida. Usa outra.',
+  identifier_already_signed_in: 'Esta conta ja esta autenticada.',
+}
+
+interface ClerkErrorLike {
+  errors?: Array<{
+    code?: string
+  }>
+}
+
+const getErrorMessage = (error: unknown): string => {
+  const clerkError = error as ClerkErrorLike
+  const code = clerkError?.errors?.[0]?.code ?? ''
+  return CLERK_ERROR_PT[code] ?? 'Ocorreu um erro. Tenta novamente.'
+}
+
+const getPasswordStrength = (password: string): { level: number; label: string; color: string } => {
   let score = 0
-  if (pw.length >= 8) score++
-  if (/[A-Z]/.test(pw)) score++
-  if (/[0-9]/.test(pw)) score++
-  if (/[^A-Za-z0-9]/.test(pw)) score++
+  if (password.length >= 8) score++
+  if (/[A-Z]/.test(password)) score++
+  if (/[0-9]/.test(password)) score++
+  if (/[^A-Za-z0-9]/.test(password)) score++
 
   if (score <= 1) return { level: score, label: 'Fraca', color: '#EF4444' }
-  if (score === 2) return { level: score, label: 'Razoável', color: '#F59E0B' }
+  if (score === 2) return { level: score, label: 'Razoavel', color: '#F59E0B' }
   if (score === 3) return { level: score, label: 'Boa', color: '#06B6D4' }
   return { level: score, label: 'Forte', color: '#22C55E' }
 }
@@ -44,22 +67,19 @@ export default function SignUpScreen() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-
-  // Pendente de verificação de email
   const [pendingVerification, setPendingVerification] = useState(false)
   const [verificationCode, setVerificationCode] = useState('')
 
   const passwordStrength = getPasswordStrength(password)
 
-  // Sign up com email + password
   const handleSignUp = useCallback(async () => {
     if (!isLoaded || !signUp) return
     if (!name.trim() || !email.trim() || !password.trim()) {
-      setError('Preencha todos os campos')
+      setError('Preenche todos os campos.')
       return
     }
     if (password.length < 8) {
-      setError('Password deve ter pelo menos 8 caracteres')
+      setError('Password deve ter pelo menos 8 caracteres.')
       return
     }
 
@@ -75,19 +95,15 @@ export default function SignUpScreen() {
         password,
       })
 
-      // Enviar código de verificação por email
       await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
       setPendingVerification(true)
-    } catch (err: unknown) {
-      const clerkError = err as { errors?: Array<{ message: string }> }
-      const message = clerkError.errors?.[0]?.message ?? 'Erro ao criar conta. Tente novamente.'
-      setError(message)
+    } catch (errorValue: unknown) {
+      setError(getErrorMessage(errorValue))
     } finally {
       setIsLoading(false)
     }
-  }, [isLoaded, signUp, name, email, password])
+  }, [email, isLoaded, name, password, signUp])
 
-  // Verificar código de email
   const handleVerify = useCallback(async () => {
     if (!isLoaded || !signUp) return
 
@@ -104,16 +120,13 @@ export default function SignUpScreen() {
         await setActive({ session: result.createdSessionId })
         router.replace('/')
       }
-    } catch (err: unknown) {
-      const clerkError = err as { errors?: Array<{ message: string }> }
-      const message = clerkError.errors?.[0]?.message ?? 'Código inválido. Tente novamente.'
-      setError(message)
+    } catch (errorValue: unknown) {
+      setError(getErrorMessage(errorValue))
     } finally {
       setIsLoading(false)
     }
-  }, [isLoaded, signUp, verificationCode, setActive, router])
+  }, [isLoaded, router, setActive, signUp, verificationCode])
 
-  // OAuth
   const handleOAuth = useCallback(
     async (strategy: 'oauth_google' | 'oauth_github') => {
       if (!isLoaded) return
@@ -132,15 +145,13 @@ export default function SignUpScreen() {
           await ssoSetActive({ session: createdSessionId })
           router.replace('/')
         }
-      } catch (err: unknown) {
-        const clerkError = err as { errors?: Array<{ message: string }> }
-        const message = clerkError.errors?.[0]?.message ?? 'Erro na autenticação OAuth'
-        setError(message)
+      } catch (errorValue: unknown) {
+        setError(getErrorMessage(errorValue))
       } finally {
         setIsLoading(false)
       }
     },
-    [isLoaded, startSSOFlow, router],
+    [isLoaded, router, startSSOFlow],
   )
 
   const handleGoToSignIn = useCallback(async () => {
@@ -148,7 +159,6 @@ export default function SignUpScreen() {
     router.back()
   }, [router])
 
-  // Tela de verificação de email
   if (pendingVerification) {
     return (
       <KeyboardAvoidingView
@@ -158,9 +168,7 @@ export default function SignUpScreen() {
         <View style={styles.verifyContainer}>
           <Text style={styles.verifyEmoji}>📧</Text>
           <Text style={styles.verifyTitle}>Verifica o teu email</Text>
-          <Text style={styles.verifySubtitle}>
-            Enviámos um código para {email}
-          </Text>
+          <Text style={styles.verifySubtitle}>Enviamos um codigo para {email}</Text>
 
           {error ? (
             <View style={styles.errorContainer}>
@@ -188,14 +196,9 @@ export default function SignUpScreen() {
               isLoading && styles.disabled,
             ]}
           >
-            <LinearGradient
-              colors={['#8B5CF6', '#3B82F6']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={styles.gradient}
-            >
+            <LinearGradient colors={COLORS.gradientPrimary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.gradient}>
               {isLoading ? (
-                <ActivityIndicator color="#FFFFFF" />
+                <ActivityIndicator color={COLORS.textPrimary} />
               ) : (
                 <Text style={styles.primaryButtonText}>VERIFICAR</Text>
               )}
@@ -206,33 +209,25 @@ export default function SignUpScreen() {
     )
   }
 
-  // Tela de registo
   return (
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
-      >
-        {/* Logo */}
+      <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
         <View style={styles.logoContainer}>
           <Text style={styles.logoEmoji}>🎵</Text>
           <Text style={styles.logoText}>VibeCode</Text>
         </View>
 
-        {/* Título */}
         <Text style={styles.title}>Criar Conta</Text>
 
-        {/* Erro */}
         {error ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>⚠ {error}</Text>
           </View>
         ) : null}
 
-        {/* Input Nome */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Nome</Text>
           <TextInput
@@ -247,7 +242,6 @@ export default function SignUpScreen() {
           />
         </View>
 
-        {/* Input Email */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Email</Text>
           <TextInput
@@ -263,13 +257,12 @@ export default function SignUpScreen() {
           />
         </View>
 
-        {/* Input Password */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Senha</Text>
           <View style={styles.passwordContainer}>
             <TextInput
               style={styles.passwordInput}
-              placeholder="Mínimo 8 caracteres"
+              placeholder="Minimo 8 caracteres"
               placeholderTextColor="#555555"
               value={password}
               onChangeText={setPassword}
@@ -277,15 +270,15 @@ export default function SignUpScreen() {
               textContentType="newPassword"
               autoComplete="new-password"
             />
-            <Pressable
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.eyeButton}
-            >
-              <Text style={styles.eyeIcon}>{showPassword ? '🙈' : '👁️'}</Text>
+            <Pressable onPress={() => setShowPassword(!showPassword)} style={styles.eyeButton}>
+              <Ionicons
+                name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+                size={20}
+                color={COLORS.textMuted}
+              />
             </Pressable>
           </View>
 
-          {/* Password strength indicator */}
           {password.length > 0 ? (
             <View style={styles.strengthContainer}>
               <View style={styles.strengthBars}>
@@ -298,7 +291,7 @@ export default function SignUpScreen() {
                         backgroundColor:
                           level <= passwordStrength.level
                             ? passwordStrength.color
-                            : '#333333',
+                            : COLORS.borderDefault,
                       },
                     ]}
                   />
@@ -311,7 +304,6 @@ export default function SignUpScreen() {
           ) : null}
         </View>
 
-        {/* Botão Criar Conta */}
         <Pressable
           onPress={handleSignUp}
           disabled={isLoading}
@@ -321,35 +313,25 @@ export default function SignUpScreen() {
             isLoading && styles.disabled,
           ]}
         >
-          <LinearGradient
-            colors={['#8B5CF6', '#3B82F6']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.gradient}
-          >
+          <LinearGradient colors={COLORS.gradientPrimary} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.gradient}>
             {isLoading ? (
-              <ActivityIndicator color="#FFFFFF" />
+              <ActivityIndicator color={COLORS.textPrimary} />
             ) : (
               <Text style={styles.primaryButtonText}>CRIAR CONTA</Text>
             )}
           </LinearGradient>
         </Pressable>
 
-        {/* Divider */}
         <View style={styles.divider}>
           <View style={styles.dividerLine} />
           <Text style={styles.dividerText}>ou continue com</Text>
           <View style={styles.dividerLine} />
         </View>
 
-        {/* OAuth Buttons */}
         <Pressable
           onPress={() => handleOAuth('oauth_google')}
           disabled={isLoading}
-          style={({ pressed }) => [
-            styles.oauthButton,
-            pressed && styles.pressed,
-          ]}
+          style={({ pressed }) => [styles.oauthButton, pressed && styles.pressed]}
         >
           <Text style={styles.oauthIcon}>G</Text>
           <Text style={styles.oauthText}>Continuar com Google</Text>
@@ -358,19 +340,15 @@ export default function SignUpScreen() {
         <Pressable
           onPress={() => handleOAuth('oauth_github')}
           disabled={isLoading}
-          style={({ pressed }) => [
-            styles.oauthButton,
-            pressed && styles.pressed,
-          ]}
+          style={({ pressed }) => [styles.oauthButton, pressed && styles.pressed]}
         >
           <Text style={styles.oauthIcon}>⌥</Text>
           <Text style={styles.oauthText}>Continuar com GitHub</Text>
         </Pressable>
 
-        {/* Link para Sign In */}
         <Pressable onPress={handleGoToSignIn} style={styles.linkContainer}>
           <Text style={styles.linkText}>
-            Já tem conta? <Text style={styles.linkHighlight}>Entrar</Text>
+            Ja tem conta? <Text style={styles.linkHighlight}>Entrar</Text>
           </Text>
         </Pressable>
       </ScrollView>
@@ -381,7 +359,7 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    backgroundColor: '#0A0A0F',
+    backgroundColor: COLORS.bgPrimary,
   },
   scrollContent: {
     flexGrow: 1,
@@ -398,18 +376,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   logoText: {
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 24,
     fontWeight: '700',
   },
   title: {
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 24,
     fontWeight: '700',
     marginBottom: 24,
   },
   errorContainer: {
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    backgroundColor: COLORS.redAlpha10,
     borderWidth: 1,
     borderColor: 'rgba(239, 68, 68, 0.3)',
     borderRadius: 12,
@@ -417,41 +395,41 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   errorText: {
-    color: '#EF4444',
+    color: COLORS.accentRed,
     fontSize: 14,
   },
   inputContainer: {
     marginBottom: 16,
   },
   label: {
-    color: '#CCCCCC',
+    color: COLORS.textSecondary,
     fontSize: 14,
     fontWeight: '500',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#1A1A2E',
+    backgroundColor: COLORS.bgCard,
     borderWidth: 1,
-    borderColor: '#333333',
+    borderColor: COLORS.borderDefault,
     borderRadius: 12,
     height: 48,
     paddingHorizontal: 16,
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 16,
   },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1A1A2E',
+    backgroundColor: COLORS.bgCard,
     borderWidth: 1,
-    borderColor: '#333333',
+    borderColor: COLORS.borderDefault,
     borderRadius: 12,
     height: 48,
   },
   passwordInput: {
     flex: 1,
     paddingHorizontal: 16,
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 16,
     height: '100%',
   },
@@ -459,9 +437,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: 'center',
     height: '100%',
-  },
-  eyeIcon: {
-    fontSize: 18,
   },
   strengthContainer: {
     flexDirection: 'row',
@@ -497,7 +472,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   primaryButtonText: {
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 16,
     fontWeight: '700',
     letterSpacing: 1,
@@ -517,10 +492,10 @@ const styles = StyleSheet.create({
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#333333',
+    backgroundColor: COLORS.borderDefault,
   },
   dividerText: {
-    color: '#888888',
+    color: COLORS.textTertiary,
     fontSize: 13,
     marginHorizontal: 16,
   },
@@ -528,9 +503,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1A1A2E',
+    backgroundColor: COLORS.bgCard,
     borderWidth: 1,
-    borderColor: '#333333',
+    borderColor: COLORS.borderDefault,
     borderRadius: 12,
     height: 52,
     marginBottom: 12,
@@ -538,11 +513,11 @@ const styles = StyleSheet.create({
   oauthIcon: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     marginRight: 12,
   },
   oauthText: {
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 15,
     fontWeight: '500',
   },
@@ -552,48 +527,46 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   linkText: {
-    color: '#888888',
+    color: COLORS.textTertiary,
     fontSize: 14,
   },
   linkHighlight: {
-    color: '#8B5CF6',
+    color: COLORS.accentPurple,
     fontWeight: '600',
   },
-
-  // Verification screen
   verifyContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
-    backgroundColor: '#0A0A0F',
+    backgroundColor: COLORS.bgPrimary,
   },
   verifyEmoji: {
     fontSize: 64,
     marginBottom: 16,
   },
   verifyTitle: {
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     fontSize: 24,
     fontWeight: '700',
     marginBottom: 8,
   },
   verifySubtitle: {
-    color: '#888888',
+    color: COLORS.textTertiary,
     fontSize: 14,
     marginBottom: 32,
     textAlign: 'center',
   },
   codeInput: {
-    backgroundColor: '#1A1A2E',
+    backgroundColor: COLORS.bgCard,
     borderWidth: 1,
-    borderColor: '#333333',
+    borderColor: COLORS.borderDefault,
     borderRadius: 12,
     height: 56,
     width: 200,
     fontSize: 24,
     fontWeight: '700',
-    color: '#FFFFFF',
+    color: COLORS.textPrimary,
     letterSpacing: 8,
     marginBottom: 24,
   },

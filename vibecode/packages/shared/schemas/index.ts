@@ -53,6 +53,7 @@ export const updateProfileSchema = z.object({
   notifyNewMission: z.boolean().optional(),
   notifySocial: z.boolean().optional(),
   notifyNews: z.boolean().optional(),
+  pushToken: z.string().nullable().optional(),
   openToWork: z.boolean().optional(),
   preferredStack: z.array(z.string()).optional(),
 })
@@ -69,6 +70,7 @@ export const viMessageSchema = z.object({
   context: z.string().optional(),
   contextId: z.string().optional(),
   imageBase64: z.string().optional(),
+  conversationId: z.string().optional(), // Melhoria 4: suporte a histórico de conversa
 })
 
 export type ViMessageInput = z.infer<typeof viMessageSchema>

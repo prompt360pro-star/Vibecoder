@@ -27,6 +27,11 @@ export default function MissionPlayerScreen() {
   const [completionResult, setCompletionResult] = useState<{
     xpEarned: number
     nextMissionId: string | null
+    newAchievements?: string[]
+    leveledUp?: boolean
+    newLevel?: number | null
+    levelTitle?: string | null
+    viForm?: string | null
   } | null>(null)
   const startTime = useRef(Date.now())
 
@@ -43,7 +48,7 @@ export default function MissionPlayerScreen() {
   const phases = mission.phases
   const currentPhase = phases[currentPhaseIndex]
   const totalPhases = phases.length
-  const progress = totalPhases > 0 ? (currentPhaseIndex) / totalPhases : 0
+  const progress = totalPhases > 0 ? currentPhaseIndex / totalPhases : 0
 
   const handlePhaseComplete = async (score: number) => {
     const newScores = [...phaseScores, score]
@@ -52,7 +57,6 @@ export default function MissionPlayerScreen() {
     const nextIndex = currentPhaseIndex + 1
 
     if (nextIndex >= totalPhases) {
-      // Última fase — calcular score médio e completar
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
       const avgScore = Math.round(newScores.reduce((a, b) => a + b, 0) / newScores.length)
       const timeSpent = Math.round((Date.now() - startTime.current) / 1000)
@@ -67,6 +71,11 @@ export default function MissionPlayerScreen() {
         setCompletionResult({
           xpEarned: result.xpEarned,
           nextMissionId: result.nextMissionId,
+          newAchievements: result.newAchievements,
+          leveledUp: result.leveledUp ?? false,
+          newLevel: result.newLevel ?? null,
+          levelTitle: result.levelTitle ?? null,
+          viForm: result.viForm ?? null,
         })
       } catch {
         setCompletionResult({ xpEarned: 0, nextMissionId: null })
@@ -86,6 +95,11 @@ export default function MissionPlayerScreen() {
         score={avgScore}
         missionTitle={mission.title}
         nextMissionId={completionResult.nextMissionId}
+        newAchievements={completionResult.newAchievements}
+        leveledUp={completionResult.leveledUp}
+        newLevel={completionResult.newLevel}
+        levelTitle={completionResult.levelTitle}
+        viForm={completionResult.viForm}
         onNextMission={() => {
           if (completionResult.nextMissionId) {
             router.replace(`/mission/${completionResult.nextMissionId}`)
@@ -135,35 +149,34 @@ export default function MissionPlayerScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
       <View style={styles.header}>
         <Pressable onPress={() => router.back()} style={styles.backBtn}>
           <Ionicons name="chevron-back" size={24} color={COLORS.textPrimary} />
         </Pressable>
         <View style={styles.headerCenter}>
-          <Text style={styles.missionLabel}>
-            {mission.title}
-          </Text>
+          <Text style={styles.missionLabel}>{mission.title}</Text>
           <Text style={styles.phaseLabel}>
             Fase {currentPhaseIndex + 1} de {totalPhases}
           </Text>
         </View>
-        <View style={styles.backBtn} />
+        <Pressable
+          onPress={() =>
+            router.push({
+              pathname: '/(tabs)/vi',
+              params: { context: `Estou na missão "${mission.title}". Preciso de ajuda.` },
+            })
+          }
+          style={styles.backBtn}
+        >
+          <Ionicons name="chatbubble-ellipses-outline" size={24} color={COLORS.accentPurple} />
+        </Pressable>
       </View>
 
-      {/* Progress bar */}
       <View style={styles.progressContainer}>
-        <ProgressBar
-          progress={progress}
-          variant="gradient"
-          height={6}
-        />
+        <ProgressBar progress={progress} variant="gradient" height={6} />
       </View>
 
-      {/* Phase content */}
-      <View style={styles.content}>
-        {renderPhase()}
-      </View>
+      <View style={styles.content}>{renderPhase()}</View>
     </SafeAreaView>
   )
 }

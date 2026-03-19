@@ -1,76 +1,97 @@
-// API Client — HTTP client com autenticação Clerk
-// Injeta Bearer token em todos os requests
-import type { ApiResponse } from '@vibecode/shared'
+import type { ApiResponse } from "@vibecode/shared";
 
-// Classe de erro personalizada para erros de API
 export class ApiError extends Error {
-  code: string
-  status: number
+  code: string;
+  status: number;
 
   constructor(code: string, message: string, status: number) {
-    super(message)
-    this.name = 'ApiError'
-    this.code = code
-    this.status = status
+    super(message);
+    this.name = "ApiError";
+    this.code = code;
+    this.status = status;
   }
 }
 
-// Tipo do token getter — será injectado pelo hook use-api-setup
-type TokenGetter = () => Promise<string | null>
+type TokenGetter = () => Promise<string | null>;
 
-let _getToken: TokenGetter | null = null
-let _baseUrl = ''
+let _getToken: TokenGetter | null = null;
+let _baseUrl = "";
 
-// Configurar o API client com o token getter e base URL
 export const configureApi = (getToken: TokenGetter, baseUrl: string) => {
-  _getToken = getToken
-  _baseUrl = baseUrl
-}
+  _getToken = getToken;
+  _baseUrl = baseUrl;
+};
 
-// Método interno para fazer requests
+const buildHeaders = async (): Promise<Record<string, string>> => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+
+  if (_getToken) {
+    const token = await _getToken();
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+  }
+
+  return headers;
+};
+
+const throwApiError = (
+  payload: ApiResponse<unknown>,
+  status: number,
+): never => {
+  const error = payload.error;
+
+  throw new ApiError(
+    error?.code ?? "UNKNOWN",
+    error?.message ?? "An unexpected error occurred",
+    status,
+  );
+};
+
 const request = async <T>(
   method: string,
   endpoint: string,
   body?: unknown,
 ): Promise<T> => {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  }
-
-  // Injectar token de auth se disponível
-  if (_getToken) {
-    const token = await _getToken()
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`
-    }
-  }
-
-  const url = `${_baseUrl}${endpoint}`
-
-  const response = await fetch(url, {
+  const response = await fetch(`${_baseUrl}${endpoint}`, {
     method,
-    headers,
+    headers: await buildHeaders(),
     body: body ? JSON.stringify(body) : undefined,
-  })
+  });
 
-  const data = (await response.json()) as ApiResponse<T>
+  const data = (await response.json()) as ApiResponse<T>;
 
   if (!response.ok || !data.success) {
-    const error = data.error
-    throw new ApiError(
-      error?.code ?? 'UNKNOWN',
-      error?.message ?? 'An unexpected error occurred',
-      response.status,
-    )
+    throwApiError(data, response.status);
   }
 
-  return data.data as T
-}
+  return data.data as T;
+};
 
-// Métodos públicos do API client
 export const api = {
-  get: <T>(endpoint: string) => request<T>('GET', endpoint),
-  post: <T>(endpoint: string, body?: unknown) => request<T>('POST', endpoint, body),
-  put: <T>(endpoint: string, body?: unknown) => request<T>('PUT', endpoint, body),
-  delete: <T>(endpoint: string) => request<T>('DELETE', endpoint),
-}
+  get: <T>(endpoint: string) => request<T>("GET", endpoint),
+  post: <T>(endpoint: string, body?: unknown) =>
+    request<T>("POST", endpoint, body),
+  put: <T>(endpoint: string, body?: unknown) =>
+    request<T>("PUT", endpoint, body),
+  delete: <T>(endpoint: string) => request<T>("DELETE", endpoint),
+};
+
+export const apiRaw = {
+  get: async <T>(endpoint: string): Promise<T> => {
+    const response = await fetch(`${_baseUrl}${endpoint}`, {
+      method: "GET",
+      headers: await buildHeaders(),
+    });
+
+    const data = (await response.json()) as ApiResponse<unknown>;
+
+    if (!response.ok || data.success === false) {
+      throwApiError(data, response.status);
+    }
+
+    return data as T;
+  },
+};

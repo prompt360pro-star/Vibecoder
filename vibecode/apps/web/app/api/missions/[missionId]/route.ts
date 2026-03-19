@@ -8,7 +8,7 @@ export async function GET(
   _req: Request,
   { params }: { params: { missionId: string } }
 ) {
-  const { userId: clerkId } = auth()
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(

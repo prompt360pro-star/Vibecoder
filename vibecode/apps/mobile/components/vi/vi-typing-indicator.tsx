@@ -1,52 +1,66 @@
-import { useEffect, useRef } from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
-import Text from '../ui/text'
+import { useEffect } from 'react'
+import { StyleSheet, View } from 'react-native'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated'
 import { COLORS } from '@vibecode/shared'
+import { MOTION } from '../../lib/animations'
+import ViAvatar from './vi-avatar'
 
-export default function ViTypingIndicator() {
-  const dot1 = useRef(new Animated.Value(0)).current
-  const dot2 = useRef(new Animated.Value(0)).current
-  const dot3 = useRef(new Animated.Value(0)).current
+interface TypingDotProps {
+  delay: number
+}
+
+function TypingDot({ delay }: TypingDotProps) {
+  const translateY = useSharedValue(0)
+  const opacity = useSharedValue(0.4)
 
   useEffect(() => {
-    const animateDot = (dot: Animated.Value, delay: number) =>
-      Animated.loop(
-        Animated.sequence([
-          Animated.delay(delay),
-          Animated.timing(dot, { toValue: 1, duration: 350, useNativeDriver: true }),
-          Animated.timing(dot, { toValue: 0, duration: 350, useNativeDriver: true }),
-          Animated.delay(700 - delay),
-        ])
-      )
+    translateY.value = withDelay(
+      delay,
+      withRepeat(
+        withSequence(
+          withTiming(-7, { duration: 280, easing: MOTION.easing.decelerate }),
+          withTiming(0, { duration: 280, easing: MOTION.easing.accelerate }),
+        ),
+        -1,
+      ),
+    )
 
-    const a1 = animateDot(dot1, 0)
-    const a2 = animateDot(dot2, 200)
-    const a3 = animateDot(dot3, 400)
+    opacity.value = withDelay(
+      delay,
+      withRepeat(
+        withSequence(
+          withTiming(1, { duration: 280 }),
+          withTiming(0.4, { duration: 280 }),
+        ),
+        -1,
+      ),
+    )
+  }, [delay, opacity, translateY])
 
-    a1.start()
-    a2.start()
-    a3.start()
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ translateY: translateY.value }],
+  }))
 
-    return () => {
-      a1.stop()
-      a2.stop()
-      a3.stop()
-    }
-  }, [dot1, dot2, dot3])
+  return <Animated.View style={[styles.dot, animatedStyle]} />
+}
 
-  const dotStyle = (anim: Animated.Value) => ({
-    opacity: anim.interpolate({ inputRange: [0, 1], outputRange: [0.3, 1] }),
-    transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [0, -4] }) }],
-  })
-
+export default function ViTypingIndicator() {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.viLabel}>🤖 Vi:</Text>
+      <ViAvatar size={32} isThinking />
       <View style={styles.bubble}>
         <View style={styles.dotsRow}>
-          <Animated.Text style={[styles.dot, dotStyle(dot1)]}>●</Animated.Text>
-          <Animated.Text style={[styles.dot, dotStyle(dot2)]}>●</Animated.Text>
-          <Animated.Text style={[styles.dot, dotStyle(dot3)]}>●</Animated.Text>
+          <TypingDot delay={0} />
+          <TypingDot delay={150} />
+          <TypingDot delay={300} />
         </View>
       </View>
     </View>
@@ -55,30 +69,33 @@ export default function ViTypingIndicator() {
 
 const styles = StyleSheet.create({
   wrapper: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
     alignSelf: 'flex-start',
     marginVertical: 6,
-    alignItems: 'flex-start',
-  },
-  viLabel: {
-    color: COLORS.textMuted,
-    fontSize: 12,
-    fontWeight: '700',
-    marginBottom: 4,
-    marginLeft: 4,
+    maxWidth: '85%',
+    gap: 8,
   },
   bubble: {
     backgroundColor: COLORS.bgCard,
-    borderRadius: 16,
-    borderTopLeftRadius: 4,
-    paddingHorizontal: 18,
+    borderRadius: 20,
+    borderBottomLeftRadius: 4,
+    paddingHorizontal: 16,
     paddingVertical: 14,
+    borderWidth: 1,
+    borderColor: COLORS.borderSubtle,
+    justifyContent: 'center',
+    height: 48,
   },
   dotsRow: {
     flexDirection: 'row',
-    gap: 6,
+    alignItems: 'center',
+    gap: 4,
   },
   dot: {
-    color: COLORS.textMuted,
-    fontSize: 14,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: COLORS.textMuted,
   },
 })

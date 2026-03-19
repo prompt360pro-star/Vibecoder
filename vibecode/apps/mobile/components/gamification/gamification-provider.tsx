@@ -1,6 +1,6 @@
 // VibeCode — GamificationProvider
 // Wrapper que lê gamificationStore e renderiza LevelUpModal + AchievementToast
-// Coloca no _layout.tsx dentro dos providers
+// Melhoria 2: Usa dismissToast(id) em vez de processQueue() (pop cego)
 
 import { useEffect } from 'react'
 import { useGamificationStore } from '../../stores/gamification-store'
@@ -17,7 +17,7 @@ export default function GamificationProvider({ children }: GamificationProviderP
     levelUpData,
     dismissLevelUp,
     toastQueue,
-    processQueue,
+    dismissToast,
   } = useGamificationStore()
 
   // Haptic quando level up acontece
@@ -51,7 +51,7 @@ export default function GamificationProvider({ children }: GamificationProviderP
         />
       )}
 
-      {/* Achievement Toast — 1 de cada vez, processQueue ao dismissar */}
+      {/* Achievement Toast — 1 de cada vez, dismissToast(id) ao fechar */}
       {currentToast && (
         <AchievementToast
           visible={true}
@@ -60,7 +60,7 @@ export default function GamificationProvider({ children }: GamificationProviderP
             emoji: currentToast.emoji,
             xpReward: currentToast.xpReward,
           }}
-          onClose={processQueue}
+          onClose={() => dismissToast(currentToast.id)}
         />
       )}
     </>

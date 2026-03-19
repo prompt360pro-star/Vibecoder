@@ -1,134 +1,184 @@
-import { useInfiniteQuery, useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
-import { api } from '../services/api'
-import type { CreatePostInput, PaginationInput } from '@vibecode/shared'
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+  type InfiniteData,
+  type QueryKey,
+} from "@tanstack/react-query";
+import { api, apiRaw } from "../services/api";
+import type { CreatePostInput, PostCommentData } from "@vibecode/shared";
 
 export interface SocialUser {
-  id: string
-  name: string | null
-  username: string | null
-  avatarUrl: string | null
-  currentLevel: number
+  id: string;
+  name: string | null;
+  username: string | null;
+  avatarUrl: string | null;
+  currentLevel: number;
 }
 
 export interface SocialPostType {
-  id: string
-  userId: string
-  type: 'ACHIEVEMENT' | 'PROJECT' | 'PROMPT' | 'HELP' | 'GENERAL'
-  content: string
-  codeBlock: string | null
-  tags: string[]
-  likesCount: number
-  commentsCount: number
-  createdAt: string
-  user: SocialUser
-  isLikedByMe: boolean
+  id: string;
+  userId: string;
+  type: "ACHIEVEMENT" | "PROJECT" | "PROMPT" | "HELP" | "GENERAL";
+  content: string;
+  codeBlock: string | null;
+  tags: string[];
+  likesCount: number;
+  commentsCount: number;
+  createdAt: string;
+  user: SocialUser;
+  isLikedByMe: boolean;
 }
 
-interface FeedResponse {
-  success: boolean
-  data: SocialPostType[]
-  meta: { page: number; perPage: number; total: number }
+interface FeedApiResponse {
+  success: boolean;
+  data: SocialPostType[];
+  meta: {
+    page: number;
+    perPage: number;
+    total: number;
+  };
 }
+
+export interface SocialCommentType extends PostCommentData {}
 
 export function useFeed(type?: string) {
-  return useInfiniteQuery<FeedResponse>({
-    queryKey: ['social', 'feed', type],
+  return useInfiniteQuery<FeedApiResponse>({
+    queryKey: ["social", "feed", type],
     queryFn: async ({ pageParam = 1 }) => {
-      let endpoint = `/social/feed?page=${pageParam}&perPage=20`
-      if (type) endpoint += `&type=${type}`
-      return api.get<FeedResponse>(endpoint)
+      let endpoint = `/social/feed?page=${pageParam}&perPage=20`;
+      if (type) {
+        endpoint += `&type=${type}`;
+      }
+
+      return apiRaw.get<FeedApiResponse>(endpoint);
     },
     getNextPageParam: (lastPage) => {
-      const { page, perPage, total } = lastPage.meta
-      return page * perPage < total ? page + 1 : undefined
+      const { page, perPage, total } = lastPage.meta;
+      return page * perPage < total ? page + 1 : undefined;
     },
     initialPageParam: 1,
-    staleTime: 1000 * 60, // 1 minute
-  })
+    staleTime: 1000 * 60,
+  });
 }
 
 export function useCreatePost() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: (data: CreatePostInput) => api.post('/social/posts', data),
+    mutationFn: (data: CreatePostInput) => api.post("/social/posts", data),
     onSuccess: () => {
-      // Invalidate all feed queries to refetch 
-      queryClient.invalidateQueries({ queryKey: ['social', 'feed'] })
+      queryClient.invalidateQueries({ queryKey: ["social", "feed"] });
     },
-  })
+  });
+}
+
+export function useComments(postId: string) {
+  return useQuery<SocialCommentType[]>({
+    queryKey: ["social", "comments", postId],
+    queryFn: () =>
+      api.get<SocialCommentType[]>(`/social/posts/${postId}/comments`),
+    enabled: !!postId,
+    staleTime: 1000 * 30,
+  });
+}
+
+export function useCreateComment(postId: string) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (content: string) =>
+      api.post<SocialCommentType>(`/social/posts/${postId}/comments`, {
+        content,
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["social", "comments", postId],
+      });
+      queryClient.invalidateQueries({ queryKey: ["social", "feed"] });
+    },
+  });
 }
 
 export function useLikePost() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (postId: string) => api.post<{ liked: boolean, likesCount: number }>(`/social/posts/${postId}/like`),
+    mutationFn: (postId: string) =>
+      api.post<{ liked: boolean; likesCount: number }>(
+        `/social/posts/${postId}/like`,
+      ),
     onMutate: async (postId) => {
-      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
-      await queryClient.cancelQueries({ queryKey: ['social', 'feed'] })
+      await queryClient.cancelQueries({ queryKey: ["social", "feed"] });
 
-      // Snapshot the previous value
-      const previousFeedQueries = queryClient.getQueriesData({ queryKey: ['social', 'feed'] })
+      const previousFeedQueries = queryClient.getQueriesData<
+        InfiniteData<FeedApiResponse, number>
+      >({
+        queryKey: ["social", "feed"],
+      });
 
-      // Optimistically update to the new value logic
-      queryClient.setQueriesData({ queryKey: ['social', 'feed'] }, (old: any) => {
-        if (!old || !old.pages) return old
+      queryClient.setQueriesData<InfiniteData<FeedApiResponse, number>>(
+        { queryKey: ["social", "feed"] },
+        (old) => {
+          if (!old) {
+            return old;
+          }
 
-        return {
-          ...old,
-          pages: old.pages.map((page: any) => ({
-            ...page,
-            data: page.data.map((post: SocialPostType) => {
-               if (post.id === postId) {
-                 const newLikeState = !post.isLikedByMe
-                 return {
-                   ...post,
-                   isLikedByMe: newLikeState,
-                   likesCount: post.likesCount + (newLikeState ? 1 : -1)
-                 }
-               }
-               return post
-            })
-          }))
-        }
-      })
+          return {
+            ...old,
+            pages: old.pages.map((page) => ({
+              ...page,
+              data: page.data.map((post) => {
+                if (post.id !== postId) {
+                  return post;
+                }
 
-      // Return a context object with the snapshotted value
-      return { previousFeedQueries }
+                const newLikeState = !post.isLikedByMe;
+
+                return {
+                  ...post,
+                  isLikedByMe: newLikeState,
+                  likesCount: post.likesCount + (newLikeState ? 1 : -1),
+                };
+              }),
+            })),
+          };
+        },
+      );
+
+      return { previousFeedQueries };
     },
-    onError: (err, newTodo, context) => {
-      // Revert to snapshot on error
-      if (context?.previousFeedQueries) {
-        context.previousFeedQueries.forEach(([queryKey, oldData]) => {
-           queryClient.setQueryData(queryKey, oldData)
-        })
+    onError: (_error, _postId, context) => {
+      if (!context?.previousFeedQueries) {
+        return;
       }
+
+      context.previousFeedQueries.forEach(([queryKey, oldData]) => {
+        queryClient.setQueryData(queryKey as QueryKey, oldData);
+      });
     },
-    onSettled: () => {
-      // Always refetch after error or success to restablish sync in background (optional, can be skipped to avoid loads)
-      // queryClient.invalidateQueries({ queryKey: ['social', 'feed'] })
-    },
-  })
+  });
 }
 
 export interface RankingEntry {
-  position: number
-  id: string
-  name: string | null
-  username: string | null
-  avatarUrl: string | null
-  xp: number
+  position: number;
+  id: string;
+  name: string | null;
+  username: string | null;
+  avatarUrl: string | null;
+  xp: number;
 }
 
 interface RankingResponse {
-  rankings: RankingEntry[]
-  myPosition: number
+  rankings: RankingEntry[];
+  myPosition: number;
 }
 
-export function useRanking(period: 'week' | 'month' | 'alltime') {
+export function useRanking(period: "week" | "month" | "alltime") {
   return useQuery<RankingResponse>({
-    queryKey: ['social', 'ranking', period],
+    queryKey: ["social", "ranking", period],
     queryFn: () => api.get<RankingResponse>(`/social/ranking?period=${period}`),
-    staleTime: 1000 * 60 * 5, // 5 min
-  })
+    staleTime: 1000 * 60 * 5,
+  });
 }

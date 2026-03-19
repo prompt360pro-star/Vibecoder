@@ -1,18 +1,17 @@
 // Clerk middleware — protege todas as rotas /api/ exceto health e webhooks
-import { authMiddleware } from '@clerk/nextjs/server'
+// FIX 8: Migrado de authMiddleware (deprecated) para clerkMiddleware (Clerk SDK v5)
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-export default authMiddleware({
-  // Rotas públicas que NÃO requerem autenticação
-  publicRoutes: [
-    '/',
-    '/api/health(.*)',
-    '/api/webhooks(.*)',
-  ],
-  // Rotas ignoradas pelo middleware
-  ignoredRoutes: [
-    '/api/webhooks/clerk',
-    '/api/webhooks/stripe',
-  ],
+const isPublicRoute = createRouteMatcher([
+  '/',
+  '/api/health(.*)',
+  '/api/webhooks(.*)',
+])
+
+export default clerkMiddleware((auth, request) => {
+  if (!isPublicRoute(request)) {
+    auth().protect()
+  }
 })
 
 export const config = {

@@ -1,0 +1,57 @@
+
+> @vibecode/web@0.0.0 build C:\Users\Administrator\Documents\vibecoder\vibecode\apps\web
+> next build
+
+node.exe : 
+At C:\Program 
+Files\nodejs\pnpm.ps1:16 char:5
++     & "$basedir/node$exe"  "$basedi
+r/node_modules/corepack/dist/pnpm. 
+...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpe 
+   cified: (:String) [], RemoteExce  
+  ption
+    + FullyQualifiedErrorId : Native 
+   CommandError
+ 
+> Build error occurred
+Error: Configuring Next.js via 
+'next.config.ts' is not supported. 
+Please replace the file with 
+'next.config.js' or 
+'next.config.mjs'.
+    at loadConfig (C:\Users\Administr
+ator\Documents\vibecoder\vibecode\nod
+e_modules\.pnpm\next@14.2.35_@opentel
+emetry+api@1.9.0_react-dom@18.3.1_rea
+ct@18.3.1__react@18.3.1\node_modules\
+next\dist\server\config.js:800:19)
+    at async Span.traceAsyncFn (C:\Us
+ers\Administrator\Documents\vibecoder
+\vibecode\node_modules\.pnpm\next@14.
+2.35_@opentelemetry+api@1.9.0_react-d
+om@18.3.1_react@18.3.1__react@18.3.1\
+node_modules\next\dist\trace\trace.js
+:154:20)
+    at async C:\Users\Administrator\D
+ocuments\vibecoder\vibecode\node_modu
+les\.pnpm\next@14.2.35_@opentelemetry
++api@1.9.0_react-dom@18.3.1_react@18.
+3.1__react@18.3.1\node_modules\next\d
+ist\build\index.js:374:28
+    at async Span.traceAsyncFn (C:\Us
+ers\Administrator\Documents\vibecoder
+\vibecode\node_modules\.pnpm\next@14.
+2.35_@opentelemetry+api@1.9.0_react-d
+om@18.3.1_react@18.3.1__react@18.3.1\
+node_modules\next\dist\trace\trace.js
+:154:20)
+    at async build (C:\Users\Administ
+rator\Documents\vibecoder\vibecode\no
+de_modules\.pnpm\next@14.2.35_@opente
+lemetry+api@1.9.0_react-dom@18.3.1_re
+act@18.3.1__react@18.3.1\node_modules
+\next\dist\build\index.js:368:9)
+???ELIFECYCLE??? Command failed with exit code 1.

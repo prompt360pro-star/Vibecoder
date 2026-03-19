@@ -3,11 +3,11 @@ import { api } from '../services/api'
 import type { MissionWithProgress } from '@vibecode/shared'
 
 // ─── useMissions ───────────────────────────────────────────
-export function useMissions(zoneId?: string) {
+export function useMissions(islandId?: string) {
   return useQuery<MissionWithProgress[]>({
-    queryKey: ['missions', zoneId ?? 'all'],
+    queryKey: ['missions', islandId ?? 'all'],
     queryFn: async () => {
-      const url = zoneId ? `/missions?zoneId=${zoneId}` : '/missions'
+      const url = islandId ? `/missions?islandId=${islandId}` : '/missions'
       return api.get<MissionWithProgress[]>(url)
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
@@ -36,6 +36,10 @@ export interface CompleteMissionResult {
   newTotalXp: number
   nextMissionId: string | null
   newAchievements: string[]
+  leveledUp?: boolean
+  newLevel?: number | null
+  levelTitle?: string | null
+  viForm?: string | null
 }
 
 export function useCompleteMission() {

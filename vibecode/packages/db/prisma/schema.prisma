@@ -117,6 +117,7 @@ model User {
   notifyNewMission Boolean @default(true)
   notifySocial   Boolean @default(true)
   notifyNews     Boolean @default(true)
+  pushToken      String?
 
   // Portfolio
   openToWork     Boolean @default(false)
@@ -145,6 +146,7 @@ model User {
   coopSessionsA   CoopSession[] @relation("PlayerA")
   coopSessionsB   CoopSession[] @relation("PlayerB")
 
+  @@index([totalXp(sort: Desc)])  // Ranking all-time
   @@map("users")
 }
 
@@ -210,6 +212,7 @@ model StreakDay {
 
   @@unique([userId, date])
   @@index([userId])
+  @@index([date])  // Queries de ranking por range de data (semana/mês)
   @@map("streak_days")
 }
 
@@ -309,8 +312,7 @@ model SocialPost {
   updatedAt DateTime @updatedAt
 
   @@index([userId])
-  @@index([createdAt(sort: Desc)])
-  @@index([type])
+  @@index([type, createdAt(sort: Desc)])  // Compound index para feed filtrado por tipo
   @@map("social_posts")
 }
 

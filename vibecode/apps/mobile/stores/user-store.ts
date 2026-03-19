@@ -1,52 +1,63 @@
-// Zustand store para estado do user
-// Persiste flags de onboarding em MMKV
 import { create } from 'zustand'
-import { MMKV } from 'react-native-mmkv'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import type { DNAProfile } from '@vibecode/shared'
 
-// Storage MMKV para persistência local
-const storage = new MMKV({ id: 'vibecode-user-store' })
+const KEYS = {
+  onboarding: 'vibecode:hasCompletedOnboarding',
+  dnaCompleted: 'vibecode:dnaCompleted',
+} as const
 
 interface UserStoreState {
-  // Estado
   hasCompletedOnboarding: boolean
-  dnaProfile: DNAProfile | null
+  dnaCompleted: boolean
+  hydrated: boolean
 
-  // Ações
   setHasCompletedOnboarding: (value: boolean) => void
+  setDnaCompleted: (value: boolean) => void
   setDnaProfile: (profile: DNAProfile) => void
+  hydrate: () => Promise<void>
   reset: () => void
 }
 
 export const useUserStore = create<UserStoreState>((set) => ({
-  // Estado inicial — ler do MMKV se existir
-  hasCompletedOnboarding: storage.getBoolean('hasCompletedOnboarding') ?? false,
-  dnaProfile: (() => {
-    const raw = storage.getString('dnaProfile')
-    if (raw) {
-      try {
-        return JSON.parse(raw) as DNAProfile
-      } catch {
-        return null
-      }
-    }
-    return null
-  })(),
+  hasCompletedOnboarding: false,
+  dnaCompleted: false,
+  hydrated: false,
 
-  // Ações
-  setHasCompletedOnboarding: (value: boolean) => {
-    storage.set('hasCompletedOnboarding', value)
+  setHasCompletedOnboarding: (value) => {
+    AsyncStorage.setItem(KEYS.onboarding, String(value)).catch(() => {})
     set({ hasCompletedOnboarding: value })
   },
 
-  setDnaProfile: (profile: DNAProfile) => {
-    storage.set('dnaProfile', JSON.stringify(profile))
-    set({ dnaProfile: profile })
+  setDnaCompleted: (value) => {
+    AsyncStorage.setItem(KEYS.dnaCompleted, String(value)).catch(() => {})
+    set({ dnaCompleted: value })
+  },
+
+  setDnaProfile: (_profile) => {
+    AsyncStorage.setItem(KEYS.dnaCompleted, 'true').catch(() => {})
+    set({ dnaCompleted: true })
+  },
+
+  hydrate: async () => {
+    try {
+      const [onboarding, dna] = await Promise.all([
+        AsyncStorage.getItem(KEYS.onboarding),
+        AsyncStorage.getItem(KEYS.dnaCompleted),
+      ])
+
+      set({
+        hasCompletedOnboarding: onboarding === 'true',
+        dnaCompleted: dna === 'true',
+        hydrated: true,
+      })
+    } catch {
+      set({ hydrated: true })
+    }
   },
 
   reset: () => {
-    storage.delete('hasCompletedOnboarding')
-    storage.delete('dnaProfile')
-    set({ hasCompletedOnboarding: false, dnaProfile: null })
+    AsyncStorage.multiRemove(Object.values(KEYS)).catch(() => {})
+    set({ hasCompletedOnboarding: false, dnaCompleted: false })
   },
 }))

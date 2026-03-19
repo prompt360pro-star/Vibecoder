@@ -1,0 +1,16 @@
+{
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=web",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "crons": [
+    {
+      "path": "/api/cron/streak-reminder",
+      "schedule": "0 20 * * *"
+    },
+    {
+      "path": "/api/cron/daily-challenge",
+      "schedule": "1 0 * * *"
+    }
+  ]
+}

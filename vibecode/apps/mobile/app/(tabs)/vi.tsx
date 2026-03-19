@@ -1,255 +1,207 @@
-import { useState, useRef, useCallback } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-  View,
-  StyleSheet,
+  Alert,
   FlatList,
-  TextInput,
-  Pressable,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useMutation } from '@tanstack/react-query'
-import { MMKV } from 'react-native-mmkv'
+import { useLocalSearchParams } from 'expo-router'
 import * as Haptics from 'expo-haptics'
 import { Ionicons } from '@expo/vector-icons'
+import Animated from 'react-native-reanimated'
+import { COLORS, ViMode } from '@vibecode/shared'
+import GradientBackground from '../../components/ui/gradient-background'
 import Text from '../../components/ui/text'
+import ViAvatar from '../../components/vi/vi-avatar'
 import ViChatBubble from '../../components/vi/vi-chat-bubble'
 import ViModeSelector from '../../components/vi/vi-mode-selector'
-import ViTypingIndicator from '../../components/vi/vi-typing-indicator'
 import ViSuggestionChips from '../../components/vi/vi-suggestion-chips'
-import { COLORS, ViMode } from '@vibecode/shared'
-import { api, ApiError } from '../../services/api'
+import ViTypingIndicator from '../../components/vi/vi-typing-indicator'
+import { useFloat } from '../../lib/animations'
+import { useVi } from '../../hooks/use-vi'
 
-interface ViMessage {
-  id: string
-  role: 'USER' | 'ASSISTANT'
-  content: string
-  timestamp: Date
-  mode?: ViMode
-}
-
-const storage = new MMKV({ id: 'vi-chat' })
-const STORAGE_KEY = 'vi_messages'
-const MAX_STORED = 50
-
-const WELCOME_MESSAGE: ViMessage = {
-  id: 'welcome',
-  role: 'ASSISTANT',
-  content:
-    'Olá! Sou o Vi — o teu mentor de programação com IA. 🤖\n\nPodes perguntar-me qualquer coisa sobre código, pedir que te explique conceitos, ou simplesmente conversar sobre tech. De que precisas hoje?',
-  timestamp: new Date(),
-  mode: ViMode.TEACHER,
-}
-
-const MODE_LABELS: Record<ViMode, { emoji: string; label: string }> = {
-  [ViMode.TEACHER]: { emoji: '🎓', label: 'Professor' },
-  [ViMode.BUILDER]: { emoji: '🔧', label: 'Construtor' },
-  [ViMode.DETECTIVE]: { emoji: '🐛', label: 'Detetive' },
-  [ViMode.REVIEWER]: { emoji: '📝', label: 'Revisor' },
-  [ViMode.CREATIVE]: { emoji: '💡', label: 'Criativo' },
-  [ViMode.QUIZ]: { emoji: '🎯', label: 'Quiz' },
-  [ViMode.CONVERSATION]: { emoji: '🗣️', label: 'Conversa' },
-  [ViMode.SCANNER]: { emoji: '📸', label: 'Scanner' },
-}
-
-interface ViApiResponse {
-  message: string
-  role: string
-  model: string
-  tokensUsed: number
+const MODE_LABELS: Record<string, string> = {
+  [ViMode.TEACHER]: 'professor',
+  [ViMode.REVIEWER]: 'revisor',
+  [ViMode.QUIZ]: 'quiz master',
+  MOTIVATOR: 'motivador',
+  PAIR: 'pair coder',
 }
 
 export default function ViScreen() {
+  const { context } = useLocalSearchParams<{ context?: string }>()
   const flatListRef = useRef<FlatList>(null)
-
-  // Load persisted messages or use welcome
-  const [messages, setMessages] = useState<ViMessage[]>(() => {
-    try {
-      const stored = storage.getString(STORAGE_KEY)
-      if (stored) {
-        const parsed = JSON.parse(stored) as Array<Omit<ViMessage, 'timestamp'> & { timestamp: string }>
-        const msgs = parsed.map((m) => ({ ...m, timestamp: new Date(m.timestamp) }))
-        return msgs.length > 0 ? msgs : [WELCOME_MESSAGE]
-      }
-    } catch {}
-    return [WELCOME_MESSAGE]
-  })
-
+  const { messages, isLoading, error, sendMessage, clearConversation } = useVi()
   const [input, setInput] = useState('')
   const [mode, setMode] = useState<ViMode>(ViMode.TEACHER)
   const [showModeSelector, setShowModeSelector] = useState(false)
+  const [contextSent, setContextSent] = useState(false)
+  const [avatarMood, setAvatarMood] = useState<'neutral' | 'happy'>('neutral')
 
-  const hasUserMessage = messages.some((m) => m.role === 'USER')
+  const emptyAvatarFloatStyle = useFloat(3, 2800)
 
-  // Persist messages (last 50)
-  const persistMessages = useCallback((msgs: ViMessage[]) => {
-    const toStore = msgs.slice(-MAX_STORED)
-    storage.set(STORAGE_KEY, JSON.stringify(toStore))
-  }, [])
+  useEffect(() => {
+    if (context && !contextSent) {
+      setMode(ViMode.TEACHER)
+      sendMessage(context, ViMode.TEACHER)
+      setContextSent(true)
+    }
+  }, [context, contextSent, sendMessage])
 
-  const sendMessage = useMutation({
-    mutationFn: (content: string) =>
-      api.post<ViApiResponse>('/vi/chat', { content, mode }),
-    onSuccess: (data, content) => {
-      const viMsg: ViMessage = {
-        id: `vi-${Date.now()}`,
-        role: 'ASSISTANT',
-        content: data.message,
-        timestamp: new Date(),
-        mode,
-      }
-      setMessages((prev) => {
-        const next = [...prev, viMsg]
-        persistMessages(next)
-        return next
-      })
-    },
-    onError: (err) => {
-      let errorText = 'Oops! Não consegui responder. Tenta outra vez. 🔁'
-      if (err instanceof ApiError) {
-        if (err.code === 'LIMIT_REACHED') {
-          errorText = 'Atingiste o limite de mensagens gratuitas hoje. Faz upgrade para PRO para continuar! 🚀'
-        } else if (err.code === 'RATE_LIMIT') {
-          errorText = 'Estás a enviar demasiadas mensagens. Aguarda um momento! ⏳'
-        }
-      }
-      const errMsg: ViMessage = {
-        id: `err-${Date.now()}`,
-        role: 'ASSISTANT',
-        content: errorText,
-        timestamp: new Date(),
-        mode,
-      }
-      setMessages((prev) => {
-        const next = [...prev, errMsg]
-        persistMessages(next)
-        return next
-      })
-    },
-  })
+  useEffect(() => {
+    const latestMessage = messages[messages.length - 1]
+    if (latestMessage?.role !== 'assistant') return
+
+    setAvatarMood('happy')
+    const timer = setTimeout(() => setAvatarMood('neutral'), 2000)
+    return () => clearTimeout(timer)
+  }, [messages])
+
+  const headerMood = useMemo(() => (isLoading ? 'thinking' : avatarMood), [avatarMood, isLoading])
 
   const handleSend = (text?: string) => {
     const content = (text ?? input).trim()
-    if (!content || sendMessage.isPending) return
+    if (!content || isLoading) return
 
-    const userMsg: ViMessage = {
-      id: `user-${Date.now()}`,
-      role: 'USER',
-      content,
-      timestamp: new Date(),
-      mode,
-    }
-
-    setMessages((prev) => {
-      const next = [...prev, userMsg]
-      persistMessages(next)
-      return next
-    })
     setInput('')
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    sendMessage.mutate(content)
+    sendMessage(content, mode)
   }
 
-  const handleModeSelect = (newMode: ViMode) => {
-    setMode(newMode)
-    setShowModeSelector(false)
+  const handleClear = () => {
+    Alert.alert(
+      'Limpar conversa?',
+      'Esta acção apaga a conversa do ecrã. O histórico no servidor permanece.',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Começar de novo',
+          style: 'destructive',
+          onPress: () => {
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
+            clearConversation()
+          },
+        },
+      ],
+    )
   }
-
-  const currentModeInfo = MODE_LABELS[mode]
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
+      <GradientBackground variant="vi" />
+
       <View style={styles.header}>
-        <View style={styles.headerTitle}>
-          <Text style={styles.title}>🤖 Vi</Text>
-          <Text style={styles.subtitle}>Seu Mentor</Text>
+        <View style={styles.headerLeft}>
+          <ViAvatar size={40} isThinking={isLoading} mood={headerMood} />
+          <View>
+            <Text style={styles.title}>Vi</Text>
+            <Text style={styles.subtitle}>modo {MODE_LABELS[mode] || 'assistente'}</Text>
+          </View>
         </View>
-        <Pressable
-          onPress={() => setShowModeSelector((v) => !v)}
-          style={({ pressed }) => [styles.modeChip, pressed && styles.modeChipPressed]}
-        >
-          <Text style={styles.modeChipText}>
-            {currentModeInfo.emoji} {currentModeInfo.label}
-          </Text>
-          <Ionicons
-            name={showModeSelector ? 'chevron-up' : 'chevron-down'}
-            size={14}
-            color={COLORS.accentPurple}
-          />
-        </Pressable>
+
+        <View style={styles.headerRight}>
+          <Pressable
+            onPress={() => setShowModeSelector(true)}
+            style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
+          >
+            <Ionicons name="settings-outline" size={24} color={COLORS.textPrimary} />
+          </Pressable>
+          <Pressable
+            onPress={handleClear}
+            style={({ pressed }) => [styles.iconBtn, pressed && styles.pressed]}
+          >
+            <Ionicons name="trash-outline" size={24} color={COLORS.textPrimary} />
+          </Pressable>
+        </View>
       </View>
 
-      {/* Mode selector (expandable) */}
-      {showModeSelector && (
-        <ViModeSelector currentMode={mode} onSelect={handleModeSelect} />
-      )}
+      {showModeSelector ? (
+        <ViModeSelector
+          currentMode={mode}
+          onSelect={(selectedMode) => setMode(selectedMode as ViMode)}
+          onClose={() => setShowModeSelector(false)}
+        />
+      ) : null}
 
       <KeyboardAvoidingView
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={0}
       >
-        {/* Messages list */}
-        <FlatList
-          ref={flatListRef}
-          data={messages}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <ViChatBubble role={item.role} content={item.content} timestamp={item.timestamp} />
-          )}
-          contentContainerStyle={styles.messagesList}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-          onContentSizeChange={() =>
-            flatListRef.current?.scrollToEnd({ animated: true })
-          }
-          ListFooterComponent={
-            sendMessage.isPending ? <ViTypingIndicator /> : null
-          }
-        />
-
-        {/* Suggestion chips — only before first user message */}
-        {!hasUserMessage && (
-          <ViSuggestionChips onSuggest={(text) => handleSend(text)} />
+        {messages.length === 0 && !isLoading ? (
+          <View style={styles.emptyState}>
+            <View style={styles.emptyIntro}>
+              <Animated.View style={emptyAvatarFloatStyle}>
+                <ViAvatar size={72} mood="neutral" />
+              </Animated.View>
+              <Text style={styles.emptyTitle}>Olá! Sou o Vi</Text>
+              <Text style={styles.emptySubtitle}>o teu mentor de Vibe Coding</Text>
+            </View>
+            <ViSuggestionChips mode={mode} onSelect={handleSend} />
+          </View>
+        ) : (
+          <FlatList
+            ref={flatListRef}
+            data={messages}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+              <ViChatBubble message={item} isLatest={index === messages.length - 1} />
+            )}
+            contentContainerStyle={styles.messagesList}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+            onContentSizeChange={() => flatListRef.current?.scrollToEnd({ animated: true })}
+            ListFooterComponent={isLoading ? <ViTypingIndicator /> : null}
+          />
         )}
 
-        {/* Input bar */}
-        <View style={styles.inputBar}>
-          <Pressable style={styles.cameraBtn}>
-            <Ionicons name="camera-outline" size={22} color={COLORS.textMuted} />
-          </Pressable>
+        {error === 'LIMIT_REACHED' ? (
+          <View style={styles.limitBanner}>
+            <Text style={styles.limitText}>
+              Atingiste o limite de 5 mensagens diárias gratuitas.
+            </Text>
+            <Pressable
+              style={styles.upgradeBtn}
+              onPress={() => Alert.alert('Em Breve!', 'Funcionalidade PRO disponível em breve.')}
+            >
+              <Text style={styles.upgradeBtnText}>Upgrade para PRO 🚀</Text>
+            </Pressable>
+          </View>
+        ) : null}
 
+        <View style={styles.inputBar}>
           <TextInput
             style={styles.input}
             value={input}
             onChangeText={setInput}
-            placeholder="Pergunte ao Vi..."
+            placeholder="Pergunta ao Vi..."
             placeholderTextColor={COLORS.textMuted}
             multiline
-            maxLength={10000}
+            maxLength={1000}
             returnKeyType="default"
           />
-
           <Pressable
             onPress={() => handleSend()}
-            disabled={!input.trim() || sendMessage.isPending}
+            disabled={!input.trim() || isLoading}
             style={({ pressed }) => [
               styles.sendBtn,
-              input.trim() ? styles.sendBtnActive : styles.sendBtnInactive,
+              input.trim() && !isLoading ? styles.sendBtnActive : styles.sendBtnInactive,
               pressed && styles.sendBtnPressed,
             ]}
           >
             <Ionicons
-              name="send"
-              size={18}
-              color={input.trim() ? '#FFFFFF' : COLORS.textMuted}
+              name="arrow-up"
+              size={20}
+              color={input.trim() && !isLoading ? COLORS.textPrimary : COLORS.textMuted}
             />
           </Pressable>
         </View>
 
-        {/* Safe area bottom padding (iOS) */}
         <View style={styles.bottomPad} />
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -259,70 +211,114 @@ export default function ViScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.bgPrimary },
   flex: { flex: 1 },
-
-  // Header
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.borderSubtle,
+    backgroundColor: 'transparent',
   },
-  headerTitle: { gap: 1 },
-  title: { color: COLORS.textPrimary, fontSize: 18, fontWeight: '800' },
-  subtitle: { color: COLORS.textMuted, fontSize: 12 },
-  modeChip: {
+  headerLeft: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    backgroundColor: 'rgba(139,92,246,0.1)',
-    borderWidth: 1,
-    borderColor: COLORS.accentPurple,
-    borderRadius: 20,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    gap: 12,
   },
-  modeChipPressed: { opacity: 0.7 },
-  modeChipText: { color: COLORS.accentPurple, fontSize: 13, fontWeight: '600' },
-
-  // Messages
+  title: { color: COLORS.textPrimary, fontSize: 16, fontWeight: '800' },
+  subtitle: { color: COLORS.textMuted, fontSize: 13, textTransform: 'lowercase' },
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  iconBtn: {
+    padding: 4,
+  },
+  pressed: {
+    opacity: 0.6,
+  },
+  emptyState: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  emptyIntro: {
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  emptyTitle: {
+    color: COLORS.textPrimary,
+    fontSize: 18,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginTop: 12,
+  },
+  emptySubtitle: {
+    color: COLORS.textMuted,
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 4,
+  },
   messagesList: {
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    paddingBottom: 8,
+    paddingVertical: 16,
+    paddingBottom: 24,
   },
-
-  // Input bar
+  limitBanner: {
+    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+    borderWidth: 1,
+    borderColor: 'rgba(245, 158, 11, 0.3)',
+    borderRadius: 12,
+    marginHorizontal: 16,
+    marginBottom: 8,
+    padding: 16,
+    gap: 12,
+  },
+  limitText: {
+    color: COLORS.textPrimary,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  upgradeBtn: {
+    backgroundColor: COLORS.bgCard,
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(245, 158, 11, 0.5)',
+  },
+  upgradeBtnText: {
+    color: '#F59E0B',
+    fontWeight: '700',
+    fontSize: 14,
+  },
   inputBar: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    gap: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 12,
     borderTopWidth: 1,
     borderTopColor: COLORS.borderSubtle,
-    backgroundColor: COLORS.bgSecondary,
-  },
-  cameraBtn: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: COLORS.bgPrimary,
   },
   input: {
     flex: 1,
-    backgroundColor: COLORS.bgCard,
-    borderRadius: 20,
+    backgroundColor: 'rgba(255,255,255,0.07)',
+    borderRadius: 24,
     paddingHorizontal: 16,
     paddingVertical: 10,
+    paddingTop: 12,
     color: COLORS.textPrimary,
     fontSize: 15,
     lineHeight: 22,
     maxHeight: 120,
+    minHeight: 48,
     borderWidth: 1,
-    borderColor: COLORS.borderSubtle,
+    borderColor: 'rgba(255,255,255,0.12)',
   },
   sendBtn: {
     width: 40,
@@ -330,10 +326,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 2,
   },
   sendBtnActive: { backgroundColor: COLORS.accentPurple },
-  sendBtnInactive: { backgroundColor: 'transparent' },
+  sendBtnInactive: {
+    backgroundColor: COLORS.bgCard,
+    borderWidth: 1,
+    borderColor: COLORS.borderSubtle,
+  },
   sendBtnPressed: { opacity: 0.75 },
-
-  bottomPad: { height: Platform.OS === 'ios' ? 34 : 8 },
+  bottomPad: { height: Platform.OS === 'ios' ? 20 : 8 },
 })

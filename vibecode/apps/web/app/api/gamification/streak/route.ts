@@ -4,7 +4,7 @@ import { db } from '@vibecode/db'
 import { STREAK_BONUSES } from '@vibecode/shared'
 
 export async function GET() {
-  const { userId: clerkId } = auth()
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(

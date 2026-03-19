@@ -1,44 +1,42 @@
-﻿# VibeCode
+# VibeCode
 
-> Code the future. Ride the vibe. 🚀
-
-App mobile que ensina vibe coding (programar com IA) do zero ao avançado.
+Duolingo da programação com IA. Ensina pessoas a construir apps reais usando inteligência artificial.
 
 ## Stack
-- Mobile: Expo + React Native + Expo Router
-- Backend: Next.js 14 + Prisma + PostgreSQL
-- AI: Claude + GPT-4o + Groq
+- Mobile: React Native / Expo SDK 52
+- Backend: Next.js 14 App Router (Vercel)
+- Database: PostgreSQL (Neon) via Prisma
 - Auth: Clerk
+- AI: Anthropic Claude / OpenAI / Groq
+- Cache/Rate Limit: Upstash Redis
 
-## Setup
+## Deploy Rápido
 
+### Backend (Vercel)
+1. Fork o repositório
+2. Cria novo projecto na Vercel apontando para apps/web
+3. Configura as env vars do apps/web/.env.example
+4. Deploy automático em cada push para main
+
+### Base de dados
 ```bash
-# Instalar dependências
+cd packages/db
+cp .env.example .env  # preenche DATABASE_URL
+npx prisma migrate deploy
+npx prisma db seed
+```
+
+### App Mobile (Expo Go)
+```bash
+cd apps/mobile
+cp .env.example .env  # preenche EXPO_PUBLIC_API_URL e CLERK key
 pnpm install
-
-# Configurar ambiente
-cp .env.example .env
-# Preencher variáveis no .env
-
-# Setup banco de dados
-pnpm db:generate
-pnpm db:push
-pnpm db:seed
-
-# Desenvolvimento
-pnpm dev:web      # API em localhost:3000
-pnpm dev:mobile   # Expo em localhost:8081
+npx expo start
 ```
+Abre o QR code com a app Expo Go no telemóvel.
 
-## Documentação
-Documentação completa em `vibecode-docs/` (41 ficheiros).
-
-## Estrutura
-```
-vibecode/
-├── apps/mobile/     ← App Expo
-├── apps/web/        ← API Next.js
-├── packages/db/     ← Prisma
-├── packages/shared/ ← Types + Schemas + Constants
-└── packages/ai/     ← Prompts + Model Router
+## Desenvolvimento Local
+```bash
+pnpm install
+pnpm dev          # inicia web + mobile em paralelo via Turborepo
 ```

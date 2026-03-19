@@ -23,43 +23,15 @@
       "title": "O Estagiário Super Inteligente",
       "estimatedSeconds": 120,
       "content": {
-        "sections": [
-          {
-            "type": "text",
-            "text": "Pensa na IA como um estagiário extraordinário: leu milhões de livros, responde em segundos, nunca se cansa... mas pode cometer erros e precisa de orientação clara."
-          },
-          {
-            "type": "cards",
-            "items": [
-              { "emoji": "🤖", "title": "ChatGPT", "description": "Criado pela OpenAI. Versátil e poderoso. O modelo GPT-4o é excelente para código e raciocínio complexo." },
-              { "emoji": "🎭", "title": "Claude", "description": "Criado pela Anthropic. Especialista em textos longos, análise e respostas muito detalhadas e seguras." },
-              { "emoji": "💎", "title": "Gemini", "description": "Criado pela Google. Integrado com o Google Search e Drive. Ótimo para pesquisa e análise de documentos." }
-            ]
-          },
-          {
-            "type": "comparison",
-            "leftTitle": "IA Consegue",
-            "rightTitle": "IA Não Consegue",
-            "leftItems": [
-              "Gerar código funcional",
-              "Explicar conceitos complexos",
-              "Traduzir e resumir textos",
-              "Sugerir soluções criativas",
-              "Rever e melhorar código"
-            ],
-            "rightItems": [
-              "Garantir que está sempre certo",
-              "Saber o que aconteceu ontem",
-              "Testar o código por si",
-              "Adivinhar o teu objetivo vago",
-              "Substituir o teu julgamento"
-            ]
-          },
-          {
-            "type": "text",
-            "text": "⚠️ Atenção: a IA pode 'alucinar' — inventar factos com confiança. Verifica sempre informações críticas, especialmente datas, nomes e dados técnicos específicos."
-          }
-        ]
+        "title": "O Estagiário Super Inteligente",
+        "explanation": "Pensa na IA como um estagiário extraordinário: leu milhões de livros e responde em segundos, mas precisa de orientação clara e objetiva.",
+        "keyPoints": [
+          "Gera código funcional rapidamente",
+          "Explica conceitos abstratos",
+          "Pode 'alucinar' ao gerar respostas",
+          "Não pode substituir a tua intuição humana"
+        ],
+        "tip": "Revê sempre criticamente o código e a resposta gerada."
       }
     },
     {
@@ -110,9 +82,14 @@
       "title": "A Tua Primeira Conversa",
       "estimatedSeconds": 60,
       "content": {
-        "instruction": "Faz a tua primeira pergunta ao Vi! Pergunta qualquer coisa sobre tecnologia, programação, ou o que quiseres aprender.",
-        "placeholder": "Ex: O que é uma API? Como funciona a internet? O que posso construir com código?",
-        "hint": "💡 Não há respostas erradas! O Vi adapta-se ao teu nível. Sê curioso."
+        "instruction": "Faz a tua primeira pergunta ao Vi! Pergunta qualquer coisa sobre tecnologia ou código.",
+        "promptTemplate": "",
+        "expectedOutput": "Uma resposta clara e explicativa.",
+        "hints": [
+          "💡 Não há respostas erradas! O Vi adapta-se ao teu nível. Sê curioso.",
+          "💡 Ex: O que é uma API? Como funciona a internet?"
+        ],
+        "evaluationCriteria": ["api", "internet", "código", "software", "tecnologia", "ajuda"]
       }
     }
   ]

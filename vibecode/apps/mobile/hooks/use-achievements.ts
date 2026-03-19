@@ -1,31 +1,81 @@
-// VibeCode — useAchievements hook
-// React Query para GET /api/gamification/achievements
-
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../services/api'
-import type { Achievement } from '@vibecode/shared'
+import type { Achievement as SharedAchievement } from '@vibecode/shared'
 
-export interface AchievementWithProgress extends Achievement {
+interface AchievementProgress {
+  current: number
+  required: number
+  label: string
+}
+
+interface ApiAchievement extends SharedAchievement {
   earnedAt?: string
-  progress?: { current: number; required: number; label: string } | null
+  progress?: AchievementProgress | null
 }
 
-export interface AchievementsData {
-  earned: AchievementWithProgress[]
-  available: AchievementWithProgress[]
-  nearMisses: AchievementWithProgress[]
-  stats: {
-    totalEarned: number
-    totalAvailable: number
-    completionPct: number
-  }
+interface ApiAchievementGroup {
+  earned: ApiAchievement[]
+  available: ApiAchievement[]
+  nearMisses: ApiAchievement[]
+  stats: AchievementStats
 }
+
+export interface Achievement {
+  id: string
+  title: string
+  description: string
+  emoji: string
+  xpReward: number
+  isSecret?: boolean
+  earnedAt?: string
+}
+
+export interface NearMissAchievement extends Achievement {
+  progress: AchievementProgress
+}
+
+export interface AchievementStats {
+  totalEarned: number
+  totalAvailable: number
+  completionPct: number
+}
+
+export interface AchievementGroup {
+  earned: Achievement[]
+  available: Achievement[]
+  nearMisses: NearMissAchievement[]
+  stats: AchievementStats
+}
+
+const mapAchievement = (achievement: ApiAchievement): Achievement => ({
+  id: achievement.id,
+  title: achievement.name,
+  description: achievement.description,
+  emoji: achievement.emoji,
+  xpReward: achievement.xpReward,
+  isSecret: achievement.isSecret,
+  earnedAt: achievement.earnedAt,
+})
 
 export function useAchievements() {
-  const query = useQuery<AchievementsData>({
+  const query = useQuery<AchievementGroup>({
     queryKey: ['achievements'],
-    queryFn: () => api.get<AchievementsData>('/gamification/achievements'),
-    staleTime: 1000 * 60 * 5, // 5 minutos
+    queryFn: async () => {
+      const data = await api.get<ApiAchievementGroup>('/gamification/achievements')
+
+      return {
+        earned: data.earned.map(mapAchievement),
+        available: data.available.map(mapAchievement),
+        nearMisses: data.nearMisses
+          .filter((achievement): achievement is ApiAchievement & { progress: AchievementProgress } => Boolean(achievement.progress))
+          .map((achievement) => ({
+            ...mapAchievement(achievement),
+            progress: achievement.progress,
+          })),
+        stats: data.stats,
+      }
+    },
+    staleTime: 1000 * 60 * 2,
   })
 
   return {

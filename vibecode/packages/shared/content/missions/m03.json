@@ -23,37 +23,16 @@
       "title": "A Arte do Prompt Perfeito",
       "estimatedSeconds": 120,
       "content": {
-        "sections": [
-          {
-            "type": "text",
-            "text": "Um prompt é o teu pedido à IA. É como dar instruções a um assistente muito capaz — a qualidade do resultado depende diretamente da qualidade do teu pedido."
-          },
-          {
-            "type": "comparison",
-            "leftTitle": "Prompts Fracos",
-            "rightTitle": "Prompts Fortes",
-            "leftItems": [
-              "\"Faz um site\"",
-              "\"Ajuda com código\"",
-              "\"Cria uma app\""
-            ],
-            "rightItems": [
-              "\"Cria uma landing page HTML/CSS para um café artesanal, com secção hero, menu e contactos\"",
-              "\"Tenho este erro em React: [erro]. O componente faz X. Como corrigir?\"",
-              "\"Cria uma app mobile em React Native com lista de tarefas, usando AsyncStorage para guardar dados\""
-            ]
-          },
-          {
-            "type": "cards",
-            "items": [
-              { "emoji": "🎯", "title": "[AÇÃO]", "description": "O que queres que a IA faça. Ex: Cria, Explica, Corrige, Lista, Converte" },
-              { "emoji": "📦", "title": "[O QUÊ]", "description": "O objeto da ação. Ex: uma landing page, um componente React, uma função JavaScript" },
-              { "emoji": "🔍", "title": "[DETALHES]", "description": "Especificações extras. Ex: com dark mode, responsivo, com animações suaves" },
-              { "emoji": "⚙️", "title": "[TECNOLOGIA]", "description": "A stack que queres usar. Ex: em React Native, com TypeScript, usando Tailwind" },
-              { "emoji": "🎨", "title": "[ESTILO]", "description": "O tom ou formato da resposta. Ex: código comentado, explicação simples, com exemplos" }
-            ]
-          }
-        ]
+        "title": "A Arte do Prompt Perfeito",
+        "explanation": "Um prompt é o teu pedido à IA. É como dar instruções a um assistente: a qualidade do resultado depende diretamente da precisão do que foi pedido.",
+        "keyPoints": [
+          "[AÇÃO] O que deve ser feito (Ex: Cria, Explica)",
+          "[O QUÊ] O objeto da ação (Ex: landing page)",
+          "[DETALHES] Especificações (Ex: com dark mode)",
+          "[TECN] A stack (Ex: React Native)",
+          "[ESTILO] O formato (Ex: código simples)"
+        ],
+        "tip": "Evita prompts vagos. 'Ajuda com site' é pior que 'Cria componente Header com Tailwind'."
       }
     },
     {
@@ -80,9 +59,14 @@
       "title": "O Teu Primeiro Prompt Real",
       "estimatedSeconds": 90,
       "content": {
-        "instruction": "Usa a fórmula [AÇÃO] + [O QUÊ] + [DETALHES] + [TECNOLOGIA] + [ESTILO] para pedir ao Vi que crie um título HTML estilizado com o teu nome.",
-        "placeholder": "Ex: Cria um título H1 em HTML com o nome 'Ana Silva', com cor roxa, fonte grande e sombra de texto, em HTML/CSS puro, com o código comentado.",
-        "hint": "💡 Tenta usar todos os 5 elementos da fórmula. O Vi irá avaliar a qualidade do teu prompt!"
+        "instruction": "Usa a fórmula [AÇÃO] + [O QUÊ] + [DETALHES] + [TECN] + [ESTILO] para pedir ao Vi HTML/CSS.",
+        "promptTemplate": "Cria um título H1 com o texto... em...",
+        "expectedOutput": "Um título H1 formatado",
+        "hints": [
+          "💡 Usa a fórmula para criar um título H1 em HTML com o teu nome.",
+          "💡 Podes adicionar cor, fontes e sombra nos [DETALHES]."
+        ],
+        "evaluationCriteria": ["cria", "h1", "html", "nome", "cor", "sombra"]
       }
     }
   ]

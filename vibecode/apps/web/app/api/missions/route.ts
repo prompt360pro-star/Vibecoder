@@ -6,7 +6,7 @@ import type { MissionWithProgress } from '@vibecode/shared'
 import { MissionStatus } from '@vibecode/shared'
 
 export async function GET(req: Request) {
-  const { userId: clerkId } = auth()
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(

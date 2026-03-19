@@ -9,7 +9,7 @@ import { STREAK_BONUSES, getLevelForXp } from '@vibecode/shared'
 import { checkAchievements } from '../../../../../lib/achievement-checker'
 
 export async function POST() {
-  const { userId: clerkId } = auth()
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(
@@ -75,8 +75,12 @@ export async function POST() {
     }
 
     if (yesterdayStreak) {
-      // Streak activa — nada a fazer (já foi marcado ao completar missão/actividade)
-      // Streak continua como está
+      // FIX 7: Streak activa — incrementar streakDays (antes nunca era incrementado aqui)
+      newStreakDays = user.streakDays + 1
+      await db.user.update({
+        where: { id: user.id },
+        data: { streakDays: newStreakDays },
+      })
     } else {
       // Streak quebrada — usar freeze ou resetar
       if (user.streakFreezes > 0) {

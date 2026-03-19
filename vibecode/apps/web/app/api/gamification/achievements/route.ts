@@ -8,7 +8,7 @@ import { ACHIEVEMENTS } from '@vibecode/shared'
 import { getAchievementProgress } from '../../../../lib/achievement-checker'
 
 export async function GET() {
-  const { userId: clerkId } = auth()
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(

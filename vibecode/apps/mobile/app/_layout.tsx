@@ -1,48 +1,59 @@
-// Root Layout — Providers base: Clerk + React Query + GamificationProvider
 import { useEffect } from 'react'
+import { View, ActivityIndicator } from 'react-native'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet } from 'react-native'
-import { ClerkProvider, ClerkLoaded, useAuth } from '@clerk/clerk-expo'
+import * as SplashScreen from 'expo-splash-screen'
+import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { tokenCache } from '../lib/clerk-token-cache'
+import { useUserStore } from '../stores/user-store'
+import { useApiSetup } from '../hooks/use-api-setup'
+import { useNotifications } from '../hooks/use-notifications'
 import GamificationProvider from '../components/gamification/gamification-provider'
-import { useCheckStreak } from '../hooks/use-gamification'
 
 const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 2,
-      staleTime: 1000 * 60 * 5, // 5 minutos
-    },
-  },
+  defaultOptions: { queries: { retry: 2, staleTime: 1000 * 60 * 5 } },
 })
 
-const clerkPublishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
+const clerkKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? ''
 
-// Inner layout: tem acesso ao contexto Clerk para verificar autenticação
 function InnerLayout() {
-  const { isSignedIn } = useAuth()
-  const { checkOnce } = useCheckStreak()
+  useApiSetup()
+  useNotifications()
 
-  // Verificar streak 1x por sessão, apenas se autenticado
-  useEffect(() => {
-    if (isSignedIn) {
-      checkOnce()
-    }
-  }, [isSignedIn])
+  const hydrate = useUserStore(s => s.hydrate)
+  const hydrated = useUserStore(s => s.hydrated)
+
+  useEffect(() => { hydrate() }, [])
+
+  if (!hydrated) {
+    return (
+      <View style={{
+        flex: 1, backgroundColor: '#0A0A0F',
+        justifyContent: 'center', alignItems: 'center'
+      }}>
+        <ActivityIndicator color="#8B5CF6" size="large" />
+      </View>
+    )
+  }
 
   return (
     <GamificationProvider>
-      <View style={styles.container}>
+      <View style={{ flex: 1, backgroundColor: '#0A0A0F' }}>
         <StatusBar style="light" />
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: { backgroundColor: '#0A0A0F' },
-            animation: 'slide_from_right',
-          }}
-        />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" />
+          <Stack.Screen name="(onboarding)" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="index" />
+          <Stack.Screen name="mission/[missionId]" />
+          <Stack.Screen name="island/[islandId]" />
+          <Stack.Screen name="social/new-post" />
+          <Stack.Screen name="social/post/[postId]" />
+          <Stack.Screen name="profile/achievements" />
+          <Stack.Screen name="profile/streak" />
+          <Stack.Screen name="profile/settings" />
+        </Stack>
       </View>
     </GamificationProvider>
   )
@@ -50,45 +61,21 @@ function InnerLayout() {
 
 export default function RootLayout() {
   useEffect(() => {
-    if (!clerkPublishableKey) {
-      console.warn('[VibeCode] EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY não configurada')
-    }
+    // Fail-safe: evita ficar preso no splash nativo se o index ainda não montou.
+    const timer = setTimeout(() => {
+      SplashScreen.hideAsync().catch(() => {})
+    }, 500)
+
+    return () => clearTimeout(timer)
   }, [])
 
-  // Dev mode sem Clerk
-  if (!clerkPublishableKey) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <GamificationProvider>
-          <View style={styles.container}>
-            <StatusBar style="light" />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: '#0A0A0F' },
-                animation: 'slide_from_right',
-              }}
-            />
-          </View>
-        </GamificationProvider>
-      </QueryClientProvider>
-    )
-  }
-
   return (
-    <ClerkProvider publishableKey={clerkPublishableKey} tokenCache={tokenCache}>
-      <ClerkLoaded>
-        <QueryClientProvider client={queryClient}>
+    <ClerkProvider publishableKey={clerkKey} tokenCache={tokenCache}>
+      <QueryClientProvider client={queryClient}>
+        <ClerkLoaded>
           <InnerLayout />
-        </QueryClientProvider>
-      </ClerkLoaded>
+        </ClerkLoaded>
+      </QueryClientProvider>
     </ClerkProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0A0A0F',
-  },
-})

@@ -3,7 +3,7 @@
 // Verifica quais achievements o user desbloqueou e cria os registos na BD
 
 import { db } from '@vibecode/db'
-import { ACHIEVEMENTS } from '@vibecode/shared'
+import { ACHIEVEMENTS, getLevelForXp } from '@vibecode/shared'
 
 export interface AchievementContext {
   userId: string
@@ -114,12 +114,21 @@ export async function checkAchievements(
         },
       })
 
-      // 4. Dar XP do achievement ao user
+      // 4. Dar XP do achievement ao user e recalcular nível
       if (achievementDef.xpReward > 0) {
-        await db.user.update({
+        const updatedUser = await db.user.update({
           where: { id: userId },
           data: { totalXp: { increment: achievementDef.xpReward } },
+          select: { totalXp: true, currentLevel: true }
         })
+        // FIX 6: Verificar se o XP do achievement causou level-up
+        const newLevelInfo = getLevelForXp(updatedUser.totalXp)
+        if (newLevelInfo.level > updatedUser.currentLevel) {
+          await db.user.update({
+            where: { id: userId },
+            data: { currentLevel: newLevelInfo.level }
+          })
+        }
       }
 
       newlyUnlocked.push(achievementId)

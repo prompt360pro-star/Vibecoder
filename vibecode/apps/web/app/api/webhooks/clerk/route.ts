@@ -78,12 +78,19 @@ export async function POST(request: NextRequest) {
         const baseUsername = data.username ?? primaryEmail.split('@')[0] ?? 'user'
         const username = `${baseUsername}-${data.id.slice(-6)}`
 
-        await db.user.create({
-          data: {
+        // FIX 9: upsert para idempotência (Clerk pode reenviar evento)
+        await db.user.upsert({
+          where: { clerkId: data.id },
+          create: {
             clerkId: data.id,
             email: primaryEmail,
             name: [data.first_name, data.last_name].filter(Boolean).join(' ') || null,
             username,
+            avatarUrl: data.image_url,
+          },
+          update: {
+            email: primaryEmail,
+            name: [data.first_name, data.last_name].filter(Boolean).join(' ') || null,
             avatarUrl: data.image_url,
           },
         })

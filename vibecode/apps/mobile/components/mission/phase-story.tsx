@@ -1,5 +1,13 @@
-import { useEffect, useRef } from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
+import { useEffect } from 'react'
+import { View, StyleSheet } from 'react-native'
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated'
 import Text from '../ui/text'
 import Button from '../ui/button'
 import { COLORS } from '@vibecode/shared'
@@ -11,53 +19,32 @@ interface PhaseStoryProps {
 }
 
 export default function PhaseStory({ content, onContinue }: PhaseStoryProps) {
-  const scaleAnim = useRef(new Animated.Value(0.5)).current
-  const opacityAnim = useRef(new Animated.Value(0)).current
-  const bubbleAnim = useRef(new Animated.Value(0)).current
+  const scale = useSharedValue(0.5)
+  const opacity = useSharedValue(0)
+  const bubble = useSharedValue(0)
 
   useEffect(() => {
-    Animated.parallel([
-      Animated.spring(scaleAnim, {
-        toValue: 1,
-        useNativeDriver: true,
-        tension: 40,
-        friction: 7,
-      }),
-      Animated.timing(opacityAnim, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-      }),
-    ]).start()
+    scale.value = withSpring(1, { damping: 10, stiffness: 140 })
+    opacity.value = withTiming(1, { duration: 400 })
+    bubble.value = withDelay(300, withSpring(1, { damping: 10, stiffness: 180 }))
+  }, [bubble, opacity, scale])
 
-    setTimeout(() => {
-      Animated.spring(bubbleAnim, {
-        toValue: 1,
-        useNativeDriver: true,
-        tension: 80,
-        friction: 8,
-      }).start()
-    }, 300)
-  }, [scaleAnim, opacityAnim, bubbleAnim])
+  const emojiStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+    transform: [{ scale: scale.value }],
+  }))
+
+  const bubbleStyle = useAnimatedStyle(() => ({
+    opacity: bubble.value,
+    transform: [{ translateY: interpolate(bubble.value, [0, 1], [20, 0]) }],
+  }))
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Animated.Text
-          style={[styles.emoji, { transform: [{ scale: scaleAnim }], opacity: opacityAnim }]}
-        >
-          {content.emoji}
-        </Animated.Text>
+        <Animated.Text style={[styles.emoji, emojiStyle]}>{content.emoji}</Animated.Text>
 
-        <Animated.View
-          style={[
-            styles.bubble,
-            {
-              opacity: bubbleAnim,
-              transform: [{ translateY: bubbleAnim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }) }],
-            },
-          ]}
-        >
+        <Animated.View style={[styles.bubble, bubbleStyle]}>
           <View style={styles.bubbleTail} />
           <Text style={styles.narration}>{content.narration}</Text>
           <Text style={styles.viLabel}>— Vi 🤖</Text>

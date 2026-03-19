@@ -8,19 +8,34 @@ import { z } from 'zod'
 import { db } from '@vibecode/db'
 import { getLevelForXp } from '@vibecode/shared'
 import { checkAchievements } from '../../../../lib/achievement-checker'
+import { rateLimit } from '../../../../lib/rate-limit'
+
+// FIX 2: Whitelist de sources válidas — impede XP arbitrário
+const VALID_XP_SOURCES = ['achievement', 'streak_bonus', 'daily_challenge', 'event'] as const
+type ValidXpSource = typeof VALID_XP_SOURCES[number]
 
 const xpBodySchema = z.object({
   amount: z.number().int().positive().max(100000),
-  source: z.string().min(1).max(100),
+  source: z.enum(VALID_XP_SOURCES), // FIX 2: Valida source contra whitelist
 })
 
 export async function POST(req: Request) {
-  const { userId: clerkId } = auth()
+  // FIX 1: auth() com await (Clerk SDK v5)
+  const { userId: clerkId } = await auth()
 
   if (!clerkId) {
     return NextResponse.json(
       { success: false, error: { code: 'UNAUTHORIZED', message: 'Não autorizado' } },
       { status: 401 }
+    )
+  }
+
+  // FIX 2: Rate limiting por user
+  const rl = await rateLimit(`xp:${clerkId}`)
+  if (!rl.success) {
+    return NextResponse.json(
+      { success: false, error: { code: 'RATE_LIMIT', message: 'Demasiados pedidos' } },
+      { status: 429 }
     )
   }
 

@@ -130,16 +130,18 @@ const calculateTimeEstimates = (dailyTime: string): TimeEstimate[] => {
 
 export default function DNAResultScreen() {
   const router = useRouter()
-  const { dnaProfile, setHasCompletedOnboarding } = useUserStore()
+  const { setHasCompletedOnboarding } = useUserStore()
+
+  // Melhoria 3: dnaProfile foi removido do store local (PII não persiste em plaintext).
+  // Os dados completos foram enviados ao servidor via /api/users/dna.
+  // Aqui usamos valores seguros para renderizar o perfil (ecrã de resultado).
+  const buildGoals: string[] = []
+  const mainGoal = 'hobby'
+  const dailyTime = '15-30'
 
   const [isCalculating, setIsCalculating] = useState(true)
   const pulseAnim = useState(() => new Animated.Value(1))[0]
   const fadeAnim = useState(() => new Animated.Value(0))[0]
-
-  // Calcular perfil
-  const buildGoals = dnaProfile?.buildGoals ?? []
-  const mainGoal = dnaProfile?.mainGoal ?? 'hobby'
-  const dailyTime = dnaProfile?.dailyTime ?? '15-30'
 
   const profile = calculateProfile(buildGoals, mainGoal, '')
   const timeEstimates = calculateTimeEstimates(dailyTime)

@@ -1,5 +1,7 @@
 // VibeCode — POST /api/vi/chat
-// AI mentor endpoint: auth → rate-limit → free tier check → assemble prompt → route model → call provider → save → return
+// Melhoria 4: Suporte a conversationId opcional para manter histórico de conversa
+// Fluxo: se conversationId fornecido → busca histórico → passa ao modelo → faz update
+//        se não fornecido → cria nova conversa → retorna id para o cliente usar nas próximas
 
 import { NextResponse } from 'next/server'
 import { auth } from '@clerk/nextjs/server'
@@ -13,9 +15,16 @@ import { rateLimit } from '../../../../lib/rate-limit'
 
 const FREE_DAILY_LIMIT = 5
 
+// Tipo interno para mensagens no histórico
+interface StoredMessage {
+  role: 'user' | 'assistant'
+  content: string
+  timestamp?: string
+}
+
 export async function POST(req: Request) {
-  // ── 1. Auth
-  const { userId: clerkId } = auth()
+  // ── 1. Auth (await obrigatório no SDK v5)
+  const { userId: clerkId } = await auth()
   if (!clerkId) {
     return NextResponse.json(
       { success: false, error: { code: 'UNAUTHORIZED', message: 'Não autorizado' } },
@@ -23,7 +32,7 @@ export async function POST(req: Request) {
     )
   }
 
-  // ── 2. Rate limit (30 req/min per user)
+  // ── 2. Rate limit (30 req/min por user)
   const rl = await rateLimit(`vi:${clerkId}`)
   if (!rl.success) {
     return NextResponse.json(
@@ -43,9 +52,7 @@ export async function POST(req: Request) {
       )
     }
 
-    const { content, mode = 'TEACHER', context } = parsed.data
-
-    // Mode vem como string do body — convertemos para enum do shared
+    const { content, mode = 'TEACHER', context, conversationId } = parsed.data
     const viMode: ViMode = (mode ?? 'TEACHER') as ViMode
 
     // ── 4. Buscar user
@@ -68,8 +75,8 @@ export async function POST(req: Request) {
       )
     }
 
-    // ── 5. Verificar limite FREE (5 conversações/dia)
-    if (user.subscriptionTier === 'FREE') {
+    // ── 5. Verificar limite FREE (5 conversações/dia — só conta novas conversas)
+    if (user.subscriptionTier === 'FREE' && !conversationId) {
       const todayStart = new Date()
       todayStart.setUTCHours(0, 0, 0, 0)
 
@@ -94,7 +101,24 @@ export async function POST(req: Request) {
       }
     }
 
-    // ── 6. Montar system prompt (10 camadas)
+    // ── 6. Melhoria 4: Carregar histórico se conversationId fornecido
+    let existingMessages: StoredMessage[] = []
+    let targetConversationId: string | null = conversationId ?? null
+
+    if (conversationId) {
+      const existing = await db.viConversation.findFirst({
+        where: { id: conversationId, userId: user.id },
+        select: { messages: true },
+      })
+      if (existing) {
+        existingMessages = existing.messages as unknown as StoredMessage[]
+      } else {
+        // conversationId inválido ou de outro user — ignorar e criar nova
+        targetConversationId = null
+      }
+    }
+
+    // ── 7. Montar system prompt (10 camadas)
     const systemPrompt = assembleViPrompt({
       mode: viMode,
       userLevel: user.currentLevel,
@@ -104,14 +128,25 @@ export async function POST(req: Request) {
       maxResponseLength: 'medium',
     })
 
-    // ── 7. Classificar tarefa e seleccionar modelo
+    // ── 8. Classificar tarefa e seleccionar modelo
     const taskType = classifyTask(content)
     const modelConfig = selectModel(
       taskType,
       (user.subscriptionTier as 'FREE' | 'PRO' | 'TEAM' | 'LIFETIME') ?? 'FREE'
     )
 
-    // ── 8. Chamar provider correcto
+    // ── 9. Preparar array de messages com histórico
+    const messagesForAI = [
+      // Histórico existente (últimas 10 mensagens para não ultrapassar context window)
+      ...existingMessages.slice(-10).map((m) => ({
+        role: m.role as 'user' | 'assistant',
+        content: m.content,
+      })),
+      // Nova mensagem do user
+      { role: 'user' as const, content },
+    ]
+
+    // ── 10. Chamar provider correcto
     let aiText = ''
     let tokensUsed = 0
 
@@ -119,14 +154,13 @@ export async function POST(req: Request) {
       const result = await generateText({
         model: anthropic(modelConfig.model),
         system: systemPrompt,
-        messages: [{ role: 'user', content }],
+        messages: messagesForAI,
         maxTokens: modelConfig.maxTokens,
         temperature: modelConfig.temperature,
       })
       aiText = result.text
       tokensUsed = (result.usage?.promptTokens ?? 0) + (result.usage?.completionTokens ?? 0)
     } else if (modelConfig.provider === 'groq') {
-      // Groq: API compatível com OpenAI, usa createOpenAI com baseURL customizado
       const groqProvider = createOpenAI({
         baseURL: 'https://api.groq.com/openai/v1',
         apiKey: process.env.GROQ_API_KEY ?? '',
@@ -134,18 +168,17 @@ export async function POST(req: Request) {
       const result = await generateText({
         model: groqProvider(modelConfig.model),
         system: systemPrompt,
-        messages: [{ role: 'user', content }],
+        messages: messagesForAI,
         maxTokens: modelConfig.maxTokens,
         temperature: modelConfig.temperature,
       })
       aiText = result.text
       tokensUsed = (result.usage?.promptTokens ?? 0) + (result.usage?.completionTokens ?? 0)
     } else {
-      // openai (default)
       const result = await generateText({
         model: openai(modelConfig.model),
         system: systemPrompt,
-        messages: [{ role: 'user', content }],
+        messages: messagesForAI,
         maxTokens: modelConfig.maxTokens,
         temperature: modelConfig.temperature,
       })
@@ -153,25 +186,42 @@ export async function POST(req: Request) {
       tokensUsed = (result.usage?.promptTokens ?? 0) + (result.usage?.completionTokens ?? 0)
     }
 
-    // ── 9. Guardar conversa no banco
-    // ViConversation.messages é um Json[] com a história da conversa
-    const conversationMessages = [
+    // ── 11. Melhoria 4: Persistir conversa (update ou create)
+    const newMessages: StoredMessage[] = [
+      ...existingMessages,
       { role: 'user', content, timestamp: new Date().toISOString() },
       { role: 'assistant', content: aiText, timestamp: new Date().toISOString() },
     ]
 
-    await db.viConversation.create({
-      data: {
-        userId: user.id,
-        mode: viMode as never,
-        context: context ?? null,
-        messages: conversationMessages as never,
-        modelUsed: modelConfig.model,
-        tokensUsed,
-      },
-    })
+    let savedConversationId: string
 
-    // ── 10. Retornar resposta
+    if (targetConversationId) {
+      // Actualizar conversa existente com novas mensagens
+      await db.viConversation.update({
+        where: { id: targetConversationId },
+        data: {
+          messages: newMessages as never,
+          tokensUsed: { increment: tokensUsed },
+          updatedAt: new Date(),
+        },
+      })
+      savedConversationId = targetConversationId
+    } else {
+      // Criar nova conversa e devolver id ao cliente
+      const created = await db.viConversation.create({
+        data: {
+          userId: user.id,
+          mode: viMode as never,
+          context: context ?? null,
+          messages: newMessages as never,
+          modelUsed: modelConfig.model,
+          tokensUsed,
+        },
+      })
+      savedConversationId = created.id
+    }
+
+    // ── 12. Retornar resposta com conversationId para o cliente usar na próxima
     return NextResponse.json({
       success: true,
       data: {
@@ -179,6 +229,7 @@ export async function POST(req: Request) {
         role: 'ASSISTANT',
         model: modelConfig.model,
         tokensUsed,
+        conversationId: savedConversationId, // Cliente guarda e envia no próximo request
       },
     })
   } catch (error) {

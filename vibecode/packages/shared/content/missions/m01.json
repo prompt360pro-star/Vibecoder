@@ -23,41 +23,15 @@
       "title": "O Novo Paradigma",
       "estimatedSeconds": 90,
       "content": {
-        "sections": [
-          {
-            "type": "comparison",
-            "leftTitle": "Programação Tradicional",
-            "rightTitle": "Vibe Coding",
-            "leftItems": [
-              "Memorizas sintaxe",
-              "Aprendes por anos",
-              "Escreves cada linha",
-              "Debug manual horas"
-            ],
-            "rightItems": [
-              "Descreves o que queres",
-              "Começas a construir hoje",
-              "IA escreve, tu validas",
-              "IA ajuda a corrigir"
-            ]
-          },
-          {
-            "type": "quote",
-            "text": "There's a new kind of coding I call 'vibe coding', where you fully give in to the vibes, embrace exponentials, and forget that the code even exists.",
-            "author": "Andrej Karpathy",
-            "date": "Fev 2025"
-          },
-          {
-            "type": "cards",
-            "items": [
-              { "emoji": "🤖", "title": "ChatGPT", "description": "O assistente mais popular do mundo. Perfeito para gerar código, explicar conceitos e resolver dúvidas." },
-              { "emoji": "⚡", "title": "Cursor", "description": "Editor de código com IA integrada. Escreve, refatora e corrige código em tempo real." },
-              { "emoji": "🖥️", "title": "v0.dev", "description": "Gera interfaces web completas com React apenas com uma descrição em texto." },
-              { "emoji": "🔩", "title": "Bolt.new", "description": "Cria apps full-stack completos no browser. Deploy em segundos." },
-              { "emoji": "❤️", "title": "Lovable", "description": "Converte ideias em apps reais com design profissional. Made in Europe." }
-            ]
-          }
-        ]
+        "title": "O Novo Paradigma",
+        "explanation": "Pensa na diferença entre programar linha a linha e descrever o resultado final. A IA escreve o código e tu validas.",
+        "keyPoints": [
+          "Descreves o que queres",
+          "Começas a construir hoje",
+          "A IA escreve a sintaxe",
+          "O programador atua como diretor"
+        ],
+        "tip": "Ferramentas como Cursor, v0.dev e Bolt.new lideram esta revolução tecnológica."
       }
     },
     {

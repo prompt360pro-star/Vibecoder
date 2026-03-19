@@ -210,7 +210,10 @@ export interface TextSection {
 export type ConceptSection = ComparisonSection | QuoteSection | CardsSection | TextSection
 
 export interface ConceptContent {
-  sections: ConceptSection[]
+  title: string
+  explanation: string
+  keyPoints: string[]
+  tip?: string
 }
 
 export interface TrueFalseStatement {
@@ -251,8 +254,10 @@ export interface InteractionContent {
 
 export interface SandboxContent {
   instruction: string
-  placeholder: string
-  hint: string
+  promptTemplate: string
+  expectedOutput: string
+  hints: string[]
+  evaluationCriteria: string[]
 }
 
 export interface MissionPhase {

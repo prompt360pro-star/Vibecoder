@@ -1,16 +1,21 @@
-// Button — 4 variantes (primary, secondary, destructive, ghost) + 4 tamanhos
-import { type ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import {
-  Pressable,
-  Text,
-  StyleSheet,
   ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
   View,
-  type ViewStyle,
   type StyleProp,
+  type ViewStyle,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as Haptics from 'expo-haptics'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
+import { usePressScale, useShimmer } from '../../lib/animations'
 
 type ButtonVariant = 'primary' | 'secondary' | 'destructive' | 'ghost'
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl'
@@ -26,19 +31,45 @@ interface ButtonProps {
   style?: StyleProp<ViewStyle>
 }
 
-const HEIGHTS: Record<ButtonSize, number> = {
-  sm: 36,
-  md: 44,
-  lg: 52,
-  xl: 56,
-}
+const GRADIENT_COLORS = ['#8B5CF6', '#3B82F6'] as const
+const SHIMMER_COLORS = ['transparent', 'rgba(255,255,255,0.12)', 'transparent'] as const
 
-const FONT_SIZES: Record<ButtonSize, number> = {
-  sm: 13,
-  md: 14,
-  lg: 15,
-  xl: 16,
-}
+const sizeSurfaceStyles = StyleSheet.create({
+  sm: { height: 36 },
+  md: { height: 44 },
+  lg: { height: 52 },
+  xl: { height: 56 },
+})
+
+const sizeTextStyles = StyleSheet.create({
+  sm: { fontSize: 13 },
+  md: { fontSize: 14 },
+  lg: { fontSize: 15 },
+  xl: { fontSize: 16 },
+})
+
+const variantSurfaceStyles = StyleSheet.create({
+  secondary: {
+    backgroundColor: '#1A1A2E',
+    borderWidth: 1,
+    borderColor: '#333333',
+  },
+  destructive: {
+    backgroundColor: 'rgba(239,68,68,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(239,68,68,0.3)',
+  },
+  ghost: {
+    backgroundColor: 'transparent',
+  },
+})
+
+const variantTextStyles = StyleSheet.create({
+  primary: { color: '#FFFFFF' },
+  secondary: { color: '#FFFFFF' },
+  destructive: { color: '#EF4444' },
+  ghost: { color: '#CCCCCC', fontWeight: '500' },
+})
 
 export default function Button({
   title,
@@ -50,83 +81,87 @@ export default function Button({
   loading = false,
   style,
 }: ButtonProps) {
-  const height = HEIGHTS[size]
-  const fontSize = FONT_SIZES[size]
+  const isDisabled = disabled || loading
+  const { onPressIn, onPressOut, style: pressScaleStyle } = usePressScale(0.97)
+  const shimmerStyle = useShimmer(360, 2200)
+  const opacity = useSharedValue(isDisabled ? 0.5 : 1)
+
+  useEffect(() => {
+    opacity.value = withTiming(isDisabled ? 0.5 : 1, { duration: 180 })
+  }, [isDisabled, opacity])
+
+  const animatedContainerStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+  }))
 
   const handlePress = async () => {
-    if (disabled || loading) return
+    if (isDisabled) return
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     onPress()
   }
 
-  const renderContent = () => (
-    <View style={[styles.content, { height }]}>
+  const indicatorColor =
+    variant === 'destructive' ? '#EF4444' : variant === 'ghost' ? '#CCCCCC' : '#FFFFFF'
+
+  const content = (
+    <>
+      {variant === 'primary' && !isDisabled ? (
+        <Animated.View style={[styles.shimmer, shimmerStyle]}>
+          <LinearGradient
+            colors={SHIMMER_COLORS}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.shimmerGradient}
+          />
+        </Animated.View>
+      ) : null}
+
+      <View style={[styles.content, loading && styles.contentHidden]}>
+        {icon ? <View style={styles.iconWrap}>{icon}</View> : null}
+        <Text style={[styles.text, sizeTextStyles[size], variantTextStyles[variant]]}>
+          {title}
+        </Text>
+      </View>
+
       {loading ? (
-        <ActivityIndicator
-          color={variant === 'destructive' ? '#EF4444' : '#FFFFFF'}
-          size="small"
-        />
-      ) : (
-        <>
-          {icon ? <View style={styles.iconWrap}>{icon}</View> : null}
-          <Text
-            style={[
-              styles.text,
-              { fontSize },
-              variant === 'secondary' && styles.textSecondary,
-              variant === 'destructive' && styles.textDestructive,
-              variant === 'ghost' && styles.textGhost,
-            ]}
-          >
-            {title}
-          </Text>
-        </>
-      )}
-    </View>
+        <View style={styles.loaderOverlay}>
+          <ActivityIndicator color={indicatorColor} size="small" />
+        </View>
+      ) : null}
+    </>
   )
 
-  // Primary usa LinearGradient
-  if (variant === 'primary') {
-    return (
-      <Pressable
-        onPress={handlePress}
-        disabled={disabled || loading}
-        style={({ pressed }) => [
-          styles.base,
-          pressed && styles.pressed,
-          (disabled || loading) && styles.disabled,
-          style,
-        ]}
-      >
-        <LinearGradient
-          colors={['#8B5CF6', '#3B82F6']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={[styles.gradient, { height, borderRadius: 12 }]}
-        >
-          {renderContent()}
-        </LinearGradient>
-      </Pressable>
-    )
-  }
-
-  // Outros variants
   return (
-    <Pressable
-      onPress={handlePress}
-      disabled={disabled || loading}
-      style={({ pressed }) => [
-        styles.base,
-        variant === 'secondary' && [styles.secondary, { height }],
-        variant === 'destructive' && [styles.destructive, { height }],
-        variant === 'ghost' && [styles.ghost, { height }],
-        pressed && styles.pressed,
-        (disabled || loading) && styles.disabled,
-        style,
-      ]}
-    >
-      {renderContent()}
-    </Pressable>
+    <Animated.View style={[styles.base, pressScaleStyle, animatedContainerStyle, style]}>
+      <Pressable
+        disabled={isDisabled}
+        onPress={handlePress}
+        onPressIn={isDisabled ? undefined : onPressIn}
+        onPressOut={isDisabled ? undefined : onPressOut}
+        style={styles.pressable}
+      >
+        {variant === 'primary' ? (
+          <LinearGradient
+            colors={GRADIENT_COLORS}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.surface, sizeSurfaceStyles[size]]}
+          >
+            {content}
+          </LinearGradient>
+        ) : (
+          <View
+            style={[
+              styles.surface,
+              sizeSurfaceStyles[size],
+              variantSurfaceStyles[variant],
+            ]}
+          >
+            {content}
+          </View>
+        )}
+      </Pressable>
+    </Animated.View>
   )
 }
 
@@ -135,58 +170,48 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
   },
-  gradient: {
+  pressable: {
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  surface: {
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    overflow: 'hidden',
   },
   content: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    minWidth: '100%',
+  },
+  contentHidden: {
+    opacity: 0,
   },
   iconWrap: {
     marginRight: 8,
   },
   text: {
-    color: '#FFFFFF',
     fontWeight: '700',
     letterSpacing: 0.5,
   },
-  textSecondary: {
-    color: '#FFFFFF',
-    fontWeight: '600',
+  shimmer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: -100,
+    width: 80,
+    overflow: 'hidden',
+    transform: [{ skewX: '-20deg' }],
   },
-  textDestructive: {
-    color: '#EF4444',
-    fontWeight: '600',
+  shimmerGradient: {
+    flex: 1,
   },
-  textGhost: {
-    color: '#CCCCCC',
-    fontWeight: '500',
-  },
-  secondary: {
-    backgroundColor: '#1A1A2E',
-    borderWidth: 1,
-    borderColor: '#333333',
+  loaderOverlay: {
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  destructive: {
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  ghost: {
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.98 }],
-  },
-  disabled: {
-    opacity: 0.5,
   },
 })
